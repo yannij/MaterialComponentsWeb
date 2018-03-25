@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "WAComponent",
+	"category" : "Material-Components-Web-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"applicationName",
+		"screens",
+		"colors"
+	],
+	"name" : "MCWApplication",
+	"type" : "normal"
+}

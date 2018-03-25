@@ -1,0 +1,4 @@
+testing
+isHidden
+
+	^self hidden

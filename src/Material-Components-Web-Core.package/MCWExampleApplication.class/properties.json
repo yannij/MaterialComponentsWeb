@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWApplication",
+	"category" : "Material-Components-Web-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWExampleApplication",
+	"type" : "normal"
+}

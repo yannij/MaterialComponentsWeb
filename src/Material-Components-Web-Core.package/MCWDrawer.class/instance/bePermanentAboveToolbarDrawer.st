@@ -1,0 +1,4 @@
+actions
+bePermanentAboveToolbarDrawer
+
+	self drawerType: #permanentAboveToolbar

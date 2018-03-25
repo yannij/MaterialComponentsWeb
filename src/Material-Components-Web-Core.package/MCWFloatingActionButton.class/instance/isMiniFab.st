@@ -1,0 +1,4 @@
+testing
+isMiniFab
+
+	^self miniFab

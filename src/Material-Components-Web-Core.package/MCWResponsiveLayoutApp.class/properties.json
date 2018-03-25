@@ -1,0 +1,22 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWApplication",
+	"category" : "Material-Components-Web-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"appBar",
+		"sideNav",
+		"rightNav",
+		"header",
+		"footer",
+		"mainFab",
+		"layoutStructure",
+		"secondaryToolbar",
+		"extraWideShown",
+		"extraTallShown"
+	],
+	"name" : "MCWResponsiveLayoutApp",
+	"type" : "normal"
+}

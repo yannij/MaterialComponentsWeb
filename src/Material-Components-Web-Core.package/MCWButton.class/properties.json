@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWComponent",
+	"category" : "Material-Components-Web-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"buttonLabel",
+		"onClickScript",
+		"callback"
+	],
+	"name" : "MCWButton",
+	"type" : "normal"
+}

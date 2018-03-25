@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWComponent",
+	"category" : "Material-Components-Web-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"toolbar"
+	],
+	"name" : "MCWFooter",
+	"type" : "normal"
+}

@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWComponent",
+	"category" : "Material-Components-Web-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"drawerType",
+		"list",
+		"dir",
+		"toolbar"
+	],
+	"name" : "MCWDrawer",
+	"type" : "normal"
+}
