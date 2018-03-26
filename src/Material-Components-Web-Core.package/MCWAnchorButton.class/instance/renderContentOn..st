@@ -3,8 +3,8 @@ renderContentOn: html
 
 	html anchor
 		id: self id;
-		class: 'mdc-button';
-		class: 'mdc-button--raised' if: true;
+		mdcButton;
+		mdcButton__raised;
 		style: 'margin: 16px';
 		callback: self callback;
 		with: [

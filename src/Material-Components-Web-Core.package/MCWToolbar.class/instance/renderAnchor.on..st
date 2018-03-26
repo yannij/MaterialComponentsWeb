@@ -2,7 +2,7 @@ rendering
 renderAnchor: buttonValues on: html
 
 	html anchor
-		class: 'material-icons'; class: 'mdc-toolbar__menu-icon';
+		mdcMaterialIcons; mdcToolbar__menuIcon;
 		attributeAt: 'aria-label' put: buttonValues first;
 		attributeAt: 'alt' put: buttonValues first;
 		url: '#';

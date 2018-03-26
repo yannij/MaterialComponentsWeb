@@ -1,19 +1,23 @@
 rendering
 renderContentOn: html
+	| drawerTag |
 
-	html aside
+	drawerTag := html aside mdcDrawer.
+	self isTemporaryDrawer ifTrue: [drawerTag mdcDrawer__temporary].
+	self isPersistentDrawer ifTrue: [drawerTag mdcDrawer__persistent].
+	self isPermanentAboveToolbarDrawer ifTrue: [drawerTag mdcDrawer__permanent].
+	self isPermanentBelowToolbarDrawer ifTrue: [drawerTag mdcDrawer__permanent].
+
+	drawerTag
 		id: self id;
-		"style: 'background-color: #EC4E8C';"
-		class: 'mdc-drawer'; class: self mdcDrawerClass; class: 'demo-drawer';
 		script: (JSScript new add: (JSStream new
 				nextPutAll: 'var ', self id, '=document.getElementById(''', self id, ''');';
 				nextPutAll: self id, '.mdcDrawer = new ', self jsDrawerType, '(', self id, ')';
 				yourself));
 		with: [
 		html navigation
+			mdcDrawer__drawer;
 			attributeAt: 'dir' put: self dir;
-			"attributeAt: 'data-mdc-auto-init' put: self jsDrawerType;"
-			class: 'mdc-drawer__drawer';
 			style: 'background-color: #EC4E8C';
 			onClick: (JSScript new add: (JSStream new
 				nextPutAll: '
@@ -31,6 +35,6 @@ if (el) {
 }'));
 			with: [
 			html render: self toolbar.
-			"html div class: 'mdc-drawer__toolbar-spacer'."
-			html div class: 'mdc-list-group'; with: [
+			"html div mdcDrawer__toolbarSpacer."
+			html div mdcListGroup; with: [
 				self renderList: self list selectedIndex: 1 on: html]]].
