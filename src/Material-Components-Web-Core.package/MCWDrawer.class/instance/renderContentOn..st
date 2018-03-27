@@ -37,4 +37,4 @@ if (el) {
 			html render: self toolbar.
 			"html div mdcDrawer__toolbarSpacer."
 			html div mdcListGroup; with: [
-				self renderList: self list selectedIndex: 1 on: html]]].
+				html render: self list]]].

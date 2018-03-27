@@ -9,8 +9,6 @@ renderCanvasOn: html
 		with: [
 			html render: self secondaryToolbar.
 			self renderLayoutSwitchOn: html.
-			html render: self canvas showDrawer.
-			html render: self canvas showLayoutGrid.
-			html render: self canvas showTypography.
+			html render: self canvas.
 			html render: self mainFab.
 		]

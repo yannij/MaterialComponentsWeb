@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWListItem",
+	"category" : "Material-Components-Web-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"iconName"
+	],
+	"name" : "MCWListItemIcon",
+	"type" : "normal"
+}

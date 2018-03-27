@@ -3,7 +3,7 @@ initialize
 
 	super initialize.
 
-	self currentComponentType: #renderDemoTypographyOn:.
+	self currentComponentType: #renderDemoDrawerOn:.
 
 	self extraWideShown: false.
 	self extraTallShown: false.

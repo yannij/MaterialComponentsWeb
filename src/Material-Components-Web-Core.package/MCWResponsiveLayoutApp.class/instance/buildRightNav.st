@@ -3,7 +3,7 @@ buildRightNav
 
 	^MCWDrawer new
 		id: self rightNavDrawerId;
-		list: {'star' -> 'Right Nav 1'. 'star' -> 'Right Nav 2'};
+		list: self buildRightNavMenuList;
 		beTemporaryDrawer;
 		beDirectionToRightToLeft;
 		yourself.
