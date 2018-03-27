@@ -1,4 +1,4 @@
-rendering - layouts
+rendering
 renderLayoutStructureDesktopOn: html
 
 	html div
@@ -12,6 +12,6 @@ renderLayoutStructureDesktopOn: html
 		style: 'display: inline-flex; flex-direction: row; flex-grow: 1; height: 100%; box-sizing: border-box;';
 		with: [
 			html render: self sideNav.
-			self renderCurrentCanvasOn: html.
+			self renderCanvasOn: html.
 			html render: self rightNav.
 		].

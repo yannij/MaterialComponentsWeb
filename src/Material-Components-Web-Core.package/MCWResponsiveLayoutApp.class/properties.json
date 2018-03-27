@@ -12,10 +12,9 @@
 		"header",
 		"footer",
 		"mainFab",
-		"layoutStructure",
 		"secondaryToolbar",
-		"extraWideShown",
-		"extraTallShown"
+		"layoutStructure",
+		"canvas"
 	],
 	"name" : "MCWResponsiveLayoutApp",
 	"type" : "normal"

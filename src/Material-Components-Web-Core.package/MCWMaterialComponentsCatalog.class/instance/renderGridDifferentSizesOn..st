@@ -1,4 +1,4 @@
-rendering
+rendering - grid
 renderGridDifferentSizesOn: html
 	| s |
 

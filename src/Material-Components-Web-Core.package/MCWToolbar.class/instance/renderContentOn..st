@@ -4,7 +4,7 @@ renderContentOn: html
 	self isHidden ifTrue: [^self].
 
 	html div
-		mdcToolbar; mdcElevation__z4;
+		mdcToolbar; "mdcElevationZ4;"
 		"attributeAt: 'dir' put: 'ltr';"
 		style: self mcwStyle;
 		with: [

@@ -1,4 +1,4 @@
-rendering - layouts
+rendering
 renderLayoutSwitchOn: html
 
 	html div

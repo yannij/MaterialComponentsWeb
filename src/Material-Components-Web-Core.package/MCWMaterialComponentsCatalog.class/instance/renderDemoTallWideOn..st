@@ -1,5 +1,5 @@
-rendering
-renderSampleTallWideOn: html
+rendering - drawer
+renderDemoTallWideOn: html
 
 	self renderExtraWideAnchorButtonOn: html.
 	self renderExtraTallAnchorButtonOn: html.

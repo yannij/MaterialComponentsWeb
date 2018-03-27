@@ -3,6 +3,8 @@ initialize
 
 	super initialize.
 
+	self canvas: WAComponent new.
+
 	self layoutStructure: #tablet.
 	self rebuildHeader.
 
@@ -27,6 +29,4 @@ initialize
 	self mainFab: self buildMainFab.
 	self secondaryToolbar: (MCWToolbar new title: 'Secondary toolbar'; mcwStyle: 'background-color: #D5D5D5'; yourself).
 
-	self extraWideShown: false.
-	self extraTallShown: false.
 	self beLayoutStructureTablet.

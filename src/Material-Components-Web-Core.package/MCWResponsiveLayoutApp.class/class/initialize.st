@@ -1,7 +1,7 @@
 initialization
 initialize
 	"Register path with Seaside.
-	WAAdmin unregister: 'mcw-layout-structure'.
+	WAAdmin unregister: 'mcw-responsive-layout'.
 	"
 
-	^self registerToDevelopment: 'mcw-layout-structure'
+	^self registerToDevelopment: 'mcw-responsive-layout'

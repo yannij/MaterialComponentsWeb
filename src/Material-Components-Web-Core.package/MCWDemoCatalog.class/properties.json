@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWResponsiveLayoutApp",
+	"category" : "Material-Components-Web-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWDemoCatalog",
+	"type" : "normal"
+}

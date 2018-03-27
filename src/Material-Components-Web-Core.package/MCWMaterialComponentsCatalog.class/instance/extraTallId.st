@@ -1,4 +1,4 @@
-rendering - tall and wide
+rendering - drawer
 extraTallId
 
 	^'extraTall'

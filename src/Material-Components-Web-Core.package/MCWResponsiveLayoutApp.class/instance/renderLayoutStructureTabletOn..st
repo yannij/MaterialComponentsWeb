@@ -1,4 +1,4 @@
-rendering - layouts
+rendering
 renderLayoutStructureTabletOn: html
 
 	html render: self sideNav.
@@ -8,6 +8,6 @@ renderLayoutStructureTabletOn: html
 		style: 'display: inline-flex; flex-direction: column; flex-grow: 1; height: 100%; box-sizing: border-box;';
 		with: [
 			html render: self header.
-			self renderCurrentCanvasOn: html.
+			self renderCanvasOn: html.
 			html render: self footer.
 		].
