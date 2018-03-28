@@ -3,7 +3,7 @@ initialize
 
 	super initialize.
 
-	self currentComponentType: #renderDemoDrawerOn:.
+	self currentComponentType: #renderDemoNoneSelectedOn:.
 
 	self extraWideShown: false.
 	self extraTallShown: false.

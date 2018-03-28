@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWComponent",
+	"category" : "Material-Components-Web-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"groupedLists"
+	],
+	"name" : "MCWListGroup",
+	"type" : "normal"
+}
