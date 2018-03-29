@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWButtonComponent",
+	"category" : "Material-Components-Web-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWAnchorTextButton",
+	"type" : "normal"
+}

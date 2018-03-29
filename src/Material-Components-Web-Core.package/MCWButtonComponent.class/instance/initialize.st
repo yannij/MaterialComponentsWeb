@@ -7,5 +7,4 @@ initialize
 
 	"Should check for nil"
 	"self onClickScript: nil."
-
-	self callback: [].
+	"self callback: []."

@@ -1,0 +1,4 @@
+initialization
+appBarMenuId
+
+	^'demo-menu'

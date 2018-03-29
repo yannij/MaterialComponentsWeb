@@ -7,7 +7,8 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"selectedIndex",
-		"listItems"
+		"listItems",
+		"subheader"
 	],
 	"name" : "MCWList",
 	"type" : "normal"

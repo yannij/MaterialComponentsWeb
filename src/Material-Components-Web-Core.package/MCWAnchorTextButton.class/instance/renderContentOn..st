@@ -6,6 +6,6 @@ renderContentOn: html
 		mdcButton;
 		mdcButton__raised;
 		style: 'margin: 16px';
-		callback: self callback;
+		callback: self callback if: self hasCallback;
 		with: [
 			html text: self buttonLabel].

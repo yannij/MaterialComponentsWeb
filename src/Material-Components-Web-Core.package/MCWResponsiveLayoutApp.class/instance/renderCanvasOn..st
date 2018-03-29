@@ -11,7 +11,6 @@ renderCanvasOn: html
 				html span style: 'height: 30vh; opacity: .99'; with: [ html text: 'red' ]].
 			self renderLayoutSwitchOn: html."
 			html render: self secondaryToolbar.
-			self renderLayoutSwitchOn: html.
 			html render: self canvas.
 			html render: self mainFab.
 		]

@@ -3,16 +3,17 @@ beLayoutStructureDesktop
 
 	self layoutStructure: #desktop.
 
-	self secondaryToolbar beUnHidden.
+	self secondaryToolbar ifNotNil: [:value | value beUnHidden].
 
 	self sideNav
 		toolbarUnHide;
 		bePermanentBelowToolbarDrawer.
 
-	self rightNav
-		toolbarUnHide;
-		bePermanentBelowToolbarDrawer;
-		beDirectionLeftToRight.
+	self rightNav ifNotNil: [:value |
+		value
+			toolbarUnHide;
+			bePermanentBelowToolbarDrawer;
+			beDirectionLeftToRight].
 
 	self footer toolbar beHidden.
 

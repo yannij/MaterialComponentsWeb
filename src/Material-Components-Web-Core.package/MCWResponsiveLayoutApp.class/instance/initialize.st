@@ -17,16 +17,18 @@ initialize
 	self sideNav: self buildSideNav.
 	self sideNav toolbar
 		mcwStyle: 'background-color: #CD4067';
-		title: 'Toolbar';
+		toolbarTitle: 'Side Toolbar';
 		yourself.
 
 	self rightNav: self buildRightNav.
-	self rightNav toolbar
-		mcwStyle: 'background-color: #CD4067';
-		title: 'Toolbar';
-		yourself.
+	self rightNav notNil
+		ifTrue: [
+			self rightNav toolbar
+				mcwStyle: 'background-color: #CD4067';
+				toolbarTitle: 'Right Toolbar';
+				yourself].
 
 	self mainFab: self buildMainFab.
-	self secondaryToolbar: (MCWToolbar new title: 'Secondary toolbar'; mcwStyle: 'background-color: #D5D5D5'; yourself).
+	self secondaryToolbar: (MCWToolbar new toolbarTitle: 'Secondary toolbar'; mcwStyle: 'background-color: #D5D5D5'; yourself).
 
 	self beLayoutStructureTablet.

@@ -8,7 +8,6 @@ renderCanvasOn: html
 		class: 'mdc-toolbar-fixed-adjust' if: self isLayoutStructureDesktop not;
 		with: [
 			html render: self secondaryToolbar.
-			self renderLayoutSwitchOn: html.
 			html render: self canvas.
 			html render: self mainFab.
 		]

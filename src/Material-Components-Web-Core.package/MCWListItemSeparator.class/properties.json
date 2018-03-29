@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWButton",
+	"super" : "MCWComponent",
 	"category" : "Material-Components-Web-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "MCWAnchorButton",
+	"name" : "MCWListItemSeparator",
 	"type" : "normal"
 }

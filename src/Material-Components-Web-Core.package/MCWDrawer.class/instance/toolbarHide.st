@@ -1,4 +1,4 @@
 actions
 toolbarHide
 
-	self toolbar beHidden
+	self toolbar ifNotNil: [:value | value beHidden]

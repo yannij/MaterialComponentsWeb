@@ -6,7 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"title",
+		"toolbarTitle",
 		"startSection",
 		"endSection"
 	],
