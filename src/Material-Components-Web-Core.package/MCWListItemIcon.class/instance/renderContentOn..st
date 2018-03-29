@@ -7,7 +7,7 @@ renderContentOn: html
 	tag
 		callback: self callback;
 		mdcListItem; with: [
-			(html tag: 'i')
+			html span
 				mdcMaterialIcons; mdcListItem__graphic;
 				attributeAt: 'aria-hidden' put: 'true';
 				with: [html text: self iconName].

@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWComponent",
+	"super" : "MCWList",
 	"category" : "Material-Components-Web-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "MCWMenu",
+	"name" : "MCWListBasic",
 	"type" : "normal"
 }

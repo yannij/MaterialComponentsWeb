@@ -1,4 +1,4 @@
 rendering
-listTagOn: html
+renderContentOn: html
 
 	self subclassResponsibility

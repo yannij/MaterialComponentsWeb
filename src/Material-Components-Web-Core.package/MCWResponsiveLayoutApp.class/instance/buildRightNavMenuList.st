@@ -2,7 +2,7 @@ initialization
 buildRightNavMenuList
 	| list1 list2 |
 
-	list1 := MCWList new
+	list1 := MCWListBasic new
 		subheader: 'List 1';
 		addListItem: (MCWListItemIcon  itemText: 'Right Nav 1' iconName: 'star' callback: []);
 		addListItem: (MCWListItemIcon  itemText: 'Right Nav 2' iconName: 'star' callback: []);
@@ -10,7 +10,7 @@ buildRightNavMenuList
 		addListItem: (MCWListItemIcon  itemText: 'Right Nav 3' iconName: 'star' callback: []);
 		yourself.
 
-	list2 := MCWList new
+	list2 := MCWListBasic new
 		subheader: 'List 2';
 		addListItem: (MCWListItemIcon  itemText: 'Right Nav 4' iconName: 'star' callback: []);
 		addListItem: (MCWListItemIcon  itemText: 'Right Nav 5' iconName: 'star' callback: []);

@@ -5,9 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"iconName"
-	],
-	"name" : "MCWListItemIcon",
+	"instvars" : [ ],
+	"name" : "MCWListItemPopupMenu",
 	"type" : "normal"
 }
