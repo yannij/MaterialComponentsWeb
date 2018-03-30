@@ -6,8 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"toolbar"
+		"content"
 	],
-	"name" : "MCWHeader",
+	"name" : "MCWLayoutCompoment",
 	"type" : "normal"
 }

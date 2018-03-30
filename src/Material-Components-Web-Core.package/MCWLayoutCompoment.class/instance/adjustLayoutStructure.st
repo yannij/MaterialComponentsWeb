@@ -1,0 +1,4 @@
+actions
+adjustLayoutStructure
+
+	self subclassResponsibility

@@ -8,4 +8,4 @@ renderContentOn: html
 width: 100%;
 ';
 		with: [
-			self renderSubComponentsOn: html].
+			html render: self toolbar].

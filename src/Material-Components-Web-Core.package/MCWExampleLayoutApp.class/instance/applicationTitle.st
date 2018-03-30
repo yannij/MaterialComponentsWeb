@@ -1,0 +1,4 @@
+accessing
+applicationTitle
+
+	^'Layout Example'

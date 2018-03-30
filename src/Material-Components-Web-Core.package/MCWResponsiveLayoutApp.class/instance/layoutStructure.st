@@ -1,3 +1,0 @@
-accessing
-layoutStructure
-	^ layoutStructure

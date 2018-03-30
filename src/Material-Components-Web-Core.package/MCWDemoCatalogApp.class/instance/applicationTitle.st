@@ -1,0 +1,4 @@
+accessing
+applicationTitle
+
+	^'Catalog Demo'
