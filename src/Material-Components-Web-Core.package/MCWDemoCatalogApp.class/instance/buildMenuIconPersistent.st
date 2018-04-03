@@ -6,5 +6,5 @@ buildMenuIconPersistent
 
 	^(MCWToolbarMenuIcon imagePath: imagePath)
 		ariaLabel: 'Menu';
-		callback: [self sideNav isPersistentDrawer ifTrue: [self sideNav isPersistedToggle]];
+		callback: [self sideNav isPersistentDrawer ifTrue: [self togglePersistentDrawer]];
 		yourself

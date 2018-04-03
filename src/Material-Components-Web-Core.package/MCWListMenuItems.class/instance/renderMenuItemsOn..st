@@ -7,9 +7,4 @@ renderMenuItemsOn: html
 		mdcRole: 'menu';
 		attributeAt: 'aria-hidden' put: 'true';
 		with: [
-			{'Popup 1'. 'Popup 2'. 'Popup 3'. ''. 'Popup 4...'}
-			do: [ :each |
-				each isEmpty
-					ifTrue: [html render: MCWListItemSeparator new]
-					ifFalse: [html render: (MCWListItemPopupMenu new itemText: each)]
-				]].
+			self listItems do: [:eachMenuItem | html render: eachMenuItem]].

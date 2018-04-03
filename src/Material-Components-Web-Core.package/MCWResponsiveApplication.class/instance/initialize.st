@@ -3,6 +3,9 @@ initialize
 
 	super initialize.
 
+	self toolbarActions: IdentityDictionary new.
+	self toolbarActionsInitialize.
+	
 	self layoutComponent: (MCWLayoutDesktop on: self).
 
 	self canvas: WAComponent new.

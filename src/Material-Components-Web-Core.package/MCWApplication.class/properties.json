@@ -5,11 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"applicationName",
-		"screens",
-		"colors"
-	],
+	"instvars" : [ ],
 	"name" : "MCWApplication",
 	"type" : "normal"
 }

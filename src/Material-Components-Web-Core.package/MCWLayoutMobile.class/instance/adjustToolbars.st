@@ -5,3 +5,6 @@ adjustToolbars
 	self appBar startSection do: [:each | each beUnHidden].
 
 	self appBar endSection do: [:each | each beUnHidden].
+
+	self appBar endSection do: [:each |
+		each iconName = 'bookmark' ifTrue: [each beHidden]].

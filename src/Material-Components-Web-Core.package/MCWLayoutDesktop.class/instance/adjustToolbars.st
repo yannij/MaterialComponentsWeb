@@ -7,3 +7,6 @@ adjustToolbars
 
 	self appBar endSection do: [:each |
 		each iconName = 'more_horiz' ifTrue: [each beHidden]].
+
+	self appBar endSection do: [:each |
+		each iconName = 'bookmark' ifTrue: [each beHidden]].

@@ -14,7 +14,8 @@
 		"mainFab",
 		"secondaryToolbar",
 		"canvas",
-		"layoutComponent"
+		"layoutComponent",
+		"toolbarActions"
 	],
 	"name" : "MCWResponsiveApplication",
 	"type" : "normal"
