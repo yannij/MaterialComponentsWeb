@@ -7,15 +7,6 @@ initialize
 
 	self canvas: WAComponent new.
 
-	self appBar: self buildAppBar.
-	self header: self buildHeader.
-
-	self footer: self buildFooter.
-	self footer toolbar
-		title: 'Bottom bar';
-		mcwStyle: 'background-color: #2988D1';
-		yourself.
-
 	self sideNav: self buildSideNav.
 	self sideNav toolbar
 		mcwStyle: 'background-color: #CD4067';
@@ -32,5 +23,14 @@ initialize
 
 	self mainFab: self buildMainFab.
 	self secondaryToolbar: (MCWToolbar new toolbarTitle: 'Secondary toolbar'; mcwStyle: 'background-color: #D5D5D5'; yourself).
+
+	self appBar: self buildAppBar.
+	self header: self buildHeader.
+
+	self footer: self buildFooter.
+	self footer toolbar
+		title: 'Bottom bar';
+		mcwStyle: 'background-color: #2988D1';
+		yourself.
 
 	self beLayoutStructureTablet.

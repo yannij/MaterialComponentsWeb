@@ -1,6 +1,6 @@
 rendering
 renderContentOn: html
-	| drawerTag |
+	| drawerTag drawerScript |
 
 	drawerTag := html aside mdcDrawer.
 	self isTemporaryDrawer ifTrue: [drawerTag mdcDrawer__temporary].
@@ -8,12 +8,18 @@ renderContentOn: html
 	self isPermanentAboveToolbarDrawer ifTrue: [drawerTag mdcDrawer__permanent].
 	self isPermanentBelowToolbarDrawer ifTrue: [drawerTag mdcDrawer__permanent].
 
-	drawerTag
-		id: self id;
-		script: (JSScript new add: (JSStream new
+	drawerScript := JSScript new add: (JSStream new
 				nextPutAll: 'var ', self id, '=document.getElementById(''', self id, ''');';
 				nextPutAll: self id, '.mdcDrawer = new ', self jsDrawerType, '(', self id, ')';
-				yourself));
+				yourself).
+	self isPersistentDrawer 
+		ifTrue: [drawerScript nextPutAll: ';', self id, '.mdcDrawer.open = ', self isPersisted printString].
+	"self isTemporaryDrawer 
+		ifTrue: [drawerScript nextPutAll: ';', self id, '.mdcDrawer.open = true']."
+
+	drawerTag
+		id: self id;
+		script: drawerScript;
 		with: [
 		html navigation
 			mdcDrawer__drawer;

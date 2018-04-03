@@ -9,6 +9,9 @@
 		"drawerType",
 		"list",
 		"dir",
+		"menuIconPersistent",
+		"menuIconTemporary",
+		"isPersisted",
 		"toolbar"
 	],
 	"name" : "MCWDrawer",

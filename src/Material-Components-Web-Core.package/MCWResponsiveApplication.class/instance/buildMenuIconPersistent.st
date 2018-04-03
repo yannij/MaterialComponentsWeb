@@ -1,0 +1,4 @@
+initialization
+buildMenuIconPersistent
+
+	self subclassResponsibility
