@@ -1,5 +1,5 @@
 initialization
-buildSideNavMenuList
+prepareSideNav: anApplication
 	| list |
 
 	list := MCWListTwoLine new.
@@ -8,5 +8,6 @@ buildSideNavMenuList
 			itemText: eachItem first
 			itemSecondaryText: eachItem second
 			imageName: 'https://material-components-web.appspot.com/images/', eachItem third
-			callback: [self canvas perform: eachItem fourth])].
-	^list
+			callback: [self perform: eachItem fourth with: eachItem first])].
+
+	anApplication sideNav list: list

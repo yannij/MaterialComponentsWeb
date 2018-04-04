@@ -1,4 +1,4 @@
 actions
 beLayoutStructureMobile
 
-	self layoutComponent: (MCWLayoutMobile on: self) adjustLayoutStructure; yourself.
+	self layoutComponent: (MCWLayoutMobile on: self) adjustLayoutStructure

@@ -1,4 +1,4 @@
 actions
 beLayoutStructureDesktop
 
-	self layoutComponent: (MCWLayoutDesktop on: self) adjustLayoutStructure; yourself.
+	self layoutComponent: (MCWLayoutDesktop on: self) adjustLayoutStructure

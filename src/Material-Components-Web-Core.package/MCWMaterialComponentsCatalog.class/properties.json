@@ -1,12 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "WAComponent",
+	"super" : "MCWCanvasComponent",
 	"category" : "Material-Components-Web-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
 		"currentComponentType",
+		"buttonName",
 		"extraWideShown",
 		"extraTallShown"
 	],

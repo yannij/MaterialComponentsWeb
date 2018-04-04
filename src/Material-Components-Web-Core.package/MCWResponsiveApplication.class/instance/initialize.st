@@ -37,3 +37,6 @@ initialize
 		yourself.
 
 	self beLayoutStructureTablet.
+
+	"Subclasses may invoke #prepare if necessary"
+	"self prepare"
