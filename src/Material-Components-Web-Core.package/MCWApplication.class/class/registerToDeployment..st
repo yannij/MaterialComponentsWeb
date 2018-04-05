@@ -8,5 +8,6 @@ registerToDeployment: aName
 	app := WAAdmin register: self asApplicationAt: aName.
 	app
 		addLibrary: MCWDeploymentLibrary;
-		addLibrary: MCWLibrary.
+		"addLibrary: MCWLibrary;"
+		yourself.
 	^ app

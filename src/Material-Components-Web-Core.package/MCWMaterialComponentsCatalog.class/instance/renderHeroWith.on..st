@@ -1,5 +1,5 @@
 rendering
-renderHero: aText on: html
+renderHeroWith: aBlock on: html
 	| sectionStyle |
 
 	sectionStyle := 'margin: 24px; padding: 24px; border: 1px solid #ddd'.
@@ -14,4 +14,4 @@ height: 360px;
 min-height: 360px;
 background-color: rgba(0, 0, 0, .05);
 ';
-		with: [html heading level2; mdcTypography__display4; with: aText].
+		with: aBlock.

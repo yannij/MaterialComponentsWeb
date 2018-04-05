@@ -2,9 +2,10 @@ rendering - typography
 renderDemoTypographyOn: html
 	| sectionStyle |
 
-	sectionStyle := 'margin: 24px; padding: 24px; border: 1px solid #ddd'.
+	html section class: 'hero'; with: [
+			html heading level2; mdcTypography__display4; with: 'Tt'].
 
-	self renderHero: 'Tt' on: html.
+	sectionStyle := 'margin: 24px; padding: 24px; border: 1px solid #ddd'.
 
 	html section style: sectionStyle; with: [
 		html heading level2; mdcTypography__display1; with: 'Styles'.

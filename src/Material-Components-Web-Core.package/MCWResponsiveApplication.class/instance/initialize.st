@@ -38,5 +38,5 @@ initialize
 
 	self beLayoutStructureTablet.
 
-	"Subclasses may invoke #prepare if necessary"
-	"self prepare"
+	"Subclasses may invoke #applicationPostInitialize: if necessary"
+	"self applicationPostInitialize: self"

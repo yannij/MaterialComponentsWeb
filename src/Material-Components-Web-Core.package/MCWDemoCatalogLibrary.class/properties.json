@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "MCWLibrary",
+	"name" : "MCWDemoCatalogLibrary",
 	"type" : "normal"
 }

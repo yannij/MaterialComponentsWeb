@@ -5,14 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"id",
-		"title",
-		"ariaLabel",
-		"hidden",
-		"subComponents",
-		"mcwStyle"
-	],
+	"instvars" : [ ],
 	"name" : "MCWComponent",
 	"type" : "normal"
 }

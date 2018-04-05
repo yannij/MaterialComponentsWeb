@@ -3,4 +3,4 @@ updateRoot: anHtmlRoot
 
 	super updateRoot: anHtmlRoot.
 
-	anHtmlRoot beHtml5.
+	anHtmlRoot beHtml5

@@ -3,8 +3,8 @@ updateRoot: anHtmlRoot
 
 	super updateRoot: anHtmlRoot.
 
-	self updateRootMaterialComponentsWebCss: anHtmlRoot.
-	self updateRootReadyJs: anHtmlRoot.
+	"self updateRootMaterialComponentsWebCss: anHtmlRoot.
+	self updateRootReadyJs: anHtmlRoot."
 	self updateRootFonts: anHtmlRoot.
 
 	anHtmlRoot title: self applicationTitle.

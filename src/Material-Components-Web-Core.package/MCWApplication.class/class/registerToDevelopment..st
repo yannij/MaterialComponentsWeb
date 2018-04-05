@@ -6,7 +6,8 @@ registerToDevelopment: aName
 		addParent: WADevelopmentConfiguration instance.
 
 	app := WAAdmin register: self asApplicationAt: aName.
-	"app
+	app
 		addLibrary: MCWDevelopmentLibrary;
-		addLibrary: MCWLibrary."
+		"addLibrary: MCWLibrary;"
+		yourself.
 	^ app

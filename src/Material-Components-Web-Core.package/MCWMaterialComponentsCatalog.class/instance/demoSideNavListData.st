@@ -2,7 +2,7 @@ initialization
 demoSideNavListData
 
 	^#(
-#('Button' 'Raised and flat buttons' 'ic_button_24px.svg' showToDo:)
+#('Button' 'Raised and flat buttons' 'ic_button_24px.svg' showLayoutButton:)
 #('Card' 'Various card layout styles' 'ic_card_24px.svg' showToDo:)
 #('Checkbox' 'Multi-selection controls' 'ic_selection_control_24px.svg' showToDo:)
 #('Chips' 'Chips for actions, selection, and input ' 'ic_chips_24dp.svg' showToDo:)

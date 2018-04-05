@@ -1,4 +1,4 @@
 initialization
-prepare: anApplication
+applicationPostInitialize: anApplication
 
 	self prepareSideNav: anApplication
