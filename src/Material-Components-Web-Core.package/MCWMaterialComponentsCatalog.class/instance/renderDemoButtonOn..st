@@ -3,22 +3,17 @@ renderDemoButtonOn: html
 
 	self renderButtonHeroOn: html.
 
-	html fieldSet with: [
-		html legend
-			mdcTypography__title;
-			with: 'Different Color Icons/Ink'.
-			html div with: [
-				html button
-					mdcButton;
-					mdcButton__unelevated;
-					class: 'demo-ink-color';
-					with: [
-						html span mdcMaterialIcons; mdcButton__icon; with: 'favorite'.
-						html text: 'Ink Color'].
-				html button
-					mdcButton;
-					mdcButton__stroked;
-					class: 'demo-icon-color';
-					with: [
-						html span mdcMaterialIcons; mdcButton__stroked; with: 'favorite'.
-						html text: 'Icon Color']]].
+	html section class: 'demo-wrapper'; with: [
+		self renderButtonsDisableOn: html.
+
+		html heading level1 class: 'mdc-typography--display2'; with: 'Ripple Enabled'.
+		html text: 'todo'.
+
+		html heading level1 class: 'mdc-typography--display2'; with: 'CSS Only'.
+		html fieldSet with: [self renderTextButtonCssOnlyOn: html].
+		html fieldSet with: [self renderRaisedButtonCssOnlyOn: html].
+		html fieldSet with: [self renderUnelevatedButtonCssOnlyOn: html].
+		html fieldSet with: [self renderStrokedButtonCssOnlyOn: html].
+		html fieldSet with: [self renderCustomButtonCssOnlyOn: html].
+		html fieldSet with: [self renderDifferentColorIconsInkCssOnlyOn: html].
+	]
