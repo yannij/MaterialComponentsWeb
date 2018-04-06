@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "MCWCanvasComponent",
-	"category" : "Material-Components-Web-Core",
+	"category" : "Material-Components-Web-Examples",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

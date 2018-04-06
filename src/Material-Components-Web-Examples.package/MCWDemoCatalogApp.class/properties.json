@@ -1,11 +1,11 @@
 {
-	"commentStamp" : "YanniChiu 3/30/2018 00:02",
+	"commentStamp" : "YanniChiu 3/30/2018 00:13",
 	"super" : "MCWResponsiveApplication",
-	"category" : "Material-Components-Web-Core",
+	"category" : "Material-Components-Web-Examples",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "MCWExampleLayoutApp",
+	"name" : "MCWDemoCatalogApp",
 	"type" : "normal"
 }
