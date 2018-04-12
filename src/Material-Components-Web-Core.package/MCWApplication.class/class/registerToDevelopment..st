@@ -8,6 +8,6 @@ registerToDevelopment: aName
 	app := WAAdmin register: self asApplicationAt: aName.
 	app
 		addLibrary: MCWDevelopmentLibrary;
-		"addLibrary: MCWLibrary;"
+		addLibrary: MCWCustomizableLibrary;
 		yourself.
 	^ app

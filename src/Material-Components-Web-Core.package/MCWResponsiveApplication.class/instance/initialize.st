@@ -3,6 +3,7 @@ initialize
 
 	super initialize.
 
+	self colorTheme: OrderedIdentityDictionary new.
 	self toolbarActions: IdentityDictionary new.
 	self toolbarActionsInitialize.
 	
@@ -33,7 +34,7 @@ initialize
 	self footer: self buildFooter.
 	self footer toolbar
 		title: 'Bottom bar';
-		mcwStyle: 'background-color: #2988D1';
+		"mcwStyle: 'background-color: #2988D1';"
 		yourself.
 
 	self beLayoutStructureTablet.

@@ -1,4 +1,0 @@
-initialization
-appBarPopupMenuId
-
-	^'appBarPopupMenu'

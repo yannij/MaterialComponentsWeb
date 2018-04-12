@@ -6,9 +6,8 @@ appBarEndSection
 
 	data
 		add: (self toolbarActions at: #rightNav);
-		"add: (self toolbarActions at: #layoutPhone);
-		add: (self toolbarActions at: #layoutTablet);
-		add: (self toolbarActions at: #layoutDesktop);"
+		add: (self toolbarActions at: #settings);
+		add: (self toolbarActions at: #settingsPopup);
 		add: (self toolbarActions at: #toys);
 		add: (self toolbarActions at: #toysPopup);
 		yourself.

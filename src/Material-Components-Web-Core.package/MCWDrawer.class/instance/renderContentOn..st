@@ -24,7 +24,7 @@ renderContentOn: html
 		html navigation
 			mdcDrawer__drawer;
 			attributeAt: 'dir' put: self dir;
-			style: 'background-color: #EC4E8C';
+			"style: 'background-color: #EC4E8C';"
 			onClick: (JSScript new add: (JSStream new
 				nextPutAll: '
 var activatedClass = ''mdc-list-item--selected'';

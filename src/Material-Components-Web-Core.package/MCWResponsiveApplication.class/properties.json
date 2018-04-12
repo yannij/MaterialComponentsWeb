@@ -15,7 +15,8 @@
 		"secondaryToolbar",
 		"canvas",
 		"layoutComponent",
-		"toolbarActions"
+		"toolbarActions",
+		"colorTheme"
 	],
 	"name" : "MCWResponsiveApplication",
 	"type" : "normal"
