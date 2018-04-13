@@ -7,6 +7,7 @@ registerToDevelopment: aName
 
 	app := WAAdmin register: self asApplicationAt: aName.
 	app
+		addLibrary: JQDevelopmentLibrary;
 		addLibrary: MCWDevelopmentLibrary;
 		addLibrary: MCWCustomizableLibrary;
 		yourself.
