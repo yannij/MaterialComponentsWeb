@@ -7,7 +7,7 @@ renderContentOn: html
 			html render: self header].
 
 	html div
-		class: 'mdc-toolbar-fixed-adjust';
+		mdcToolbarFixedAdjust;
 		style: 'width: 100%';
 		style: 'display: inline-flex; flex-direction: row; flex-grow: 1; height: 100%; box-sizing: border-box;';
 		with: [

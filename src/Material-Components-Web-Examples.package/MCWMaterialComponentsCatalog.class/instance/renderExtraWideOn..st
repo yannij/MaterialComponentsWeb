@@ -3,7 +3,7 @@ renderExtraWideOn: html
 
 	html div
 		id: self extraWideId;
-		class: 'mdc-elevation--z4';
+		mdcElevation__z4;
 		style: 'background-color: lightGray';
 		style: 'margin: 8px';
 		style: 'padding: 8px';

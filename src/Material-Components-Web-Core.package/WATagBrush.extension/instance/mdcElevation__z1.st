@@ -1,4 +1,4 @@
 *Material-Components-Web-Core
-mdcElevationZ1
+mdcElevation__z1
 
 	self class: 'mdc-elevation--z1'
