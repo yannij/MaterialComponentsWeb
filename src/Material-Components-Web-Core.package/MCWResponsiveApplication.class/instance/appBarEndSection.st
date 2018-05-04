@@ -4,8 +4,10 @@ appBarEndSection
 
 	data := OrderedCollection new.
 
+	(self toolbarActions at: #rightNav ifAbsent: [nil])
+		ifNotNil: [:value | data add: value].
+
 	data
-		add: (self toolbarActions at: #rightNav);
 		add: (self toolbarActions at: #settings);
 		add: (self toolbarActions at: #settingsPopup);
 		add: (self toolbarActions at: #toys);
