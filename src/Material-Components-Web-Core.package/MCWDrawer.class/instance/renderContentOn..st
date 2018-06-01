@@ -19,6 +19,7 @@ renderContentOn: html
 
 	drawerTag
 		id: self id;
+		class: self cssClass;
 		script: drawerScript;
 		with: [
 		html navigation
@@ -41,6 +42,7 @@ if (el) {
 }'));
 			with: [
 			html render: self toolbar.
+			html render: MCWShrineBranding new.
 			"html div mdcDrawer__toolbarSpacer."
 			html div mdcListGroup; with: [
 				html render: self list]]].

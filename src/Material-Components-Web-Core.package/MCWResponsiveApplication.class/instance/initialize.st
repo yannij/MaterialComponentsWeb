@@ -32,10 +32,12 @@ initialize
 	self header: self buildHeader.
 
 	self footer: self buildFooter.
-	self footer toolbar
-		title: 'Bottom bar';
-		"mcwStyle: 'background-color: #2988D1';"
-		yourself.
+	self footer notNil
+		ifTrue: [
+			self footer toolbar
+				title: 'Bottom bar';
+				"mcwStyle: 'background-color: #2988D1';"
+				yourself].
 
 	self beLayoutStructureTablet.
 

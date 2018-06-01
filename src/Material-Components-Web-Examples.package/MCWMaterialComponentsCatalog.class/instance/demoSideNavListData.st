@@ -12,7 +12,7 @@ demoSideNavListData
 #('Floating action button' 'The primary action in an application' 'ic_button_24px.svg' showToDo:)
 #('Grid list' '2D grid layouts' 'ic_card_24px.svg' showToDo:)
 #('Icon toggle' 'Toggling icon states' 'ic_component_24px.svg' showToDo:)
-#('Image list' 'Displays a collection of images in a repeated pattern' 'ic_card_24px.svg' showToDo:)
+#('Image list' 'Displays a collection of images in a repeated pattern' 'ic_card_24px.svg' showImageList:)
 #('Layout grid' 'Grid and gutter support' 'ic_card_24px.svg' showLayoutGrid:)
 #('Linear progress' 'Fills from 0% to 100%, represented by bars' 'ic_progress_activity.svg' showToDo:)
 #('List' 'Item layouts in lists' 'ic_list_24px.svg' showToDo:)

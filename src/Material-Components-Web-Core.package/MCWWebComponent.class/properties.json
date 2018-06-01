@@ -8,6 +8,7 @@
 	"instvars" : [
 		"id",
 		"title",
+		"cssClass",
 		"ariaLabel",
 		"hidden",
 		"subComponents",

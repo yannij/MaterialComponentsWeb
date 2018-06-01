@@ -1,4 +1,4 @@
 initialization
 buildMenuIconPersistent
 
-	self subclassResponsibility
+	^(MCWToolbarMenuIcon materialIcon: 'menu') ariaLabel: 'Menu'; callback: [self togglePersistentDrawer]; yourself
