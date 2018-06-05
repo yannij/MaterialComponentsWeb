@@ -15,6 +15,7 @@
 		"secondaryToolbar",
 		"canvas",
 		"layoutComponent",
+		"loginComponent",
 		"toolbarActions",
 		"colorTheme"
 	],
