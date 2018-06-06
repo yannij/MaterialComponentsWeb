@@ -1,4 +1,0 @@
-testing
-isMiniFab
-
-	^self miniFab

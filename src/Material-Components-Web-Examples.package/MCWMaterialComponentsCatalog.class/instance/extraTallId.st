@@ -1,4 +1,0 @@
-rendering - drawer
-extraTallId
-
-	^'extraTall'

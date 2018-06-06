@@ -1,3 +1,0 @@
-accessing
-currentComponentType
-	^ currentComponentType

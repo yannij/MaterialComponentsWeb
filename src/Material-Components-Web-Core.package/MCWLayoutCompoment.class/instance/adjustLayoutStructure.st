@@ -1,4 +1,0 @@
-actions
-adjustLayoutStructure
-
-	self subclassResponsibility

@@ -1,4 +1,0 @@
-accessing
-applicationTitle
-
-	^'Catalog Demo'
