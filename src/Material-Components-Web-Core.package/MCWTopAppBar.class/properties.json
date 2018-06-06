@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWCanvasComponent",
-	"category" : "Material-Components-Web-Examples",
+	"super" : "MCWToolbar",
+	"category" : "Material-Components-Web-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "MCWShrineCanvas",
+	"name" : "MCWTopAppBar",
 	"type" : "normal"
 }

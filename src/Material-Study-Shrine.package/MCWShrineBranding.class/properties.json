@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWResponsiveApplication",
-	"category" : "Material-Components-Web-Examples",
+	"super" : "WAComponent",
+	"category" : "Material-Study-Shrine",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "MCWShrineApp",
+	"name" : "MCWShrineBranding",
 	"type" : "normal"
 }

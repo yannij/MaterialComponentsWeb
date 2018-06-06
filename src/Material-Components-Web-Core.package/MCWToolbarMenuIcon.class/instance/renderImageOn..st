@@ -8,7 +8,8 @@ renderImageOn: html
 			ifTrue: [imageScript := html javascript callback: [self callback value]; yourself]].
 
 	spanTag := html span
-		mdcToolbar__menuIcon;
+		"mdcToolbar__menuIcon;"
+		mdcTopAppBar__actionItem;
 		attributeAt: 'aria-label' put: self ariaLabel;
 		onClick: imageScript;
 		yourself.

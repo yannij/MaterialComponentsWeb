@@ -2,7 +2,7 @@ initialization
 buildAppBar
 	| toolbar |
 
-	toolbar := MCWToolbar new
+	toolbar := MCWTopAppBar new
 		toolbarTitle: self appBarTitle;
 		"mcwStyle: 'background-color: #3F51B5';"
 		yourself.
