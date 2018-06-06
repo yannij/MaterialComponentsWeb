@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MAFormDecoration",
+	"category" : "Material-Web-Magritte",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWFormDecoration",
+	"type" : "normal"
+}

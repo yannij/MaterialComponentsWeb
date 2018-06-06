@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MAContainerComponent",
+	"category" : "Material-Web-Magritte",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWContainerComponent",
+	"type" : "normal"
+}

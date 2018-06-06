@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MAExternalEditorComponent",
+	"category" : "Material-Web-Magritte",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWExternalEditorComponent",
+	"type" : "normal"
+}

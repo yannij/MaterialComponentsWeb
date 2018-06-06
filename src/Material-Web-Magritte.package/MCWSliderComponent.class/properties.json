@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MARangeComponent",
+	"category" : "Material-Web-Magritte",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWSliderComponent",
+	"type" : "normal"
+}

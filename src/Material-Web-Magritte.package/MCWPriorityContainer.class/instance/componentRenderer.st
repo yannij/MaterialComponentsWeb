@@ -1,0 +1,4 @@
+accessing
+componentRenderer
+
+	^MCWCssRenderer

@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MACheckboxComponent",
+	"category" : "Material-Web-Magritte",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWCheckboxComponent",
+	"type" : "normal"
+}

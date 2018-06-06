@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "MAOneToManyComponent",
+	"category" : "Material-Web-Magritte",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"expanded"
+	],
+	"name" : "MCWOneToManyComponent",
+	"type" : "normal"
+}

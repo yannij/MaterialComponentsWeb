@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWTextInputComponent",
+	"category" : "Material-Web-Magritte",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWDurationComponent",
+	"type" : "normal"
+}

@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MATextInputComponent",
+	"category" : "Material-Web-Magritte",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWTextInputComponent",
+	"type" : "normal"
+}

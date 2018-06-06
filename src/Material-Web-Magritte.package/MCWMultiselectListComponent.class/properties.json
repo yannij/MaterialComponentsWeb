@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MAMultiselectListComponent",
+	"category" : "Material-Web-Magritte",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWMultiselectListComponent",
+	"type" : "normal"
+}

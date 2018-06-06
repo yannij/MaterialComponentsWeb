@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "MATextPasswordComponent",
+	"category" : "Material-Web-Magritte",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWTextPasswordComponent",
+	"type" : "normal"
+}
