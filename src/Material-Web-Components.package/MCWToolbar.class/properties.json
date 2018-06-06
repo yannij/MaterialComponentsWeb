@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWWebComponent",
+	"category" : "Material-Web-Components",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"toolbarTitle",
+		"startSection",
+		"endSection"
+	],
+	"name" : "MCWToolbar",
+	"type" : "normal"
+}

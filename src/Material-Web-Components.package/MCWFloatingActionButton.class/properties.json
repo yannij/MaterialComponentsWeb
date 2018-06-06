@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWWebComponent",
+	"category" : "Material-Web-Components",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"rippledFab",
+		"miniFab"
+	],
+	"name" : "MCWFloatingActionButton",
+	"type" : "normal"
+}

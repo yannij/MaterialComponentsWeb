@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWComponent",
+	"category" : "Material-Web-Components",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"id",
+		"title",
+		"cssClass",
+		"ariaLabel",
+		"hidden",
+		"subComponents",
+		"mcwStyle"
+	],
+	"name" : "MCWWebComponent",
+	"type" : "normal"
+}

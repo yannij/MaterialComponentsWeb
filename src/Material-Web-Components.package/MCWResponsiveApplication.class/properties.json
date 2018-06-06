@@ -1,0 +1,24 @@
+{
+	"commentStamp" : "YanniChiu 3/30/2018 00:01",
+	"super" : "MCWApplication",
+	"category" : "Material-Web-Components",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"appBar",
+		"sideNav",
+		"rightNav",
+		"header",
+		"footer",
+		"mainFab",
+		"secondaryToolbar",
+		"canvas",
+		"layoutComponent",
+		"loginComponent",
+		"toolbarActions",
+		"colorTheme"
+	],
+	"name" : "MCWResponsiveApplication",
+	"type" : "normal"
+}

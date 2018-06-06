@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWWebComponent",
+	"category" : "Material-Web-Components",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"drawerType",
+		"list",
+		"dir",
+		"menuIconPersistent",
+		"menuIconTemporary",
+		"isPersisted",
+		"toolbar"
+	],
+	"name" : "MCWDrawer",
+	"type" : "normal"
+}

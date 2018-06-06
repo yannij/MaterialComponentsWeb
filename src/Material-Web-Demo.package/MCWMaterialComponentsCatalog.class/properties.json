@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWCanvasComponent",
+	"category" : "Material-Web-Demo",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"currentComponentType",
+		"buttonName",
+		"extraWideShown",
+		"extraTallShown"
+	],
+	"name" : "MCWMaterialComponentsCatalog",
+	"type" : "normal"
+}

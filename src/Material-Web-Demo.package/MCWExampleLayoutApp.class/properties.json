@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "YanniChiu 3/30/2018 00:02",
+	"super" : "MCWResponsiveApplication",
+	"category" : "Material-Web-Demo",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCWExampleLayoutApp",
+	"type" : "normal"
+}

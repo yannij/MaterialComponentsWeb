@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "WAFileLibrary",
+	"category" : "Material-Web-Demo",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"colorThemeCss"
+	],
+	"name" : "MCWCustomizableLibrary",
+	"type" : "normal"
+}

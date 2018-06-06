@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWListItemComponent",
+	"category" : "Material-Web-Components",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"itemSecondaryText",
+		"imageName"
+	],
+	"name" : "MCWListItemTwoLine",
+	"type" : "normal"
+}

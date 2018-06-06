@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "MCWCanvasComponent",
+	"category" : "Material-Web-Components",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"contents"
+	],
+	"name" : "MCWCanvasGridComponent",
+	"type" : "normal"
+}
