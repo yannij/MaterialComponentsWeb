@@ -10,6 +10,6 @@
 		"startSection",
 		"endSection"
 	],
-	"name" : "MCWToolbar",
+	"name" : "MCWAppBar",
 	"type" : "normal"
 }

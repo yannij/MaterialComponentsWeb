@@ -1,4 +1,4 @@
 accessing
 appBar
 
-	^self content appBar
+	^self content topAppBar

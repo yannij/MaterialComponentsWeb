@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "MCWExampleLayoutApp",
+	"name" : "MCWBasicLayoutApp",
 	"type" : "normal"
 }

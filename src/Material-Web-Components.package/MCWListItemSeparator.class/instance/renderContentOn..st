@@ -1,4 +1,4 @@
-testing
+rendering
 renderContentOn: html
 
 	html listItem

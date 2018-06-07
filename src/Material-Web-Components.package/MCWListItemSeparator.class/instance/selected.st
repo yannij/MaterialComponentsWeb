@@ -1,4 +1,4 @@
 accessing
-isSelected
+selected
 
 	^false

@@ -1,13 +1,16 @@
 {
 	"commentStamp" : "",
-	"super" : "WAFileLibrary",
+	"super" : "MCWCanvasComponent",
 	"category" : "Material-Web-Demo",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"colorThemeCss"
+		"currentComponentType",
+		"buttonName",
+		"extraWideShown",
+		"extraTallShown"
 	],
-	"name" : "MCWCustomizableLibrary",
+	"name" : "MCWDemoCatalogCanvas",
 	"type" : "normal"
 }

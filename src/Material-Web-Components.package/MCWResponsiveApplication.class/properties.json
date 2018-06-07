@@ -7,12 +7,12 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"appBar",
+		"topAppBar",
 		"sideNav",
 		"rightNav",
 		"header",
 		"footer",
 		"mainFab",
-		"secondaryToolbar",
 		"canvas",
 		"layoutComponent",
 		"loginComponent",

@@ -10,7 +10,6 @@ renderCanvasOn: html
 		with: [
 			"html div with: [
 				html span style: 'height: 30vh; opacity: .99'; with: [ html text: 'red' ]]."
-			html render: self secondaryToolbar.
 			html render: self canvas.
 			html render: self mainFab.
 		]

@@ -41,8 +41,6 @@ if (el) {
 	event.target.classList.add(activatedClass);
 }'));
 			with: [
-			html render: self toolbar.
-			html render: MCWShrineBranding new.
 			"html div mdcDrawer__toolbarSpacer."
 			html div mdcListGroup; with: [
 				html render: self list]]].

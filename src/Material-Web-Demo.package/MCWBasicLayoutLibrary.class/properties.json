@@ -1,13 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWWebComponent",
-	"category" : "Material-Web-Components",
+	"super" : "WAFileLibrary",
+	"category" : "Material-Web-Demo",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"toolbar"
+		"colorThemeCss"
 	],
-	"name" : "MCWFooter",
+	"name" : "MCWBasicLayoutLibrary",
 	"type" : "normal"
 }

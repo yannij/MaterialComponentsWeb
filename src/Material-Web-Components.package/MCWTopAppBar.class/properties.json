@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWToolbar",
+	"super" : "MCWAppBar",
 	"category" : "Material-Web-Components",
 	"classinstvars" : [ ],
 	"pools" : [ ],

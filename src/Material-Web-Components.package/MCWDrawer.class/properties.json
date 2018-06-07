@@ -11,8 +11,7 @@
 		"dir",
 		"menuIconPersistent",
 		"menuIconTemporary",
-		"isPersisted",
-		"toolbar"
+		"isPersisted"
 	],
 	"name" : "MCWDrawer",
 	"type" : "normal"

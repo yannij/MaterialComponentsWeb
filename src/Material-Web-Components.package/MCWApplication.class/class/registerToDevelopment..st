@@ -9,6 +9,5 @@ registerToDevelopment: aName
 	app
 		addLibrary: JQDevelopmentLibrary;
 		addLibrary: MCWDevelopmentLibrary;
-		addLibrary: MCWCustomizableLibrary;
 		yourself.
 	^ app

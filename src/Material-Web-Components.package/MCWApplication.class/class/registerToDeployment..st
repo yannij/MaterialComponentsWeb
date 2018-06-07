@@ -9,6 +9,5 @@ registerToDeployment: aName
 	app
 		addLibrary: JQDeploymentLibrary;
 		addLibrary: MCWDeploymentLibrary;
-		addLibrary: MCWCustomizableLibrary;
 		yourself.
 	^ app

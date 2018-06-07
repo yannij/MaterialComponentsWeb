@@ -2,6 +2,7 @@ initialization
 buildSideNavMenuList
 
 	^MCWListBasic new
+		addListItem: (MCWShrineBranding new);
 		addListItem: (MCWListItemIcon itemText: 'Featured' iconName: '' callback: []);
 		"Divider Line"
 		addListItem: (MCWListItemIcon itemText: 'Apartment' iconName: '' callback: []);

@@ -5,8 +5,8 @@ renderContentOn: html
 
 	html header
 		mdcTopAppBar;
-		mdcTopAppBar_short;
-		mdcTopAppBar_shortCollapsed;
+		"mdcTopAppBar_short;"
+		"mdcTopAppBar_shortCollapsed;"
 		mdcAutoInit: 'MDCTopAppBar';
 		style: self mcwStyle;
 		with: [

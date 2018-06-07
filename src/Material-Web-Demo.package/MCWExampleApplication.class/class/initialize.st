@@ -1,7 +1,7 @@
 initialization
 initialize
 	"Register path with Seaside.
-	WAAdmin unregister: 'mcw-example'.
+	WAAdmin unregister: 'material/example-old'.
 	"
 
-	^self registerToDevelopment: 'mcw-example'
+	^self registerToDevelopment: 'material/example-old'

@@ -4,7 +4,7 @@ renderContentOn: html
 	html div
 		style: 'display: inline-flex; flex-direction: row; flex-grow: 1; box-sizing: border-box;';
 		with: [
-			html render: self header].
+			html render: self appBar].
 
 	html div
 		mdcToolbarFixedAdjust;
@@ -13,5 +13,5 @@ renderContentOn: html
 		with: [
 			html render: self sideNav.
 			self renderCanvasOn: html.
-			html render: self rightNav.
 		].
+			html div style: 'float: right; margin-top: 64px'; with: [html render: self rightNav].

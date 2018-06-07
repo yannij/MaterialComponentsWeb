@@ -1,4 +1,4 @@
 initialization
 appBarTitle
 
-	^'App bar / primary toolbar'
+	^'Top app bar'
