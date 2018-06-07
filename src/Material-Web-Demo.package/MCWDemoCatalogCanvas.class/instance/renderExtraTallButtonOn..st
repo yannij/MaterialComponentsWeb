@@ -5,7 +5,7 @@ renderExtraTallButtonOn: html
 	divId := self extraTallId.
 
 	html render: (MCWButton new
-		buttonLabel: 'Toggle Extra-Tall - Temporary';
+		actionLabel: 'Toggle Extra-Tall - Temporary';
 		onClickScript: (JSScript new add: (JSStream new
 				nextPutAll: 'var ', divId, '=document.getElementById(''', divId, ''');';
 				nextPutAll: divId, '.style.display = ', divId, '.style.display ? '''' : ''none''';

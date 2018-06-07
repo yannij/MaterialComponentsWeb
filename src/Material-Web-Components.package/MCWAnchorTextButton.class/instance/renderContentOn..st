@@ -8,4 +8,4 @@ renderContentOn: html
 		style: 'margin: 16px';
 		callback: self callback if: self hasCallback;
 		with: [
-			html text: self buttonLabel].
+			html text: self actionLabel].

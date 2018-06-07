@@ -3,7 +3,7 @@ buildSideNav
 
 	^MCWDrawer new
 		id: self sideNavDrawerId;
-		list: self buildSideNavMenuList;
+		list: self buildSideNavList;
 		menuIconPersistent: self buildMenuIconPersistent;
 		menuIconTemporary: self buildMenuIconTemporary;
 		isPersisted: true;

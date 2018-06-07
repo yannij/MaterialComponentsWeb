@@ -6,10 +6,10 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"buttonLabel",
+		"actionLabel",
 		"onClickScript",
 		"callback"
 	],
-	"name" : "MCWButtonComponent",
+	"name" : "MCWActionComponent",
 	"type" : "normal"
 }

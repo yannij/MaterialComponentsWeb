@@ -7,6 +7,8 @@ updateRoot: anHtmlRoot
 	self updateRootReadyJs: anHtmlRoot."
 	self updateRootFonts: anHtmlRoot.
 
+	anHtmlRoot stylesheet url: (MCWResponsiveAppLibrary urlOf: #responsiveAppCss).
+
 	anHtmlRoot title: self applicationTitle.
 	anHtmlRoot meta
 		attributeAt: 'name' put: 'viewport';

@@ -8,5 +8,5 @@ renderContentOn: html
 		style: 'margin: 16px';
 		onClick: self onClickScript if: self hasOnClickScript;
 		with: [
-			self hasButtonLabel
-				ifTrue: [html text: self buttonLabel]].
+			self hasActionLabel
+				ifTrue: [html text: self actionLabel]].

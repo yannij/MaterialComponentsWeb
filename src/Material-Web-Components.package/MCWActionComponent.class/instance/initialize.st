@@ -3,7 +3,7 @@ initialize
 
 	super initialize.
 
-	self buttonLabel: ''.
+	self actionLabel: ''.
 
 	"Should check for nil"
 	"self onClickScript: nil."

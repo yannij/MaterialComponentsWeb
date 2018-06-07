@@ -9,5 +9,6 @@ renderContentOn: html
 		with: [
 			html render: self appBar.
 			self renderCanvasOn: html.
-
 		].
+
+	html render: self mainFab

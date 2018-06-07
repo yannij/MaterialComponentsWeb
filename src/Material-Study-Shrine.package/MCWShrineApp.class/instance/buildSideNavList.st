@@ -1,5 +1,5 @@
 initialization
-buildSideNavMenuList
+buildSideNavList
 
 	^MCWListBasic new
 		addListItem: (MCWShrineBranding new);

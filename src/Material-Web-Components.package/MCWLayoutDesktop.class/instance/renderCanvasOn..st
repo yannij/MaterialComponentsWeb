@@ -2,6 +2,7 @@ rendering
 renderCanvasOn: html
 
 	(html tag: 'main')
+		class: 'mcw-layout-desktop';
 		style: 'background-color: #FAFAFA';
 		style: 'overflow-x: auto';
 		"No padding for desktop, because no bottom bar"
@@ -11,5 +12,4 @@ renderCanvasOn: html
 			"html div with: [
 				html span style: 'height: 30vh; opacity: .99'; with: [ html text: 'red' ]]."
 			html render: self canvas.
-			html render: self mainFab.
 		]
