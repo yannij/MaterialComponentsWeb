@@ -1,4 +1,4 @@
 accessing
-rightNav
+sideSheet
 
 	^self content sideSheet

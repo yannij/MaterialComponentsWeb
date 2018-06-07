@@ -1,13 +1,10 @@
 actions
 adjustLayoutStructure
 
-	self sideNav
-		toolbarUnHide;
-		bePermanentBelowToolbarDrawer.
+	self sideNav bePermanentBelowToolbarDrawer.
 
-	self rightNav ifNotNil: [:value |
+	self sideSheet ifNotNil: [:value |
 		value
-			toolbarUnHide;
 			bePermanentBelowToolbarDrawer;
 			beDirectionLeftToRight].
 

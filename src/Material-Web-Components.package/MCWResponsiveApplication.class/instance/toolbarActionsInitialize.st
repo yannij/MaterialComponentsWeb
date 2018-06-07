@@ -3,7 +3,7 @@ toolbarActionsInitialize
 	"Subclasses may enhance"
 
 	self toolbarActions
-		at: #rightNav put: ((MCWToolbarMenuIcon materialIcon: 'more_horiz') ariaLabel: 'Right Nav'; onClickScript: self openRidghtNavScript; yourself);
+		at: #sideSheet put: ((MCWToolbarMenuIcon materialIcon: 'more_horiz') ariaLabel: 'Right Nav'; onClickScript: self openRidghtNavScript; yourself);
 		at: #layoutPhone put: ((MCWToolbarMenuIcon materialIcon: 'smartphone') ariaLabel: 'Phone View'; callback: [self beLayoutStructureMobile]; yourself);
 		at: #layoutTablet put: ((MCWToolbarMenuIcon materialIcon: 'tablet') ariaLabel: 'Tablet View'; callback: [self beLayoutStructureTablet]; yourself);
 		at: #layoutDesktop put: ((MCWToolbarMenuIcon materialIcon: 'computer') ariaLabel: 'Desktop View'; callback: [self beLayoutStructureDesktop]; yourself);

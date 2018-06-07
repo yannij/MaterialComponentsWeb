@@ -1,5 +1,5 @@
 initialization
-buildAppBar
+buildTopAppBar
 	| toolbar |
 
 	toolbar := MCWTopAppBar new

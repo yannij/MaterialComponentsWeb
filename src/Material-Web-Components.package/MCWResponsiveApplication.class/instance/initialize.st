@@ -11,9 +11,9 @@ initialize
 	self layoutComponent: (MCWLayoutDesktop on: self).
 	self canvas: WAComponent new.
 	self sideNav: self buildSideNav.
-	self rightNav: self buildRightNav.
+	self sideSheet: self buildSideSheet.
 	self mainFab: self buildMainFab.
-	self topAppBar: self buildAppBar.
+	self topAppBar: self buildTopAppBar.
 
 	self beLayoutStructureDesktop.
 

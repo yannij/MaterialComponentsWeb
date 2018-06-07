@@ -1,11 +1,10 @@
 actions
 adjustLayoutStructure
 
-	self sideNav toolbarHide; bePersistentDrawer.
+	self sideNav bePersistentDrawer.
 
-	self rightNav ifNotNil: [:value |
+	self sideSheet ifNotNil: [:value |
 		value
-			toolbarHide;
 			beTemporaryDrawer;
 			beDirectionToRightToLeft].
 

@@ -6,12 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"appBar",
 		"topAppBar",
 		"sideNav",
-		"rightNav",
-		"header",
-		"footer",
+		"sideSheet",
 		"mainFab",
 		"canvas",
 		"layoutComponent",

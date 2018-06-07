@@ -1,5 +1,5 @@
 initialization
-buildRightNav
+buildSideSheet
 
 	^MCWDrawer new
 		id: self rightNavDrawerId;

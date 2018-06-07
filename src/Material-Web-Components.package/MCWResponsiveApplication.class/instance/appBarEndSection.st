@@ -4,7 +4,7 @@ appBarEndSection
 
 	data := OrderedCollection new.
 
-	(self toolbarActions at: #rightNav ifAbsent: [nil])
+	(self toolbarActions at: #sideSheet ifAbsent: [nil])
 		ifNotNil: [:value | data add: value].
 
 	data

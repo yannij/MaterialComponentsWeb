@@ -1,4 +1,4 @@
 initialization
-buildRightNav
+buildSideSheet
 
 	^nil
