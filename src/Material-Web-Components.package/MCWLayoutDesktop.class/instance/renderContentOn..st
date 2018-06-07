@@ -7,7 +7,6 @@ renderContentOn: html
 			html render: self appBar].
 
 	html div
-		mdcToolbarFixedAdjust;
 		style: 'width: 100%';
 		style: 'display: inline-flex; flex-direction: row; flex-grow: 1; height: 100%; box-sizing: border-box;';
 		with: [

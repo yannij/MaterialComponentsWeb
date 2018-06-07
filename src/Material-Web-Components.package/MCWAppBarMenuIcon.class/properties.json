@@ -9,6 +9,6 @@
 		"iconName",
 		"imagePath"
 	],
-	"name" : "MCWToolbarMenuIcon",
+	"name" : "MCWAppBarMenuIcon",
 	"type" : "normal"
 }

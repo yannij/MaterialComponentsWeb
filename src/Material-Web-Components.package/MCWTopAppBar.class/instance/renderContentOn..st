@@ -14,8 +14,7 @@ renderContentOn: html
 				html section
 					mdcTopAppBar__section; mdcTopAppBar__section_alignStart;
 					with: [
-						"self startSection do: [:each | html render: each]."
-						html html: '<a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>'.
+						self startSection do: [:each | html render: each].
 						html span mdcTopAppBar__title; with: self toolbarTitle].
 				html section
 					mdcTopAppBar__section; mdcTopAppBar__section_alignEnd;
