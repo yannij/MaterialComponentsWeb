@@ -3,8 +3,6 @@ updateRoot: anHtmlRoot
 
 	super updateRoot: anHtmlRoot.
 
-	"self updateRootMaterialComponentsWebCss: anHtmlRoot.
-	self updateRootReadyJs: anHtmlRoot."
 	self updateRootFonts: anHtmlRoot.
 
 	anHtmlRoot stylesheet url: (MCWResponsiveAppLibrary urlOf: #responsiveAppCss).
@@ -14,5 +12,4 @@ updateRoot: anHtmlRoot
 		attributeAt: 'name' put: 'viewport';
 		attributeAt: 'content' put: 'width=device-width, initial-scale=1'.
 
-	anHtmlRoot bodyAttributes addClass: 'mdc-typography'.
-	anHtmlRoot bodyAttributes addClass: 'mcw-body'.
+	self bodyCssClasses do: [:each | anHtmlRoot bodyAttributes addClass: each]

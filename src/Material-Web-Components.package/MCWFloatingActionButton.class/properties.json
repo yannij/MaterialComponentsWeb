@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWWebComponent",
+	"super" : "MCWButton",
 	"category" : "Material-Web-Components",
 	"classinstvars" : [ ],
 	"pools" : [ ],

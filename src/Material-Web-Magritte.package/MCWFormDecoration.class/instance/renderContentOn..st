@@ -3,6 +3,7 @@ renderContentOn: html
 
 	html form
 		class: 'magritte';
+		attributeAt: 'autocomplete' put: 'off';
 		multipart: self requiresMultipartForm;
 		defaultAction: [self execute: self default];
 		with: [

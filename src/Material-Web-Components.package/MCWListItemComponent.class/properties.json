@@ -1,13 +1,12 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWWebComponent",
+	"super" : "MCWActionComponent",
 	"category" : "Material-Web-Components",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
 		"itemText",
-		"callback",
 		"selected"
 	],
 	"name" : "MCWListItemComponent",

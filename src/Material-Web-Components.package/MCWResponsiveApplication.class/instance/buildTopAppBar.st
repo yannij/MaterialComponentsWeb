@@ -1,14 +1,8 @@
 initialization
 buildTopAppBar
-	| toolbar |
 
-	toolbar := MCWTopAppBar new
+	^MCWTopAppBar new
 		toolbarTitle: self appBarTitle;
-		"mcwStyle: 'background-color: #3F51B5';"
-		yourself.
-
-	toolbar startSection: self appBarStartSection.
-
-	toolbar endSection: self appBarEndSection.
-
-	^toolbar
+		startSection: self appBarStartSection;
+		endSection: self appBarEndSection;
+		yourself
