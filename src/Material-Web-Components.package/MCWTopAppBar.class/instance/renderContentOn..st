@@ -1,12 +1,15 @@
 rendering
 renderContentOn: html
+	| tag |
 
 	self isHidden ifTrue: [^self].
 
-	html header
-		mdcTopAppBar;
-		"mdcTopAppBar_short;"
-		"mdcTopAppBar_shortCollapsed;"
+	tag := html header mdcTopAppBar.
+
+	self isShort ifTrue: [tag mdcTopAppBar_short].
+	self isShortCollapsed ifTrue: [tag mdcTopAppBar_shortCollapsed].
+
+	tag
 		mdcAutoInit: 'MDCTopAppBar';
 		style: self mcwStyle;
 		with: [

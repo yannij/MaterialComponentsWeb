@@ -1,0 +1,4 @@
+testing
+isShort
+
+	^self short

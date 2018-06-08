@@ -6,15 +6,14 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
+		"colorTheme",
 		"topAppBar",
 		"sideNav",
 		"sideSheet",
 		"mainFab",
 		"canvas",
 		"layoutComponent",
-		"loginComponent",
-		"toolbarActions",
-		"colorTheme"
+		"loginComponent"
 	],
 	"name" : "MCWResponsiveApplication",
 	"type" : "normal"

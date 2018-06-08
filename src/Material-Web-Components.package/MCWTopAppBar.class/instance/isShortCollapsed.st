@@ -1,0 +1,4 @@
+testing
+isShortCollapsed
+
+	^self shortCollapsed

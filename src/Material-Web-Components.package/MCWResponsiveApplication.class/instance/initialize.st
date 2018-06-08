@@ -5,9 +5,6 @@ initialize
 
 	self colorTheme: OrderedIdentityDictionary new.
 
-	self toolbarActions: IdentityDictionary new.
-	self toolbarActionsInitialize.
-	
 	self layoutComponent: (MCWLayoutDesktop on: self).
 	self canvas: WAComponent new.
 	self sideNav: self buildSideNav.
