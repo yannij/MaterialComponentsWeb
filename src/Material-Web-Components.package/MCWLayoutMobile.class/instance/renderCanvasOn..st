@@ -8,4 +8,4 @@ renderCanvasOn: html
 		style: 'padding-bottom: 40px';
 		with: [
 			html render: self canvas.
-		]
+			html render: self mainFab]

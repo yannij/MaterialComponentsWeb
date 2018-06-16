@@ -19,11 +19,11 @@ renderContentOn: html
 
 	drawerTag
 		id: self id;
-		class: self cssClass;
 		script: drawerScript;
 		with: [
 		html navigation
 			mdcDrawer__drawer;
+			class: self cssClass;
 			attributeAt: 'dir' put: self dir;
 			"style: 'background-color: #EC4E8C';"
 			onClick: (JSScript new add: (JSStream new

@@ -14,4 +14,8 @@ responsiveAppCss
 	top: 80px;
 	left: 220px;
 }
+
+.appBarPadding {
+	padding-top: 56px;
+}
 '
