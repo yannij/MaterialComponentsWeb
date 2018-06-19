@@ -1,6 +1,4 @@
 rendering
 renderMaterialComponentsWebJsOn: html
 
-	html script
-		async;
-		url: (WAUrl absolute: '/files/MCWDevelopmentLibrary/materialcomponentsweb.js')
+	html script async; url: MCWDevelopmentLibrary / #materialcomponentswebJs

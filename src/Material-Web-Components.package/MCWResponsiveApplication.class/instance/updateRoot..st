@@ -5,7 +5,7 @@ updateRoot: anHtmlRoot
 
 	self updateRootFonts: anHtmlRoot.
 
-	anHtmlRoot stylesheet url: (MCWResponsiveAppLibrary urlOf: #responsiveAppCss).
+	anHtmlRoot stylesheet url: MCWResponsiveAppLibrary / #responsiveAppCss.
 
 	anHtmlRoot title: self applicationTitle.
 	anHtmlRoot meta

@@ -6,7 +6,7 @@ initialize
 	self colorTheme: OrderedIdentityDictionary new.
 
 	self layoutComponent: (MCWLayoutDesktop on: self).
-	self canvas: WAComponent new.
+	self canvas: MCWCanvasComponent new.
 	self sideNav: self buildSideNav.
 	self sideSheet: self buildSideSheet.
 	self mainFab: self buildMainFab.

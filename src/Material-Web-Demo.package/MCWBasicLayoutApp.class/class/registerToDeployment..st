@@ -2,5 +2,5 @@ initialization
 registerToDeployment: aName
 
 	^(super registerToDeployment: aName)
-		addLibrary: MCWBasicLayoutLibrary;
+		"addLibrary: MCWBasicLayoutLibrary;"
 		yourself

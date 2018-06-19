@@ -2,4 +2,4 @@ updating
 bodyCssClasses
 	"Subclasses may override"
 
-	^#('mdc-typography' 'mcw-body')
+	^#("'mdc-typography'" 'mcw-body')

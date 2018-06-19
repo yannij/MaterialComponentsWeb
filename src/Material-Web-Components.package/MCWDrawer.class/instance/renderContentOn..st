@@ -8,18 +8,19 @@ renderContentOn: html
 	self isPermanentAboveToolbarDrawer ifTrue: [drawerTag mdcDrawer__permanent].
 	self isPermanentBelowToolbarDrawer ifTrue: [drawerTag mdcDrawer__permanent].
 
-	drawerScript := JSScript new add: (JSStream new
+	self jsDrawerType notEmpty ifTrue: [
+		drawerScript := JSScript new add: (JSStream new
 				nextPutAll: 'var ', self id, '=document.getElementById(''', self id, ''');';
 				nextPutAll: self id, '.mdcDrawer = new ', self jsDrawerType, '(', self id, ')';
 				yourself).
-	self isPersistentDrawer 
-		ifTrue: [drawerScript nextPutAll: ';', self id, '.mdcDrawer.open = ', self isPersisted printString].
+		self isPersistentDrawer 
+			ifTrue: [drawerScript nextPutAll: ';', self id, '.mdcDrawer.open = ', self isPersisted printString].
+		drawerTag script: drawerScript].
 	"self isTemporaryDrawer 
 		ifTrue: [drawerScript nextPutAll: ';', self id, '.mdcDrawer.open = true']."
 
 	drawerTag
 		id: self id;
-		script: drawerScript;
 		with: [
 		html navigation
 			mdcDrawer__drawer;

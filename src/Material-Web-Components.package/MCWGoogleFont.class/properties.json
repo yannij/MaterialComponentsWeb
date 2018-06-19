@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Material-Web-Components",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"googleFontsFamily",
+		"familyName",
+		"genericFamily"
+	],
+	"name" : "MCWGoogleFont",
+	"type" : "normal"
+}

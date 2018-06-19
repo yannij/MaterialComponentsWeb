@@ -2,5 +2,5 @@ initialization
 registerToDevelopment: aName
 
 	^(super registerToDevelopment: aName)
-		addLibrary: MCWBasicLayoutLibrary;
+		"addLibrary: MCWBasicLayoutLibrary;"
 		yourself
