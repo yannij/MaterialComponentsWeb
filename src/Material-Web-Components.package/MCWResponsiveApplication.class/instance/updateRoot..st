@@ -3,6 +3,8 @@ updateRoot: anHtmlRoot
 
 	super updateRoot: anHtmlRoot.
 
+	anHtmlRoot link relationship: 'dns-prefetch'; url: '//fonts.googleapis.com'.
+
 	self updateRootFonts: anHtmlRoot.
 
 	anHtmlRoot stylesheet url: MCWResponsiveAppLibrary / #responsiveAppCss.

@@ -3,7 +3,7 @@ initialize
 
 	super initialize.
 
-	self colorTheme: OrderedIdentityDictionary new.
+	self settings: MCWApplicationSettings new.
 
 	self layoutComponent: (MCWLayoutDesktop on: self).
 	self canvas: MCWCanvasComponent new.

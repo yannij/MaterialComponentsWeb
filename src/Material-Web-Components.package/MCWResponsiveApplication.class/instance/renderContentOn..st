@@ -1,11 +1,11 @@
 rendering
 renderContentOn: html
 
-	html div script: (JSScript new add: (JSStream new nextPutAll: 'window.mdc.autoInit()')).
+	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'window.mdc.autoInit()')).
 
-	html script with: 'document.querySelector("body").style.setProperty("--mdc-theme-primary", "orange")'.
+	self renderSetColorTHemeOn: html.
 
-	self renderSetGoogleFont: (self googleFontNamed: 'Fontdiner+Swanky') on: html.
+	self renderSetGoogleFont: self settings font on: html.
 
 	(self isLoggedIn or: [self loginComponent isNil])
 		ifTrue: [html render: self layoutComponent]

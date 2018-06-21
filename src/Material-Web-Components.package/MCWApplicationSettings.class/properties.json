@@ -1,13 +1,15 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWWebComponent",
+	"super" : "MCWModel",
 	"category" : "Material-Web-Components",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"view"
+		"font",
+		"fontChoices",
+		"colorTheme"
 	],
-	"name" : "MCWCanvasComponent",
+	"name" : "MCWApplicationSettings",
 	"type" : "normal"
 }
