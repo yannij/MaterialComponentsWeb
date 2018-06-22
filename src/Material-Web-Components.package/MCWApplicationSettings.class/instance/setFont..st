@@ -1,4 +1,4 @@
 actions
-setFont: aFontName
+setFont: aFont
 
-	self fontSettings setFont: aFontName
+	self fontSettings setFont: aFont

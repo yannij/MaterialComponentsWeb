@@ -10,6 +10,7 @@ renderViewerOn: html
 		with: [
 			html textInput
 				mdcTextField__input;
+				title: (self perform: self inputAspect);
 				id: self labelId; type: self inputType; on: self inputAspect of: self.
 			html label
 				for: self labelId;

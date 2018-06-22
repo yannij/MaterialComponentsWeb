@@ -1,0 +1,4 @@
+rendering
+inputType
+
+	^ 'time'
