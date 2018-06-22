@@ -1,5 +1,8 @@
 rendering
-renderContentOn: html 
+renderContentOn: html
+
+	self view notNil
+		ifTrue: [^super renderContentOn: html].
 
 	html div mdcLayoutGrid;
 		style: '--mdc-layout-grid-margin-desktop: 16px';

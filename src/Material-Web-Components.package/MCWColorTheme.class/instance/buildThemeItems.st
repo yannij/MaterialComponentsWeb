@@ -6,8 +6,8 @@ buildThemeItems
 "('on-primary' '#757de8')"
 ('secondary' '018786')
 "('on-secondary' '#018786')"
-"('background' '#fff')"
-"('surface' '#fff')"
+"('surface' '#ffffff')"
 "('on-surface' '#ff6090')"
+"('background' '#ffffff')"
 	) do: [:each |
 		self themeItems at: each first put: (Color fromHexString: each second)].

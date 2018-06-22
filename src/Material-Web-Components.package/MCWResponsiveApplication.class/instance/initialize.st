@@ -3,7 +3,7 @@ initialize
 
 	super initialize.
 
-	self settings: MCWApplicationSettings new.
+	self settings: self buildApplicationSettings.
 
 	self layoutComponent: (MCWLayoutDesktop on: self).
 	self canvas: MCWCanvasComponent new.

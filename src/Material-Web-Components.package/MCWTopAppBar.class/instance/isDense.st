@@ -1,0 +1,4 @@
+testing
+isDense
+
+	^self dense

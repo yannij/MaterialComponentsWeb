@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"font",
-		"fontChoices",
+		"fontSettings",
 		"colorTheme"
 	],
 	"name" : "MCWApplicationSettings",

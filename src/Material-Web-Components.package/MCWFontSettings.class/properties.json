@@ -4,14 +4,11 @@
 	"category" : "Material-Web-Components",
 	"classinstvars" : [ ],
 	"pools" : [ ],
-	"classvars" : [
-		"AllAvailable"
-	],
+	"classvars" : [ ],
 	"instvars" : [
-		"googleFontsFamily",
-		"familyName",
-		"genericFamily"
+		"font",
+		"fontChoices"
 	],
-	"name" : "MCWGoogleFont",
+	"name" : "MCWFontSettings",
 	"type" : "normal"
 }

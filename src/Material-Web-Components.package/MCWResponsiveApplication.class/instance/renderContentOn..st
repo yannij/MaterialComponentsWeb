@@ -5,7 +5,7 @@ renderContentOn: html
 
 	self renderSetColorTHemeOn: html.
 
-	self renderSetGoogleFont: self settings font on: html.
+	self renderSetGoogleFont: self currentFont on: html.
 
 	(self isLoggedIn or: [self loginComponent isNil])
 		ifTrue: [html render: self layoutComponent]

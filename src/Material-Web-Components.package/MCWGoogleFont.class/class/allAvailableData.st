@@ -1,5 +1,5 @@
 accessing
-list
+allAvailableData
 
 	^#(
 "('Family' 'Category' 'Variants / Files' 'Subsets' 'Version' 'Last Modified' 'Preview')"

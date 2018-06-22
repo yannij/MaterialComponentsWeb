@@ -4,4 +4,4 @@ initialize
 	super initialize.
 
 	self themeItems: OrderedIdentityDictionary new.
-	self buildThemeItems
+	"self buildThemeItems"

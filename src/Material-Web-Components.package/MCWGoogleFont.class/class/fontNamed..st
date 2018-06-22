@@ -1,6 +1,6 @@
 accessing
 fontNamed: aGoogleFonttKey
 
-	^self fontChoices
+	^self allAvailable
 		detect: [:each | each googleFontsFamily = aGoogleFonttKey ]
 		ifNone: [nil]

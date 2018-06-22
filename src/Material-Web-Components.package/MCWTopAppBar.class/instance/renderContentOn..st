@@ -6,6 +6,7 @@ renderContentOn: html
 
 	tag := html header mdcTopAppBar.
 
+	self isDense ifTrue: [tag mdcTopAppBar_dense].
 	self isShort ifTrue: [tag mdcTopAppBar_short].
 	self isShortCollapsed ifTrue: [tag mdcTopAppBar_shortCollapsed].
 

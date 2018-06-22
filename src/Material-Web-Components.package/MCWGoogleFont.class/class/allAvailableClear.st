@@ -1,0 +1,4 @@
+accessing
+allAvailableClear
+
+	AllAvailable := nil
