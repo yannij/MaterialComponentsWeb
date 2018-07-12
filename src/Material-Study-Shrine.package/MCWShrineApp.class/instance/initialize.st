@@ -6,7 +6,7 @@ initialize
 	self canvas: MCWShrineCanvas new.
 	self loginComponent: MCWShrineLogin new.
 
-	self settings setFont: 'Rubik'.
+	self settings setFont: (MCWGoogleFont fontNamed: 'Rubik').
 
 	"self colorThemeCustom.
 	self colorThemeCustomDark.

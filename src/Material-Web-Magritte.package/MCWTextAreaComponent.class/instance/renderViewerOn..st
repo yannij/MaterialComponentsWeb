@@ -4,6 +4,8 @@ renderViewerOn: html
 	html div mdcFormField; with: [
 	html div
 		mdcTextField;
+		"mdcTextField__box;"
+		"mdcTextField__outlined;"
 		mdcTextField__dense;
 		mdcTextField__textarea;
 		mdcTextField__fullwidth;
