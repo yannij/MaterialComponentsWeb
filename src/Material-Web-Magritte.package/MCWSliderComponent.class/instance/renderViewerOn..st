@@ -18,7 +18,7 @@ renderViewerOn: html
 	html div
 		"id: 'discrete-mdc-slider';"
 		id: sliderId;
-		mdcSlider; mdcSliderDiscrete;
+		mdcSlider; mdcSlider_discrete;
 		mdcRole: 'slider';
 		"mdcAutoInit: 'MDCSlider';"
 		tabIndex: 0;

@@ -4,9 +4,9 @@ renderViewerOn: html
 	html div mdcFormField; with: [
 	html div
 		mdcTextField;
-		mdcTextField__dense;
-		mdcTextField__fullwidth;
-		mdcTextField__upgraded;
+		mdcTextField_dense;
+		mdcTextField_fullwidth;
+		mdcTextField_upgraded;
 		with: [
 			html textInput
 				mdcTextField__input;
@@ -15,6 +15,6 @@ renderViewerOn: html
 			html label
 				for: self labelId;
 				mdcFloatingLabel;
-				mdcFloatingLabel__floatAbove;
+				mdcFloatingLabel_floatAbove;
 				with: self magritteDescription label.
 			html div mdcLineRipple; style: 'transform-origin: 161px center 0px;']]

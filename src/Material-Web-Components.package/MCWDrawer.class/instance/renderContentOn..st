@@ -3,10 +3,10 @@ renderContentOn: html
 	| drawerTag drawerScript |
 
 	drawerTag := html aside mdcDrawer.
-	self isTemporaryDrawer ifTrue: [drawerTag mdcDrawer__temporary].
-	self isPersistentDrawer ifTrue: [drawerTag mdcDrawer__persistent].
-	self isPermanentAboveToolbarDrawer ifTrue: [drawerTag mdcDrawer__permanent].
-	self isPermanentBelowToolbarDrawer ifTrue: [drawerTag mdcDrawer__permanent].
+	self isTemporaryDrawer ifTrue: [drawerTag mdcDrawer_temporary].
+	self isPersistentDrawer ifTrue: [drawerTag mdcDrawer_persistent].
+	self isPermanentAboveToolbarDrawer ifTrue: [drawerTag mdcDrawer_permanent].
+	self isPermanentBelowToolbarDrawer ifTrue: [drawerTag mdcDrawer_permanent].
 
 	self jsDrawerType notEmpty ifTrue: [
 		drawerScript := JSScript new add: (JSStream new

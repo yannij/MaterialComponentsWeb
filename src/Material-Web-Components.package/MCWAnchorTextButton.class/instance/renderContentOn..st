@@ -4,7 +4,7 @@ renderContentOn: html
 	html anchor
 		id: self id;
 		mdcButton;
-		mdcButton__raised;
+		mdcButton_raised;
 		style: 'margin: 16px';
 		callback: self callback if: self hasCallback;
 		with: [

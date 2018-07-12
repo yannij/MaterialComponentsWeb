@@ -5,7 +5,7 @@ renderCssOnlyOn: html
 		id: self id;
 		mdcMaterialIcons;
 		mdcFab;
-		mdcFab__mini_if: self isMiniFab;
+		mdcFab_mini_if: self isMiniFab;
 		style: 'position: absolute; right: 1rem; z-index: 1';
 		style: self bottomStyle;
 		with: [

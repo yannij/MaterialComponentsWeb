@@ -4,7 +4,7 @@ renderDemoImageListMasonryOn: html
 	html unorderedList
 		id: 'masonry-image-list';
 		mdcImageList;
-		mdcImageList__masonry;
+		mdcImageList_masonry;
 		class: 'masonry-image-list';
 		with: [
 		#(

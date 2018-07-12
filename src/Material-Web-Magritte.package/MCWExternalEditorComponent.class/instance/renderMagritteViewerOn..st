@@ -4,12 +4,12 @@ renderMagritteViewerOn: html
 	html div mdcFormField; with: [
 	html div
 		mdcTextField;
-		mdcTextField__fullwidth;
-		mdcTextField__upgraded; with: [
+		mdcTextField_fullwidth;
+		mdcTextField_upgraded; with: [
 			html label
 				for: self labelId;
 				mdcFloatingLabel;
-				mdcFloatingLabel__floatAbove;
+				mdcFloatingLabel_floatAbove;
 				with: self magritteDescription label.
 			"html textInput
 				readonly: true;

@@ -2,7 +2,7 @@ rendering
 renderFormOn: html 
 
 	html form with: [
-		html div mdcTextField; mdcTextField__box; mdcAutoInit: 'MDCTextField'; class: 'username'; with: [
+		html div mdcTextField; mdcTextField_box; mdcAutoInit: 'MDCTextField'; class: 'username'; with: [
 			html textInput
 				id: 'username-input';
 				mdcTextField__input;
@@ -10,7 +10,7 @@ renderFormOn: html
 				required.
 			html label mdcFloatingLabel; for: 'username-input'; with: 'Username'.
 			html div mdcLineRipple].
-		html div mdcTextField; mdcTextField__box; mdcAutoInit: 'MDCTextField'; class: 'password'; with: [
+		html div mdcTextField; mdcTextField_box; mdcAutoInit: 'MDCTextField'; class: 'password'; with: [
 			html passwordInput
 				id: 'password-input';
 				mdcTextField__input;
@@ -22,7 +22,7 @@ renderFormOn: html
 
 		html div class: 'button-container'; with: [
 			html button mdcButton; mdcAutoInit: 'MDCRipple'; class: 'cancel'; with: 'Cancel'.
-			html button mdcButton; mdcButton__raised; mdcAutoInit: 'MDCRipple'; class: 'next';
+			html button mdcButton; mdcButton_raised; mdcAutoInit: 'MDCRipple'; class: 'next';
 				onClick: ((html jQuery ajax)
 					callback: [self session properties at: #authenticatedUser put: #foobar];
 					onComplete: html javascript refresh);

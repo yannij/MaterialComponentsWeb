@@ -3,6 +3,6 @@ listTagOn: html
 
 	^html navigation
 		mdcList;
-		mdcList__twoLine;
+		mdcList_twoLine;
 		mdcRole: 'list';
 		yourself

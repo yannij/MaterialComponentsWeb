@@ -7,7 +7,7 @@ renderOneItemListOn: html
 		with: [
 			html heading level3; mdcListGroup__subheader; with: [
 				html text: self magritteDescription label].
-			html unorderedList mdcList; mdcList__twoLine; mdcList__dense;
+			html unorderedList mdcList; mdcList_twoLine; mdcList_dense;
 				with: [
 					html listItem
 						mdcListItem;
@@ -15,7 +15,7 @@ renderOneItemListOn: html
 							callback: [self session presenter setCanvasContent2: self value];
 							onComplete: html javascript refresh);
 						with: [
-							html span mdcListItem__text; with: [
+							html span mdcListItem_text; with: [
 								html text: self value mdPrimaryString.
 								html span
 									mdcListItem__secondaryText;

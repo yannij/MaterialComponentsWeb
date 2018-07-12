@@ -6,8 +6,8 @@ renderListAjaxOn: html
 
 	html unorderedList
 		mdcList;
-		mdcList__dense;
-		mdcList__twoLine;
+		mdcList_dense;
+		mdcList_twoLine;
 		"style: 'border: 1px solid rgba(0, 0, 0, 0.1);';"
 		with: [
 			self value do: [:eachItem |
@@ -15,7 +15,7 @@ renderListAjaxOn: html
 					mdcListItem;
 					with: [
 						html span
-							mdcListItem__text;
+							mdcListItem_text;
 							onClick: ((html jQuery ajax)
 								callback: [self showObnject: eachItem];
 								onComplete: html javascript refresh);

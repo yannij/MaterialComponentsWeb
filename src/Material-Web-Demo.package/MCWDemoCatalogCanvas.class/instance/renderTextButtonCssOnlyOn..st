@@ -2,16 +2,16 @@ rendering - button
 renderTextButtonCssOnlyOn: html
 
 	html legend
-		mdcTypography__title;
+		mdcTypography_title;
 		with: 'Text Button'.
 		html div with: [
 			html button mdcButton; with: 'Baseline'.
-			html button mdcButton; mdcButton__dense; with: 'Dense'.
+			html button mdcButton; mdcButton_dense; with: 'Dense'.
 			html button mdcButton; secondaryTextButton; with: 'Secondary'.
 			html button
 				mdcButton;
 				with: [
-					html span mdcMaterialIcons; mdcButton__icon; with: 'favorite'.
+					html span mdcMaterialIcons; mdcButton_icon; with: 'favorite'.
 					html text: 'Icon'].
 			html button
 				mdcButton;

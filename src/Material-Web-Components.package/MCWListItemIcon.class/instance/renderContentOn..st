@@ -3,7 +3,7 @@ renderContentOn: html
 	| tag |
 
 	tag := html anchor.
-	self selected ifTrue: [tag mdcListItem__selected].
+	self selected ifTrue: [tag mdcListItem_selected].
 
 	tag onClick: self onClickScript if: self hasOnClickScript.
 	(self list notNil and: [self list id notNil])

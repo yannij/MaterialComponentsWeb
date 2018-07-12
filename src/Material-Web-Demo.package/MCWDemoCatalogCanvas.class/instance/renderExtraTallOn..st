@@ -3,7 +3,7 @@ renderExtraTallOn: html
 
 	html div
 		id: self extraTallId;
-		mdcElevation__z4;
+		mdcElevation_z4;
 		"class: 'mdc-theme--secondary-bg mdc-theme--text-primary-on-secondary';"
 		style: 'background-color: lightGray';
 		style: 'margin: 8px';

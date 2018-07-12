@@ -6,10 +6,10 @@ renderDemoButtonOn: html
 	html section class: 'demo-wrapper'; with: [
 		self renderButtonsDisableOn: html.
 
-		html heading level1 mdcTypography__headline2; with: 'Ripple Enabled'.
+		html heading level1 mdcTypography_headline2; with: 'Ripple Enabled'.
 		html text: 'todo'.
 
-		html heading level1 mdcTypography__headline2; with: 'CSS Only'.
+		html heading level1 mdcTypography_headline2; with: 'CSS Only'.
 		html fieldSet with: [self renderTextButtonCssOnlyOn: html].
 		html fieldSet with: [self renderRaisedButtonCssOnlyOn: html].
 		html fieldSet with: [self renderUnelevatedButtonCssOnlyOn: html].

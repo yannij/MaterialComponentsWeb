@@ -4,7 +4,7 @@ renderContentOn: html
 	html button
 		id: self id;
 		mdcButton;
-		mdcButton__raised;
+		mdcButton_raised;
 		style: 'margin: 16px';
 		onClick: self onClickScript if: self hasOnClickScript;
 		with: [
