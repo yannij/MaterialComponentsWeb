@@ -1,14 +1,16 @@
 rendering
 renderViewerOn: html
-	| sliderId hiddenInputRangeId |
+	| sliderId sliderElementId sliderThumbContainerId hiddenInputRangeId |
 
 	sliderId := html nextId.
+	sliderElementId := sliderId, '_slider'.
+	sliderThumbContainerId := sliderId, '_thumbContainer'.
 	hiddenInputRangeId := html nextId.
 
 	html div mdcFormField; with: [
 	html textInput
 		id: hiddenInputRangeId;
-		"attributeAt: 'hidden' put: 'true';"
+		attributeAt: 'hidden' put: 'true';
 		on: #string of: self.
 	].
 
@@ -16,22 +18,18 @@ renderViewerOn: html
 	html label for: sliderId; with: self magritteDescription label.
 	html space; space.
 	html div
-		"id: 'discrete-mdc-slider';"
 		id: sliderId;
 		mdcSlider; mdcSlider_discrete;
 		mdcRole: 'slider';
 		"mdcAutoInit: 'MDCSlider';"
 		tabIndex: 0;
 		ariaLabel: 'Select Value';
-		onChange: (html jQuery
-				script: [ :s | s << (html jQuery id: hiddenInputRangeId)
-					value: ((html jQuery id: sliderId) value) ]);
 		script: (html javascript add: (JSStream new
 				nextPutAll: 'var sliderEl = document.getElementById(''', sliderId, ''');';
-				nextPutAll: 'var foobar = new mdc.slider.MDCSlider(sliderEl);';
-				nextPutAll: 'foobar.listen(''MDCSlider:change'', function() {';
-				nextPutAll: 'document.getElementById(''', hiddenInputRangeId, ''').value = foobar.value.toString();';
-				"nextPutAll: 'document.getElementById(''', 'foobar', ''').textContent = foobar.value;';"
+				nextPutAll: sliderElementId, ' = new mdc.slider.MDCSlider(sliderEl);';
+				nextPutAll: sliderElementId, '.foundation_.setValue(', self value printString, ');';
+				nextPutAll: '', sliderElementId, '.listen(''MDCSlider:change'', function() {';
+				nextPutAll: 'document.getElementById(''', hiddenInputRangeId, ''').value = ', sliderElementId, '.value.toString();';
 				nextPutAll: '});';
 				yourself)
 				);
@@ -41,7 +39,7 @@ renderViewerOn: html
 				with: [html div mdcSlider__track].
 			html div
 				mdcSlider__thumbContainer;
-				"style: 'transform: translateX( (<parent-width> / 21) * 100 %)'; --needs Javascript to set the initial translateX value"
+				id: sliderThumbContainerId;
 				with: [
 					html div mdcSlider__pin; with: [
 						html span mdcSlider__pinValueMarker
