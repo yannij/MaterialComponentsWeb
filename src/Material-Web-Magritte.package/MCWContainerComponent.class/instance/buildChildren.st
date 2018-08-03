@@ -1,9 +1,14 @@
 private
 buildChildren
+	| map |
+
+	map := self magritteDescription componentClassMap.
 
 	self magritteDescription
 		componentClass: MCWContainerComponent;
-		do: [:eachChild | eachChild componentClass: eachChild mcwComponentClass].
+		do: [ :eachChild | | theClass |
+			theClass := map at: eachChild label ifAbsent: [ eachChild mcwComponentClass ].
+			eachChild componentClass: theClass ].
 
 	^ self magritteDescription
 		inject: Dictionary new

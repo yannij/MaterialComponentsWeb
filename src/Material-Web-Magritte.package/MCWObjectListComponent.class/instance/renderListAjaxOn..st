@@ -1,9 +1,6 @@
 rendering
 renderListAjaxOn: html
 
-	self isExpanded not
-		ifTrue: [^self].
-
 	html unorderedList
 		mdcList;
 		mdcList_dense;
