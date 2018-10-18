@@ -14,7 +14,7 @@ renderListAjaxOn: html
 						html span
 							mdcListItem_text;
 							onClick: ((html jQuery ajax)
-								callback: [self showObject: eachItem];
+								callback: [self onClickBlock value: eachItem];
 								onComplete: html javascript refresh);
 							with: [
 								html text: eachItem mdPrimaryString.

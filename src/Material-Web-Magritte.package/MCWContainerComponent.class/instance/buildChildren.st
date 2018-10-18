@@ -1,6 +1,6 @@
 private
 buildChildren
-	| map |
+	| map newChildren |
 
 	map := self magritteDescription componentClassMap.
 
@@ -10,10 +10,14 @@ buildChildren
 			theClass := map at: eachChild label ifAbsent: [ eachChild mcwComponentClass ].
 			eachChild componentClass: theClass ].
 
-	^ self magritteDescription
+	newChildren := self magritteDescription
 		inject: Dictionary new
 		into: [ :result :each |
 			each isVisible ifTrue: [
-				result at: each put: (each componentClass
-					memento: self memento description: each parent: self) ].
-			result ]
+				| newComponent |
+				newComponent := each componentClass memento: self memento description: each parent: self.
+				newComponent mcwPostBuild.
+				result at: each put: newComponent ].
+			result ].
+
+	^newChildren

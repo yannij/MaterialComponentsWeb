@@ -8,7 +8,7 @@ renderExpandSwitchOnListId: listId on: html
 		html checkbox
 			mdcSwitch__nativeControl;
 			id: switchId;
-			value: false;
+			value: self expanded;
 			onChange: (html jQuery ajax
 				callback: [ :value | self expanded: value = 'true' ] value: (JSStream on: 'event.target.checked');
 				onComplete: ((html jQuery id: listId) load html: [:renderer | self renderListAjaxOn: renderer]));

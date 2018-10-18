@@ -5,7 +5,9 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"onClickBlock"
+	],
 	"name" : "MCWObjectListComponent",
 	"type" : "normal"
 }
