@@ -9,6 +9,6 @@ renderProductsOn: html
 			with: [
 				self products do: [:each |
 					html listItem mdcImageList__item; with: [
-						html image mdcImageList__image; url: 'http://localhost:8081/', each first.
+						html image mdcImageList__image; url: 'https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/', each first.
 						html div mdcImageList__supporting; with: [
 							html span mdcImageList__label; mdcTypography_subtitle2; with: each second]]]]]
