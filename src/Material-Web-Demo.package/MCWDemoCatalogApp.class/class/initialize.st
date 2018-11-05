@@ -1,7 +1,7 @@
 initialization
 initialize
 	"Register path with Seaside.
-	WAAdmin unregister: 'material/catalog'.
+	WAAdmin unregister: self applicationPath.
 	"
 
-	^self registerToDevelopment: 'material/catalog'
+	^self registerToDevelopment: self applicationPath
