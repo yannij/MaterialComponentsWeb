@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTheme__onError
 
-	^'mdc-theme--on-error'
+	self class: 'mdc-theme--on-error'

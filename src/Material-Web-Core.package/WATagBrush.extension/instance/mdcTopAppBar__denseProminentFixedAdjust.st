@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTopAppBar__denseProminentFixedAdjust
 
-	^'mdc-top-app-bar--dense-prominent-fixed-adjust'
+	self class: 'mdc-top-app-bar--dense-prominent-fixed-adjust'

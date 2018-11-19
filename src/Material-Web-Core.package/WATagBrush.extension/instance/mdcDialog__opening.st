@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDialog__opening
 
-	^'mdc-dialog--opening'
+	self class: 'mdc-dialog--opening'

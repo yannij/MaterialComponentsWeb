@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDrawer__animate
 
-	^'mdc-drawer--animate'
+	self class: 'mdc-drawer--animate'

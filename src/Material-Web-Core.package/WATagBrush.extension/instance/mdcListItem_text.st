@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcListItem_text
 
-	^'mdc-list-item__text'
+	self class: 'mdc-list-item__text'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcImageList_label
 
-	^'mdc-image-list__label'
+	self class: 'mdc-image-list__label'

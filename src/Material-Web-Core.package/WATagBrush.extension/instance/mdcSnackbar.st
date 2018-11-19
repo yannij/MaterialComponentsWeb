@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSnackbar
 
-	^'mdc-snackbar'
+	self class: 'mdc-snackbar'

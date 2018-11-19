@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTheme__textHintOnLight
 
-	^'mdc-theme--text-hint-on-light'
+	self class: 'mdc-theme--text-hint-on-light'

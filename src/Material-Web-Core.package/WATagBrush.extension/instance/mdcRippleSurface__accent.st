@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcRippleSurface__accent
 
-	^'mdc-ripple-surface--accent'
+	self class: 'mdc-ripple-surface--accent'

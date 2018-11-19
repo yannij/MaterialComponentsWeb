@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcChip_icon__leadingHidden
 
-	^'mdc-chip__icon--leading-hidden'
+	self class: 'mdc-chip__icon--leading-hidden'

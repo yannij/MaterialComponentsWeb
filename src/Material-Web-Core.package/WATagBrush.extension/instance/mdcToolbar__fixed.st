@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcToolbar__fixed
 
-	^'mdc-toolbar--fixed'
+	self class: 'mdc-toolbar--fixed'

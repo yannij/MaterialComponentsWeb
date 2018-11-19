@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcMenuSurface__open
 
-	^'mdc-menu-surface--open'
+	self class: 'mdc-menu-surface--open'

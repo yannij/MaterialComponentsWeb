@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcLinearProgress
 
-	^'mdc-linear-progress'
+	self class: 'mdc-linear-progress'

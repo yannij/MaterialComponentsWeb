@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTheme__secondary
 
-	^'mdc-theme--secondary'
+	self class: 'mdc-theme--secondary'

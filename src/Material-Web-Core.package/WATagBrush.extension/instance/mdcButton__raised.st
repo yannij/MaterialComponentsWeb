@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcButton__raised
 
-	^'mdc-button--raised'
+	self class: 'mdc-button--raised'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcListDivider__inset
 
-	^'mdc-list-divider--inset'
+	self class: 'mdc-list-divider--inset'

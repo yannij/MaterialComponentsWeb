@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTheme__textHintOnDark
 
-	^'mdc-theme--text-hint-on-dark'
+	self class: 'mdc-theme--text-hint-on-dark'

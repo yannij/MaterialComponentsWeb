@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTextField__textarea
 
-	^'mdc-text-field--textarea'
+	self class: 'mdc-text-field--textarea'

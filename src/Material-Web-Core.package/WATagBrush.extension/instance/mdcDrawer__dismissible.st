@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDrawer__dismissible
 
-	^'mdc-drawer--dismissible'
+	self class: 'mdc-drawer--dismissible'

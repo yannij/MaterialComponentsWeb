@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDrawer_subtitle
 
-	^'mdc-drawer__subtitle'
+	self class: 'mdc-drawer__subtitle'

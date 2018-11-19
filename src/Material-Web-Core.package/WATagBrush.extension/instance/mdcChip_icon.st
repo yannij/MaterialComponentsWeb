@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcChip_icon
 
-	^'mdc-chip__icon'
+	self class: 'mdc-chip__icon'

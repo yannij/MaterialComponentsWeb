@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDrawer__open
 
-	^'mdc-drawer--open'
+	self class: 'mdc-drawer--open'

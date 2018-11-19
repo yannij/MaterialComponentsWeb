@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSnackbar_actionButton
 
-	^'mdc-snackbar__action-button'
+	self class: 'mdc-snackbar__action-button'

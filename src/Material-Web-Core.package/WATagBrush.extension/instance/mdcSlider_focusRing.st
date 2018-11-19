@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSlider_focusRing
 
-	^'mdc-slider__focus-ring'
+	self class: 'mdc-slider__focus-ring'

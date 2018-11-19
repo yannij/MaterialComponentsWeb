@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcMenuSurface__animatingClosed
 
-	^'mdc-menu-surface--animating-closed'
+	self class: 'mdc-menu-surface--animating-closed'

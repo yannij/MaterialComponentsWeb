@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcCheckbox__animUncheckedChecked
 
-	^'mdc-checkbox--anim-unchecked-checked'
+	self class: 'mdc-checkbox--anim-unchecked-checked'

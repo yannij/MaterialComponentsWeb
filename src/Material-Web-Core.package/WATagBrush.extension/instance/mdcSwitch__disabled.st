@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSwitch__disabled
 
-	^'mdc-switch--disabled'
+	self class: 'mdc-switch--disabled'

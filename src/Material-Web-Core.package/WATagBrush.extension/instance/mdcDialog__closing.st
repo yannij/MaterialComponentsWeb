@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDialog__closing
 
-	^'mdc-dialog--closing'
+	self class: 'mdc-dialog--closing'

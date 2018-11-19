@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTypography__headline6
 
-	^'mdc-typography--headline6'
+	self class: 'mdc-typography--headline6'

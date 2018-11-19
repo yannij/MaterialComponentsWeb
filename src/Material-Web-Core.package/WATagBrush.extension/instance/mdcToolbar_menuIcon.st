@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcToolbar_menuIcon
 
-	^'mdc-toolbar__menu-icon'
+	self class: 'mdc-toolbar__menu-icon'

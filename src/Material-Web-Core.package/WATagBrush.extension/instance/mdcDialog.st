@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDialog
 
-	^'mdc-dialog'
+	self class: 'mdc-dialog'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcIconToggle
 
-	^'mdc-icon-toggle'
+	self class: 'mdc-icon-toggle'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcMenuSurface__fixed
 
-	^'mdc-menu-surface--fixed'
+	self class: 'mdc-menu-surface--fixed'

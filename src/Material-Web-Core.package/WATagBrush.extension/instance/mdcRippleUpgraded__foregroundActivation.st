@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcRippleUpgraded__foregroundActivation
 
-	^'mdc-ripple-upgraded--foreground-activation'
+	self class: 'mdc-ripple-upgraded--foreground-activation'

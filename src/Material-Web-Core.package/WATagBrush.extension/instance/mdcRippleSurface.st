@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcRippleSurface
 
-	^'mdc-ripple-surface'
+	self class: 'mdc-ripple-surface'

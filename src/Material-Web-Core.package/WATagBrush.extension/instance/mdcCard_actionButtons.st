@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcCard_actionButtons
 
-	^'mdc-card__action-buttons'
+	self class: 'mdc-card__action-buttons'

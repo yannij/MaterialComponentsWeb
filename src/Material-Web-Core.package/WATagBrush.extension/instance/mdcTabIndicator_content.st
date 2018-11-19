@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTabIndicator_content
 
-	^'mdc-tab-indicator__content'
+	self class: 'mdc-tab-indicator__content'

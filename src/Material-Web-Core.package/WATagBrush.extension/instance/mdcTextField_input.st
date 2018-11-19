@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTextField_input
 
-	^'mdc-text-field__input'
+	self class: 'mdc-text-field__input'

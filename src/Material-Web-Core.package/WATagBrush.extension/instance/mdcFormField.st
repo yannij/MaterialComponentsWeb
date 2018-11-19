@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcFormField
 
-	^'mdc-form-field'
+	self class: 'mdc-form-field'

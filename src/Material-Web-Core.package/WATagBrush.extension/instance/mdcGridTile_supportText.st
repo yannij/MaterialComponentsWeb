@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcGridTile_supportText
 
-	^'mdc-grid-tile__support-text'
+	self class: 'mdc-grid-tile__support-text'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSwitch_track
 
-	^'mdc-switch__track'
+	self class: 'mdc-switch__track'

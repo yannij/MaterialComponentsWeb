@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcListItem__disabled
 
-	^'mdc-list-item--disabled'
+	self class: 'mdc-list-item--disabled'

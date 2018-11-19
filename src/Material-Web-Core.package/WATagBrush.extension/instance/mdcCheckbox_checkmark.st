@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcCheckbox_checkmark
 
-	^'mdc-checkbox__checkmark'
+	self class: 'mdc-checkbox__checkmark'

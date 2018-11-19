@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcList__dense
 
-	^'mdc-list--dense'
+	self class: 'mdc-list--dense'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSelect
 
-	^'mdc-select'
+	self class: 'mdc-select'

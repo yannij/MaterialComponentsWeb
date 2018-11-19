@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcRippleUpgraded
 
-	^'mdc-ripple-upgraded'
+	self class: 'mdc-ripple-upgraded'

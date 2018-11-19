@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcGridTile_icon
 
-	^'mdc-grid-tile__icon'
+	self class: 'mdc-grid-tile__icon'

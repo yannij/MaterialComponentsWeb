@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcFormField__alignEnd
 
-	^'mdc-form-field--align-end'
+	self class: 'mdc-form-field--align-end'

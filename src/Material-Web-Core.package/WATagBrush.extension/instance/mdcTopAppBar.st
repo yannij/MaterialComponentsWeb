@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTopAppBar
 
-	^'mdc-top-app-bar'
+	self class: 'mdc-top-app-bar'

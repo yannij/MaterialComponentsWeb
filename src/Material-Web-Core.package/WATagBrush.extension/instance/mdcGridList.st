@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcGridList
 
-	^'mdc-grid-list'
+	self class: 'mdc-grid-list'

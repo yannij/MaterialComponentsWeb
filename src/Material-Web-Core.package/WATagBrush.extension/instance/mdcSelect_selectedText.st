@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSelect_selectedText
 
-	^'mdc-select__selected-text'
+	self class: 'mdc-select__selected-text'

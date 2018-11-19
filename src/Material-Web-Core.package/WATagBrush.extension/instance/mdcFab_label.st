@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcFab_label
 
-	^'mdc-fab__label'
+	self class: 'mdc-fab__label'

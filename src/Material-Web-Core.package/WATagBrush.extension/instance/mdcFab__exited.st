@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcFab__exited
 
-	^'mdc-fab--exited'
+	self class: 'mdc-fab--exited'

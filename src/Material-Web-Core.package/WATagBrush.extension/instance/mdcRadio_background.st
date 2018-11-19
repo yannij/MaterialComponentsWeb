@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcRadio_background
 
-	^'mdc-radio__background'
+	self class: 'mdc-radio__background'

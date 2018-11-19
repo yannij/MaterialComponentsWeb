@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcCard_actionIcons
 
-	^'mdc-card__action-icons'
+	self class: 'mdc-card__action-icons'

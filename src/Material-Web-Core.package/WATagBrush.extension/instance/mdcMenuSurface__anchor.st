@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcMenuSurface__anchor
 
-	^'mdc-menu-surface--anchor'
+	self class: 'mdc-menu-surface--anchor'

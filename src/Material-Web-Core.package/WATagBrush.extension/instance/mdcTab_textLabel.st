@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTab_textLabel
 
-	^'mdc-tab__text-label'
+	self class: 'mdc-tab__text-label'

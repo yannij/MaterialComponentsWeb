@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSwitch_thumb
 
-	^'mdc-switch__thumb'
+	self class: 'mdc-switch__thumb'

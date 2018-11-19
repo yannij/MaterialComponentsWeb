@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSlider_thumb
 
-	^'mdc-slider__thumb'
+	self class: 'mdc-slider__thumb'

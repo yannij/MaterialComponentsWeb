@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcChip_checkmark
 
-	^'mdc-chip__checkmark'
+	self class: 'mdc-chip__checkmark'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcChip_text
 
-	^'mdc-chip__text'
+	self class: 'mdc-chip__text'

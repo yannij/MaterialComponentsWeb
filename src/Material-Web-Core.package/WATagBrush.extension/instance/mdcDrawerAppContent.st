@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDrawerAppContent
 
-	^'mdc-drawer-app-content'
+	self class: 'mdc-drawer-app-content'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTheme__secondaryBg
 
-	^'mdc-theme--secondary-bg'
+	self class: 'mdc-theme--secondary-bg'

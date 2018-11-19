@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTopAppBar__dense
 
-	^'mdc-top-app-bar--dense'
+	self class: 'mdc-top-app-bar--dense'

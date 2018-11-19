@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcLinearProgress__reversed
 
-	^'mdc-linear-progress--reversed'
+	self class: 'mdc-linear-progress--reversed'

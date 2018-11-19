@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTopAppBar__shortHasActionItem
 
-	^'mdc-top-app-bar--short-has-action-item'
+	self class: 'mdc-top-app-bar--short-has-action-item'

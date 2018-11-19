@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTab__stacked
 
-	^'mdc-tab--stacked'
+	self class: 'mdc-tab--stacked'

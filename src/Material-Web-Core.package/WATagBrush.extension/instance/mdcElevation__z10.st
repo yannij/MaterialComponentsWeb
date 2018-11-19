@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcElevation__z10
 
-	^'mdc-elevation--z10'
+	self class: 'mdc-elevation--z10'

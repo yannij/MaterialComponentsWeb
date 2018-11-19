@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSwitch
 
-	^'mdc-switch'
+	self class: 'mdc-switch'

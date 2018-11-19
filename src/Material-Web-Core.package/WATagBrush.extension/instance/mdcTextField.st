@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTextField
 
-	^'mdc-text-field'
+	self class: 'mdc-text-field'

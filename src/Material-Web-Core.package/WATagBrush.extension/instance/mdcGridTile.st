@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcGridTile
 
-	^'mdc-grid-tile'
+	self class: 'mdc-grid-tile'

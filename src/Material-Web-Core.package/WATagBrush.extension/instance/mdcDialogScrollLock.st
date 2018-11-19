@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDialogScrollLock
 
-	^'mdc-dialog-scroll-lock'
+	self class: 'mdc-dialog-scroll-lock'

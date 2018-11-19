@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDialog_scrim
 
-	^'mdc-dialog__scrim'
+	self class: 'mdc-dialog__scrim'

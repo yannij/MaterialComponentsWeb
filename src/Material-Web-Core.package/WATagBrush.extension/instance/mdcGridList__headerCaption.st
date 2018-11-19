@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcGridList__headerCaption
 
-	^'mdc-grid-list--header-caption'
+	self class: 'mdc-grid-list--header-caption'

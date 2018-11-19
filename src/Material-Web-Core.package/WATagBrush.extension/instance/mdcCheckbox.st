@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcCheckbox
 
-	^'mdc-checkbox'
+	self class: 'mdc-checkbox'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcCard_actions
 
-	^'mdc-card__actions'
+	self class: 'mdc-card__actions'

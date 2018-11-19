@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcToolbar__fixedAtLastRow
 
-	^'mdc-toolbar--fixed-at-last-row'
+	self class: 'mdc-toolbar--fixed-at-last-row'

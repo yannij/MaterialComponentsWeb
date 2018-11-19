@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcMenuItem__selected
 
-	^'mdc-menu-item--selected'
+	self class: 'mdc-menu-item--selected'

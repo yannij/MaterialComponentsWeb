@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTypography__button
 
-	^'mdc-typography--button'
+	self class: 'mdc-typography--button'

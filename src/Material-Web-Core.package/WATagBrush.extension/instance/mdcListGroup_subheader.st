@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcListGroup_subheader
 
-	^'mdc-list-group__subheader'
+	self class: 'mdc-list-group__subheader'

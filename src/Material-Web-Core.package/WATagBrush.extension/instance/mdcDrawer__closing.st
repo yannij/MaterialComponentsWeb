@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDrawer__closing
 
-	^'mdc-drawer--closing'
+	self class: 'mdc-drawer--closing'

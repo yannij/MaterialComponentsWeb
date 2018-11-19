@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcLineRipple__deactivating
 
-	^'mdc-line-ripple--deactivating'
+	self class: 'mdc-line-ripple--deactivating'

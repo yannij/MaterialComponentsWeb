@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTheme__textPrimaryOnBackground
 
-	^'mdc-theme--text-primary-on-background'
+	self class: 'mdc-theme--text-primary-on-background'

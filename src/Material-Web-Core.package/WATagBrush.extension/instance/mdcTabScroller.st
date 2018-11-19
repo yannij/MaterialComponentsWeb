@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTabScroller
 
-	^'mdc-tab-scroller'
+	self class: 'mdc-tab-scroller'

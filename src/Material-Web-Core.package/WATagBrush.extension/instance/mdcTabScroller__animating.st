@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTabScroller__animating
 
-	^'mdc-tab-scroller--animating'
+	self class: 'mdc-tab-scroller--animating'

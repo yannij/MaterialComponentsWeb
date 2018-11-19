@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcFab_icon
 
-	^'mdc-fab__icon'
+	self class: 'mdc-fab__icon'

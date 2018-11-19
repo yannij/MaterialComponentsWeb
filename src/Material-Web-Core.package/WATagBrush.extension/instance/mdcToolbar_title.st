@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcToolbar_title
 
-	^'mdc-toolbar__title'
+	self class: 'mdc-toolbar__title'

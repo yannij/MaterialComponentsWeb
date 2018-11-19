@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSelect__invalid
 
-	^'mdc-select--invalid'
+	self class: 'mdc-select--invalid'

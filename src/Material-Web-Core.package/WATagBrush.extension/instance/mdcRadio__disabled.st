@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcRadio__disabled
 
-	^'mdc-radio--disabled'
+	self class: 'mdc-radio--disabled'

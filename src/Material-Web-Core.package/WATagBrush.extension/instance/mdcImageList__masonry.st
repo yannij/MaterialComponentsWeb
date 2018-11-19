@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcImageList__masonry
 
-	^'mdc-image-list--masonry'
+	self class: 'mdc-image-list--masonry'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTheme__onSurface
 
-	^'mdc-theme--on-surface'
+	self class: 'mdc-theme--on-surface'

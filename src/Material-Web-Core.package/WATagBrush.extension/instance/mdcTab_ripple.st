@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTab_ripple
 
-	^'mdc-tab__ripple'
+	self class: 'mdc-tab__ripple'

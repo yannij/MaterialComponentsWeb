@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcToolbar__waterfall
 
-	^'mdc-toolbar--waterfall'
+	self class: 'mdc-toolbar--waterfall'

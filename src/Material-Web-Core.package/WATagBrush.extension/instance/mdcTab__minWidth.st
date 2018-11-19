@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTab__minWidth
 
-	^'mdc-tab--min-width'
+	self class: 'mdc-tab--min-width'

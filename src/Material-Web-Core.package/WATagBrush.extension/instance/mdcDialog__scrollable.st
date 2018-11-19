@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDialog__scrollable
 
-	^'mdc-dialog--scrollable'
+	self class: 'mdc-dialog--scrollable'

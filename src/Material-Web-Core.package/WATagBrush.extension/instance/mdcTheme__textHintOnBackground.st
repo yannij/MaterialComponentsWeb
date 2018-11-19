@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTheme__textHintOnBackground
 
-	^'mdc-theme--text-hint-on-background'
+	self class: 'mdc-theme--text-hint-on-background'

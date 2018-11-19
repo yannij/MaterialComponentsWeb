@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDialog__stacked
 
-	^'mdc-dialog--stacked'
+	self class: 'mdc-dialog--stacked'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTextField_icon
 
-	^'mdc-text-field__icon'
+	self class: 'mdc-text-field__icon'

@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcToolbar__flexibleDefaultBehavior
 
-	^'mdc-toolbar--flexible-default-behavior'
+	self class: 'mdc-toolbar--flexible-default-behavior'

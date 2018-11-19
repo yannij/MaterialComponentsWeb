@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcLinearProgress_bufferingDots
 
-	^'mdc-linear-progress__buffering-dots'
+	self class: 'mdc-linear-progress__buffering-dots'

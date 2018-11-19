@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSelectHelperText
 
-	^'mdc-select-helper-text'
+	self class: 'mdc-select-helper-text'

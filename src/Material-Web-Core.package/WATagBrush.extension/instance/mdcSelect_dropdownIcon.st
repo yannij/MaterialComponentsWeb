@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSelect_dropdownIcon
 
-	^'mdc-select__dropdown-icon'
+	self class: 'mdc-select__dropdown-icon'

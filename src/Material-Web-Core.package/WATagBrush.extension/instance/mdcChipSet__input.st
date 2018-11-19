@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcChipSet__input
 
-	^'mdc-chip-set--input'
+	self class: 'mdc-chip-set--input'

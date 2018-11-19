@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSelect_nativeControl
 
-	^'mdc-select__native-control'
+	self class: 'mdc-select__native-control'

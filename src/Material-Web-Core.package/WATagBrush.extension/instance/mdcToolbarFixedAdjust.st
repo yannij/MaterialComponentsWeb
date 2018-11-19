@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcToolbarFixedAdjust
 
-	^'mdc-toolbar-fixed-adjust'
+	self class: 'mdc-toolbar-fixed-adjust'

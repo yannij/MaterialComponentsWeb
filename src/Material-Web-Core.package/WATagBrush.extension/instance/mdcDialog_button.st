@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDialog_button
 
-	^'mdc-dialog__button'
+	self class: 'mdc-dialog__button'

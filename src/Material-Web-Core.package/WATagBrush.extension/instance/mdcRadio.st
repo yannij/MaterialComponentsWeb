@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcRadio
 
-	^'mdc-radio'
+	self class: 'mdc-radio'

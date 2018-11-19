@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcGridList__twolineCaption
 
-	^'mdc-grid-list--twoline-caption'
+	self class: 'mdc-grid-list--twoline-caption'

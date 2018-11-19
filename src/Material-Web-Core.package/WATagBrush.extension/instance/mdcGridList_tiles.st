@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcGridList_tiles
 
-	^'mdc-grid-list__tiles'
+	self class: 'mdc-grid-list__tiles'

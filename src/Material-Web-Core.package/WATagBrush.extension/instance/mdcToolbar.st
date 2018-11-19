@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcToolbar
 
-	^'mdc-toolbar'
+	self class: 'mdc-toolbar'

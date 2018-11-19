@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDialog_actions
 
-	^'mdc-dialog__actions'
+	self class: 'mdc-dialog__actions'

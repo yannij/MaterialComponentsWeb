@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSnackbar__actionOnBottom
 
-	^'mdc-snackbar--action-on-bottom'
+	self class: 'mdc-snackbar--action-on-bottom'

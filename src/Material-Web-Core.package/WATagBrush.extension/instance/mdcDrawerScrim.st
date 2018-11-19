@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcDrawerScrim
 
-	^'mdc-drawer-scrim'
+	self class: 'mdc-drawer-scrim'

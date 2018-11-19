@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcNotchedOutline_path
 
-	^'mdc-notched-outline__path'
+	self class: 'mdc-notched-outline__path'

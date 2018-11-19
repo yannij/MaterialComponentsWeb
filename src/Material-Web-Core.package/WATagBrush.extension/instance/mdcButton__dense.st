@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcButton__dense
 
-	^'mdc-button--dense'
+	self class: 'mdc-button--dense'

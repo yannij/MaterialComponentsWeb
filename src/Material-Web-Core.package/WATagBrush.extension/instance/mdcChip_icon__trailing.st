@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcChip_icon__trailing
 
-	^'mdc-chip__icon--trailing'
+	self class: 'mdc-chip__icon--trailing'

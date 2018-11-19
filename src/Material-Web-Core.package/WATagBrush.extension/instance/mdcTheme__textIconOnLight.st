@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcTheme__textIconOnLight
 
-	^'mdc-theme--text-icon-on-light'
+	self class: 'mdc-theme--text-icon-on-light'

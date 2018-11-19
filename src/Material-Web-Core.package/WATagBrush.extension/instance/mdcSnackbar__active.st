@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSnackbar__active
 
-	^'mdc-snackbar--active'
+	self class: 'mdc-snackbar--active'

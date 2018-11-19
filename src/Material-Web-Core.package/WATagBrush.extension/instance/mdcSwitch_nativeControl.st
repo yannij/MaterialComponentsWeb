@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSwitch_nativeControl
 
-	^'mdc-switch__native-control'
+	self class: 'mdc-switch__native-control'

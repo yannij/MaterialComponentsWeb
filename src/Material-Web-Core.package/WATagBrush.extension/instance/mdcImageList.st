@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcImageList
 
-	^'mdc-image-list'
+	self class: 'mdc-image-list'

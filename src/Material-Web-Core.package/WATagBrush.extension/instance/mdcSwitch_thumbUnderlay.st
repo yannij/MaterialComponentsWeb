@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSwitch_thumbUnderlay
 
-	^'mdc-switch__thumb-underlay'
+	self class: 'mdc-switch__thumb-underlay'

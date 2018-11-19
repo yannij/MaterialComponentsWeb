@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcIconButton__on
 
-	^'mdc-icon-button--on'
+	self class: 'mdc-icon-button--on'

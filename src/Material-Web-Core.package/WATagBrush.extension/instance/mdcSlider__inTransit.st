@@ -1,4 +1,4 @@
 *Material-Web-Core-generated
 mdcSlider__inTransit
 
-	^'mdc-slider--in-transit'
+	self class: 'mdc-slider--in-transit'
