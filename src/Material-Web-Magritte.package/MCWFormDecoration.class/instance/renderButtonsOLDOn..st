@@ -8,6 +8,6 @@ renderButtonsOLDOn: html
 					html button mdcButton; mdcButton_raised;
 						callback: [ self execute: each key ];
 						with: [
-							html span mdcMaterialIcons; mdcButton_icon; with: iconName.
+							html span mdcMaterialIcons; mdcButton__icon; with: iconName.
 							html text: each value]]
 					separatedBy: [html space; space]].

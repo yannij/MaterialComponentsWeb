@@ -2,5 +2,5 @@ rendering
 listTagOn: html
 
 	^(super listTagOn: html)
-		mdcList__avatarList;
+		mdcList_avatarList;
 		yourself

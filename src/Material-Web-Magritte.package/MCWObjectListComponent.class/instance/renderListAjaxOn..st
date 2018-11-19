@@ -12,7 +12,7 @@ renderListAjaxOn: html
 					mdcListItem;
 					with: [
 						html span
-							mdcListItem_text;
+							mdcListItem__text;
 							onClick: ((html jQuery ajax)
 								callback: [self onClickBlock value: eachItem];
 								onComplete: html javascript refresh);

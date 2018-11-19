@@ -15,7 +15,7 @@ renderOneItemListOn: html
 							callback: [self session presenter setCanvasContent2: self value];
 							onComplete: html javascript refresh);
 						with: [
-							html span mdcListItem_text; with: [
+							html span mdcListItem__text; with: [
 								html text: self value mdPrimaryString.
 								html span
 									mdcListItem__secondaryText;

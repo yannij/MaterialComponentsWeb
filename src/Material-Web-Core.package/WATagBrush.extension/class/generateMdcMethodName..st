@@ -28,10 +28,10 @@ generateMdcMethodName: aCssClass
 
 	elementPart notEmpty
 		ifTrue: [
-			selectorName := selectorName, '_', (self generateMdcSelectorFragment: elementPart)].
+			selectorName := selectorName, '__', (self generateMdcSelectorFragment: elementPart)].
 
 	modifierPart notEmpty
 		ifTrue: [
-			selectorName := selectorName, '__', (self generateMdcSelectorFragment: modifierPart)].
+			selectorName := selectorName, '_', (self generateMdcSelectorFragment: modifierPart)].
 
 	^selectorName
