@@ -1,4 +1,4 @@
-*Material-Web-Core
+*Material-Web-Core-generated
 mdcTypography
 
-	self class: 'mdc-typography'
+	^'mdc-typography'

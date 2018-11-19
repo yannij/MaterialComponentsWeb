@@ -2,41 +2,51 @@ uploaded
 commonCss
 
 	^'
-fieldset {
-  margin: 0;
-  padding: 0;
-  border: 0;
+body {
+    margin: 0
 }
 
-.catalog-title {
-  font-family: "Roboto Mono", monospace;
+#catalog-image-list {
+    max-width: 900px;
+    padding-top: 64px;
+    padding-bottom: 100px
 }
 
-.catalog-logo,
-.catalog-back {
-  color: #eee;
-  text-decoration: none;
+#catalog-image-list .mdc-image-list__image-aspect-container {
+    padding-bottom: 100%
 }
 
-.hero {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  height: 360px;
-  min-height: 360px;
-  background-color: rgba(0, 0, 0, .05);
+#catalog-image-list .mdc-image-list__item {
+    width: calc(100% / 4 - 8.25px);
+    margin: 4px
 }
 
-// Default padding on all examples.
-section.example {
-  margin: 24px;
-  padding: 24px;
+@media (max-width: 599px) {
+    #catalog-image-list .mdc-image-list__item {
+        width:calc(100% / 3 - 8.33333px);
+        margin: 4px
+    }
 }
 
-section.example {
-  h2 {
-    margin-left: 0;
-  }
+@media (max-width: 320px) {
+    #catalog-image-list .mdc-image-list__item {
+        width:calc(100% / 2 - 8.5px);
+        margin: 4px
+    }
 }
+
+.catalog-image-list-item-container {
+    background-color: #f5f5f5
+}
+
+.catalog-image-list-label {
+    font-weight: 500;
+    color: #212121
+}
+
+a.catalog-image-link {
+    text-decoration: none
+}
+
+/*# sourceMappingURL=main.aeb87a3f.css.map*/
 '

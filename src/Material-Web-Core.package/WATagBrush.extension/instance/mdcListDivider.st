@@ -1,4 +1,4 @@
-*Material-Web-Core
+*Material-Web-Core-generated
 mdcListDivider
 
-	self class: 'mdc-list-divider'
+	^'mdc-list-divider'

@@ -1,4 +1,4 @@
-*Material-Web-Core
+*Material-Web-Core-generated
 mdcList__avatarList
 
-	self class: 'mdc-list__avatar-list'
+	^'mdc-list--avatar-list'

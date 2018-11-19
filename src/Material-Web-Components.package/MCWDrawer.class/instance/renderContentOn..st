@@ -1,26 +1,16 @@
 rendering
 renderContentOn: html
-	| drawerTag drawerScript |
+	| drawerTag |
 
 	drawerTag := html aside mdcDrawer.
-	self isTemporaryDrawer ifTrue: [drawerTag mdcDrawer_temporary].
-	self isPersistentDrawer ifTrue: [drawerTag mdcDrawer_persistent].
-	self isPermanentAboveToolbarDrawer ifTrue: [drawerTag mdcDrawer_permanent].
-	self isPermanentBelowToolbarDrawer ifTrue: [drawerTag mdcDrawer_permanent].
-
-	self jsDrawerType notEmpty ifTrue: [
-		drawerScript := JSScript new add: (JSStream new
-				nextPutAll: 'var ', self id, '=document.getElementById(''', self id, ''');';
-				nextPutAll: self id, '.mdcDrawer = new ', self jsDrawerType, '(', self id, ')';
-				yourself).
-		self isPersistentDrawer 
-			ifTrue: [drawerScript nextPutAll: ';', self id, '.mdcDrawer.open = ', self isPersisted printString].
-		drawerTag script: drawerScript].
-	"self isTemporaryDrawer 
-		ifTrue: [drawerScript nextPutAll: ';', self id, '.mdcDrawer.open = true']."
+	self isTemporaryDrawer ifTrue: [drawerTag mdcDrawer_modal].
+	self isPersistentDrawer ifTrue: [drawerTag mdcDrawer_dismissible].
+	self isPermanentAboveToolbarDrawer ifTrue: [drawerTag mdcDrawer_dismissible].
+	self isPermanentBelowToolbarDrawer ifTrue: [drawerTag mdcDrawer_dismissible].
 
 	drawerTag
 		id: self id;
+		class: (self isPersisted ifTrue: ['mdc-drawer--open'] ifFalse: ['']);
 		with: [
 		html navigation
 			mdcDrawer__drawer;
@@ -45,3 +35,5 @@ if (el) {
 			"html div mdcDrawer__toolbarSpacer."
 			html div mdcListGroup; with: [
 				html render: self list]]].
+
+	self isTemporaryDrawer ifTrue: [html div class: 'mdc-drawer-scrim'].

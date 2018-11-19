@@ -6,6 +6,7 @@ renderContentOn: html
 		with: [
 			html div
 				mdcMenu;
+				class: 'mdc-menu-surface';
 				id: self id;
 				mdcAutoInit: 'MDCMenu';
 				with: [self renderMenuItemsOn: html]]

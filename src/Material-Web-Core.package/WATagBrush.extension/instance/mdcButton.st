@@ -1,4 +1,4 @@
-*Material-Web-Core
+*Material-Web-Core-generated
 mdcButton
 
-	self class: 'mdc-button'
+	^'mdc-button'

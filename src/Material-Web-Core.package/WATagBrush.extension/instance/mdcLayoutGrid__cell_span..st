@@ -1,4 +1,4 @@
-*Material-Web-Core
+*Material-Web-Core-extra
 mdcLayoutGrid__cell_span: aSpanNumber
 	"1 <= aSpanNumber <= 12"
 

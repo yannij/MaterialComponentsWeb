@@ -1,0 +1,20 @@
+rendering - catalog page
+renderNavOn: html
+
+	html navigation class: 'mdc-list'; with: [
+
+   		html anchor
+				mdcRole: 'listitem';
+				class: 'mdc-list-item mdc-ripple-upgraded';
+				tabIndex: -1;
+				callback: [self pageName: #home];
+				with: 'Home'.
+
+		self catalogList do: [:eachItem |
+			html anchor
+				mdcRole: 'listitem';
+				class: 'mdc-list-item mdc-ripple-upgraded';
+				tabIndex: -1;
+				callback: [self pageName: eachItem first asSymbol];
+				with: eachItem second].
+	]

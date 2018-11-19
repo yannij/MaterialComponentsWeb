@@ -1,4 +1,4 @@
-*Material-Web-Core
+*Material-Web-Core-generated
 mdcLineRipple
 
-	self class: 'mdc-line-ripple'
+	^'mdc-line-ripple'

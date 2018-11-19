@@ -3,5 +3,8 @@ updateRoot: anHtmlRoot
 
 	super updateRoot: anHtmlRoot.
 
+	self updateRootFonts: anHtmlRoot.
+
 	anHtmlRoot stylesheet url: (MCWDemoCatalogLibrary urlOf: #commonCss).
-	anHtmlRoot stylesheet url: self canvas demoStylesheetUrl
+
+	anHtmlRoot bodyAttributes addClass: 'mdc-typography'.

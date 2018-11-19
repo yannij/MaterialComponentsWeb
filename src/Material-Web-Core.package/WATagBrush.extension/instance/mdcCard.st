@@ -1,4 +1,4 @@
-*Material-Web-Core
+*Material-Web-Core-generated
 mdcCard
 
-	self class: 'mdc-card'
+	^'mdc-card'

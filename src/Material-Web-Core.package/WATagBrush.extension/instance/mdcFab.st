@@ -1,4 +1,4 @@
-*Material-Web-Core
+*Material-Web-Core-generated
 mdcFab
 
-	self class: 'mdc-fab'
+	^'mdc-fab'

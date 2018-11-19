@@ -1,8 +1,6 @@
-initialization
+initializing
 initialize
 
 	super initialize.
 
-	self canvas: MCWDemoCatalogCanvas new.
-
-	self applicationPostInitialize: self
+	self pageName: #home.

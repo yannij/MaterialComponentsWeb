@@ -1,4 +1,4 @@
 accessing
 applicationTitle
 
-	^'Catalog Demo'
+	^'Material Design Catalog'

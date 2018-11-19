@@ -1,6 +1,6 @@
 accessing
 mdcDrawerClass
 
-	self isTemporaryDrawer ifTrue: [^'mdc-drawer--temporary'].
-	self isPersistentDrawer ifTrue: [^'mdc-drawer--persistent'].
+	self isTemporaryDrawer ifTrue: [^'mdc-drawer--modal'].
+	self isPersistentDrawer ifTrue: [^'mdc-drawer--dismissible'].
 

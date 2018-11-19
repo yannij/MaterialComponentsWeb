@@ -1,4 +1,4 @@
-*Material-Web-Core
+*Material-Web-Core-generated
 mdcDrawer
 
-	self class: 'mdc-drawer'
+	^'mdc-drawer'
