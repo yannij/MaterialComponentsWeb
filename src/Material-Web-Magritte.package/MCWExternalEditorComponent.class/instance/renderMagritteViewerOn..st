@@ -4,8 +4,7 @@ renderMagritteViewerOn: html
 	html div mdcFormField; with: [
 	html div
 		mdcTextField;
-		mdcTextField_fullwidth;
-		mdcTextField_upgraded; with: [
+		mdcTextField_fullwidth; with: [
 			html label
 				for: self labelId;
 				mdcFloatingLabel;

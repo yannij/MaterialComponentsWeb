@@ -9,7 +9,6 @@ renderViewerOn: html
 		mdcTextField_dense;
 		mdcTextField_textarea;
 		mdcTextField_fullwidth;
-		mdcTextField_upgraded;
 		with: [
 			html textArea
 				mdcTextField__input;

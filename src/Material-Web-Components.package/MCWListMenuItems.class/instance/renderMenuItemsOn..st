@@ -3,7 +3,6 @@ renderMenuItemsOn: html
 
 	html unorderedList
 		mdcList;
-		mdcMenu__items;
 		mdcRole: 'menu';
 		attributeAt: 'aria-hidden' put: 'true';
 		with: [

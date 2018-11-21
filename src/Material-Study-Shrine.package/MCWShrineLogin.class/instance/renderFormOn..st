@@ -2,7 +2,7 @@ rendering
 renderFormOn: html 
 
 	html form with: [
-		html div mdcTextField; mdcTextField_box; mdcAutoInit: 'MDCTextField'; class: 'username'; with: [
+		html div mdcTextField; mdcTextField__input; mdcAutoInit: 'MDCTextField'; class: 'username'; with: [
 			html textInput
 				id: 'username-input';
 				mdcTextField__input;
@@ -10,7 +10,7 @@ renderFormOn: html
 				required.
 			html label mdcFloatingLabel; for: 'username-input'; with: 'Username'.
 			html div mdcLineRipple].
-		html div mdcTextField; mdcTextField_box; mdcAutoInit: 'MDCTextField'; class: 'password'; with: [
+		html div mdcTextField; mdcTextField__input; mdcAutoInit: 'MDCTextField'; class: 'password'; with: [
 			html passwordInput
 				id: 'password-input';
 				mdcTextField__input;

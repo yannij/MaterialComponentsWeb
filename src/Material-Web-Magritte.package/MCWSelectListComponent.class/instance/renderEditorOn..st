@@ -3,12 +3,11 @@ renderEditorOn: html
 
 	html div
 		mdcSelect;
-		mdcSelect_box;
 		mdcRippleUpgraded;
 		style: '--mdc-ripple-fg-size:106.2px; --mdc-ripple-fg-scale:1.84226; --mdc-ripple-fg-translate-start:27.884px, -24.412px; --mdc-ripple-fg-translate-end:35.4px, -25.1px;';
 		with: [
 			html select
-				class: 'mdc-select__native-control';
+				mdcSelect__nativeControl;
 				id: self labelId;
 				list: self options;
 				selected: self value;

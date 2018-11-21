@@ -2,7 +2,7 @@ rendering
 renderContentOn: html
 
 	html div
-		mdcMenuSurface__anchor;
+		mdcMenuSurface_anchor;
 		with: [
 			html div
 				mdcMenu;

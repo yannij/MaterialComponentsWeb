@@ -5,14 +5,16 @@ renderExpandSwitchOnListId: listId on: html
 	switchId := html nextId.
 
 	html div mdcSwitch; with: [
-		html checkbox
-			mdcSwitch__nativeControl;
-			id: switchId;
-			value: self expanded;
-			onChange: (html jQuery ajax
-				callback: [ :value | self expanded: value = 'true' ] value: (JSStream on: 'event.target.checked');
-				onComplete: ((html jQuery id: listId) load html: [:renderer | self renderListAjaxOn: renderer]));
-			yourself.
-		html div mdcSwitch_background; with: [html div mdcSwitch__knob]].
+		html div mdcSwitch__track.
+		html div mdcSwitch__thumbUnderlay; with: [
+			html mdcSwitch__thumb; with: [
+				html checkbox
+					mdcSwitch__nativeControl;
+					id: switchId;
+					value: self expanded;
+					onChange: (html jQuery ajax
+						callback: [ :value | self expanded: value = 'true' ] value: (JSStream on: 'event.target.checked');
+						onComplete: ((html jQuery id: listId) load html: [:renderer | self renderListAjaxOn: renderer]));
+			yourself]]].
 	html space; space; space.
-	html label for: switchId; mdcSwitchLabel; with: self magritteDescription label.
+	html label for: switchId; with: self magritteDescription label.
