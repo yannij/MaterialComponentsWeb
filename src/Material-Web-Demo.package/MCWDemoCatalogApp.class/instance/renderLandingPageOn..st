@@ -2,5 +2,5 @@ rendering - landing page
 renderLandingPageOn: html
 
 	html div
-		class: 'mdc-top-app-bar--fixed-adjust';
+		mdcTopAppBar_fixedAdjust;
 		with: [ self renderCatalogListOn: html ]

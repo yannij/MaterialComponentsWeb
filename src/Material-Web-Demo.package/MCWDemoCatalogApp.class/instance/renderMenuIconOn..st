@@ -1,4 +1,4 @@
 rendering
 renderMenuIconOn: html
 
-	html html: '<i class="material-icons" alt="Menu button">menu</i>'
+	html span mdcMaterialIcons; "altText: 'Menu button';" with: 'menu'

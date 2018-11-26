@@ -1,11 +1,11 @@
 rendering - catalog page
 renderNavOn: html
 
-	html navigation class: 'mdc-list'; with: [
+	html navigation mdcList; with: [
 
    		html anchor
 				mdcRole: 'listitem';
-				class: 'mdc-list-item mdc-ripple-upgraded';
+				mdcListItem; mdcRippleUpgraded;
 				tabIndex: -1;
 				callback: [self pageName: #home];
 				with: 'Home'.
@@ -13,7 +13,7 @@ renderNavOn: html
 		self catalogList do: [:eachItem |
 			html anchor
 				mdcRole: 'listitem';
-				class: 'mdc-list-item mdc-ripple-upgraded';
+				mdcListItem; mdcRippleUpgraded;
 				tabIndex: -1;
 				callback: [self pageName: eachItem first asSymbol];
 				with: eachItem second].
