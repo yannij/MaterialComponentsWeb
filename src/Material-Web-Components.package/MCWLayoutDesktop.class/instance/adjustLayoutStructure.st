@@ -1,11 +1,9 @@
 actions
 adjustLayoutStructure
 
-	self sideNav bePermanentBelowToolbarDrawer.
+	self sideNav bePersistentDrawer; beDismissed.
 
 	self sideSheet ifNotNil: [:value |
-		value
-			bePermanentBelowToolbarDrawer;
-			beDirectionLeftToRight].
+		value beDirectionLeftToRight].
 
 	self adjustToolbars.

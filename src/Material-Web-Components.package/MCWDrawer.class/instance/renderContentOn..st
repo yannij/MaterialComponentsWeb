@@ -3,16 +3,14 @@ renderContentOn: html
 	| drawerTag |
 
 	drawerTag := html aside mdcDrawer.
-	self isTemporaryDrawer ifTrue: [drawerTag mdcDrawer_modal].
-	self isPersistentDrawer ifTrue: [drawerTag mdcDrawer_dismissible].
-	self isPermanentAboveToolbarDrawer ifTrue: [drawerTag mdcDrawer_dismissible].
-	self isPermanentBelowToolbarDrawer ifTrue: [drawerTag mdcDrawer_dismissible].
+	self isModalDrawer ifTrue: [drawerTag mdcDrawer_modal].
+	self isDismissibleDrawer ifTrue: [drawerTag mdcDrawer_dismissible].
 
 	drawerTag
 		id: self id;
-		class: (self isPersisted ifTrue: ['mdc-drawer--open'] ifFalse: ['']);
+		class: (self isDrawerOpen ifTrue: ['mdc-drawer--open'] ifFalse: ['']);
 		with: [
 			self renderDrawerHeaderOn: html.
 			self renderDrawerContentOn: html].
 
-	self isTemporaryDrawer ifTrue: [html div class: 'mdc-drawer-scrim'].
+	self isModalDrawer ifTrue: [html div class: 'mdc-drawer-scrim'].

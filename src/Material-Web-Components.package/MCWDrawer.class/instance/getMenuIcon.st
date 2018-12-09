@@ -4,7 +4,7 @@ getMenuIcon
 	self isPersistentDrawer
 		ifTrue: [^self menuIconPersistent].
 
-	self isTemporaryDrawer
+	self isModalDrawer
 		ifTrue: [^self menuIconTemporary].
 
 	^self menuIconPersistent

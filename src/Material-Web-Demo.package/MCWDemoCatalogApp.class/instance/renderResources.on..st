@@ -1,9 +1,9 @@
 page - button
-renderResourcesOn: html
+renderResources: resources on: html
 
 	html heading level6; class: 'demo-title'; mdcTypography_headline6; with: 'Resources'.
 	html anchor
-		url: 'https://material.io/go/design-buttons';
+		url: resources first;
 		mdcRole: 'listitem'; mdcListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
 			html span mdcListItem__graphic; with: [
@@ -13,7 +13,7 @@ renderResourcesOn: html
 					url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_material_design_24px.svg'].
 			html text: 'Material Design Guidelines'].
 	html anchor
-		url: 'https://material.io/components/web/catalog/buttons/';
+		url: resources second;
 		mdcRole: 'listitem'; mdcListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
 			html span mdcListItem__graphic; with: [
@@ -23,7 +23,7 @@ renderResourcesOn: html
 					url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_drive_document_24px.svg'].
 			html text: 'Documentation'].
 	html anchor
-		url: 'https://github.com/material-components/material-components-web/tree/master/packages/mdc-button';
+		url: resources third;
 		mdcRole: 'listitem'; mdcListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
 			html span mdcListItem__graphic; with: [

@@ -1,4 +1,4 @@
 actions
 menuItemCallback
 
-	self isTemporaryDrawer ifTrue: [self isPersisted: false]
+	self isModalDrawer ifTrue: [self isDismissed: true]

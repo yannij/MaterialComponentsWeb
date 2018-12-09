@@ -1,11 +1,11 @@
 actions
 adjustLayoutStructure
 
-	self sideNav bePersistentDrawer.
+	self sideNav beDismissibleDrawer; beDismissed.
 
 	self sideSheet ifNotNil: [:value |
 		value
-			beTemporaryDrawer;
+			beModalDrawer;
 			beDirectionToRightToLeft].
 
 	self adjustToolbars.

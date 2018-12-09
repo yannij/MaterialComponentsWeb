@@ -3,5 +3,5 @@ renderCatalogPageButtonOn: html
 
 	self renderButtonSummaryOn: html.
 	self renderButtonHeroOn: html.
-	self renderResourcesOn: html.
+	self renderResources: self resourcesDataButton on: html.
 	self renderButtonDemoOn: html

@@ -13,7 +13,7 @@
 		"dir",
 		"menuIconPersistent",
 		"menuIconTemporary",
-		"isPersisted"
+		"isDismissed"
 	],
 	"name" : "MCWDrawer",
 	"type" : "normal"

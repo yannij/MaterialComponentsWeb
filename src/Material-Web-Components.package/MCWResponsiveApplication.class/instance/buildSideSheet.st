@@ -6,6 +6,6 @@ buildSideSheet
 	^MCWDrawer new
 		id: self rightNavDrawerId;
 		list: self buildSideSheetList;
-		beTemporaryDrawer;
+		beModalDrawer;
 		beDirectionToRightToLeft;
 		yourself.
