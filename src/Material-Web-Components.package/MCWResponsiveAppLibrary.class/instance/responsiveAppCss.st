@@ -7,12 +7,12 @@ responsiveAppCss
 
 .mcw-layout-tablet .mdc-fab {
 	top: 96px;
-	left: 0rem;
+	left: 1rem;
 }
 
 .mcw-layout-desktop .mdc-fab {
-	top: 144px;
-	right: 2rem;
+	top: 96px;
+	left: 0rem;
 }
 
 .appBarPadding {

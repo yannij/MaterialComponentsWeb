@@ -3,9 +3,9 @@ adjustLayoutStructure
 
 	self sideNav beDismissibleDrawer; beDismissed.
 
-	self sideSheet ifNotNil: [:value |
+	"self sideSheet ifNotNil: [:value |
 		value
 			beModalDrawer;
-			beDirectionToRightToLeft].
+			beDirectionToRightToLeft]."
 
 	self adjustToolbars.

@@ -3,4 +3,5 @@ initialize
 
 	super initialize.
 
-	self onClickBlock: [:value | ]
+	self onClickBlock: [:value | ].
+	self listStyle: #singleLine

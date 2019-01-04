@@ -2,7 +2,7 @@ rendering
 renderContentOn: html 
 
 	self view isNil
-		ifTrue: [^html div id: 'setup'; class: 'setup'; with: 'hello world'].
+		ifTrue: [^html div id: 'setup'; class: 'setup'; with: self loremIpsum].
 
 	html div mdcLayoutGrid;
 		style: '--mdc-layout-grid-margin-desktop: 16px';

@@ -8,6 +8,7 @@ renderContentOn: html
 
 	drawerTag
 		id: self id;
+		mdcTopAppBar_fixedAdjust;
 		class: (self isDrawerOpen ifTrue: ['mdc-drawer--open'] ifFalse: ['']);
 		with: [
 			self renderDrawerHeaderOn: html.

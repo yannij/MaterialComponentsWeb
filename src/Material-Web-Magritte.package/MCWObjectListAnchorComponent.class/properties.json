@@ -1,14 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "MAOneToManyComponent",
+	"super" : "MCWObjectListComponent",
 	"category" : "Material-Web-Magritte",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"onClickBlock",
-		"listStyle"
-	],
-	"name" : "MCWObjectListComponent",
+	"instvars" : [ ],
+	"name" : "MCWObjectListAnchorComponent",
 	"type" : "normal"
 }

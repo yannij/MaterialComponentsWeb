@@ -15,6 +15,7 @@ renderContentOn: html
 		with: [
 			html div
 				mdcTopAppBar_fixedAdjust;
-				with: [self renderCanvasOn: html].
-			html div style: 'margin-left: auto';
-					with: [html render: self sideSheet]]
+				with: [self renderCanvasOn: html]].
+	html div mdcTopAppBar_fixedAdjust;
+		style: 'min-width: 300px; max-width: 300px';
+		with: [html render: self sideSheet].

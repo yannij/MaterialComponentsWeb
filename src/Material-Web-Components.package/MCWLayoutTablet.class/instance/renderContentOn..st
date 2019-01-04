@@ -14,5 +14,6 @@ renderContentOn: html
 			html div
 				mdcTopAppBar_fixedAdjust;
 				with: [self renderCanvasOn: html].
-			html render: self sideSheet.
 		].
+
+	html render: self sideSheet.

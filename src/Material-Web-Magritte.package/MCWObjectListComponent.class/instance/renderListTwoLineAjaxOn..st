@@ -1,5 +1,5 @@
 rendering
-renderListAjaxOn: html
+renderListTwoLineAjaxOn: html
 
 	html unorderedList
 		mdcList;

@@ -12,5 +12,5 @@ renderViewerOn: html
 			html heading level3; mdcListGroup__subheader; with: [
 				html text: self magritteDescription label].
 
-		html div id: listId; with: [self renderListAjaxOn: html]
+		html div id: listId; with: [self renderListOn: html]
 	]

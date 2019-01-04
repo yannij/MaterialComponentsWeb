@@ -13,6 +13,7 @@ renderContentOn: html
 	tag
 		mdcAutoInit: 'MDCTopAppBar';
 		style: self mcwStyle;
+		style: 'z-index: 7';
 		with: [
 			html div mdcTopAppBar__row; with: [
 				html section
