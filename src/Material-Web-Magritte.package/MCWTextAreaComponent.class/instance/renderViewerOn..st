@@ -1,21 +1,4 @@
 rendering
 renderViewerOn: html
 
-	html div mdcFormField; with: [
-	html div
-		mdcTextField;
-		"mdcTextField__box;"
-		"mdcTextField__outlined;"
-		mdcTextField_dense;
-		mdcTextField_textarea;
-		mdcTextField_fullwidth;
-		with: [
-			html textArea
-				mdcTextField__input;
-				id: self labelId; type: self inputType; on: self inputAspect of: self.
-			html label
-				for: self labelId;
-				mdcFloatingLabel;
-				mdcFloatingLabel_floatAbove;
-				with: self magritteDescription label.
-			html div mdcLineRipple; style: 'transform-origin: 161px center 0px;']]
+	self renderFieldOn: html

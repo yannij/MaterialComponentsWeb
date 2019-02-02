@@ -4,8 +4,7 @@ renderEditorOn: html
 	html div
 		style: 'height: 128px';
 		mdcSelect;
-		mdcRippleUpgraded;
-		style: '--mdc-ripple-fg-size:106.2px; --mdc-ripple-fg-scale:1.84226; --mdc-ripple-fg-translate-start:27.884px, -24.412px; --mdc-ripple-fg-translate-end:35.4px, -25.1px;';
+		mcwFormField;
 		with: [
 			html multiSelect
 				mdcSelect__nativeControl;
@@ -20,7 +19,7 @@ renderEditorOn: html
 			html label
 				mdcFloatingLabel;
 				mdcFloatingLabel_floatAbove;
-				style: 'top: 33px';
+				"style: 'top: 33px';"
 				"for: 'select-box';"
 				with: self magritteDescription label.
 

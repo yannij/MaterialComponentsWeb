@@ -6,11 +6,11 @@ renderViewerOn: html
 
 	html div
 		mdcListGroup;
-		style: 'border: 1px solid rgba(0, 0, 0, 0.1);';
+		"style: 'border: 1px solid rgba(0, 0, 0, 0.1);';"
 		"style: 'width: 400px';"
 		with: [
 			html heading level3; mdcListGroup__subheader; with: [
 				html text: self magritteDescription label].
-
-		html div id: listId; with: [self renderListOn: html]
-	]
+			html div mdcListDivider; mdcRole: 'separator'.
+			html div id: listId; with: [self renderListOn: html]
+		]

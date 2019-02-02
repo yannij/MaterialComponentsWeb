@@ -1,10 +1,10 @@
 rendering
 renderMagritteViewerOn: html
 
-	html div mdcFormField; with: [
 	html div
 		mdcTextField;
-		mdcTextField_fullwidth; with: [
+		"mdcTextField_fullwidth;"
+		with: [
 			html label
 				for: self labelId;
 				mdcFloatingLabel;
@@ -14,4 +14,4 @@ renderMagritteViewerOn: html
 				readonly: true;
 				mdcTextField__input;
 				id: self labelId; type: 'text'; with: ''."
-			html div id: self labelId; with: [super renderViewerOn: html]]]
+			html div id: self labelId; with: [super renderViewerOn: html]]

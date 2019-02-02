@@ -3,6 +3,6 @@ initialize
 
 	super initialize.
 
-	self dense: true.
+	self dense: false.
 	self short: false.
 	self shortCollapsed: false
