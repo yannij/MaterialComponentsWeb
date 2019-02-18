@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWCanvasComponent",
+	"super" : "MCWWebComponent",
 	"category" : "Material-Study-Shrine",
 	"classinstvars" : [ ],
 	"pools" : [ ],
