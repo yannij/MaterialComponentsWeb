@@ -6,13 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
+		"layout",
 		"settings",
-		"topAppBar",
-		"sideNav",
-		"sideSheet",
-		"mainFab",
-		"canvas",
-		"layoutComponent",
 		"loginComponent"
 	],
 	"name" : "MCWResponsiveApplication",

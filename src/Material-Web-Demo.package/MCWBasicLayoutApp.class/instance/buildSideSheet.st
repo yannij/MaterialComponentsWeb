@@ -1,4 +1,9 @@
 initialization
 buildSideSheet
 
-	^self buildSideSheetList
+	^MCWDrawer new
+		id: self rightNavDrawerId;
+		list: self buildSideSheetList;
+		beModalDrawer;
+		beDirectionToRightToLeft;
+		yourself

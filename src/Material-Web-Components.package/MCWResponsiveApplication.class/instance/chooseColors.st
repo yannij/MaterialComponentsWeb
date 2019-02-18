@@ -1,6 +1,6 @@
 actions
 chooseColors
 
-	self canvas view notNil
-		ifTrue: [self canvas view: nil]
-		ifFalse: [self canvas view: (self settings colorTheme asComponent addValidatedForm)]
+	self layout contentArea component notNil
+		ifTrue: [self layout contentArea component: nil]
+		ifFalse: [self layout contentArea component: (self settings colorTheme asComponent addValidatedForm)]

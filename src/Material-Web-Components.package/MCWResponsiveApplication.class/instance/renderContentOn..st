@@ -8,7 +8,7 @@ renderContentOn: html
 	self renderSetGoogleFont: self currentFont on: html.
 
 	(self isLoggedIn or: [self loginComponent isNil])
-		ifTrue: [html render: self layoutComponent]
+		ifTrue: [html render: "self layoutComponent" self layout]
 		ifFalse: [html render: self loginComponent].
 
 	self renderMaterialComponentsWebJsOn: html.

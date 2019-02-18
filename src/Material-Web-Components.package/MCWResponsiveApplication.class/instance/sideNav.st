@@ -1,3 +1,4 @@
 accessing
 sideNav
-	^ sideNav
+
+	^self layout sideNav

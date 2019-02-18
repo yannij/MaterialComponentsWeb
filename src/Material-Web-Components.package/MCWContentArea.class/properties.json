@@ -1,18 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWComponent",
+	"super" : "MCWWebComponent",
 	"category" : "Material-Web-Components",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"id",
-		"title",
-		"cssClass",
-		"ariaLabel",
-		"hidden",
-		"mcwStyle"
+		"component"
 	],
-	"name" : "MCWWebComponent",
+	"name" : "MCWContentArea",
 	"type" : "normal"
 }

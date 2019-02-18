@@ -11,9 +11,9 @@ buildPopupMenuSettings
 		addListItem: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [self toggleAppBarCollapse]; yourself);
 		yourself.
 
-	self sideSheet notNil
+	"self layout sideSheet notNil
 		ifTrue: [
 			list addListItem:
-				(MCWListItemIcon new iconName: 'more_horiz'; itemText: 'Side Sheet'; onClickScript: self openRidghtNavScript; yourself)].
+				(MCWListItemIcon new iconName: 'more_horiz'; itemText: 'Side Sheet'; onClickScript: self openRidghtNavScript; yourself)]."
 
 	^list

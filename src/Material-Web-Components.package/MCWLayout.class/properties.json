@@ -1,18 +1,18 @@
 {
 	"commentStamp" : "",
-	"super" : "MCWComponent",
+	"super" : "MCWWebComponent",
 	"category" : "Material-Web-Components",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"id",
-		"title",
-		"cssClass",
-		"ariaLabel",
-		"hidden",
-		"mcwStyle"
+		"screenStyle",
+		"contentArea",
+		"topAppBar",
+		"sideNav",
+		"sideSheet",
+		"mainFab"
 	],
-	"name" : "MCWWebComponent",
+	"name" : "MCWLayout",
 	"type" : "normal"
 }

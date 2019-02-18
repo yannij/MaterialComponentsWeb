@@ -1,5 +1,5 @@
 actions
 toggleDismissibleDrawer
 
-	self sideNav isDismissedToggle.
+	self layout sideNav dismissedToggle.
 	"self layoutComponent adjustToolbarsPersistedSideNav: self sideNav isPersisted."

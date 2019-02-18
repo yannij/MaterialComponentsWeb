@@ -1,4 +1,0 @@
-rendering
-headStyle
-
-	self subclassResponsibility

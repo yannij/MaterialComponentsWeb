@@ -1,6 +1,6 @@
 actions
 toggleAppBarCollapse
 
-	self topAppBar shortCollapsed
-		ifTrue: [self topAppBar short: false; shortCollapsed: false]
-		ifFalse: [self topAppBar short: true; shortCollapsed: true; dense: false]
+	self layout topAppBar shortCollapsed
+		ifTrue: [self layout topAppBar short: false; shortCollapsed: false]
+		ifFalse: [self layout topAppBar short: true; shortCollapsed: true; dense: false]

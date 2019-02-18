@@ -1,4 +1,4 @@
 accessing
 style
 
-	^self layoutComponent headStyle
+	^self layout headStyle
