@@ -12,7 +12,7 @@ renderExpandIconOnListId: listId on: html
 			toggleOnValue := '{"content": "expand_less", "label": "Show less"}'].
 
 	html span
-		mdcIconToggle;
+		"mdcIconToggle;"
 		mdcMaterialIcons;
 		mdcRippleUpgraded;
 		mdcRippleUpgraded_unbounded;
