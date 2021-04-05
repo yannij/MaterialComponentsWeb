@@ -3,6 +3,7 @@ initialize
 
 	super initialize.
 
+	self materialVersion100.
 	self settings: self buildApplicationSettings.
 	self layout: self buildLayout.
 	self beLayoutStructureDesktop.
