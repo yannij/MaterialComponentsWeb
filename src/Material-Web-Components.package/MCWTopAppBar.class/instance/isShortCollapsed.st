@@ -1,4 +1,0 @@
-testing
-isShortCollapsed
-
-	^self shortCollapsed

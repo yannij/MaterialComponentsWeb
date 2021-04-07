@@ -1,3 +1,0 @@
-accessing
-itemSecondaryText
-	^ itemSecondaryText

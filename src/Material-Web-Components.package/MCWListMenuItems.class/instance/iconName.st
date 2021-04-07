@@ -1,4 +1,0 @@
-hack
-iconName
-
-	^nil

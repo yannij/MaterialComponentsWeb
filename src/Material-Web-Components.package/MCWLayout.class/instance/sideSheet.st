@@ -1,3 +1,0 @@
-accessing
-sideSheet
-	^ sideSheet

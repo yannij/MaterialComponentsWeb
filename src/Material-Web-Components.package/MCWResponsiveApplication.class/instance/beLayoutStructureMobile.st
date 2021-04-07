@@ -1,4 +1,0 @@
-actions
-beLayoutStructureMobile
-
-	self layout beMobileStyle

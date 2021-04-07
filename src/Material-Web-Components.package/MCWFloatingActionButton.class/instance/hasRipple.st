@@ -1,4 +1,0 @@
-testing
-hasRipple
-
-	^self rippledFab

@@ -1,4 +1,0 @@
-testing
-isHidden
-
-	^self hidden

@@ -1,4 +1,0 @@
-rendering
-inputType
-
-	^ 'date'

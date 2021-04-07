@@ -1,4 +1,0 @@
-actions
-dismissedToggle
-
-	self isDismissedToggle

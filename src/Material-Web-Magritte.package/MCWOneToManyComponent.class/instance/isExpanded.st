@@ -1,4 +1,0 @@
-accessing
-isExpanded
-
-	^self expanded

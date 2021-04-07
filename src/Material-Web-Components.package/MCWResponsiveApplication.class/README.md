@@ -1,1 +1,0 @@
-Subclasses may specialize to implement a ResponsiveUI as described at: https://material.io/guidelines/layout/structure.html

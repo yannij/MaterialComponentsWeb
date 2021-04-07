@@ -1,4 +1,0 @@
-testing
-isShort
-
-	^self short

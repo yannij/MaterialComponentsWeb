@@ -1,4 +1,0 @@
-initialization
-buildApplicationSettings
-
-	^MCWApplicationSettings newDefault

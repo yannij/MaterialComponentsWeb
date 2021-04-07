@@ -1,4 +1,0 @@
-accessing
-componentClass
-
-	^MCWContainerComponent

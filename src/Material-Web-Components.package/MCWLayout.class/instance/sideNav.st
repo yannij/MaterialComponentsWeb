@@ -1,3 +1,0 @@
-accessing
-sideNav
-	^ sideNav

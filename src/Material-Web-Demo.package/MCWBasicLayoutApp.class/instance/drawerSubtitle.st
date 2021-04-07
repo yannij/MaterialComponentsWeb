@@ -1,4 +1,0 @@
-accessing
-drawerSubtitle
-
-	^'Sub-example'

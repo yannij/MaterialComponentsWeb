@@ -1,4 +1,0 @@
-initialization
-applicationPath
-
-	^'material/layout'
