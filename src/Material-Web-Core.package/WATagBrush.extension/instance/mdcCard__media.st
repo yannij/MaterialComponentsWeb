@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcCard__media
 
 	self class: 'mdc-card__media'

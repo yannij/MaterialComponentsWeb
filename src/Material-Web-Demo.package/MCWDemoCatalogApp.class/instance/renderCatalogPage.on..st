@@ -2,7 +2,7 @@ rendering - catalog page
 renderCatalogPage: aPageName on: html
 	| selector |
 
-	selector := ('renderCatalogPage', self pageName capitalized, 'On:') asSymbol.
+	selector := ('renderCatalogPage', self pageName asValidSelector capitalized, 'On:') asSymbol.
 
 	(self respondsTo: selector)
 		ifTrue: [^self perform: selector with: html].

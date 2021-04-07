@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcTextFieldCharacterCounter
 
 	self class: 'mdc-text-field-character-counter'

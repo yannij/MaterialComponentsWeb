@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcTab
 
 	self class: 'mdc-tab'

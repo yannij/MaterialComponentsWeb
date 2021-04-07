@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcChip_selected
 
 	self class: 'mdc-chip--selected'

@@ -1,11 +1,16 @@
 rendering
 renderEditorOn: html
 
-	html div
-		style: 'height: 128px';
-		mdcSelect;
+	html label
+		style: 'height: 160px';
 		mcwFormField;
+		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
 		with: [
+			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
+				style: 'height: 64px';
+				id: self labelId;
+				with: self magritteDescription label.
+
 			html multiSelect
 				mdcSelect__nativeControl;
 				size: 8;
@@ -16,11 +21,5 @@ renderEditorOn: html
 				labels: [ :value | self labelForOption: value ];
 				callback: [ :value | self value: value ].
 
-			html label
-				mdcFloatingLabel;
-				mdcFloatingLabel_floatAbove;
-				"style: 'top: 33px';"
-				"for: 'select-box';"
-				with: self magritteDescription label.
-
-			html div mdcLineRipple]
+			html textInput mdcTextField__input.
+			html span mdcLineRipple  ]

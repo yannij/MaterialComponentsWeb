@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcMenu
 
 	self class: 'mdc-menu'

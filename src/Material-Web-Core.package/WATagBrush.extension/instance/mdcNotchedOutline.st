@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcNotchedOutline
 
 	self class: 'mdc-notched-outline'

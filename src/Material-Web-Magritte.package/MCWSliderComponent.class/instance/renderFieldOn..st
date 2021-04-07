@@ -2,6 +2,21 @@ rendering
 renderFieldOn: html
 	| sliderId sliderElementId sliderThumbContainerId hiddenInputRangeId |
 
+	html label
+		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
+		with: [
+			html span mdcTextField__ripple.
+			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
+				id: self labelId;
+				with: self magritteDescription label.
+			html textInput mdcTextField__input;
+				ariaDescribedBy: self labelId;
+				"title: (self perform: self inputAspect);"
+				type: self inputType;
+				on: self inputAspect of: self.
+			html span mdcLineRipple ].
+true ifTrue: [ ^self ].
+
 	sliderId := html nextId.
 	sliderElementId := sliderId, '_slider'.
 	sliderThumbContainerId := sliderId, '_thumbContainer'.
@@ -38,17 +53,17 @@ renderFieldOn: html
 				);
 		with: [
 			html div
-				mdcSlider__trackContainer;
+				"mdcSlider__trackContainer;"
 				with: [html div mdcSlider__track].
 			html div
-				mdcSlider__thumbContainer;
+				"mdcSlider__thumbContainer;"
 				id: sliderThumbContainerId;
 				with: [
-					html div mdcSlider__pin; with: [
+					"html div mdcSlider__pin; with: [
 						html span mdcSlider__pinValueMarker
-							with: self value].
+							with: self value]."
 					html svg mdcSlider__thumb;
 						attributeAt: 'width' put: '21';
 						attributeAt: 'height' put: '21';
 						with: [html html: '<circle cx="10.5" cy="10.5" r="7.875"></circle>'].
-					html div mdcSlider__focusRing]]].
+					"html div mdcSlider__focusRing"]]].

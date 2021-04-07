@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcMenuSurface
 
 	self class: 'mdc-menu-surface'

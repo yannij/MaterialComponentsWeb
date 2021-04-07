@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcLayoutGrid__cell_span5Tablet
 
 	self class: 'mdc-layout-grid__cell--span-5-tablet'

@@ -13,7 +13,7 @@ aaaBbbCcc_eeeFffGgg <<<< aaa-bbb-ccc__eee-fff-ggg
 aaaBbbCcc__xxxYyyZzz <<<< aaa-bbb-ccc--xxx-yyy-zzz
 aaaBbbCcc_eeeFffGgg__xxxYyyZzz <<<< aaa-bbb-ccc__eee-fff-ggg--xxx-yyy-zzz
 
-	self generateMdcTagsFrom: 'mdc.dat'
+	self generateMdcTagsFrom: '../../material-design/mdc.dat'
 	"
 	| reference |
 

@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcTheme_primary
 
 	self class: 'mdc-theme--primary'

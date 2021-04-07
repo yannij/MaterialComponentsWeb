@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcLayoutGrid
 
 	self class: 'mdc-layout-grid'

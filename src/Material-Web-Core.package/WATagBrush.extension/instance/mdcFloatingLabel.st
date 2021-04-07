@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcFloatingLabel
 
 	self class: 'mdc-floating-label'

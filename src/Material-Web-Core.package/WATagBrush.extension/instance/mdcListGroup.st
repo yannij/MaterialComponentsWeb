@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcListGroup
 
 	self class: 'mdc-list-group'

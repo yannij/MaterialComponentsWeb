@@ -2,7 +2,10 @@
 	"commentStamp" : "",
 	"super" : "MCWResponsiveApplication",
 	"category" : "Material-Web-Demo",
-	"classinstvars" : [ ],
+	"classinstvars" : [
+		"index",
+		"listItem"
+	],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [

@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcCard_outlined
 
 	self class: 'mdc-card--outlined'

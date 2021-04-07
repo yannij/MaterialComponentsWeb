@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcTopAppBar__section_alignStart
 
 	self class: 'mdc-top-app-bar__section--align-start'

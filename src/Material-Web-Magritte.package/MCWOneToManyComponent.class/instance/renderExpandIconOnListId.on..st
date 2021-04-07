@@ -16,7 +16,7 @@ renderExpandIconOnListId: listId on: html
 		mdcMaterialIcons;
 		mdcRippleUpgraded;
 		mdcRippleUpgraded_unbounded;
-		mdcAutoInit: 'MDCIconToggle';
+		"mdcAutoInit: 'MDCIconToggle';"
 		mdcRole: 'button';
 		tabIndex: 0;
 		attributeAt: 'data-toggle-on' put: toggleOnValue;

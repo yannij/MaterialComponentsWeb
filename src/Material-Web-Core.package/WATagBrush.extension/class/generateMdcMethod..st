@@ -7,4 +7,4 @@ generateMdcMethod: aCssClass
 
 	code := selectorName, String cr, String cr, String tab, 'self class: ', aCssClass printString.
 
-	self compile: code classified: '*Material-Web-Core-generated'
+	self compile: code classified: '*Material-Web-Core'

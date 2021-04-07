@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcTextField_disabled
 
 	self class: 'mdc-text-field--disabled'

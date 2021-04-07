@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcTextFieldHelperLine
 
 	self class: 'mdc-text-field-helper-line'

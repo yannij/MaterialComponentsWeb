@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcSlider
 
 	self class: 'mdc-slider'

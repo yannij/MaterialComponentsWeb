@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcLayoutGrid__inner
 
 	self class: 'mdc-layout-grid__inner'

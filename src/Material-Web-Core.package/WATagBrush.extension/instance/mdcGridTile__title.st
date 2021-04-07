@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcGridTile__title
 
 	self class: 'mdc-grid-tile__title'

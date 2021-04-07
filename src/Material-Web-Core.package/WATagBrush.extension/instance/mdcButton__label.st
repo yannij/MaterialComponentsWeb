@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcButton__label
 
 	self class: 'mdc-button__label'

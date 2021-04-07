@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcCard__primaryAction
 
 	self class: 'mdc-card__primary-action'

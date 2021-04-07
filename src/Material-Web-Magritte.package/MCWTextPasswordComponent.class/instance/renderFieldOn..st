@@ -1,17 +1,14 @@
 rendering
 renderFieldOn: html
 
-	html div
-		mdcTextField;
-		mcwFormField;
-		"mdcTextField_dense;"
+	html label
+		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
 		with: [
-			html textInput
-				mdcTextField__input;
-				id: self labelId; type: self inputType; on: self inputAspect of: self.
-			html label
-				for: self labelId;
-				mdcFloatingLabel;
-				mdcFloatingLabel_floatAbove;
+			html span mdcTextField__ripple.
+			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
+				id: self labelId;
 				with: self magritteDescription label.
-			html div mdcLineRipple; style: 'transform-origin: 161px center 0px;']
+			html textInput mdcTextField__input;
+				ariaDescribedBy: self labelId;
+				on: self inputAspect of: self.
+			html span mdcLineRipple ]

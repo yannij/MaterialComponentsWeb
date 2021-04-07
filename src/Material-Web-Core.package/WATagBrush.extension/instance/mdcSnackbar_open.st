@@ -1,4 +1,4 @@
-*Material-Web-Core-generated
+*Material-Web-Core
 mdcSnackbar_open
 
 	self class: 'mdc-snackbar--open'
