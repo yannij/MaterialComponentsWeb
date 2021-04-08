@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWSliderComponent,
 	#superclass : #MCWTextInputComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #rendering }
@@ -12,73 +12,44 @@ MCWSliderComponent >> renderEditorOn: html [
 
 { #category : #rendering }
 MCWSliderComponent >> renderFieldOn: html [
-	| sliderId sliderElementId sliderThumbContainerId hiddenInputRangeId |
 
 	html label
-		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
+		style: 'padding-top: 32px';
+		mcwFormField;
+		mdcTextField; "mdcTextField_filled; " mdcTextField_labelFloating; "mdcAutoInit: 'MDCTextField';"
 		with: [
-			html span mdcTextField__ripple.
 			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
+				style: 'height: 64px';
 				id: self labelId;
 				with: self magritteDescription label.
-			html textInput mdcTextField__input;
-				ariaDescribedBy: self labelId;
-				"title: (self perform: self inputAspect);"
-				type: self inputType;
-				on: self inputAspect of: self.
-			html span mdcLineRipple ].
-true ifTrue: [ ^self ].
 
-	sliderId := html nextId.
-	sliderElementId := sliderId, '_slider'.
-	sliderThumbContainerId := sliderId, '_thumbContainer'.
-	hiddenInputRangeId := html nextId.
+			self renderSliderOn: html.
 
-	html div mdcFormField; mcwFormField; with: [
-	html textInput
-		"mdcTextField__input;"
-		id: hiddenInputRangeId;
-		"attributeAt: 'hidden' put: 'true';"
-		on: #string of: self.
+			"html textInput mdcTextField__input."
+			html span mdcLineRipple ]
+]
 
-		html label
-			for: hiddenInputRangeId;
-			mdcFloatingLabel;
-			mdcFloatingLabel_floatAbove;
-			with: self magritteDescription label.
+{ #category : #rendering }
+MCWSliderComponent >> renderSliderOn: html [
 
-	html div
-		id: sliderId;
-		mdcSlider; mdcSlider_discrete;
-		mdcRole: 'slider';
-		"mdcAutoInit: 'MDCSlider';"
-		tabIndex: 0;
-		ariaLabel: 'Select Value';
-		script: (html javascript add: (JSStream new
-				nextPutAll: 'var sliderEl = document.getElementById(''', sliderId, ''');';
-				nextPutAll: sliderElementId, ' = new mdc.slider.MDCSlider(sliderEl);';
-				nextPutAll: sliderElementId, '.foundation_.setValue(', self value printString, ');';
-				nextPutAll: '', sliderElementId, '.listen(''MDCSlider:change'', function() {';
-				nextPutAll: 'document.getElementById(''', hiddenInputRangeId, ''').value = ', sliderElementId, '.value.toString();';
-				nextPutAll: '});';
-				yourself)
-				);
-		with: [
-			html div
-				"mdcSlider__trackContainer;"
-				with: [html div mdcSlider__track].
-			html div
-				"mdcSlider__thumbContainer;"
-				id: sliderThumbContainerId;
-				with: [
-					"html div mdcSlider__pin; with: [
-						html span mdcSlider__pinValueMarker
-							with: self value]."
-					html svg mdcSlider__thumb;
-						attributeAt: 'width' put: '21';
-						attributeAt: 'height' put: '21';
-						with: [html html: '<circle cx="10.5" cy="10.5" r="7.875"></circle>'].
-					"html div mdcSlider__focusRing"]]].
+	html div mdcSlider; mdcSlider_discrete; mdcAutoInit: 'MDCSlider'; style: 'width: 150px'; with: [
+		html textInput mdcSlider__input; type: 'range';
+			attributeAt: 'min' put: '0';
+			attributeAt: 'max' put: '100';
+			attributeAt: 'step' put: '10';
+			tabIndex: 0;
+			ariaLabel: 'Select Value';
+			on: self inputAspect of: self;
+			yourself.
+		html div mdcSlider__track; with: [
+			html div mdcSlider__track_inactive.
+			html div mdcSlider__track_active with: [
+				html div mdcSlider__track_activefill ] ].
+		html div mdcSlider__thumb; with: [
+			html div mdcSlider__valueIndicatorContainer with: [
+				html div mdcSlider__valueIndicator; with: [
+					html span mdcSlider__valueIndicatorText; with: 50 ] ].
+			html div mdcSlider__thumbKnob ] ].
 
 ]
 

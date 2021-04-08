@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWDemoCatalogLibrary,
 	#superclass : #WAFileLibrary,
-	#category : 'Material-Web-Demo'
+	#category : #'Material-Web-Demo'
 }
 
 { #category : #uploaded }
@@ -10,6 +10,35 @@ MCWDemoCatalogLibrary >> appCss [
 	^'
 body {
     margin: 0
+}
+
+.catalog-top-app-bar {
+    background-color: #212121;
+    position: absolute
+}
+
+.catalog-top-app-bar__title {
+    text-transform: uppercase;
+    font-family: Roboto Mono,serif;
+    font-weight: 400
+}
+
+.catalog-top-app-bar__title--small-screen {
+    display: none
+}
+
+@media (max-width: 599px) {
+    .catalog-top-app-bar__title--small-screen {
+        display:inline-block
+    }
+
+    .catalog-top-app-bar__title--large-screen {
+        display: none
+    }
+}
+
+.catalog-page-container {
+    position: relative
 }
 
 #catalog-image-list {

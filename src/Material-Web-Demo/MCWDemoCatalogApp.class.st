@@ -8,7 +8,7 @@ Class {
 		'index',
 		'listItem'
 	],
-	#category : 'Material-Web-Demo'
+	#category : #'Material-Web-Demo'
 }
 
 { #category : #initialization }
@@ -29,26 +29,34 @@ MCWDemoCatalogApp class >> initialize [
 ]
 
 { #category : #accessing }
+MCWDemoCatalogApp >> appBarTitle [
+
+	^'MDC Seaside'
+]
+
+{ #category : #accessing }
 MCWDemoCatalogApp >> applicationTitle [
 
 	^'Material Design Catalog'
 ]
 
-{ #category : #initializing }
-MCWDemoCatalogApp >> buildSideNavList [
+{ #category : #initialization }
+MCWDemoCatalogApp >> buildMainFab [
 
-	^MCWListGroup new
-		addGroupedList: (MCWListBasic new
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [self sideNav menuItemCallback]);
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [self sideNav menuItemCallback]);
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [self sideNav menuItemCallback]);
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 4' iconName: 'delete' callback: [self sideNav menuItemCallback]);
-			yourself);
-		yourself
-
+	^nil
 ]
 
-{ #category : #accessing }
+{ #category : #initializing }
+MCWDemoCatalogApp >> buildSideNavList [
+	| navList |
+
+	navList := MCWListBasic new.
+	"navList addListItem: (MCWListItemIcon  itemText: 'Home' callback: [ self pageName: #home ]).
+	self catalogList do: [:eachItem |
+		navList addListItem: (MCWListItemIcon  itemText: eachItem second callback: [ self pageName: eachItem first asSymbol ])]"
+]
+
+{ #category : #'page - home' }
 MCWDemoCatalogApp >> catalogList [
 
 	^#(
@@ -56,6 +64,7 @@ MCWDemoCatalogApp >> catalogList [
 ('card' 'Card' 'cards_180px.svg')
 ('checkbox' 'Checkbox' 'checkbox_180px.svg')
 ('chips' 'Chips' 'chips_180px.svg')
+('data-table' 'Data Table' 'data_table_180px.svg')
 ('dialog' 'Dialog' 'dialog_180px.svg')
 ('drawer' 'Drawer' 'drawer_180px.svg')
 ('elevation' 'Elevation' 'elevation_180px.svg')
@@ -89,7 +98,7 @@ MCWDemoCatalogApp >> initialize [
 
 ]
 
-{ #category : #testing }
+{ #category : #'rendering - layout' }
 MCWDemoCatalogApp >> isHomePage [
 
 	^self pageName = #home
@@ -106,7 +115,7 @@ MCWDemoCatalogApp >> pageName: anObject [
 ]
 
 { #category : #'page - button' }
-MCWDemoCatalogApp >> renderButtonDemoContentOn: html [
+MCWDemoCatalogApp >> renderCatalogButtonDemosOn: html [
 
 	html div with: [
 		html heading level3; mdcTypography_subtitle1; with: 'Text Button'.
@@ -150,16 +159,7 @@ MCWDemoCatalogApp >> renderButtonDemoContentOn: html [
 ]
 
 { #category : #'page - button' }
-MCWDemoCatalogApp >> renderButtonDemoOn: html [
-
-	html heading level2; class: 'demo-title'; mdcTypography_headline6; with: 'Demos'.
-
-	html div with: [
-		self renderButtonDemoContentOn: html]
-]
-
-{ #category : #'page - button' }
-MCWDemoCatalogApp >> renderButtonHeroOn: html [
+MCWDemoCatalogApp >> renderCatalogButtonHeroOn: html [
 
 	html div class: 'hero'; with: [
 		html div with: [
@@ -173,58 +173,86 @@ MCWDemoCatalogApp >> renderButtonHeroOn: html [
 ]
 
 { #category : #'page - button' }
-MCWDemoCatalogApp >> renderButtonSummaryOn: html [
+MCWDemoCatalogApp >> renderCatalogButtonOn: html [
+	| headlineString summaryString resources |
 
-	html heading level1; mdcTypography_headline5; with: 'Button'.
+	resources := #(
+		'https://material.io/go/design-buttons'
+		'https://material.io/components/web/catalog/buttons/'
+		'https://github.com/material-components/material-components-web/tree/master/packages/mdc-button'
+	).
+	headlineString := 'Button'.
+	summaryString := 'Buttons communicate an action a user can take. They are typically placed throughout your UI, in places like dialogs, forms, cards, and toolbars.'.
 
-	html paragraph
-		mdcTypography_body1;
-		with: 'Buttons communicate an action a user can take. They are typically placed throughout your UI, in places like dialogs, forms, cards, and toolbars.'
+	self renderHeadline: headlineString summary: summaryString on: html.
+	self renderCatalogButtonHeroOn: html.
+	self renderResources: resources on: html.
+	self renderDemos: [ :value | self renderCatalogButtonDemosOn: value ] on: html
+]
+
+{ #category : #'page - data table' }
+MCWDemoCatalogApp >> renderCatalogDatatableDemosOn: html [
+	| dataHeadings dataRows |
+
+	dataHeadings := { 'Dessert'->false. 'Carbs'->true. 'Protein (g)'->true. 'Comments'->false. }.
+	dataRows := {
+		{ 'Frozen yogurt'. '24'.'4.0'.'Super tasty' }.
+		{ 'Ice cream sandwich'. '37'.'4.33333333333'.'I like ice cream more' }.
+		{ 'Eclair'. '24'.'6.0'.'New filing flavor' }.
+	 }.
+
+	html break; break; break.
+	html div mdcDataTable with: [
+		html div mdcDataTable__tableContainer; with: [ 
+			html table mdcDataTable__table; ariaLabel: 'Dessert calories'; with: [
+				html tableHead with: [
+					html tableRow "mdcDataTable__headerRow" with: [
+						dataHeadings do: [ :each | | tag |
+							tag := html tableHeading mdcDataTable__headerCell; mdcRole: 'columnHeader'; scope: 'col'; with: each key.
+							each value ifTrue: [ tag  mdcDataTable__headerCell_numeric ] ] ]
+					].
+				html tableBody mdcDataTable__content; with: [
+					dataRows do: [ :eachRow |
+						html tableRow mdcDataTable__row; with: [
+							eachRow doWithIndex: [ :each :index | | tag |
+								tag := html tableData mdcDataTable__cell; scope: 'row'; with: each.
+								(dataHeadings at: index) value ifTrue: [ tag  mdcDataTable__headerCell_numeric ] ] ] ] ] ] ] ]
+]
+
+{ #category : #'page - data table' }
+MCWDemoCatalogApp >> renderCatalogDatatableHeroOn: html [
+
+	html div class: 'hero'; with: [
+		html div with: [
+			html space
+		]
+	]
 
 ]
 
-{ #category : #'rendering - landing page' }
-MCWDemoCatalogApp >> renderCatalogListItem: anItem on: html [
+{ #category : #'page - data table' }
+MCWDemoCatalogApp >> renderCatalogDatatableOn: html [
+	| headlineString summaryString resources |
 
-	html listItem
-		class: 'catalog-image-list-item';
-		mdcImageList__item;
-		with: [
-			html anchor
-				class: 'catalog-image-link';
-				callback: [self pageName: anItem first asSymbol];
-				with: [
-					html div
-						class: 'catalog-image-list-item-container';
-						mdcImageList__imageAspectContainer; mdcRippleSurface; mdcRippleUpgraded;
-						with: [
-							html div mdcImageList__image; with: [
-								html image
-									width: '100%';
-									height: '100%';
-									url: 'https://material-components.github.io/material-components-web-catalog/static/media/', anItem third]].
-					html div
-						mdcImageList__supporting;
-						with: [html span class: 'catalog-image-list-label'; mdcImageList__label; with: anItem second]]]
+	resources := #(
+		'https://material.io/go/design-data-tables'
+		'https://material.io/components/web/catalog/data-tables/'
+		'https://github.com/material-components/material-components-web/tree/master/packages/mdc-data-table'
+	).
+	headlineString := 'Data Table'.
+	summaryString := 'Data tables display information in a way that’s easy to scan, so that users can look for patterns and insights.'.
+
+	self renderHeadline: headlineString summary: summaryString on: html.
+	self renderCatalogDatatableHeroOn: html.
+	self renderResources: resources on: html.
+	self renderDemos: [ :value | self renderCatalogDatatableDemosOn: value ] on: html
 ]
 
-{ #category : #'rendering - landing page' }
-MCWDemoCatalogApp >> renderCatalogListOn: html [
-
-	html unorderedList
-		id: 'catalog-image-list';
-		mdcImageList;
-		class: 'standard-image-list';
-		with: [
-			self catalogList do: [:each |
-				self renderCatalogListItem: each on: html]]
-]
-
-{ #category : #'rendering - catalog page' }
+{ #category : #'page - home' }
 MCWDemoCatalogApp >> renderCatalogPage: aPageName on: html [
 	| selector |
 
-	selector := ('renderCatalogPage', self pageName asValidSelector capitalized, 'On:') asSymbol.
+	selector := ('renderCatalog', self pageName asValidSelector capitalized, 'On:') asSymbol.
 
 	(self respondsTo: selector)
 		ifTrue: [^self perform: selector with: html].
@@ -236,17 +264,39 @@ MCWDemoCatalogApp >> renderCatalogPage: aPageName on: html [
 		html heading level2; mdcTypography_headline1; with: self pageName capitalized, ' - To Do']
 ]
 
-{ #category : #'page - button' }
-MCWDemoCatalogApp >> renderCatalogPageButtonOn: html [
+{ #category : #'page - home' }
+MCWDemoCatalogApp >> renderCatalogPageListItem: anItem on: html [
 
-	self renderButtonSummaryOn: html.
-	self renderButtonHeroOn: html.
-	self renderResources: self resourcesDataButton on: html.
-	self renderButtonDemoOn: html
+	html listItem class: 'catalog-image-list-item'; mdcImageList__item;
+		with: [
+			html anchor class: 'catalog-image-link';
+				callback: [self pageName: anItem first asSymbol];
+				with: [
+					html div class: 'catalog-image-list-item-container';
+						mdcImageList__imageAspectContainer; mdcRippleSurface; mdcRippleUpgraded;
+						with: [
+							html div mdcImageList__image; with: [
+								html image
+									width: '100%';
+									height: '100%';
+									url: 'https://material-components.github.io/material-components-web-catalog/static/media/', anItem third]].
+					html div mdcImageList__supporting; with: [
+						html span class: 'catalog-image-list-label'; mdcImageList__label; with: anItem second]]]
 ]
 
-{ #category : #'page - textfield' }
-MCWDemoCatalogApp >> renderCatalogPageSelectOn: html [
+{ #category : #'page - home' }
+MCWDemoCatalogApp >> renderCatalogPageListOn: html [
+
+	html unorderedList
+		id: 'catalog-image-list';
+		mdcImageList; class: 'standard-image-list'; mdcTopAppBar_fixedAdjust ;
+		with: [
+			self catalogList do: [:each |
+				self renderCatalogPageListItem: each on: html]]
+]
+
+{ #category : #'page - select' }
+MCWDemoCatalogApp >> renderCatalogSelectDemosOn: html [
 	| selectedIndex |
 
 	html break; break.
@@ -285,20 +335,92 @@ MCWDemoCatalogApp >> renderCatalogPageSelectOn: html [
 		
 ]
 
+{ #category : #'page - select' }
+MCWDemoCatalogApp >> renderCatalogSelectHeroOn: html [
+
+	html div class: 'hero'; with: [
+		html div with: [
+			html space
+		]
+	]
+
+]
+
+{ #category : #'page - select' }
+MCWDemoCatalogApp >> renderCatalogSelectOn: html [
+	| headlineString summaryString resources |
+
+	resources := #(
+		'https://material.io/go/design-text-fields'
+		'https://material.io/components/web/catalog/input-controls/select-menus/'
+		'https://github.com/material-components/material-components-web/tree/master/packages/mdc-slider'
+	).
+	headlineString := 'Select'.
+	summaryString := 'Selects allow users to select from a single-option menu. It functions as a wrapper around the browser''s native <select> element.'.
+
+	self renderHeadline: headlineString summary: summaryString on: html.
+	self renderCatalogSelectHeroOn: html.
+	self renderResources: resources on: html.
+	self renderDemos: [ :value | self renderCatalogSelectDemosOn: value ] on: html
+]
+
+{ #category : #'page - sliders' }
+MCWDemoCatalogApp >> renderCatalogSliderDemosOn: html [
+
+	html break; break; break.
+
+	html div mdcSlider; mdcSlider_discrete; mdcAutoInit: 'MDCSlider'; style: 'width: 150px'; with: [
+		html textInput mdcSlider__input; type: 'range'; name: 'volume';
+			attributeAt: 'min' put: '0';
+			attributeAt: 'max' put: '100';
+			attributeAt: 'step' put: '10';
+			ariaLabel: 'Discrete slider demo';
+			value: '50'.
+		html div mdcSlider__track; with: [
+			html div mdcSlider__track_inactive.
+			html div mdcSlider__track_active with: [
+				html div mdcSlider__track_activefill ] ].
+		html div mdcSlider__thumb; with: [
+			html div mdcSlider__valueIndicatorContainer with: [
+				html div mdcSlider__valueIndicator; with: [
+					html span mdcSlider__valueIndicatorText; with: 50 ] ].
+			html div mdcSlider__thumbKnob ] ]
+]
+
+{ #category : #'page - sliders' }
+MCWDemoCatalogApp >> renderCatalogSliderHeroOn: html [
+
+	html div class: 'hero'; with: [
+		html div with: [
+			html space
+		]
+	]
+
+]
+
+{ #category : #'page - sliders' }
+MCWDemoCatalogApp >> renderCatalogSliderOn: html [
+	| headlineString summaryString resources |
+
+	resources := #(
+		'https://material.io/go/design-sliders'
+		'https://material.io/components/web/catalog/input-controls/sliders/'
+		'https://github.com/material-components/material-components-web/tree/master/packages/mdc-slider'
+	).
+	headlineString := 'Slider'.
+	summaryString := 'Sliders let users select from a range of values by moving the slider thumb.'.
+
+	self renderHeadline: headlineString summary: summaryString on: html.
+	self renderCatalogSliderHeroOn: html.
+	self renderResources: resources on: html.
+	self renderDemos: [ :value | self renderCatalogSliderDemosOn: value ] on: html
+		
+]
+
 { #category : #'page - textfield' }
-MCWDemoCatalogApp >> renderCatalogPageTextfieldOn: html [
+MCWDemoCatalogApp >> renderCatalogTextfieldDemosOn: html [
 	| labelId |
 
-	html break; break; break; yourself.
-
-	html break; break; html: '<label class="mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
-  <span class="mdc-text-field__ripple"></span>
-  <span class="mdc-floating-label mdc-floating-label--float-above" id="my-label-id">
-    Label in correct place
-  </span>
-  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" value="Pre-filled value">
-  <span class="mdc-line-ripple"></span>
-</label>'.
 	html break; break.
 	labelId := html nextId.
 	html label
@@ -314,93 +436,45 @@ MCWDemoCatalogApp >> renderCatalogPageTextfieldOn: html [
 ]
 
 { #category : #'page - textfield' }
-MCWDemoCatalogApp >> renderCatalogPageTextfieldOnFromDocs: html [
+MCWDemoCatalogApp >> renderCatalogTextfieldHeroOn: html [
 
-	html break; break; break; yourself.
+	html div class: 'hero'; with: [
+		html div with: [
+			html space
+		]
+	]
 
-	html html: '<label class="mdc-text-field mdc-text-field--filled">
-  <span class="mdc-text-field__ripple"></span>
-  <span class="mdc-floating-label" id="my-label-id">Hint text</span>
-  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-  <span class="mdc-line-ripple"></span>
-</label>'.
-
-	html break; break; html: '<label class="mdc-text-field mdc-text-field--filled mdc-text-field--no-label">
-  <span class="mdc-text-field__ripple"></span>
-  <input class="mdc-text-field__input" type="text" placeholder="Placeholder text" aria-label="Label">
-  <span class="mdc-line-ripple"></span>
-</label>'.
-
-	html break; break; html: '<label class="mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
-  <span class="mdc-text-field__ripple"></span>
-  <span class="mdc-floating-label mdc-floating-label--float-above" id="my-label-id">
-    Label in correct place
-  </span>
-  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" value="Pre-filled value">
-  <span class="mdc-line-ripple"></span>
-</label>'
 ]
 
 { #category : #'page - textfield' }
-MCWDemoCatalogApp >> renderCatalogPageTextfieldOnOrig: html [
+MCWDemoCatalogApp >> renderCatalogTextfieldOn: html [
+	| headlineString summaryString resources |
 
-	html break; break; break; yourself.
+	resources := #(
+		'https://material.io/go/design-text-fields'
+		'https://material.io/components/web/catalog/input-controls/text-field/'
+		'https://github.com/material-components/material-components-web/tree/master/packages/mdc-textfield'
+	).
+	headlineString := 'Text Field'.
+	summaryString := 'Text fields allow users to input, edit, and select text.'.
 
-	html html: '<div class="text-field-container">
-
-<div class="mdc-text-field text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:144px; --mdc-ripple-fg-scale:1.78088; --mdc-ripple-fg-translate-start:48.5864px, -46.3951px; --mdc-ripple-fg-translate-end:48px, -44px;">
-        <input type="text" id="text-field-filled" class="mdc-text-field__input" aria-describedby="text-field-filled-helper-text">
-        <label class="mdc-floating-label" for="text-field-filled">Standard
-        </label>
-        <div class="mdc-line-ripple" style="transform-origin: 120.5px center;">
-        </div>  
-</div>  
-<div class="mdc-text-field-helper-line">
-        <p class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg" id="text-field-filled-helper-text">Helper Text
-        </p>    
-</div>  
-'
-]
-
-{ #category : #'page - textfield' }
-MCWDemoCatalogApp >> renderCatalogPageTextfieldOnOrigSeaside: html [
-
-	html break; break; break; yourself.
-
-	html div
-		mdcAutoInit: 'MDCTextField';
-		mdcTextField;
-		mdcRippleUpgraded;
-		style: '--mdc-ripple-fg-size:144px; --mdc-ripple-fg-scale:1.78088; --mdc-ripple-fg-translate-start:48.5864px, -46.3951px; --mdc-ripple-fg-translate-end:48px, -44px;';
-		with: [
-			html textInput
-				id: 'text-field-filled2';
-				mdcTextField__input;
-				ariaDescribedBy: 'text-field-filled-helper-text';
-				yourself.
-			html label
-				mdcFloatingLabel;
-				mdcFloatingLabel_floatAbove;
-				for: 'text-field-filled2';
-				with: 'Standard'.
-			html div mdcLineRipple; style: 'transform-origin: 120.5px center;'; yourself ].
-	html div
-		mdcTextFieldHelperLine;
-		with: [
-			html paragraph
-				id: 'text-field-filled-helper-text';
-				mdcTextFieldHelperText;
-				mdcTextFieldHelperText_persistent;
-				mdcTextFieldHelperText_validationMsg;
-				with: 'Helper Text'
-		].
-	html div onLoad: 'mdc.textField.MDCTextField.attachTo(document.querySelector(''.mdc-text-field''))'
+	self renderHeadline: headlineString summary: summaryString on: html.
+	self renderCatalogTextfieldHeroOn: html.
+	self renderResources: resources on: html.
+	self renderDemos: [ :value | self renderCatalogTextfieldDemosOn: value ] on: html
 ]
 
 { #category : #rendering }
 MCWDemoCatalogApp >> renderContentOn: html [
 
-	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'mdc.autoInit()')).
+	super renderContentOn: html
+]
+
+{ #category : #rendering }
+MCWDemoCatalogApp >> renderCustomContentOn: html [
+	"An earlier version of renderContentOn: that bypasses the inherited responsive application layout"
+
+	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'mdc.autoInit()'); yourself).
 
 	self renderRootOn: html.
 
@@ -408,7 +482,7 @@ MCWDemoCatalogApp >> renderContentOn: html [
 
 ]
 
-{ #category : #'rendering - catalog page' }
+{ #category : #'rendering - layout' }
 MCWDemoCatalogApp >> renderDemoContentOn: html [
 
 	html div class: 'demo-content'; mdcDrawerAppContent; mdcTopAppBar_fixedAdjust; with: [
@@ -417,7 +491,7 @@ MCWDemoCatalogApp >> renderDemoContentOn: html [
 				self renderCatalogPage: self pageName on: html]]]
 ]
 
-{ #category : #'rendering - catalog page' }
+{ #category : #'rendering - layout' }
 MCWDemoCatalogApp >> renderDemoPanelOn: html [
 
 	html div class: 'demo-panel'; with: [
@@ -425,35 +499,56 @@ MCWDemoCatalogApp >> renderDemoPanelOn: html [
 		self renderDemoContentOn: html]
 ]
 
-{ #category : #'rendering - catalog page' }
+{ #category : #'rendering - layout' }
+MCWDemoCatalogApp >> renderDemos: aBlock on: html [
+
+	html heading level2; class: 'demo-title'; mdcTypography_headline6; with: 'Demos'.
+	html div with: [ aBlock value: html ]
+]
+
+{ #category : #'rendering - layout' }
 MCWDemoCatalogApp >> renderDrawerOn: html [
 
-	html aside id: 'demo-drawer'; mdcDrawer; mdcDrawer_dismissible; class: 'demo-drawer'; mdcTopAppBar_fixedAdjust; with: [
-		html div mdcDrawer__header; class: 'demo-drawer-header'; with: [
-			html image
-				url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_material_design_24px.svg';
-				class: 'resources-icon';
-				altText: 'Material Design Guidelines icon'].
-		html div mdcDrawer__content; with: [
-			self renderNavOn: html]]
+	html aside
+		id: 'demo-drawer'; class: 'demo-drawer'; mdcDrawer; mdcTopAppBar_fixedAdjust; mdcAutoInit: 'MDCDrawer';
+		"mdcDrawer_dismissible;"
+		mdcDrawer_modal;
+		with: [
+			html div mdcDrawer__header; class: 'demo-drawer-header'; with: [
+				html image
+					url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_material_design_24px.svg';
+					class: 'resources-icon';
+					altText: 'Material Design Guidelines icon'].
+			html div mdcDrawer__content; with: [self renderNavOn: html]]
 ]
 
-{ #category : #rendering }
+{ #category : #'rendering - layout' }
 MCWDemoCatalogApp >> renderHeaderOn: html [
 
-	html header mdcTopAppBar; class: 'catalog-top-app-bar'; with: [
-		self renderTopAppBarRowOn: html]
+	html header
+		class: 'catalog-top-app-bar';
+		mdcTopAppBar;
+		with: [
+			self renderTopAppBarRowOn: html]
 ]
 
-{ #category : #'rendering - landing page' }
-MCWDemoCatalogApp >> renderLandingPageOn: html [
+{ #category : #'rendering - layout' }
+MCWDemoCatalogApp >> renderHeadline: aHeadline summary: aSummary on: html [
+
+	html heading level1; mdcTypography_headline5; with: aHeadline.
+	html paragraph mdcTypography_body1; with: aSummary
+
+]
+
+{ #category : #'rendering - layout' }
+MCWDemoCatalogApp >> renderHomePageOn: html [
 
 	html div
 		mdcTopAppBar_fixedAdjust;
-		with: [ self renderCatalogListOn: html ]
+		with: [ self renderCatalogPageListOn: html ]
 ]
 
-{ #category : #rendering }
+{ #category : #'rendering - layout' }
 MCWDemoCatalogApp >> renderMaterialLogoOn: html [
 
 	html image
@@ -461,13 +556,13 @@ MCWDemoCatalogApp >> renderMaterialLogoOn: html [
 		altText: 'Material logo'
 ]
 
-{ #category : #rendering }
+{ #category : #'rendering - layout' }
 MCWDemoCatalogApp >> renderMenuIconOn: html [
 
 	html span mdcMaterialIcons; "altText: 'Menu button';" with: 'menu'
 ]
 
-{ #category : #'rendering - catalog page' }
+{ #category : #'rendering - layout' }
 MCWDemoCatalogApp >> renderNavOn: html [
 
 	html navigation mdcList; with: [
@@ -489,7 +584,7 @@ MCWDemoCatalogApp >> renderNavOn: html [
 	]
 ]
 
-{ #category : #'page - button' }
+{ #category : #'rendering - layout' }
 MCWDemoCatalogApp >> renderResources: resources on: html [
 
 	html heading level6; class: 'demo-title'; mdcTypography_headline6; with: 'Resources'.
@@ -525,25 +620,25 @@ MCWDemoCatalogApp >> renderResources: resources on: html [
 			html text: 'Source Code']
 ]
 
-{ #category : #rendering }
+{ #category : #'rendering - layout' }
 MCWDemoCatalogApp >> renderRootOn: html [
 
 	html div id: 'root'; with: [
 		html div class: 'catalog-page-container'; with: [
 			self renderHeaderOn: html.
 			self isHomePage
-				ifTrue: [self renderLandingPageOn: html]
+				ifTrue: [self renderHomePageOn: html]
 				ifFalse: [self renderDemoPanelOn: html]]]
 
 ]
 
-{ #category : #rendering }
+{ #category : #'rendering - layout' }
 MCWDemoCatalogApp >> renderTopAppBarRowOn: html [
 
 	html div mdcTopAppBar__row; with: [
 		html section mdcTopAppBar__section; mdcTopAppBar__section_alignStart; with: [
 			html button
-				mdcMaterialIcons; mdcTopAppBar__navigationIcon; mdcRippleUpgraded; mdcRippleUpgraded_unbounded;
+				mdcIconButton; mdcMaterialIcons;  mdcTopAppBar__navigationIcon; mdcRippleUpgraded; mdcRippleUpgraded_unbounded;
 				title: 'Home';
 				with: [
 					self isHomePage
@@ -551,19 +646,9 @@ MCWDemoCatalogApp >> renderTopAppBarRowOn: html [
 						ifFalse: [self renderMenuIconOn: html]].
 
 			html span mdcTopAppBar__title; class: 'catalog-top-app-bar__title'; with: [
-				html span class: 'catalog-top-app-bar__title--small-screen'; with: 'MDC Web'.
-				html span class: 'catalog-top-app-bar__title--large-screen'; with: 'Material Components for the Web']]]
+				html span class: 'catalog-top-app-bar__title--small-screen'; with: 'MDC Seaside'.
+				html span class: 'catalog-top-app-bar__title--large-screen'; with: 'Material Components for Seaside']]]
 
-]
-
-{ #category : #'page - button' }
-MCWDemoCatalogApp >> resourcesDataButton [
-
-	^#(
-	'https://material.io/go/design-buttons'
-	'https://material.io/components/web/catalog/buttons/'
-	'https://github.com/material-components/material-components-web/tree/master/packages/mdc-button'
-	)
 ]
 
 { #category : #updating }
