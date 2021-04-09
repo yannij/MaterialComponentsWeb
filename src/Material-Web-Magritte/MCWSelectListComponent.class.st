@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWSelectListComponent,
 	#superclass : #MASelectListComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #rendering }
@@ -9,6 +9,7 @@ MCWSelectListComponent >> renderEditorOn: html [
 
 	html div mdcSelect; mcwFormField; mdcAutoInit: 'MDCSelect';
 		with: [
+			html hiddenInput on: #string of: self.
 			html div mdcSelect__anchor; mdcRippleUpgraded;
 				with: [
 					html span mdcSelect__ripple.

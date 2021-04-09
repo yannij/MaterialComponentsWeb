@@ -1,10 +1,13 @@
 Class {
 	#name : #MCWTopAppBar,
-	#superclass : #MCWAppBar,
+	#superclass : #MCWWebComponent,
 	#instVars : [
 		'dense',
 		'short',
-		'shortCollapsed'
+		'shortCollapsed',
+		'toolbarTitle',
+		'startSection',
+		'endSection'
 	],
 	#category : #'Material-Web-Components'
 }
@@ -20,6 +23,16 @@ MCWTopAppBar >> dense: anObject [
 ]
 
 { #category : #accessing }
+MCWTopAppBar >> endSection [
+	^ endSection
+]
+
+{ #category : #accessing }
+MCWTopAppBar >> endSection: anObject [
+	endSection := anObject
+]
+
+{ #category : #accessing }
 MCWTopAppBar >> height [
 
 	^self isShort ifTrue: [56] ifFalse: [self isDense ifTrue: [48] ifFalse: [64]]
@@ -29,6 +42,10 @@ MCWTopAppBar >> height [
 MCWTopAppBar >> initialize [
 
 	super initialize.
+
+	self toolbarTitle: ''.
+	self startSection: OrderedCollection new.
+	self endSection: OrderedCollection new.
 
 	self dense: false.
 	self short: false.
@@ -114,6 +131,26 @@ MCWTopAppBar >> shortCollapsed [
 { #category : #accessing }
 MCWTopAppBar >> shortCollapsed: anObject [
 	shortCollapsed := anObject
+]
+
+{ #category : #accessing }
+MCWTopAppBar >> startSection [
+	^ startSection
+]
+
+{ #category : #accessing }
+MCWTopAppBar >> startSection: anObject [
+	startSection := anObject
+]
+
+{ #category : #accessing }
+MCWTopAppBar >> toolbarTitle [
+	^ toolbarTitle
+]
+
+{ #category : #accessing }
+MCWTopAppBar >> toolbarTitle: anObject [
+	toolbarTitle := anObject
 ]
 
 { #category : #actions }

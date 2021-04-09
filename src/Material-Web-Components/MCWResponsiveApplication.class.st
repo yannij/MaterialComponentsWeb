@@ -25,7 +25,7 @@ MCWResponsiveApplication >> appBarEndSection [
 		yourself.
 
 	"These buttons are here because persistent side nav causes toolbar to be pushed right"
-	5 timesRepeat: [data add: (MCWAppBarMenuIcon materialIcon: 'bookmark')].
+	"5 timesRepeat: [data add: (MCWAppBarMenuIcon materialIcon: 'bookmark')]."
 
 	^data
 

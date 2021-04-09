@@ -1,5 +1,5 @@
 Class {
-	#name : #MCWContentArea,
+	#name : #MCWSideSheet,
 	#superclass : #MCWUserInterfaceRegion,
 	#instVars : [
 		'component'
@@ -8,23 +8,23 @@ Class {
 }
 
 { #category : #accessing }
-MCWContentArea >> canvasDivId [
+MCWSideSheet >> canvasDivId [
 
 	^'dsCanvas'
 ]
 
 { #category : #accessing }
-MCWContentArea >> component [
+MCWSideSheet >> component [
 	^ component
 ]
 
 { #category : #accessing }
-MCWContentArea >> component: anObject [
+MCWSideSheet >> component: anObject [
 	component := anObject
 ]
 
 { #category : #rendering }
-MCWContentArea >> renderCanvasDivOn: html [
+MCWSideSheet >> renderCanvasDivOn: html [
 
 	html div
 		id: self canvasDivId;
@@ -33,7 +33,7 @@ MCWContentArea >> renderCanvasDivOn: html [
 ]
 
 { #category : #rendering }
-MCWContentArea >> renderCanvasOn: html [
+MCWSideSheet >> renderCanvasOn: html [
 
 	self component isNil
 		ifTrue: [^self].
@@ -49,7 +49,7 @@ MCWContentArea >> renderCanvasOn: html [
 ]
 
 { #category : #rendering }
-MCWContentArea >> renderContentOn: html [ 
+MCWSideSheet >> renderContentOn: html [ 
 
 	self renderCanvasDivOn: html
 

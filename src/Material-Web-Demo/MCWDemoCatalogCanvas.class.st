@@ -11,23 +11,6 @@ Class {
 	#category : #'Material-Web-Demo'
 }
 
-{ #category : #initialization }
-MCWDemoCatalogCanvas class >> applicationPath [
-
-	^'material/catalog'
-
-]
-
-{ #category : #initialization }
-MCWDemoCatalogCanvas class >> initialize [
-	"Register path with Seaside.
-	WAAdmin unregister: self applicationPath.
-	"
-
-	^self registerToDevelopment: self applicationPath
-
-]
-
 { #category : #'page - home' }
 MCWDemoCatalogCanvas >> catalogList [
 
