@@ -9,7 +9,7 @@ Class {
 		'settings',
 		'loginComponent'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #initialization }
@@ -187,7 +187,7 @@ MCWResponsiveApplication >> buildSideSheetList [
 MCWResponsiveApplication >> buildTopAppBar [
 
 	^MCWTopAppBar new
-		toolbarTitle: self appBarTitle;
+		toolbarTitle: (MCWTopAppBarTtile titled: self appBarTitle);
 		startSection: self appBarStartSection;
 		endSection: self appBarEndSection;
 		yourself
@@ -359,20 +359,32 @@ MCWResponsiveApplication >> renderContentOn: html [
 
 	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'mdc.autoInit()')).
 
-	self renderSetColorTHemeOn: html.
+	self renderSetColorThemeOn: html.
 
 	self renderSetGoogleFont: self currentFont on: html.
 
 	(self isLoggedIn or: [self loginComponent isNil])
-		ifTrue: [html render: "self layoutComponent" self layout]
-		ifFalse: [html render: self loginComponent].
+		ifTrue: [self renderLayoutOn: html]
+		ifFalse: [self renderLoginOn: html].
 
 	self renderMaterialComponentsWebJsOn: html.
 
 ]
 
 { #category : #rendering }
-MCWResponsiveApplication >> renderSetColorTHemeOn: html [
+MCWResponsiveApplication >> renderLayoutOn: html [
+
+	html render: self layout
+]
+
+{ #category : #rendering }
+MCWResponsiveApplication >> renderLoginOn: html [
+
+	html render: self loginComponent
+]
+
+{ #category : #rendering }
+MCWResponsiveApplication >> renderSetColorThemeOn: html [
 	| stream |
 
 	stream := String new writeStream.

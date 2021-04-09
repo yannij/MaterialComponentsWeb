@@ -6,7 +6,7 @@ Class {
 		'short',
 		'shortCollapsed'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #accessing }
@@ -88,7 +88,7 @@ MCWTopAppBar >> renderContentOn: html [
 					mdcTopAppBar__section; mdcTopAppBar__section_alignStart;
 					with: [
 						self startSection do: [:each | html render: each].
-						html span mdcTopAppBar__title; with: self toolbarTitle].
+						html render: self toolbarTitle].
 				html section
 					mdcTopAppBar__section; mdcTopAppBar__section_alignEnd;
 					with: [
