@@ -5,7 +5,7 @@ Class {
 		'iconName',
 		'imagePath'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #'instance creation' }
@@ -52,6 +52,7 @@ MCWAppBarMenuIcon >> renderAnchorOn: html [
 		mdcTopAppBar__navigationIcon;
 		mdcTopAppBar__actionItem;
 		attributeAt: 'aria-label' put: self ariaLabel;
+		style: 'text-decoration: none';
 		callback: self callback if: self hasCallback;
 		onClick: self onClickScript if: self hasOnClickScript;
 		with: self iconName

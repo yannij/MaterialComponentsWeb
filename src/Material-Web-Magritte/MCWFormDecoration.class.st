@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWFormDecoration,
 	#superclass : #MAFormDecoration,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #rendering }
@@ -27,7 +27,7 @@ MCWFormDecoration >> renderButtonsOn: html [
 	showDisabled := self decoratedComponent hasPendingChanges.
 
 	html div mdcCard__actions; with: [
-		html span mdcTypography_subtitle2; with: [html text: self decoratedComponent model mdPrimaryString].
+		html span mdcTypography_headline6; with: [html text: self decoratedComponent model mdPrimaryString].
 		html div mdcCard__actionIcons; with: [
 			html button
 				mdcIconButton; mdcMaterialIcons; mdcCard__action; mdcCard__action_icon;

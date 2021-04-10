@@ -90,9 +90,9 @@ MCWResponsiveApplication >> buildApplicationSettings [
 MCWResponsiveApplication >> buildLayout [
 
 	^MCWLayout new
-		contentArea: MCWContentArea new;
+		primaryRegionSet: MCWContentArea new;
 		sideNav: self buildSideNav;
-		sideSheet: self buildSideSheet;
+		sideSheetSet: self buildSideSheet;
 		mainFab: self buildMainFab;
 		topAppBar: self buildTopAppBar;
 		yourself

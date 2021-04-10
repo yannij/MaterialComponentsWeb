@@ -2,6 +2,7 @@ Class {
 	#name : #MCWUserInterfaceRegion,
 	#superclass : #MCWWebComponent,
 	#instVars : [
+		'containingLayout',
 		'displayType'
 	],
 	#category : #'Material-Web-Components'
@@ -23,6 +24,16 @@ MCWUserInterfaceRegion >> beDisplayTypePesistent [
 MCWUserInterfaceRegion >> beDisplayTypeTemporary [
 
 	self displayType: #temporary
+]
+
+{ #category : #accessing }
+MCWUserInterfaceRegion >> containingLayout [
+	^ containingLayout
+]
+
+{ #category : #accessing }
+MCWUserInterfaceRegion >> containingLayout: anObject [
+	containingLayout := anObject
 ]
 
 { #category : #accessing }

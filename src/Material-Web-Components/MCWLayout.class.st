@@ -9,7 +9,7 @@ Class {
 		'sideSheet',
 		'mainFab'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #actions }
@@ -181,6 +181,13 @@ MCWLayout >> mainFab: anObject [
 	mainFab := anObject
 ]
 
+{ #category : #actions }
+MCWLayout >> primaryRegionSet: aPrimaryRegion [
+
+	self contentArea: aPrimaryRegion.
+	aPrimaryRegion ifNotNil: [ aPrimaryRegion containingLayout: self ]
+]
+
 { #category : #rendering }
 MCWLayout >> renderContentAreaDesktopOn: html [
 
@@ -191,6 +198,8 @@ MCWLayout >> renderContentAreaDesktopOn: html [
 		"No padding for desktop, because no bottom bar"
 		"style: 'padding-bottom: 40px';"
 		"style: 'position: relative';"
+		style: 'min-width: 959px';
+		style: 'max-width: 959px';
 		with: [
 			"html div with: [
 				html span style: 'height: 30vh; opacity: .99'; with: [ html text: 'red' ]]."
@@ -206,6 +215,8 @@ MCWLayout >> renderContentAreaMobileOn: html [
 		style: 'background-color: #FAFAFA';
 		style: 'overflow-x: auto';
 		style: 'padding-bottom: 40px';
+		style: 'min-width: 359px';
+		style: 'max-width: 359px';
 		with: [
 			html render: self contentArea.
 			html render: self mainFab]
@@ -219,6 +230,8 @@ MCWLayout >> renderContentAreaTabletOn: html [
 		style: 'background-color: #FAFAFA';
 		style: 'overflow-x: auto';
 		style: 'padding-bottom: 40px';
+		style: 'min-width: 959px';
+		style: 'max-width: 959px';
 		with: [
 			html render: self contentArea.
 			html render: self mainFab]
@@ -251,9 +264,11 @@ MCWLayout >> renderLayoutDesktopOn: html [
 			html div
 				mdcTopAppBar_fixedAdjust;
 				with: [self renderContentAreaDesktopOn: html]].
-	html div mdcTopAppBar_fixedAdjust;
-		style: 'min-width: 320px; max-width: 320px';
-		with: [html render: self sideSheet].
+
+	self sideSheet ifNotNil: [
+		html div mdcTopAppBar_fixedAdjust;
+			style: 'min-width: 320px; max-width: 320px';
+			with: [html render: self sideSheet]]
 
 ]
 
@@ -328,6 +343,13 @@ MCWLayout >> sideSheet [
 { #category : #accessing }
 MCWLayout >> sideSheet: anObject [
 	sideSheet := anObject
+]
+
+{ #category : #actions }
+MCWLayout >> sideSheetSet: aSideSheet [
+
+	self sideSheet: aSideSheet.
+	aSideSheet ifNotNil: [ aSideSheet containingLayout: self ]
 ]
 
 { #category : #accessing }
