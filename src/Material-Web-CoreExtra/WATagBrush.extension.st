@@ -61,3 +61,10 @@ WATagBrush >> mdcRole: aRole [
 
 	self attributeAt: 'role' put: aRole
 ]
+
+{ #category : #'*Material-Web-CoreExtra' }
+WATagBrush >> onClickScript: aBlock if: aBoolean [
+	"Same as onClick:if: but avoids name clash with other package extensions"
+
+	aBoolean ifTrue: [self onClick: aBlock]
+]

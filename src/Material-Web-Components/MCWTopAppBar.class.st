@@ -50,7 +50,6 @@ MCWTopAppBar >> initialize [
 	self dense: false.
 	self short: false.
 	self shortCollapsed: false
-
 ]
 
 { #category : #testing }

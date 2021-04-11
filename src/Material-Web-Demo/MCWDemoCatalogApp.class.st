@@ -24,7 +24,7 @@ MCWDemoCatalogApp class >> initialize [
 	WAAdmin unregister: self applicationPath.
 	"
 
-	^self registerToDevelopment: self applicationPath
+	^self registerMaterialWebDevelopment: self applicationPath
 
 ]
 

@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWShrineApp,
 	#superclass : #MCWResponsiveApplication,
-	#category : 'Material-Study-Shrine'
+	#category : #'Material-Study-Shrine'
 }
 
 { #category : #initialization }
@@ -17,7 +17,7 @@ MCWShrineApp class >> initialize [
 	WAAdmin unregister: self applicationPath.
 	"
 
-	^self registerToDevelopment: self applicationPath
+	^self registerMaterialWebDevelopment: self applicationPath
 
 ]
 

@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWButton,
 	#superclass : #MCWActionComponent,
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #rendering }
@@ -12,7 +12,7 @@ MCWButton >> renderContentOn: html [
 		mdcButton;
 		mdcButton_raised;
 		style: 'margin: 16px';
-		onClick: self onClickScript if: self hasOnClickScript;
+		onClickScript: self onClickScript if: self hasOnClickScript;
 		with: [
 			self hasActionLabel
 				ifTrue: [html text: self actionLabel]].

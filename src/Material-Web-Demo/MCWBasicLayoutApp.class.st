@@ -4,7 +4,7 @@ A realization of the Material Design  layout structures described at: https://ma
 Class {
 	#name : #MCWBasicLayoutApp,
 	#superclass : #MCWResponsiveApplication,
-	#category : 'Material-Web-Demo'
+	#category : #'Material-Web-Demo'
 }
 
 { #category : #initialization }
@@ -20,8 +20,16 @@ MCWBasicLayoutApp class >> initialize [
 	WAAdmin unregister: self applicationPath.
 	"
 
-	^self registerToDevelopment: self applicationPath
+	^self registerMaterialWebDevelopment: self applicationPath
 
+]
+
+{ #category : #initialization }
+MCWBasicLayoutApp class >> registerMaterialWebDeployment: aName [
+
+	^(super registerMaterialWebDeployment: aName)
+		"addLibrary: MCWBasicLayoutLibrary;"
+		yourself
 ]
 
 { #category : #initialization }

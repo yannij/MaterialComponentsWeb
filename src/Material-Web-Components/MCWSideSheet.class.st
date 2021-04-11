@@ -49,7 +49,10 @@ MCWSideSheet >> renderCanvasOn: html [
 ]
 
 { #category : #rendering }
-MCWSideSheet >> renderContentOn: html [ 
+MCWSideSheet >> renderContentOn: html [
+
+	self isHidden
+		ifTrue: [ ^self ].
 
 	self renderCanvasDivOn: html
 

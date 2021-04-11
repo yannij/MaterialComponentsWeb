@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'iconName'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #'instance creation' }
@@ -46,9 +46,9 @@ MCWListItemIcon >> renderContentOn: html [
 	tag := html anchor.
 	self selected ifTrue: [tag mdcListItem_selected].
 
-	tag onClick: self onClickScript if: self hasOnClickScript.
+	tag onClickScript: self onClickScript if: self hasOnClickScript.
 	(self list notNil and: [self list id notNil])
-		ifTrue: [tag onClick: self list closeScript if: true].
+		ifTrue: [tag onClickScript: self list closeScript if: true].
 
 	tag
 		callback: self callback if: self hasCallback;

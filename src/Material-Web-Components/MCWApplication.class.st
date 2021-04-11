@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'materialVersion'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #testing }
@@ -13,7 +13,7 @@ MCWApplication class >> canBeRoot [
 ]
 
 { #category : #'instance creation' }
-MCWApplication class >> registerToDeployment: aName [
+MCWApplication class >> registerMaterialWebDeployment: aName [
 	| app |
 
 	WAAdmin applicationDefaults
@@ -28,7 +28,7 @@ MCWApplication class >> registerToDeployment: aName [
 ]
 
 { #category : #'instance creation' }
-MCWApplication class >> registerToDevelopment: aName [
+MCWApplication class >> registerMaterialWebDevelopment: aName [
 	| app |
 
 	WAAdmin applicationDefaults
