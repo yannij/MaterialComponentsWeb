@@ -73,12 +73,7 @@ MCWBasicLayoutApp >> buildSideNavList [
 { #category : #initialization }
 MCWBasicLayoutApp >> buildSideSheet [
 
-	^MCWDrawer new
-		id: self rightNavDrawerId;
-		list: self buildSideSheetList;
-		beModalDrawer;
-		beDirectionToRightToLeft;
-		yourself
+	^ MCWSideSheet new
 ]
 
 { #category : #initialization }

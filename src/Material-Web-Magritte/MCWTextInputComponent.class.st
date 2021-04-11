@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWTextInputComponent,
 	#superclass : #MATextInputComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #rendering }
@@ -25,8 +25,10 @@ MCWTextInputComponent >> renderEditorOn: html [
 
 { #category : #rendering }
 MCWTextInputComponent >> renderFieldOn: html [
+	| element |
 
-	html label
+	element := html label.
+	element
 		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
 		with: [
 			html span mdcTextField__ripple.
@@ -37,8 +39,11 @@ MCWTextInputComponent >> renderFieldOn: html [
 				ariaDescribedBy: self labelId;
 				"title: (self perform: self inputAspect);"
 				type: self inputType;
+				disabled: self magritteDescription isReadonly;
 				on: self inputAspect of: self.
-			html span mdcLineRipple ]
+			html span mdcLineRipple ].
+	self magritteDescription isReadonly ifTrue: [
+		element mdcTextField_disabled ]
 ]
 
 { #category : #rendering }

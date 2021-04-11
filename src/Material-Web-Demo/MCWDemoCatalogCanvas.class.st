@@ -14,7 +14,7 @@ Class {
 { #category : #'page - home' }
 MCWDemoCatalogCanvas >> catalogList [
 
-	^#(
+	^ #(
 ('button' 'Button' 'buttons_180px.svg')
 ('card' 'Card' 'cards_180px.svg')
 ('checkbox' 'Checkbox' 'checkbox_180px.svg')
@@ -248,6 +248,58 @@ MCWDemoCatalogCanvas >> renderCatalogPageListOn: html [
 		with: [
 			self catalogList do: [:each |
 				self renderCatalogPageListItem: each on: html]]
+]
+
+{ #category : #'page - radio' }
+MCWDemoCatalogCanvas >> renderCatalogRadioDemosOn: html [
+
+	html text: 'todo'
+]
+
+{ #category : #'page - radio' }
+MCWDemoCatalogCanvas >> renderCatalogRadioExampleOn: html [
+
+	html div mdcFormField; style: 'width: 100px'; mdcAutoInit: 'MDCFormField'; with: [
+		html div mdcRadio; mdcAutoInit: 'MDCRadio'; with: [
+			html textInput mdcRadio__nativeControl; type: 'radio'; id: 'radio1'; name: 'radios'.
+			html div mdcRadio__background; with: [
+				html div mdcRadio__outerCircle.
+				html div mdcRadio__innerCircle ].
+			html div mdcRadio__ripple ].
+		html label for: 'radio1'; with: 'Radio 1' ].
+	html div mdcFormField; style: 'width: 100px'; mdcAutoInit: 'MDCFormField'; with: [
+		html div mdcRadio; mdcAutoInit: 'MDCRadio'; with: [
+			html textInput mdcRadio__nativeControl; type: 'radio'; id: 'radio2'; name: 'radios'.
+			html div mdcRadio__background; with: [
+				html div mdcRadio__outerCircle.
+				html div mdcRadio__innerCircle ].
+			html div mdcRadio__ripple ].
+		html label for: 'radio2'; with: 'Radio 2' ]
+]
+
+{ #category : #'page - radio' }
+MCWDemoCatalogCanvas >> renderCatalogRadioHeroOn: html [
+
+	html div class: 'hero'; with: [
+		self renderCatalogRadioExampleOn: html ]
+]
+
+{ #category : #'page - radio' }
+MCWDemoCatalogCanvas >> renderCatalogRadioOn: html [
+	| headlineString summaryString resources |
+
+	resources := #(
+		'https://material.io/go/design-radio-buttons'
+		'https://material.io/components/web/catalog/input-controls/radio-buttons/'
+		'https://github.com/material-components/material-components-web/tree/master/packages/mdc-radio'
+	).
+	headlineString := 'Radio Buttons'.
+	summaryString := 'Buttons communicate an action a user can take. They are typically placed throughout your UI, in places like dialogs, forms, cards, and toolbars.'.
+
+	self renderHeadline: headlineString summary: summaryString on: html.
+	self renderCatalogRadioHeroOn: html.
+	self renderResources: resources on: html.
+	self renderDemos: [ :value | self renderCatalogRadioDemosOn: value ] on: html
 ]
 
 { #category : #'page - select' }
