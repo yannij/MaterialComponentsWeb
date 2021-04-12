@@ -1,19 +1,34 @@
 Class {
 	#name : #MCWTimeComponent,
 	#superclass : #MCWTextInputComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #rendering }
 MCWTimeComponent >> inputAspect [
 
-	^ #timeHtml5
+	^ "self isChrome" true ifTrue: [ #time24 ] ifFalse: [ #timeHtml5 ]
 ]
 
 { #category : #rendering }
 MCWTimeComponent >> inputType [
 
 	^ 'time'
+]
+
+{ #category : #accessing }
+MCWTimeComponent >> time24 [
+
+	^ self value
+		ifNil: [ Time now print24 ]
+		ifNotNil: [:t | t print24 ]
+]
+
+{ #category : #accessing }
+MCWTimeComponent >> time24: aString [
+
+	aString isEmpty ifFalse: [
+		self value: (Time fromString: aString) ]
 ]
 
 { #category : #accessing }

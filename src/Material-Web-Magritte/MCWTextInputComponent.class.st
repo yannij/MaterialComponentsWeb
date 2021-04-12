@@ -39,6 +39,7 @@ MCWTextInputComponent >> renderFieldOn: html [
 				ariaDescribedBy: self labelId;
 				"title: (self perform: self inputAspect);"
 				type: self inputType;
+				attributeAt: 'step' put: '1';
 				disabled: self magritteDescription isReadonly;
 				on: self inputAspect of: self.
 			html span mdcLineRipple ].
