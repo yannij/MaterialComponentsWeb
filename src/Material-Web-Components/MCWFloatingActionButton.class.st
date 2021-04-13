@@ -5,7 +5,7 @@ Class {
 		'rippledFab',
 		'miniFab'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #accessing }
@@ -35,7 +35,7 @@ MCWFloatingActionButton >> beRippledFab [
 { #category : #rendering }
 MCWFloatingActionButton >> bottomStyle [
 
-	^'bottom: {1}rem' format: {self isMiniFab ifTrue: ['2.5'] ifFalse: ['2']}
+	^'bottom: {1}rem' format: (Array with: (self isMiniFab ifTrue: ['2.5'] ifFalse: ['2']))
 ]
 
 { #category : #testing }

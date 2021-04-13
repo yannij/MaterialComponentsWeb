@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWCheckboxComponent,
 	#superclass : #MACheckboxComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #rendering }
@@ -31,12 +31,12 @@ MCWCheckboxComponent >> renderFieldOn: html [
 						attributeAt: 'stroke' put: 'white';
 						attributeAt: 'd' put: 'M1.73,12.91 8.1,19.28 22.79,4.59';
 						yourself.
-					html div mdcCheckbox__mixedmark]]]].
+					html div mdcCheckbox__mixedmark ] ] ] ].
 		html label
 			for: checkboxId;
 			"mdcFloatingLabel;
 			mdcFloatingLabel_floatAbove;"
-			with: self magritteDescription checkboxLabel].
+			with: self magritteDescription checkboxLabel ].
 
 ]
 

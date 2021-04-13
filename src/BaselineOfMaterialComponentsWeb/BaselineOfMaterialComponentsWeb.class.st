@@ -16,12 +16,14 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 			spec
 				package: 'Material-Web-Core' with: [ spec requires: #('Seaside3') ];
 				package: 'Material-Web-CoreExtra' with: [ spec requires: #('Material-Web-Core') ];
-				package: 'Material-Web-Components' with: [ spec requires: #('Material-Web-CoreExtra' 'Magritte') ];
+				package: 'Material-Web-Magritte' with: [ spec requires: #('Material-Web-CoreExtra' 'Magritte') ];
+				package: 'Material-Web-Components' with: [ spec requires: #('Material-Web-Magritte') ];
 				package: 'Material-Study-Shrine' with: [ spec requires: #('Material-Web-Components') ];
 				package: 'Material-Web-Demo' with: [ spec requires: #('Material-Web-Components') ].
 
 			spec
 				group: 'default' with: #('Demo' 'Shrine');
+				group: 'Core' with: #('Material-Web-CoreExtra');
 				group: 'Components' with: #('Material-Web-Components');
 				group: 'Shrine' with: #('Material-Study-Shrine');
 				group: 'Demo' with: #('Material-Web-Demo') ]

@@ -4,10 +4,6 @@ Class {
 	#instVars : [
 		'pageName'
 	],
-	#classInstVars : [
-		'index',
-		'listItem'
-	],
 	#category : #'Material-Web-Demo'
 }
 

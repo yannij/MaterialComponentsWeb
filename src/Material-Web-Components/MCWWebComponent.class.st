@@ -9,7 +9,7 @@ Class {
 		'hidden',
 		'mcwStyle'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #'instance creation' }
@@ -120,7 +120,7 @@ MCWWebComponent >> mcwStyle: anObject [
 { #category : #accessing }
 MCWWebComponent >> rootComponent [
 
-	self session presenter
+	^ self session presenter
 ]
 
 { #category : #accessing }

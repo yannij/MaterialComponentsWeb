@@ -23,32 +23,32 @@ WATagBrush class >> generateMdcMethodName: aCssClass [
 	index := blockPart findString: '__'.
 	index > 0 ifTrue: [
 		elementPart := blockPart copyFrom: index + 2 to: blockPart size.
-		blockPart := blockPart copyFrom: 1 to: index].
+		blockPart := blockPart copyFrom: 1 to: index ].
 
 	index := elementPart findString: '--'.
 	index > 0 ifTrue: [
 		modifierPart := elementPart copyFrom: index + 2 to: elementPart size.
-		elementPart := elementPart copyFrom: 1 to: index].
+		elementPart := elementPart copyFrom: 1 to: index ].
 
 	index := blockPart findString: '--'.
 	index > 0 ifTrue: [
 		modifierPart := blockPart copyFrom: index + 2 to: blockPart size.
-		blockPart := blockPart copyFrom: 1 to: index].
+		blockPart := blockPart copyFrom: 1 to: index ].
 
 	selectorName := ''.
 	blockPart notEmpty
 		ifTrue: [
-			selectorName := selectorName, (self generateMdcSelectorFragment: blockPart)].
+			selectorName := selectorName, (self generateMdcSelectorFragment: blockPart) ].
 
 	elementPart notEmpty
 		ifTrue: [
-			selectorName := selectorName, '__', (self generateMdcSelectorFragment: elementPart)].
+			selectorName := selectorName, '__', (self generateMdcSelectorFragment: elementPart) ].
 
 	modifierPart notEmpty
 		ifTrue: [
-			selectorName := selectorName, '_', (self generateMdcSelectorFragment: modifierPart)].
+			selectorName := selectorName, '_', (self generateMdcSelectorFragment: modifierPart) ].
 
-	^selectorName
+	^ selectorName
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -57,7 +57,7 @@ WATagBrush class >> generateMdcSelectorFragment: aBlockElementModifierPart [
 	(self generateMdcTagSelectorFragment: 'aaa-bbb-ccc') = 'aaaBbbCcc'
 	"
 
-	^('' join: ((aBlockElementModifierPart substrings: '-') collect: [:each | each asCamelCase])) asValidSelector
+	^ ('' join: ((aBlockElementModifierPart substrings: '-') collect: [ :each | each asCamelCase ])) asValidSelector
 
 ]
 
@@ -82,7 +82,7 @@ aaaBbbCcc_eeeFffGgg__xxxYyyZzz <<<< aaa-bbb-ccc__eee-fff-ggg--xxx-yyy-zzz
 
 	reference := FileSystem disk workingDirectory / aFilename.
 	reference readStreamDo: [ :stream |
-		[stream atEnd] whileFalse: [
+		[ stream atEnd ] whileFalse: [
 			| nextLine |
 			nextLine := stream upTo: Character lf.
 			self generateMdcMethod: nextLine

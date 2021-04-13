@@ -7,7 +7,7 @@ Class {
 { #category : #rendering }
 MCWTimeComponent >> inputAspect [
 
-	^ "self isChrome" true ifTrue: [ #time24 ] ifFalse: [ #timeHtml5 ]
+	^ true "self isChrome" ifTrue: [ #time24 ] ifFalse: [ #timeHtml5 ]
 ]
 
 { #category : #rendering }
@@ -21,7 +21,7 @@ MCWTimeComponent >> time24 [
 
 	^ self value
 		ifNil: [ Time now print24 ]
-		ifNotNil: [:t | t print24 ]
+		ifNotNil: [ :t | t print24 ]
 ]
 
 { #category : #accessing }
@@ -36,7 +36,7 @@ MCWTimeComponent >> timeHtml5 [
 
 	^ self value
 		ifNil: [ Time now printHtml5 ]
-		ifNotNil: [:t | t printHtml5 ]
+		ifNotNil: [ :t | t printHtml5 ]
 ]
 
 { #category : #accessing }

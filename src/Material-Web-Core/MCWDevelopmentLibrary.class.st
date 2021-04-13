@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWDevelopmentLibrary,
 	#superclass : #WAFileLibrary,
-	#category : 'Material-Web-Core'
+	#category : #'Material-Web-Core'
 }
 
 { #category : #uploaded }
@@ -43395,7 +43395,7 @@ MCWDevelopmentLibrary >> selectorsToInclude [
 
 	"Don't include materialcomponentswebJs, so it can be loaded at end of page"
 	"Don't include materialcomponentswebCss, so it can be loaded via a CDN"
-	^#(readyJs)
+	^ #(readyJs)
 ]
 
 { #category : #uploaded }

@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWContainerComponent,
 	#superclass : #MAContainerComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #decorating }
@@ -32,7 +32,7 @@ MCWContainerComponent >> buildChildren [
 				result at: each put: newComponent ].
 			result ].
 
-	^newChildren
+	^ newChildren
 ]
 
 { #category : #rendering }
@@ -58,6 +58,6 @@ MCWContainerComponent >> save [
 	self validate ifFalse: [ ^ self ].
 	self commit.
 	self model class isVoyageRoot
-		ifTrue: [self session presenter saveObject: self model].
+		ifTrue: [ self session presenter saveObject: self model ].
 	self answer: self model
 ]

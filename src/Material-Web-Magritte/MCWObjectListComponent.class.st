@@ -5,7 +5,7 @@ Class {
 		'onClickBlock',
 		'listStyle'
 	],
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #initialization }
@@ -13,7 +13,7 @@ MCWObjectListComponent >> initialize [
 
 	super initialize.
 
-	self onClickBlock: [:value | ].
+	self onClickBlock: [ :value | ].
 	self listStyle: #singleLine
 ]
 
@@ -41,8 +41,8 @@ MCWObjectListComponent >> onClickBlock: anObject [
 MCWObjectListComponent >> renderListOn: html [
 
 	self listStyle = #singleLine
-		ifTrue: [self renderListSingleLineAjaxOn: html]
-		ifFalse: [self renderListTwoLineAjaxOn: html]
+		ifTrue: [ self renderListSingleLineAjaxOn: html ]
+		ifFalse: [ self renderListTwoLineAjaxOn: html ]
 ]
 
 { #category : #rendering }
@@ -53,17 +53,17 @@ MCWObjectListComponent >> renderListSingleLineAjaxOn: html [
 		mdcList_dense;
 		style: 'min-width: 200px';
 		with: [
-			self value do: [:eachItem |
+			self value do: [ :eachItem |
 				html listItem
 					mdcListItem;
 					with: [
 						html span
 							mdcListItem__text;
 							onClick: ((html jQuery ajax)
-								callback: [self onClickBlock value: eachItem];
+								callback: [ self onClickBlock value: eachItem ];
 								onComplete: html javascript refresh);
 							with: [
-								html text: eachItem mdPrimaryString]]]]
+								html text: eachItem mdPrimaryString ] ] ] ]
 ]
 
 { #category : #rendering }
@@ -75,23 +75,23 @@ MCWObjectListComponent >> renderListTwoLineAjaxOn: html [
 		mdcList_twoLine;
 		"style: 'border: 1px solid rgba(0, 0, 0, 0.1);';"
 		with: [
-			self value do: [:eachItem |
+			self value do: [ :eachItem |
 				html listItem
 					mdcListItem;
 					with: [
 						html span
 							mdcListItem__text;
 							onClick: ((html jQuery ajax)
-								callback: [self onClickBlock value: eachItem];
+								callback: [ self onClickBlock value: eachItem ];
 								onComplete: html javascript refresh);
 							with: [
 								html text: eachItem mdPrimaryString.
 								html span
 									mdcListItem__secondaryText;
-									with: [html text: eachItem mdDisplaySecondaryString]].
+									with: [ html text: eachItem mdDisplaySecondaryString ] ].
 						"html span mdcListItem__meta; with: [
 							html span mdcMaterialIcons; mdcAriaHidden: 'true'; with: 'more_vert']"
-						]]]
+						] ] ]
 ]
 
 { #category : #rendering }
@@ -110,8 +110,7 @@ MCWObjectListComponent >> renderViewerOn: html [
 		"style: 'width: 400px';"
 		with: [
 			html heading level3; mdcListGroup__subheader; with: [
-				html text: self magritteDescription label].
+				html text: self magritteDescription label ].
 			html div mdcListDivider; mdcRole: 'separator'.
-			html div id: listId; with: [self renderListOn: html]
-		]
+			html div id: listId; with: [ self renderListOn: html ] ]
 ]

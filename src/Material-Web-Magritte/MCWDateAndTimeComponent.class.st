@@ -9,7 +9,7 @@ MCWDateAndTimeComponent >> datetimeHtml5 [
 
 	^ self value
 		ifNil: [ DateAndTime now printHtml5 ]
-		ifNotNil: [:t | t isString ifTrue: [(DateAndTime fromString: t) printHtml5] ifFalse: [t printHtml5] ]
+		ifNotNil: [ :t | t isString ifTrue: [ (DateAndTime fromString: t) printHtml5 ] ifFalse: [ t printHtml5 ] ]
 ]
 
 { #category : #accessing }
@@ -22,7 +22,7 @@ MCWDateAndTimeComponent >> datetimeHtml5: aString [
 { #category : #rendering }
 MCWDateAndTimeComponent >> inputAspect [
 
-	^ "self isChrome" true ifTrue: [ #iso8601WithoutTZ ] ifFalse: [ #datetimeHtml5 ]
+	^ true "self isChrome" ifTrue: [ #iso8601WithoutTZ ] ifFalse: [ #datetimeHtml5 ]
 ]
 
 { #category : #rendering }
@@ -36,7 +36,7 @@ MCWDateAndTimeComponent >> iso8601 [
 
 	^ self value
 		ifNil: [ DateAndTime now printString ]
-		ifNotNil: [:t | t isString ifTrue: [(DateAndTime fromString: t) printString] ifFalse: [t printString] ]
+		ifNotNil: [ :t | t isString ifTrue: [ (DateAndTime fromString: t) printString ] ifFalse: [ t printString ] ]
 ]
 
 { #category : #accessing }
@@ -52,7 +52,7 @@ MCWDateAndTimeComponent >> iso8601WithoutTZ [
 
 	isoString := self value
 		ifNil: [ DateAndTime now printString ]
-		ifNotNil: [ :t | t isString ifTrue: [ (DateAndTime fromString: t) printString] ifFalse: [t printString] ].
+		ifNotNil: [ :t | t isString ifTrue: [ (DateAndTime fromString: t) printString ] ifFalse: [ t printString ] ].
 
 	^ isoString copyFrom: 1 to: 19
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWDateComponent,
 	#superclass : #MCWTextInputComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #accessing }
@@ -9,7 +9,7 @@ MCWDateComponent >> dateHtml5 [
 
 	^ self value
 		ifNil: [ Date today yyyymmdd ]
-		ifNotNil: [:t | t isString ifTrue: [ t ] ifFalse: [t yyyymmdd] ]
+		ifNotNil: [ :t | t isString ifTrue: [ t ] ifFalse: [ t yyyymmdd ] ]
 
 ]
 

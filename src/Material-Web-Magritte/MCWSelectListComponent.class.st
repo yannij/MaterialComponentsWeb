@@ -23,7 +23,7 @@ MCWSelectListComponent >> renderEditorOn: html [
 				html unorderedList mdcList; with: [
 					| selectedValue |
 					selectedValue := self value.
-					self options doWithIndex: [ :item :index |
+					self options keysAndValuesDo: [ :index :item |
 						| listItem isSelected |
 						isSelected := item = selectedValue.
 						listItem := html listItem mdcListItem; mdcRole: 'option';

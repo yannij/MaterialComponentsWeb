@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWMultiselectListComponent,
 	#superclass : #MAMultiselectListComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #rendering }
@@ -59,6 +59,6 @@ MCWMultiselectListComponent >> renderEditorOnSave: html [
 				labels: [ :value | self labelForOption: value ];
 				callback: [ :value | self value: value ].
 
-			html div mdcLineRipple]
+			html div mdcLineRipple ]
 
 ]

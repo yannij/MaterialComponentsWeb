@@ -11,7 +11,7 @@ Class {
 		'menuIconTemporary',
 		'isDismissed'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #actions }
@@ -259,11 +259,11 @@ if (el) {
 		activatedItem.classList.remove(activatedClass);
 	}
 	event.target.classList.add(activatedClass);
-}'));
+}'); yourself);
 			with: [
 			"html div mdcDrawer__toolbarSpacer."
 			html div mdcListGroup; with: [
-				html render: self list]]].
+				html render: self list ] ] ].
 
 ]
 

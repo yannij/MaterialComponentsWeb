@@ -185,7 +185,7 @@ MCWLayout >> mainFab: anObject [
 MCWLayout >> primaryRegionSet: aPrimaryRegion [
 
 	self contentArea: aPrimaryRegion.
-	aPrimaryRegion ifNotNil: [ aPrimaryRegion containingLayout: self ]
+	aPrimaryRegion ifNotNil: [ :arg | aPrimaryRegion containingLayout: self ]
 ]
 
 { #category : #rendering }
@@ -263,12 +263,12 @@ MCWLayout >> renderLayoutDesktopOn: html [
 		with: [
 			html div
 				mdcTopAppBar_fixedAdjust;
-				with: [self renderContentAreaDesktopOn: html]].
+				with: [ self renderContentAreaDesktopOn: html ] ].
 
-	self sideSheet ifNotNil: [
+	self sideSheet ifNotNil: [ :arg |
 		html div mdcTopAppBar_fixedAdjust;
 			style: 'min-width: 320px; max-width: 320px';
-			with: [html render: self sideSheet]]
+			with: [ html render: self sideSheet ] ]
 
 ]
 
@@ -349,7 +349,7 @@ MCWLayout >> sideSheet: anObject [
 MCWLayout >> sideSheetSet: aSideSheet [
 
 	self sideSheet: aSideSheet.
-	aSideSheet ifNotNil: [ aSideSheet containingLayout: self ]
+	aSideSheet ifNotNil: [ :arg | aSideSheet containingLayout: self ]
 ]
 
 { #category : #accessing }

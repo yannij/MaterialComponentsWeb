@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWObjectListAnchorComponent,
 	#superclass : #MCWObjectListComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #rendering }
@@ -12,14 +12,14 @@ MCWObjectListAnchorComponent >> renderListAnchorOn: html [
 		mdcList_dense;
 		style: 'min-width: 200px';
 		with: [
-			self value do: [:eachItem |
+			self value do: [ :eachItem |
 				html listItem
 					with: [
 						html anchor
 							mdcListItem;
-							callback: [self onClickBlock value: eachItem];
+							callback: [ self onClickBlock value: eachItem ];
 							with: [
-								html text: eachItem mdPrimaryString]]]]
+								html text: eachItem mdPrimaryString ] ] ] ]
 ]
 
 { #category : #rendering }

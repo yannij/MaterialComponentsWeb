@@ -4,13 +4,13 @@ Class {
 	#instVars : [
 		'componentClassMap'
 	],
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #accessing }
 MCWPriorityContainer >> componentClass [
 
-	^MCWContainerComponent
+	^ MCWContainerComponent
 ]
 
 { #category : #accessing }
@@ -26,7 +26,7 @@ MCWPriorityContainer >> componentClassMap: anObject [
 { #category : #accessing }
 MCWPriorityContainer >> componentRenderer [
 
-	^MCWCssRenderer
+	^ MCWCssRenderer
 ]
 
 { #category : #initialization }

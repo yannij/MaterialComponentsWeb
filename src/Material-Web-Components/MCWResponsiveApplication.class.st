@@ -34,11 +34,9 @@ MCWResponsiveApplication >> appBarEndSection [
 { #category : #initialization }
 MCWResponsiveApplication >> appBarStartSection [
 
-	^{
-		"self sideNav getMenuIcon"
-		self buildMenuIconPersistent
-	}
-
+	^ Array
+		"with: self sideNav getMenuIcon"
+		with: self buildMenuIconPersistent
 ]
 
 { #category : #initialization }
@@ -357,7 +355,7 @@ element.mdcDrawer.open = !element.mdcDrawer.open'
 { #category : #rendering }
 MCWResponsiveApplication >> renderContentOn: html [
 
-	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'mdc.autoInit()')).
+	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'mdc.autoInit()'); yourself).
 
 	self renderSetColorThemeOn: html.
 

@@ -15,7 +15,7 @@ WATagBrush >> ariaLabel: aString [
 { #category : #'*Material-Web-CoreExtra' }
 WATagBrush >> ariaSelected: aBoolean [
 
-	self attributeAt: 'aria-selected' put: (aBoolean ifTrue: ['true'] ifFalse: ['false'])
+	self attributeAt: 'aria-selected' put: (aBoolean ifTrue: [ 'true' ] ifFalse: [ 'false' ])
 ]
 
 { #category : #'*Material-Web-CoreExtra' }
@@ -66,5 +66,5 @@ WATagBrush >> mdcRole: aRole [
 WATagBrush >> onClickScript: aBlock if: aBoolean [
 	"Same as onClick:if: but avoids name clash with other package extensions"
 
-	aBoolean ifTrue: [self onClick: aBlock]
+	aBoolean ifTrue: [ self onClick: aBlock ]
 ]

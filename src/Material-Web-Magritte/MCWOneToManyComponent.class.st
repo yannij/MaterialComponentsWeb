@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'expanded'
 	],
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #actions }
@@ -34,7 +34,7 @@ MCWOneToManyComponent >> initialize [
 { #category : #accessing }
 MCWOneToManyComponent >> isExpanded [
 
-	^self expanded
+	^ self expanded
 ]
 
 { #category : #building }
@@ -43,7 +43,7 @@ MCWOneToManyComponent >> mcwPostBuild [
 
 	list := self model readUsing: self magritteDescription.
 	list size <= 5
-		ifTrue: [self beExpanded]
+		ifTrue: [ self beExpanded ]
 ]
 
 { #category : #rendering }
@@ -52,7 +52,7 @@ MCWOneToManyComponent >> renderAddButtonOn: html [
 	html render: (MCWButton new
 		actionLabel: 'Add';
 		onClickScript: ((html jQuery ajax)
-			callback: [self add];
+			callback: [ self add ];
 			onComplete: html javascript refresh);
 		yourself).
 
@@ -66,10 +66,10 @@ MCWOneToManyComponent >> renderExpandIconOnListId: listId on: html [
 	self expanded
 		ifTrue: [
 			toggleOnValue := '{"content": "expand_more", "label": "Show more"}'.
-			toggleOffValue := '{"content": "expand_less", "label": "Show less"}']
+			toggleOffValue := '{"content": "expand_less", "label": "Show less"}' ]
 		ifFalse: [
 			toggleOffValue := '{"content": "expand_more", "label": "Show more"}'.
-			toggleOnValue := '{"content": "expand_less", "label": "Show less"}'].
+			toggleOnValue := '{"content": "expand_less", "label": "Show less"}' ].
 
 	html span
 		"mdcIconToggle;"
@@ -84,9 +84,9 @@ MCWOneToManyComponent >> renderExpandIconOnListId: listId on: html [
 		style: '--mdc-ripple-fg-size:28.8px; --mdc-ripple-fg-scale:1.66667; --mdc-ripple-left:10px; --mdc-ripple-top:10px;';
 		ariaLabel: 'Expand'; 
 		onClick: ((html jQuery ajax)
-			callback: [self expanded: self expanded not];
-			onComplete: ((html jQuery id: listId) load html: [:renderer | self renderListAjaxOn: renderer]));
-		with: (self expanded ifTrue: ['expand_less'] ifFalse: ['expand_more']).
+			callback: [ self expanded: self expanded not ];
+			onComplete: ((html jQuery id: listId) load html: [ :renderer | self renderListAjaxOn: renderer ]));
+		with: (self expanded ifTrue: [ 'expand_less' ] ifFalse: [ 'expand_more' ]).
 
 ]
 
@@ -106,8 +106,8 @@ MCWOneToManyComponent >> renderExpandSwitchOnListId: listId on: html [
 					value: self expanded;
 					onChange: (html jQuery ajax
 						callback: [ :value | self expanded: value = 'true' ] value: (JSStream on: 'event.target.checked');
-						onComplete: ((html jQuery id: listId) load html: [:renderer | self renderListAjaxOn: renderer]));
-			yourself]]].
+						onComplete: ((html jQuery id: listId) load html: [ :renderer | self renderListAjaxOn: renderer ]));
+			yourself ] ] ].
 	html space; space; space.
 	html label for: switchId; with: self magritteDescription label.
 
@@ -116,8 +116,8 @@ MCWOneToManyComponent >> renderExpandSwitchOnListId: listId on: html [
 { #category : #rendering }
 MCWOneToManyComponent >> renderListAjaxOn: html [
 
-	self isExpanded not
-		ifTrue: [^self].
+	self isExpanded
+		ifFalse: [ ^ self ].
 
 	html unorderedList
 		mdcList;
@@ -125,23 +125,23 @@ MCWOneToManyComponent >> renderListAjaxOn: html [
 		mdcList_twoLine;
 		"style: 'border: 1px solid rgba(0, 0, 0, 0.1);';"
 		with: [
-			self value do: [:eachItem |
+			self value do: [ :eachItem |
 				html listItem
 					mdcListItem;
 					with: [
 						html span
 							mdcListItem__text;
 							onClick: ((html jQuery ajax)
-								callback: [self showObject: eachItem];
+								callback: [ self showObject: eachItem ];
 								onComplete: html javascript refresh);
 							with: [
 								html text: eachItem mdPrimaryString.
 								html span
 									mdcListItem__secondaryText;
-									with: [html text: eachItem mdDisplaySecondaryString]].
+									with: [ html text: eachItem mdDisplaySecondaryString ] ].
 						"html span mdcListItem__meta; with: [
 							html span mdcMaterialIcons; mdcAriaHidden: 'true'; with: 'more_vert']"
-						]]]
+						] ] ]
 ]
 
 { #category : #rendering }
@@ -164,11 +164,9 @@ MCWOneToManyComponent >> renderViewerOn: html [
 			html heading level3; mdcListGroup__subheader; with: [
 				html text: self magritteDescription label.
 				self renderAddButtonOn: html.
-				self renderExpandIconOnListId: listId on: html.
-				].
+				self renderExpandIconOnListId: listId on: html ].
 
-		html div id: listId; with: [self renderListAjaxOn: html]
-	]
+		html div id: listId; with: [ self renderListAjaxOn: html ] ]
 ]
 
 { #category : #actions }
