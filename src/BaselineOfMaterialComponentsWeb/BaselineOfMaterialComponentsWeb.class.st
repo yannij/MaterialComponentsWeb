@@ -1,7 +1,7 @@
 Class {
 	#name : #BaselineOfMaterialComponentsWeb,
 	#superclass : #BaselineOf,
-	#category : 'BaselineOfMaterialComponentsWeb'
+	#category : #BaselineOfMaterialComponentsWeb
 }
 
 { #category : #baselines }
@@ -12,7 +12,8 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 		do: [
 			spec
 				package: 'Material-Web-Core';
-				package: 'Material-Web-Components' with: [ spec requires: #('Material-Web-Core') ];
+				package: 'Material-Web-CoreExtra';
+				package: 'Material-Web-Components' with: [ spec requires: #('Material-Web-Core' 'Material-Web-CoreExtra') ];
 				package: 'Material-Web-Magritte' with: [ spec requires: #('Material-Web-Components') ];
 				package: 'Material-Study-Shrine' with: [ spec requires: #('Material-Web-Components') ];
 				package: 'Material-Web-Demo' with: [ spec requires: #('Material-Web-Components') ].
