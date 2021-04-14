@@ -35,13 +35,13 @@ MCWFloatingActionButton >> beRippledFab [
 { #category : #rendering }
 MCWFloatingActionButton >> bottomStyle [
 
-	^'bottom: {1}rem' format: (Array with: (self isMiniFab ifTrue: ['2.5'] ifFalse: ['2']))
+	^ 'bottom: {1}rem' format: (Array with: (self isMiniFab ifTrue: [ '2.5' ] ifFalse: [ '2' ]))
 ]
 
 { #category : #testing }
 MCWFloatingActionButton >> hasRipple [
 
-	^self rippledFab
+	^ self rippledFab
 ]
 
 { #category : #initialization }
@@ -57,7 +57,7 @@ MCWFloatingActionButton >> initialize [
 { #category : #testing }
 MCWFloatingActionButton >> isMiniFab [
 
-	^self miniFab
+	^ self miniFab
 ]
 
 { #category : #accessing }
@@ -74,8 +74,8 @@ MCWFloatingActionButton >> miniFab: anObject [
 MCWFloatingActionButton >> renderContentOn: html [
 
 	self hasRipple
-		ifTrue: [self renderWithRippleOn: html]
-		ifFalse: [self renderCssOnlyOn: html]
+		ifTrue: [ self renderWithRippleOn: html ]
+		ifFalse: [ self renderCssOnlyOn: html ]
 ]
 
 { #category : #rendering }
@@ -89,15 +89,14 @@ MCWFloatingActionButton >> renderCssOnlyOn: html [
 		style: 'position: absolute; right: 1rem; z-index: 1';
 		style: self bottomStyle;
 		with: [
-			html span mdcFab__icon: 'add'].
-
+			html span mdcFab__icon: 'add' ]
 ]
 
 { #category : #rendering }
 MCWFloatingActionButton >> renderWithRippleOn: html [
 	| htmlId |
 
-	htmlId := self id ifNil: [html nextId].
+	htmlId := self id ifNil: [ html nextId ].
 	html button
 		id: htmlId;
 		mdcMaterialIcons;
@@ -114,7 +113,7 @@ MCWFloatingActionButton >> renderWithRippleOn: html [
 		style: 'position: absolute; right: 1rem; z-index: 1';
 		style: self bottomStyle;
 		with: [
-			html span mdcFab__icon: 'add'].
+			html span mdcFab__icon: 'add' ].
 
 ]
 

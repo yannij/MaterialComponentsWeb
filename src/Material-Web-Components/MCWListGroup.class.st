@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'groupedLists'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #accessing }
@@ -44,6 +44,6 @@ MCWListGroup >> initialize [
 MCWListGroup >> renderContentOn: html [
 
 	html div mdcListGroup; with: [
-		self groupedLists do: [:eachList | html render: eachList]]
+		self groupedLists do: [ :eachList | html render: eachList ] ]
 
 ]

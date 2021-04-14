@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWAnchorTextButton,
 	#superclass : #MCWActionComponent,
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #rendering }
@@ -14,6 +14,6 @@ MCWAnchorTextButton >> renderContentOn: html [
 		style: 'margin: 16px';
 		callback: self callback if: self hasCallback;
 		with: [
-			html text: self actionLabel].
+			html text: self actionLabel ].
 
 ]

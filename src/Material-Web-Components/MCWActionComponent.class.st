@@ -6,7 +6,7 @@ Class {
 		'onClickScript',
 		'callback'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #accessing }
@@ -32,19 +32,19 @@ MCWActionComponent >> callback: anObject [
 { #category : #testing }
 MCWActionComponent >> hasActionLabel [
 
-	^self actionLabel notNil and: [self actionLabel notEmpty]
+	^ self actionLabel notNil and: [ self actionLabel notEmpty ]
 ]
 
 { #category : #testing }
 MCWActionComponent >> hasCallback [
 
-	^self callback notNil
+	^ self callback notNil
 ]
 
 { #category : #testing }
 MCWActionComponent >> hasOnClickScript [
 
-	^self onClickScript notNil
+	^ self onClickScript notNil
 ]
 
 { #category : #initialization }

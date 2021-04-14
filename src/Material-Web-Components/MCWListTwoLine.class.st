@@ -1,13 +1,13 @@
 Class {
 	#name : #MCWListTwoLine,
 	#superclass : #MCWList,
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #rendering }
 MCWListTwoLine >> listTagOn: html [
 
-	^html navigation
+	^ html navigation
 		mdcList;
 		mdcList_twoLine;
 		mdcRole: 'list';

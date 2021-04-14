@@ -5,7 +5,7 @@ Class {
 		'font',
 		'fontChoices'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #accessing }
@@ -62,6 +62,6 @@ MCWFontSettings >> setFontNamed: aFontName [
 	fontChoice := MCWGoogleFont fontNamed: aFontName.
 
 	fontChoice notNil ifTrue: [
-		self setFont: fontChoice]
+		self setFont: fontChoice ]
 
 ]

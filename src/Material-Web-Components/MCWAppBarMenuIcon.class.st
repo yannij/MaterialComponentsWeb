@@ -11,7 +11,7 @@ Class {
 { #category : #'instance creation' }
 MCWAppBarMenuIcon class >> imagePath: anIconName [
 
-	^self new
+	^ self new
 		imagePath: anIconName;
 		yourself
 ]
@@ -19,7 +19,7 @@ MCWAppBarMenuIcon class >> imagePath: anIconName [
 { #category : #'instance creation' }
 MCWAppBarMenuIcon class >> materialIcon: anIconName [
 
-	^self new
+	^ self new
 		iconName: anIconName;
 		yourself
 ]
@@ -62,13 +62,11 @@ MCWAppBarMenuIcon >> renderAnchorOn: html [
 { #category : #rendering }
 MCWAppBarMenuIcon >> renderContentOn: html [
 
-	self isHidden ifTrue: [^self].
+	self isHidden ifTrue: [ ^ self ].
 
 	self imagePath notNil
-		ifTrue: [self renderImageOn: html]
-		ifFalse: [self renderAnchorOn: html].
-
-
+		ifTrue: [ self renderImageOn: html ]
+		ifFalse: [ self renderAnchorOn: html ]
 ]
 
 { #category : #rendering }
@@ -76,9 +74,9 @@ MCWAppBarMenuIcon >> renderImageOn: html [
 	| imageScript |
 
 	self hasOnClickScript
-		ifTrue: [imageScript := self onClickScript]
-		ifFalse: [self hasCallback
-			ifTrue: [imageScript := html javascript callback: [self callback value]; yourself]].
+		ifTrue: [ imageScript := self onClickScript ]
+		ifFalse: [ self hasCallback
+			ifTrue: [ imageScript := html javascript callback: [ self callback value ]; yourself ] ].
 
 	html span
 		mdcTopAppBar__actionItem;
@@ -86,6 +84,5 @@ MCWAppBarMenuIcon >> renderImageOn: html [
 		attributeAt: 'aria-label' put: self ariaLabel;
 		onClick: imageScript;
 		with: [
-			html image url: self imagePath].
-
+			html image url: self imagePath ]
 ]

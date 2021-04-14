@@ -35,7 +35,7 @@ MCWTopAppBar >> endSection: anObject [
 { #category : #accessing }
 MCWTopAppBar >> height [
 
-	^self isShort ifTrue: [56] ifFalse: [self isDense ifTrue: [48] ifFalse: [64]]
+	^ self isShort ifTrue: [ 56 ] ifFalse: [ self isDense ifTrue: [ 48 ] ifFalse: [ 64 ] ]
 ]
 
 { #category : #initialization }
@@ -55,44 +55,44 @@ MCWTopAppBar >> initialize [
 { #category : #testing }
 MCWTopAppBar >> isDense [
 
-	^self dense
+	^ self dense
 ]
 
 { #category : #testing }
 MCWTopAppBar >> isShort [
 
-	^self short
+	^ self short
 ]
 
 { #category : #testing }
 MCWTopAppBar >> isShortCollapsed [
 
-	^self shortCollapsed
+	^ self shortCollapsed
 ]
 
 { #category : #accessing }
 MCWTopAppBar >> marginHeight [
 
-	^self isShortCollapsed ifTrue: [0] ifFalse: [self height]
+	^ self isShortCollapsed ifTrue: [ 0 ] ifFalse: [ self height ]
 ]
 
 { #category : #accessing }
 MCWTopAppBar >> paddingHeight [
 
-	^self isShortCollapsed ifTrue: [self height] ifFalse: [0]
+	^ self isShortCollapsed ifTrue: [ self height ] ifFalse: [ 0 ]
 ]
 
 { #category : #rendering }
 MCWTopAppBar >> renderContentOn: html [
 	| tag |
 
-	self isHidden ifTrue: [^self].
+	self isHidden ifTrue: [ ^ self ].
 
 	tag := html header mdcTopAppBar.
 
-	self isDense ifTrue: [tag mdcTopAppBar_dense].
-	self isShort ifTrue: [tag mdcTopAppBar_short].
-	self isShortCollapsed ifTrue: [tag mdcTopAppBar_shortCollapsed].
+	self isDense ifTrue: [ tag mdcTopAppBar_dense ].
+	self isShort ifTrue: [ tag mdcTopAppBar_short ].
+	self isShortCollapsed ifTrue: [ tag mdcTopAppBar_shortCollapsed ].
 
 	tag
 		mdcAutoInit: 'MDCTopAppBar';
@@ -103,13 +103,12 @@ MCWTopAppBar >> renderContentOn: html [
 				html section
 					mdcTopAppBar__section; mdcTopAppBar__section_alignStart;
 					with: [
-						self startSection do: [:each | html render: each].
-						html render: self toolbarTitle].
+						self startSection do: [ :each | html render: each ].
+						html render: self toolbarTitle ].
 				html section
 					mdcTopAppBar__section; mdcTopAppBar__section_alignEnd;
 					with: [
-						self endSection do: [:eachItem | html render: eachItem]]]].
-
+						self endSection do: [ :eachItem | html render: eachItem ] ] ] ]
 ]
 
 { #category : #accessing }
@@ -156,14 +155,14 @@ MCWTopAppBar >> toolbarTitle: anObject [
 MCWTopAppBar >> topAppBarSpacersHide [
 	"Workaround to handle problem with dismissable drawer that obscures right side of appBar"
 
-	self endSection do: [:each |
-		each iconName = 'bookmark' ifTrue: [each beHidden]]
+	self endSection do: [ :each |
+		each iconName = 'bookmark' ifTrue: [ each beHidden ] ]
 ]
 
 { #category : #actions }
 MCWTopAppBar >> topAppBarSpacersShow [
 	"Workaround to handle problem with dismissable drawer that obscures right side of appBar"
 
-	self endSection do: [:each |
-		each iconName = 'bookmark' ifTrue: [each beUnHidden]]
+	self endSection do: [ :each |
+		each iconName = 'bookmark' ifTrue: [ each beUnHidden ] ]
 ]

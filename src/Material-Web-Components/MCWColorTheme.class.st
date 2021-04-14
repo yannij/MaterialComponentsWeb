@@ -4,14 +4,14 @@ Class {
 	#instVars : [
 		'themeItems'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #'accessing-magritte' }
 MCWColorTheme >> backgroundDescription [
 	<magritteDescription>
 
-	^MAColorDescription new
+	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #background));
 		default: (Color fromHexString: 'ffffff');
 		label: 'Background';
@@ -30,9 +30,8 @@ MCWColorTheme >> buildThemeItems [
 "('surface' '#ffffff')"
 "('on-surface' '#ff6090')"
 "('background' '#ffffff')"
-	) do: [:each |
-		self themeItems at: each first put: (Color fromHexString: each second)].
-
+	) do: [ :each |
+		self themeItems at: each first put: (Color fromHexString: each second) ]
 ]
 
 { #category : #initialization }
@@ -49,7 +48,7 @@ MCWColorTheme >> initialize [
 MCWColorTheme >> onPrimaryDescription [
 	<magritteDescription>
 
-	^MAColorDescription new
+	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #'on-primary'));
 		default: (Color fromHexString: 'ffffff');
 		label: 'On Primary';
@@ -61,7 +60,7 @@ MCWColorTheme >> onPrimaryDescription [
 MCWColorTheme >> onSecondaryDescription [
 	<magritteDescription>
 
-	^MAColorDescription new
+	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #'on-secondary'));
 		default: (Color fromHexString: 'ffffff');
 		label: 'On Secondary';
@@ -73,7 +72,7 @@ MCWColorTheme >> onSecondaryDescription [
 MCWColorTheme >> onSurfaceDescription [
 	<magritteDescription>
 
-	^MAColorDescription new
+	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #'on-surface'));
 		default: (Color fromHexString: 'ff6090');
 		label: 'On Surface';
@@ -85,7 +84,7 @@ MCWColorTheme >> onSurfaceDescription [
 MCWColorTheme >> primaryDescription [
 	<magritteDescription>
 
-	^MAColorDescription new
+	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #primary));
 		default: (Color fromHexString: '6200ee');
 		label: 'Primary';
@@ -97,7 +96,7 @@ MCWColorTheme >> primaryDescription [
 MCWColorTheme >> secondaryDescription [
 	<magritteDescription>
 
-	^MAColorDescription new
+	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #secondary));
 		default: (Color fromHexString: '018786');
 		label: 'Secondary';
@@ -109,7 +108,7 @@ MCWColorTheme >> secondaryDescription [
 MCWColorTheme >> surfaceDescription [
 	<magritteDescription>
 
-	^MAColorDescription new
+	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #surface));
 		default: (Color fromHexString: 'ffffff');
 		label: 'Surface';

@@ -27,7 +27,7 @@ MCWLayout >> adjustToolbarsMobile [
 
 	self topAppBar dense: false.
 	"self topAppBar startSection: self rootComponent appBarStartSection."
-	self topAppBar startSection do: [:each | each beUnHidden].
+	self topAppBar startSection do: [ :each | each beUnHidden ].
 
 ]
 
@@ -36,7 +36,7 @@ MCWLayout >> adjustToolbarsTablet [
 
 	self topAppBar dense: false.
 	"self topAppBar startSection: self rootComponent appBarStartSection."
-	self topAppBar startSection do: [:each | each beUnHidden].
+	self topAppBar startSection do: [ :each | each beUnHidden ].
 
 ]
 
@@ -80,9 +80,9 @@ MCWLayout >> contentArea: anObject [
 { #category : #accessing }
 MCWLayout >> headStyle [
 
-	self isMobileStyle ifTrue: [^self headStyleMobile].
-	self isTabletStyle ifTrue: [^self headStyleTablet].
-	^self headStyleDesktop
+	self isMobileStyle ifTrue: [ ^ self headStyleMobile ].
+	self isTabletStyle ifTrue: [ ^ self headStyleTablet ].
+	^ self headStyleDesktop
 ]
 
 { #category : #accessing }
@@ -156,19 +156,19 @@ MCWLayout >> initialize [
 { #category : #testing }
 MCWLayout >> isDesktopStyle [
 
-	^self screenStyle = #desktop
+	^ self screenStyle = #desktop
 ]
 
 { #category : #testing }
 MCWLayout >> isMobileStyle [
 
-	^self screenStyle = #mobile
+	^ self screenStyle = #mobile
 ]
 
 { #category : #testing }
 MCWLayout >> isTabletStyle [
 
-	^self screenStyle = #tablet
+	^ self screenStyle = #tablet
 ]
 
 { #category : #accessing }
@@ -204,7 +204,7 @@ MCWLayout >> renderContentAreaDesktopOn: html [
 			"html div with: [
 				html span style: 'height: 30vh; opacity: .99'; with: [ html text: 'red' ]]."
 			html render: self contentArea.
-			html render: self mainFab]
+			html render: self mainFab ]
 ]
 
 { #category : #rendering }
@@ -219,7 +219,7 @@ MCWLayout >> renderContentAreaMobileOn: html [
 		style: 'max-width: 359px';
 		with: [
 			html render: self contentArea.
-			html render: self mainFab]
+			html render: self mainFab ]
 ]
 
 { #category : #rendering }
@@ -234,15 +234,15 @@ MCWLayout >> renderContentAreaTabletOn: html [
 		style: 'max-width: 959px';
 		with: [
 			html render: self contentArea.
-			html render: self mainFab]
+			html render: self mainFab ]
 
 ]
 
 { #category : #rendering }
 MCWLayout >> renderContentOn: html [
 
-	self isMobileStyle ifTrue: [^self renderLayoutMobileOn: html].
-	self isTabletStyle ifTrue: [^self renderLayoutTabletOn: html].
+	self isMobileStyle ifTrue: [ ^ self renderLayoutMobileOn: html ].
+	self isTabletStyle ifTrue: [ ^ self renderLayoutTabletOn: html ].
 	self renderLayoutDesktopOn: html
 ]
 
@@ -285,10 +285,8 @@ MCWLayout >> renderLayoutMobileOn: html [
 			html render: self topAppBar.
 			html div
 				mdcTopAppBar_fixedAdjust;
-				with: [self renderContentAreaMobileOn: html].
-			html render: self sideSheet.
-		]
-
+				with: [ self renderContentAreaMobileOn: html ].
+			html render: self sideSheet ]
 ]
 
 { #category : #rendering }
@@ -306,12 +304,12 @@ MCWLayout >> renderLayoutTabletOn: html [
 			html render: self topAppBar.
 			html div
 				mdcTopAppBar_fixedAdjust;
-				with: [self renderContentAreaTabletOn: html].
+				with: [ self renderContentAreaTabletOn: html ].
 		].
 
 	html div
 		mdcTopAppBar_fixedAdjust;
-		with: [html render: self sideSheet]
+		with: [ html render: self sideSheet ]
 
 ]
 

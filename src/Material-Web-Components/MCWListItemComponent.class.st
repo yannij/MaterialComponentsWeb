@@ -6,13 +6,13 @@ Class {
 		'itemText',
 		'selected'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #'instance creation' }
 MCWListItemComponent class >> itemText: aString [
 
-	^self new
+	^ self new
 		itemText: aString;
 		yourself
 ]
@@ -20,7 +20,7 @@ MCWListItemComponent class >> itemText: aString [
 { #category : #'instance creation' }
 MCWListItemComponent class >> itemText: aString callback: aBlock [
 
-	^(self itemText: aString)
+	^ (self itemText: aString)
 		callback: aBlock;
 		yourself
 ]
@@ -38,7 +38,7 @@ MCWListItemComponent >> initialize [
 { #category : #accessing }
 MCWListItemComponent >> isSelected [
 
-	^self selected
+	^ self selected
 ]
 
 { #category : #accessing }

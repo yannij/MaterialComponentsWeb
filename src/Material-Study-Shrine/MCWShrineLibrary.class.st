@@ -1,13 +1,13 @@
 Class {
 	#name : #MCWShrineLibrary,
 	#superclass : #WAFileLibrary,
-	#category : 'Material-Study-Shrine'
+	#category : #'Material-Study-Shrine'
 }
 
 { #category : #uploaded }
 MCWShrineLibrary >> bundleCss [
 
-	^'/* Custom Theme */
+	^ '/* Custom Theme */
 :root {
 --mdc-theme-primary: #FEDBD0;
 --mdc-theme-on-primary: #442C2E;

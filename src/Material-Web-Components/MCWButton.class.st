@@ -15,6 +15,6 @@ MCWButton >> renderContentOn: html [
 		onClickScript: self onClickScript if: self hasOnClickScript;
 		with: [
 			self hasActionLabel
-				ifTrue: [html text: self actionLabel]].
+				ifTrue: [ html text: self actionLabel ] ].
 
 ]

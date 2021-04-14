@@ -15,7 +15,7 @@ Class {
 { #category : #'instance creation' }
 MCWWebComponent class >> id: anIdString [
 
-	^self new
+	^ self new
 		id: anIdString;
 		yourself
 ]
@@ -55,13 +55,13 @@ MCWWebComponent >> cssClass: anObject [
 { #category : #testing }
 MCWWebComponent >> hasAriaLabel [
 
-	^self ariaLabel notNil
+	^ self ariaLabel notNil
 ]
 
 { #category : #testing }
 MCWWebComponent >> hasTitle [
 
-	^self title notNil
+	^ self title notNil
 ]
 
 { #category : #accessing }
@@ -104,7 +104,7 @@ MCWWebComponent >> initialize [
 { #category : #testing }
 MCWWebComponent >> isHidden [
 
-	^self hidden
+	^ self hidden
 ]
 
 { #category : #accessing }

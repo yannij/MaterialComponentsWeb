@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'colorThemeCss'
 	],
-	#category : 'Material-Web-Demo'
+	#category : #'Material-Web-Demo'
 }
 
 { #category : #accessing }
@@ -34,5 +34,5 @@ MCWBasicLayoutLibrary >> selectorsToInclude [
 	self colorThemeCss notEmpty ifTrue: [list add: #colorThemeCss].
 	^list"
 
-	^#(colorThemeCss)
+	^ #(colorThemeCss)
 ]

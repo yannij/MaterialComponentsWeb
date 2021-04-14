@@ -45,19 +45,17 @@ MCWApplication class >> registerMaterialWebDevelopment: aName [
 { #category : #accessing }
 MCWApplication >> materialComponentsWebCssUrl [
 
-	^ self materialVersion isNil
-		ifTrue: [MCWDevelopmentLibrary / #materialcomponentswebCss]
-		ifFalse: [ self materialComponentsWebUrlFragment, '.min.css']
-
+	^ self materialVersion
+		ifNil: [ MCWDevelopmentLibrary / #materialcomponentswebCss ]
+		ifNotNil: [ :arg | self materialComponentsWebUrlFragment , '.min.css' ]
 ]
 
 { #category : #accessing }
 MCWApplication >> materialComponentsWebJsUrl [
 
-	^ self materialVersion isNil
-		ifTrue: [MCWDevelopmentLibrary / #materialcomponentswebJs]
-		ifFalse: [ self materialComponentsWebUrlFragment, '.min.js']
-
+	^ self materialVersion
+		ifNil: [ MCWDevelopmentLibrary / #materialcomponentswebJs ]
+		ifNotNil: [ :arg | self materialComponentsWebUrlFragment , '.min.js' ]
 ]
 
 { #category : #accessing }

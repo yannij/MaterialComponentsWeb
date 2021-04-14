@@ -94,7 +94,7 @@ MCWObjectListComponent >> renderListTwoLineAjaxOn: html [
 						] ] ]
 ]
 
-{ #category : #rendering }
+{ #category : #'rendering-tools' }
 MCWObjectListComponent >> renderSelectListOn: html [
 ]
 

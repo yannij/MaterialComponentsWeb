@@ -10,24 +10,24 @@ Class {
 { #category : #initialization }
 MCWBasicLayoutApp class >> applicationPath [
 
-	^'material/layout'
+	^ 'material/layout'
 
 ]
 
-{ #category : #initialization }
+{ #category : #'class initialization' }
 MCWBasicLayoutApp class >> initialize [
 	"Register path with Seaside.
 	WAAdmin unregister: self applicationPath.
 	"
 
-	^self registerMaterialWebDevelopment: self applicationPath
+	^ self registerMaterialWebDevelopment: self applicationPath
 
 ]
 
-{ #category : #initialization }
+{ #category : #'instance creation' }
 MCWBasicLayoutApp class >> registerMaterialWebDeployment: aName [
 
-	^(super registerMaterialWebDeployment: aName)
+	^ (super registerMaterialWebDeployment: aName)
 		"addLibrary: MCWBasicLayoutLibrary;"
 		yourself
 ]
@@ -35,7 +35,7 @@ MCWBasicLayoutApp class >> registerMaterialWebDeployment: aName [
 { #category : #initialization }
 MCWBasicLayoutApp class >> registerToDeployment: aName [
 
-	^(super registerToDeployment: aName)
+	^ (super registerToDeployment: aName)
 		"addLibrary: MCWBasicLayoutLibrary;"
 		yourself
 ]
@@ -43,28 +43,28 @@ MCWBasicLayoutApp class >> registerToDeployment: aName [
 { #category : #accessing }
 MCWBasicLayoutApp >> applicationTitle [
 
-	^'Layout Example'
+	^ 'Layout Example'
 ]
 
 { #category : #initialization }
 MCWBasicLayoutApp >> buildSideNavList [
 
-	^MCWListGroup new
+	^ MCWListGroup new
 		addGroupedList: (MCWListBasic new
 			"subheader: 'List 1';"
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [self sideNav menuItemCallback]);
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [self sideNav menuItemCallback]);
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [self sideNav menuItemCallback]);
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 4' iconName: 'delete' callback: [self sideNav menuItemCallback]);
+			addListItem: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [ self sideNav menuItemCallback ]);
+			addListItem: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [ self sideNav menuItemCallback ]);
+			addListItem: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [ self sideNav menuItemCallback ]);
+			addListItem: (MCWListItemIcon  itemText: 'Nav Item 4' iconName: 'delete' callback: [ self sideNav menuItemCallback ]);
 			yourself);
 		addGroupedList: (MCWListBasic new
 			subheader: 'List 2';
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 5' iconName: 'face' callback: [self sideNav menuItemCallback]);
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 6' iconName: 'face' callback: [self sideNav menuItemCallback]);
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 7' iconName: 'face' callback: [self sideNav menuItemCallback]);
+			addListItem: (MCWListItemIcon  itemText: 'Nav Item 5' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
+			addListItem: (MCWListItemIcon  itemText: 'Nav Item 6' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
+			addListItem: (MCWListItemIcon  itemText: 'Nav Item 7' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
 			addListItem: (MCWListItemSeparator new);
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 8' iconName: 'star' callback: [self sideNav menuItemCallback]);
-			addListItem: (MCWListItemIcon  itemText: 'Nav Item 9' iconName: 'star' callback: [self sideNav menuItemCallback]);
+			addListItem: (MCWListItemIcon  itemText: 'Nav Item 8' iconName: 'star' callback: [ self sideNav menuItemCallback ]);
+			addListItem: (MCWListItemIcon  itemText: 'Nav Item 9' iconName: 'star' callback: [ self sideNav menuItemCallback ]);
 			yourself);
 		yourself
 
@@ -79,24 +79,24 @@ MCWBasicLayoutApp >> buildSideSheet [
 { #category : #initialization }
 MCWBasicLayoutApp >> buildSideSheetList [
 
-	^MCWListGroup new
+	^ MCWListGroup new
 		addGroupedList: (MCWListBasic new
 			subheader: 'Categories';
-			addListItem: (MCWListItemSelectionControl itemText: 'Category' callback: []);
+			addListItem: (MCWListItemSelectionControl itemText: 'Category' callback: [ ]);
 			addListItem: (MCWListItemSeparatorInset new);
-			addListItem: (MCWListItemSelectionControl itemText: 'Category' callback: []);
+			addListItem: (MCWListItemSelectionControl itemText: 'Category' callback: [ ]);
 			addListItem: (MCWListItemSeparatorInset new);
-			addListItem: (MCWListItemSelectionControl itemText: 'Category' callback: []);
+			addListItem: (MCWListItemSelectionControl itemText: 'Category' callback: [ ]);
 			addListItem: (MCWListItemSeparatorInset new);
-			addListItem: (MCWListItemSelectionControl itemText: 'Category' callback: []);
+			addListItem: (MCWListItemSelectionControl itemText: 'Category' callback: [ ]);
 			yourself);
 		addGroupedList: (MCWListBasic new
 			subheader: 'Category';
-			addListItem: (MCWListItemSlider itemText: 'Category' callback: []);
+			addListItem: (MCWListItemSlider itemText: 'Category' callback: [ ]);
 			yourself);
 		addGroupedList: (MCWListBasic new
 			subheader: 'Category';
-			addListItem: (MCWListItemSlider itemText: 'Category' callback: []);
+			addListItem: (MCWListItemSlider itemText: 'Category' callback: [ ]);
 			yourself);
 		yourself
 
@@ -105,11 +105,11 @@ MCWBasicLayoutApp >> buildSideSheetList [
 { #category : #accessing }
 MCWBasicLayoutApp >> drawerSubtitle [
 
-	^'Sub-example'
+	^ 'Sub-example'
 ]
 
 { #category : #accessing }
 MCWBasicLayoutApp >> drawerTitle [
 
-	^'Example'
+	^ 'Example'
 ]

@@ -1,13 +1,13 @@
 Class {
 	#name : #MCWShrineCanvas,
 	#superclass : #MCWWebComponent,
-	#category : 'Material-Study-Shrine'
+	#category : #'Material-Study-Shrine'
 }
 
 { #category : #rendering }
 MCWShrineCanvas >> products [
 
-	^#(
+	^ #(
 ('assets/ginger-scarf.jpg' 'Ginger scarf')
 ('assets/blue-stone-mug.jpg' 'Blue stone mug')
 ('assets/cerise-scallop.jpg' 'Cerise scallop tee')
@@ -43,9 +43,9 @@ MCWShrineCanvas >> renderProductsOn: html [
 			mdcImageList_masonry;
 			class: 'product-list';
 			with: [
-				self products do: [:each |
+				self products do: [ :each |
 					html listItem mdcImageList__item; with: [
 						html image mdcImageList__image; url: 'https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/', each first.
 						html div mdcImageList__supporting; with: [
-							html span mdcImageList__label; mdcTypography_subtitle2; with: each second]]]]]
+							html span mdcImageList__label; mdcTypography_subtitle2; with: each second ] ] ] ] ]
 ]

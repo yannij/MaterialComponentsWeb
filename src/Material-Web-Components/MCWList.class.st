@@ -20,7 +20,7 @@ MCWList >> addListItem: aListItem [
 { #category : #rendering }
 MCWList >> closeScript [
 
-	^'element = document.getElementById(''', self id, '''); element.MDCMenu.open = false'
+	^ 'element = document.getElementById(''', self id, '''); element.MDCMenu.open = false'
 ]
 
 { #category : #initialization }
@@ -55,7 +55,7 @@ MCWList >> listTagOn: html [
 { #category : #rendering }
 MCWList >> openScript [
 
-	^'element = document.getElementById(''', self id, '''); element.MDCMenu.open = !element.MDCMenu.open'
+	^ 'element = document.getElementById(''', self id, '''); element.MDCMenu.open = !element.MDCMenu.open'
 ]
 
 { #category : #rendering }

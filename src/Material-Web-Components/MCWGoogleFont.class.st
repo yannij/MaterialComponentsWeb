@@ -9,14 +9,13 @@ Class {
 	#classVars : [
 		'AllAvailable'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #accessing }
 MCWGoogleFont class >> allAvailable [
 
-	AllAvailable isNil
-		ifTrue: [AllAvailable := self allAvailableBuild].
+	AllAvailable ifNil: [ AllAvailable := self allAvailableBuild ].
 
 	^ AllAvailable
 ]
@@ -30,7 +29,7 @@ MCWGoogleFont class >> allAvailable: anObject [
 { #category : #accessing }
 MCWGoogleFont class >> allAvailableBuild [
 
-	^self allAvailableData collect: [:data | MCWGoogleFont from: data]
+	^ self allAvailableData collect: [ :data | MCWGoogleFont from: data ]
 
 ]
 
@@ -43,7 +42,7 @@ MCWGoogleFont class >> allAvailableClear [
 { #category : #accessing }
 MCWGoogleFont class >> allAvailableData [
 
-	^#(
+	^ #(
 "('Family' 'Category' 'Variants / Files' 'Subsets' 'Version' 'Last Modified' 'Preview')"
 ('Abril Fatface' 'display' 'regular' 'latin-ext, latin' 'v8' '2017-08-24' '')
 ('Akronim' 'display' 'regular' 'latin-ext, latin' 'v6' '2017-08-24' '')
@@ -898,8 +897,8 @@ MCWGoogleFont class >> allAvailableData [
 { #category : #'instance creation' }
 MCWGoogleFont class >> familyName: aFamilyName genericFamily: aGenericFamily [
 
-	^self new
-		googleFontsFamily: (aFamilyName collect: [:ch | (ch = $ ) ifTrue: [$ ] ifFalse: [ch]]);
+	^ self new
+		googleFontsFamily: (aFamilyName collect: [ :ch | (ch = $ ) ifTrue: [ $  ] ifFalse: [ ch ] ]);
 		familyName: aFamilyName;
 		genericFamily: aGenericFamily;
 		yourself
@@ -908,22 +907,22 @@ MCWGoogleFont class >> familyName: aFamilyName genericFamily: aGenericFamily [
 { #category : #accessing }
 MCWGoogleFont class >> fontNamed: aGoogleFonttKey [
 
-	^self allAvailable
-		detect: [:each | each googleFontsFamily = aGoogleFonttKey ]
-		ifNone: [nil]
+	^ self allAvailable
+		detect: [ :each | each googleFontsFamily = aGoogleFonttKey ]
+		ifNone: [ nil ]
 ]
 
 { #category : #'instance creation' }
 MCWGoogleFont class >> from: anArray [
 
-	^self familyName: (anArray at: 1) genericFamily: (anArray at: 2)
+	^ self familyName: (anArray at: 1) genericFamily: (anArray at: 2)
 
 ]
 
 { #category : #'instance creation' }
 MCWGoogleFont class >> googleFontsFamily: aGoogleFontsFamily familyName: aFamilyName genericFamily: aGenericFamily [
 
-	^self new
+	^ self new
 		googleFontsFamily: aGoogleFontsFamily;
 		familyName: aFamilyName;
 		genericFamily: aGenericFamily;

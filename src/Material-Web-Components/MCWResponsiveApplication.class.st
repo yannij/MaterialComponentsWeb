@@ -27,7 +27,7 @@ MCWResponsiveApplication >> appBarEndSection [
 	"These buttons are here because persistent side nav causes toolbar to be pushed right"
 	"5 timesRepeat: [data add: (MCWAppBarMenuIcon materialIcon: 'bookmark')]."
 
-	^data
+	^ data
 
 ]
 
@@ -42,7 +42,7 @@ MCWResponsiveApplication >> appBarStartSection [
 { #category : #initialization }
 MCWResponsiveApplication >> appBarTitle [
 
-	^'Top app bar'
+	^ 'Top app bar'
 
 ]
 
@@ -75,19 +75,19 @@ MCWResponsiveApplication >> beLayoutStructureTablet [
 MCWResponsiveApplication >> bodyCssClasses [
 	"Subclasses may override"
 
-	^#("'mdc-typography'" 'mcw-body')
+	^ #("'mdc-typography'" 'mcw-body')
 ]
 
 { #category : #initialization }
 MCWResponsiveApplication >> buildApplicationSettings [
 
-	^MCWApplicationSettings newDefault
+	^ MCWApplicationSettings newDefault
 ]
 
 { #category : #initialization }
 MCWResponsiveApplication >> buildLayout [
 
-	^MCWLayout new
+	^ MCWLayout new
 		primaryRegionSet: MCWContentArea new;
 		sideNav: self buildSideNav;
 		sideSheetSet: self buildSideSheet;
@@ -99,7 +99,7 @@ MCWResponsiveApplication >> buildLayout [
 { #category : #initialization }
 MCWResponsiveApplication >> buildMainFab [
 
-	^MCWFloatingActionButton new
+	^ MCWFloatingActionButton new
 		beMiniFab;
 		beRippledFab;
 		yourself.
@@ -109,14 +109,14 @@ MCWResponsiveApplication >> buildMainFab [
 { #category : #initialization }
 MCWResponsiveApplication >> buildMenuIconPersistent [
 
-	^(MCWAppBarMenuIcon materialIcon: 'menu') ariaLabel: 'Menu'; callback: [self toggleDismissibleDrawer]; yourself
+	^ (MCWAppBarMenuIcon materialIcon: 'menu') ariaLabel: 'Menu'; callback: [ self toggleDismissibleDrawer ]; yourself
 
 ]
 
 { #category : #initialization }
 MCWResponsiveApplication >> buildMenuIconTemporary [
 
-	^(MCWAppBarMenuIcon materialIcon: 'menu') ariaLabel: 'Menu'; onClickScript: self openSideNavScript; yourself
+	^ (MCWAppBarMenuIcon materialIcon: 'menu') ariaLabel: 'Menu'; onClickScript: self openSideNavScript; yourself
 
 ]
 
@@ -126,11 +126,11 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 
 	list := (MCWListMenuItems id: 'settingsPopup')
 		addListItem: (MCWListItemIcon new iconName: 'cancel'; itemText: 'Cancel'; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'smartphone'; itemText: 'Phone'; callback: [self beLayoutStructureMobile]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'tablet'; itemText: 'Tablet'; callback: [self beLayoutStructureTablet]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'computer'; itemText: 'Desktop'; callback: [self beLayoutStructureDesktop]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Colors'; callback: [self chooseColors]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [self toggleAppBarCollapse]; yourself);
+		addListItem: (MCWListItemIcon new iconName: 'smartphone'; itemText: 'Phone'; callback: [ self beLayoutStructureMobile ]; yourself);
+		addListItem: (MCWListItemIcon new iconName: 'tablet'; itemText: 'Tablet'; callback: [ self beLayoutStructureTablet ]; yourself);
+		addListItem: (MCWListItemIcon new iconName: 'computer'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
+		addListItem: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Colors'; callback: [ self chooseColors ]; yourself);
+		addListItem: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
 		yourself.
 
 	"self layout sideSheet notNil
@@ -138,13 +138,13 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 			list addListItem:
 				(MCWListItemIcon new iconName: 'more_horiz'; itemText: 'Side Sheet'; onClickScript: self openRidghtNavScript; yourself)]."
 
-	^list
+	^ list
 ]
 
 { #category : #initialization }
 MCWResponsiveApplication >> buildSideNav [
 
-	^MCWDrawer new
+	^ MCWDrawer new
 		id: self sideNavDrawerId;
 		drawerTitle: self drawerTitle;
 		drawerSubtitle: self drawerSubtitle;
@@ -159,11 +159,11 @@ MCWResponsiveApplication >> buildSideNav [
 { #category : #initialization }
 MCWResponsiveApplication >> buildSideNavList [
 
-	^MCWListBasic new
-		addListItem: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [self sideNav menuItemCallback]);
-		addListItem: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [self sideNav menuItemCallback]);
-		addListItem: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [self sideNav menuItemCallback]);
-		addListItem: (MCWListItemIcon  itemText: 'Nav Item 4' iconName: 'delete' callback: [self sideNav menuItemCallback]);
+	^ MCWListBasic new
+		addListItem: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [ self sideNav menuItemCallback ]);
+		addListItem: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [ self sideNav menuItemCallback ]);
+		addListItem: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [ self sideNav menuItemCallback ]);
+		addListItem: (MCWListItemIcon  itemText: 'Nav Item 4' iconName: 'delete' callback: [ self sideNav menuItemCallback ]);
 		yourself.
 
 ]
@@ -171,20 +171,20 @@ MCWResponsiveApplication >> buildSideNavList [
 { #category : #initialization }
 MCWResponsiveApplication >> buildSideSheet [
 
-	^nil
+	^ nil
 
 ]
 
 { #category : #initialization }
 MCWResponsiveApplication >> buildSideSheetList [
 
-	^nil
+	^ nil
 ]
 
 { #category : #initialization }
 MCWResponsiveApplication >> buildTopAppBar [
 
-	^MCWTopAppBar new
+	^ MCWTopAppBar new
 		toolbarTitle: (MCWTopAppBarTtile titled: self appBarTitle);
 		startSection: self appBarStartSection;
 		endSection: self appBarEndSection;
@@ -196,8 +196,8 @@ MCWResponsiveApplication >> buildTopAppBar [
 MCWResponsiveApplication >> chooseColors [
 
 	self layout contentArea component notNil
-		ifTrue: [self layout contentArea component: nil]
-		ifFalse: [self layout contentArea component: (self settings colorTheme asComponent addValidatedForm)]
+		ifTrue: [ self layout contentArea component: nil ]
+		ifFalse: [ self layout contentArea component: (self settings colorTheme asComponent addValidatedForm) ]
 
 ]
 
@@ -208,13 +208,13 @@ MCWResponsiveApplication >> colorThemeCss [
 	aStream := WriteStream on: String new.
 	aStream nextPutAll: ':root {'.
 	aStream nextPutAll: '--mdc-typography-font-family: Rubik, sans-serif;'.
-	self settings colorTheme keysAndValuesDo: [:eachKey :eachValue |
+	self settings colorTheme keysAndValuesDo: [ :eachKey :eachValue |
 		aStream
 			nextPutAll: '--mdc-theme-'; nextPutAll: eachKey;
 			nextPutAll: ': '; nextPutAll: eachValue; nextPut: $;;
-			yourself].
+			yourself ].
 	aStream nextPutAll: '}'.
-	^aStream contents
+	^ aStream contents
 ]
 
 { #category : #actions }
@@ -230,14 +230,14 @@ MCWResponsiveApplication >> colorThemeExample [
 ('secondary-light' '#ff6090')
 ('secondary-dark' '#b0003a')
 ('background' '#fff')
-	) do: [:each |
-		self colorTheme at: each first put: each second].
+	) do: [ :each |
+		self colorTheme at: each first put: each second ].
 
-	libraryHandler := (WADispatcher default handlerAt: 'files') libraryAt: 'MCWCustomizableLibrary' ifAbsent: [].
+	libraryHandler := (WADispatcher default handlerAt: 'files') libraryAt: 'MCWCustomizableLibrary' ifAbsent: [ ].
 	libraryHandler notNil
 		ifTrue: [
 			library := libraryHandler default.
-			library colorThemeCss: self colorThemeCss].
+			library colorThemeCss: self colorThemeCss ].
 ]
 
 { #category : #actions }
@@ -246,29 +246,29 @@ MCWResponsiveApplication >> colorThemeExampleClear [
 
 	self colorTheme removeAll.
 
-	libraryHandler := (WADispatcher default handlerAt: 'files') libraryAt: 'MCWCustomizableLibrary' ifAbsent: [].
+	libraryHandler := (WADispatcher default handlerAt: 'files') libraryAt: 'MCWCustomizableLibrary' ifAbsent: [ ].
 	libraryHandler notNil
 		ifTrue: [
 			library := libraryHandler default.
-			library colorThemeCss: self colorThemeCss].
+			library colorThemeCss: self colorThemeCss ].
 ]
 
 { #category : #rendering }
 MCWResponsiveApplication >> currentFont [
 
-	^self settings fontSettings font
+	^ self settings fontSettings font
 ]
 
 { #category : #accessing }
 MCWResponsiveApplication >> drawerSubtitle [
 
-	^''
+	^ ''
 ]
 
 { #category : #accessing }
 MCWResponsiveApplication >> drawerTitle [
 
-	^''
+	^ ''
 ]
 
 { #category : #initialization }
@@ -291,10 +291,9 @@ MCWResponsiveApplication >> initialize [
 { #category : #testing }
 MCWResponsiveApplication >> isLoggedIn [
 
-	self session isNil
-		ifTrue: [^false].
+	self session ifNil: [ ^ false ].
 
-	^self session properties includesKey: #authenticatedUser
+	^ self session properties includesKey: #authenticatedUser
 ]
 
 { #category : #accessing }
@@ -341,14 +340,14 @@ MCWResponsiveApplication >> materialVersionLocalServer [
 { #category : #initialization }
 MCWResponsiveApplication >> openRidghtNavScript [
 
-	^'element = document.getElementById(''', self rightNavDrawerId, ''');
+	^ 'element = document.getElementById(''', self rightNavDrawerId, ''');
 element.mdcDrawer.open = !element.mdcDrawer.open'
 ]
 
 { #category : #initialization }
 MCWResponsiveApplication >> openSideNavScript [
 
-	^'element = document.getElementById(''', self sideNavDrawerId, ''');
+	^ 'element = document.getElementById(''', self sideNavDrawerId, ''');
 element.mdcDrawer.open = !element.mdcDrawer.open'
 ]
 
@@ -361,12 +360,11 @@ MCWResponsiveApplication >> renderContentOn: html [
 
 	self renderSetGoogleFont: self currentFont on: html.
 
-	(self isLoggedIn or: [self loginComponent isNil])
-		ifTrue: [self renderLayoutOn: html]
-		ifFalse: [self renderLoginOn: html].
+	(self isLoggedIn or: [ self loginComponent isNil ])
+		ifTrue: [ self renderLayoutOn: html ]
+		ifFalse: [ self renderLoginOn: html ].
 
-	self renderMaterialComponentsWebJsOn: html.
-
+	self renderMaterialComponentsWebJsOn: html
 ]
 
 { #category : #rendering }
@@ -385,13 +383,13 @@ MCWResponsiveApplication >> renderLoginOn: html [
 MCWResponsiveApplication >> renderSetColorThemeOn: html [
 	| stream |
 
-	stream := String new writeStream.
+	stream := WriteStream on: String new.
 
 	stream nextPutAll: 'var bodyStyle = document.querySelector("body").style;'.
-	self settings colorTheme themeItems keysAndValuesDo: [:eachKey :eachValue |
+	self settings colorTheme themeItems keysAndValuesDo: [ :eachKey :eachValue |
 		stream
 			nextPutAll: 'bodyStyle.setProperty("--mdc-theme-', eachKey, '", "#', eachValue asHexString, '");';
-			yourself].
+			yourself ].
 
 	html script with: stream contents.
 
@@ -408,7 +406,7 @@ MCWResponsiveApplication >> renderSetGoogleFont: aGoogleFont on: html [
 { #category : #initialization }
 MCWResponsiveApplication >> rightNavDrawerId [
 
-	^'rightNavDrawer'
+	^ 'rightNavDrawer'
 
 ]
 
@@ -425,20 +423,20 @@ MCWResponsiveApplication >> settings: anObject [
 { #category : #accessing }
 MCWResponsiveApplication >> sideNav [
 
-	^self layout sideNav
+	^ self layout sideNav
 ]
 
 { #category : #initialization }
 MCWResponsiveApplication >> sideNavDrawerId [
 
-	^'sideNavDrawer'
+	^ 'sideNavDrawer'
 
 ]
 
-{ #category : #accessing }
+{ #category : #hooks }
 MCWResponsiveApplication >> style [
 
-	^self layout headStyle
+	^ self layout headStyle
 ]
 
 { #category : #testing }
@@ -457,8 +455,8 @@ var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 
 MCWResponsiveApplication >> toggleAppBarCollapse [
 
 	self layout topAppBar shortCollapsed
-		ifTrue: [self layout topAppBar short: false; shortCollapsed: false]
-		ifFalse: [self layout topAppBar short: true; shortCollapsed: true; dense: false]
+		ifTrue: [ self layout topAppBar short: false; shortCollapsed: false ]
+		ifFalse: [ self layout topAppBar short: true; shortCollapsed: true; dense: false ]
 
 ]
 
@@ -486,7 +484,7 @@ MCWResponsiveApplication >> updateRoot: anHtmlRoot [
 		attributeAt: 'name' put: 'viewport';
 		attributeAt: 'content' put: 'width=device-width, initial-scale=1'.
 
-	self bodyCssClasses do: [:each | anHtmlRoot bodyAttributes addClass: each]
+	self bodyCssClasses do: [ :each | anHtmlRoot bodyAttributes addClass: each ]
 ]
 
 { #category : #updating }
@@ -497,7 +495,7 @@ MCWResponsiveApplication >> updateRootFonts: anHtmlRoot [
 	"fontNames := 'Roboto|Roboto+Condensed|Bree+Serif|Fontdiner+Swanky|Open+Sans|Oxygen+Mono|Pacifico'."
 	"fontNames := '|' join: (self fonts collect: [:eachChoice | eachChoice googleFontsFamily])."
 
-	self settings fontSettings fontChoices do: [:eachChoice |
-		anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', eachChoice googleFontsFamily)].
+	self settings fontSettings fontChoices do: [ :eachChoice |
+		anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', eachChoice googleFontsFamily) ].
 
 ]

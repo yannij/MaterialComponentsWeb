@@ -40,7 +40,7 @@ MCWDemoCatalogCanvas >> catalogList [
 )
 ]
 
-{ #category : #initializing }
+{ #category : #initialization }
 MCWDemoCatalogCanvas >> initialize [
 
 	super initialize.
@@ -68,7 +68,7 @@ MCWDemoCatalogCanvas >> renderCatalogButtonDemosOn: html [
 		html button type: ''; class: 'demo-button'; mdcButton; mdcRippleUpgraded; with: 'Dense'.
 		html button type: ''; class: 'demo-button'; mdcButton; mdcRippleUpgraded; with: [
 			html span mdcMaterialIcons; mdcButton__icon; with: 'favorite'.
-			html text: 'Icon']].
+			html text: 'Icon' ] ].
 
 	html div with: [
 		html heading level3; mdcTypography_subtitle1; with: 'Raised Button'.
@@ -76,7 +76,7 @@ MCWDemoCatalogCanvas >> renderCatalogButtonDemosOn: html [
 		html button type: ''; class: 'demo-button'; mdcButton; mdcButton_raised; mdcRippleUpgraded; with: 'Dense'.
 		html button type: ''; class: 'demo-button'; mdcButton; mdcButton_raised; mdcRippleUpgraded; with: [
 			html span mdcMaterialIcons; mdcButton__icon; with: 'favorite'.
-			html text: 'Icon']].
+			html text: 'Icon' ] ].
 
 	html div with: [
 		html heading level3; mdcTypography_subtitle1; with: 'Unelevated Button'.
@@ -84,7 +84,7 @@ MCWDemoCatalogCanvas >> renderCatalogButtonDemosOn: html [
 		html button type: ''; class: 'demo-button'; mdcButton; mdcButton_unelevated; mdcRippleUpgraded; with: 'Dense'.
 		html button type: ''; class: 'demo-button'; mdcButton; mdcButton_unelevated; mdcRippleUpgraded; with: [
 			html span mdcMaterialIcons; mdcButton__icon; with: 'favorite'.
-			html text: 'Icon']].
+			html text: 'Icon' ] ].
 
 	html div with: [
 		html heading level3; mdcTypography_subtitle1; with: 'Outlined Button'.
@@ -92,7 +92,7 @@ MCWDemoCatalogCanvas >> renderCatalogButtonDemosOn: html [
 		html button type: ''; class: 'demo-button'; mdcButton; mdcButton_outlined; mdcRippleUpgraded; with: 'Dense'.
 		html button type: ''; class: 'demo-button'; mdcButton; mdcButton_outlined; mdcRippleUpgraded; with: [
 			html span mdcMaterialIcons; mdcButton__icon; with: 'favorite'.
-			html text: 'Icon']].
+			html text: 'Icon' ] ].
 
 	html div with: [
 		html heading level3; mdcTypography_subtitle1; with: 'Shaped Button'.
@@ -100,7 +100,7 @@ MCWDemoCatalogCanvas >> renderCatalogButtonDemosOn: html [
 		html button type: ''; class: 'demo-button'; mdcButton; mdcButton_unelevated; class: 'demo-button-shaped'; mdcRippleUpgraded; with: 'Dense'.
 		html button type: ''; class: 'demo-button'; mdcButton; mdcButton_unelevated; class: 'demo-button-shaped'; mdcRippleUpgraded; with: [
 			html span mdcMaterialIcons; mdcButton__icon; with: 'favorite'.
-			html text: 'Icon']]
+			html text: 'Icon' ] ]
 ]
 
 { #category : #'page - button' }
@@ -159,7 +159,7 @@ MCWDemoCatalogCanvas >> renderCatalogDatatableDemosOn: html [
 				html tableBody mdcDataTable__content; with: [
 					dataRows do: [ :eachRow |
 						html tableRow mdcDataTable__row; with: [
-							eachRow doWithIndex: [ :each :index | | tag |
+							eachRow keysAndValuesDo: [ :index :each | | tag |
 								tag := html tableData mdcDataTable__cell; scope: 'row'; with: each.
 								(dataHeadings at: index) value ifTrue: [ tag  mdcDataTable__headerCell_numeric ] ] ] ] ] ] ] ]
 ]
@@ -206,13 +206,13 @@ MCWDemoCatalogCanvas >> renderCatalogPage: aPageName on: html [
 	selector := ('renderCatalog', self pageName asValidSelector capitalized, 'On:') asSymbol.
 
 	(self respondsTo: selector)
-		ifTrue: [^self perform: selector with: html].
+		ifTrue: [ ^ self perform: selector with: html ].
 
 	"html text: selector printString; break.
 	html text: 'TODO: ', self pageName capitalized."
 
 	html section class: 'hero'; with: [
-		html heading level2; mdcTypography_headline1; with: self pageName capitalized, ' - To Do']
+		html heading level2; mdcTypography_headline1; with: self pageName capitalized, ' - To Do' ]
 ]
 
 { #category : #'page - home' }
@@ -221,7 +221,7 @@ MCWDemoCatalogCanvas >> renderCatalogPageListItem: anItem on: html [
 	html listItem class: 'catalog-image-list-item'; mdcImageList__item;
 		with: [
 			html anchor class: 'catalog-image-link';
-				callback: [self pageName: anItem first asSymbol];
+				callback: [ self pageName: anItem first asSymbol ];
 				with: [
 					html div class: 'catalog-image-list-item-container';
 						mdcImageList__imageAspectContainer; mdcRippleSurface; mdcRippleUpgraded;
@@ -230,9 +230,9 @@ MCWDemoCatalogCanvas >> renderCatalogPageListItem: anItem on: html [
 								html image
 									width: '100%';
 									height: '100%';
-									url: 'https://material-components.github.io/material-components-web-catalog/static/media/', anItem third]].
+									url: 'https://material-components.github.io/material-components-web-catalog/static/media/', anItem third ] ].
 					html div mdcImageList__supporting; with: [
-						html span class: 'catalog-image-list-label'; mdcImageList__label; with: anItem second]]]
+						html span class: 'catalog-image-list-label'; mdcImageList__label; with: anItem second ] ] ]
 ]
 
 { #category : #'page - home' }
@@ -240,10 +240,10 @@ MCWDemoCatalogCanvas >> renderCatalogPageListOn: html [
 
 	html unorderedList
 		id: 'catalog-image-list';
-		mdcImageList; class: 'standard-image-list'; mdcTopAppBar_fixedAdjust ;
+		mdcImageList; class: 'standard-image-list'; mdcTopAppBar_fixedAdjust;
 		with: [
-			self catalogList do: [:each |
-				self renderCatalogPageListItem: each on: html]]
+			self catalogList do: [ :each |
+				self renderCatalogPageListItem: each on: html ] ]
 ]
 
 { #category : #'page - radio' }
@@ -320,7 +320,7 @@ MCWDemoCatalogCanvas >> renderCatalogSelectDemosOn: html [
 					html span mdcLineRipple ].
 			html div mdcSelect__menu; mdcMenu; mdcMenuSurface; mdcAutoInit: 'MDCMenu'; with: [
 				html unorderedList mdcList; with: [
-					{ ''->''. 'apple'->'Apple'. 'orange'->'Orange'. 'banana'->'Banana' } doWithIndex: [ :item :index |
+					{ ''->''. 'apple'->'Apple'. 'orange'->'Orange'. 'banana'->'Banana' } keysAndValuesDo: [ :index :item |
 						| listItem isSelected |
 						isSelected := index = selectedIndex.
 						listItem := html listItem
@@ -332,7 +332,7 @@ MCWDemoCatalogCanvas >> renderCatalogSelectDemosOn: html [
 								html span mdcListItem__ripple.
 								html span mdcListItem__text; with: item value ].
 						index = 1 ifTrue: [ listItem disabled ].
-						listItem tabIndex: (index = 1 ifTrue: [0] ifFalse: [-1]).
+						listItem tabIndex: (index = 1 ifTrue: [ 0 ] ifFalse: [ -1 ]).
 						isSelected ifTrue: [ listItem mdcListItem_selected ]  ] ]
 				 ] ]
 		
@@ -500,8 +500,8 @@ MCWDemoCatalogCanvas >> renderResources: resources on: html [
 				html image
 					class: 'resources-icon';
 					altText: 'Material Design Guidelines icon';
-					url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_material_design_24px.svg'].
-			html text: 'Material Design Guidelines'].
+					url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_material_design_24px.svg' ].
+			html text: 'Material Design Guidelines' ].
 	html anchor
 		url: resources second;
 		mdcRole: 'listitem'; mdcListItem; mdcRippleUpgraded; "target=""_blank"""
@@ -510,8 +510,8 @@ MCWDemoCatalogCanvas >> renderResources: resources on: html [
 				html image
 					class: 'resources-icon';
 					altText: 'Documentation icon';
-					url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_drive_document_24px.svg'].
-			html text: 'Documentation'].
+					url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_drive_document_24px.svg' ].
+			html text: 'Documentation' ].
 	html anchor
 		url: resources third;
 		mdcRole: 'listitem'; mdcListItem; mdcRippleUpgraded; "target=""_blank"""
@@ -520,6 +520,6 @@ MCWDemoCatalogCanvas >> renderResources: resources on: html [
 				html image
 					class: 'resources-icon';
 					altText: 'Source Code icon';
-					url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_code_24px.svg'].
-			html text: 'Source Code']
+					url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_code_24px.svg' ].
+			html text: 'Source Code' ]
 ]

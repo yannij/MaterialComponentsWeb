@@ -5,13 +5,13 @@ Class {
 		'itemSecondaryText',
 		'imageName'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #'instance creation' }
 MCWListItemTwoLine class >> itemText: aString itemSecondaryText: aSecondaryString imageName: anImageName callback: aBlock [
 
-	^self new
+	^ self new
 		itemText: aString;
 		itemSecondaryText: aSecondaryString;
 		callback: aBlock;
@@ -54,14 +54,14 @@ MCWListItemTwoLine >> renderContentOn: html [
 	| tag |
 
 	tag := html anchor.
-	self selected ifTrue: [tag mdcListItem_selected].
+	self selected ifTrue: [ tag mdcListItem_selected ].
 	tag
 		mdcListItem;
 		mdcRole: 'listitem';
 		callback: self callback;
 		with: [
-			html span mdcListItem__graphic with: [html image url: self imageName].
+			html span mdcListItem__graphic with: [ html image url: self imageName ].
 			html span mdcListItem__text with: [
 				html text: self itemText.
-				html span mdcListItem__secondaryText; with: self itemSecondaryText]]
+				html span mdcListItem__secondaryText; with: self itemSecondaryText ] ]
 ]

@@ -10,36 +10,36 @@ Class {
 { #category : #initialization }
 MCWDemoCatalogApp class >> applicationPath [
 
-	^'material/catalog'
+	^ 'material/catalog'
 
 ]
 
-{ #category : #initialization }
+{ #category : #'class initialization' }
 MCWDemoCatalogApp class >> initialize [
 	"Register path with Seaside.
 	WAAdmin unregister: self applicationPath.
 	"
 
-	^self registerMaterialWebDevelopment: self applicationPath
+	^ self registerMaterialWebDevelopment: self applicationPath
 
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 MCWDemoCatalogApp >> appBarTitle [
 
-	^'MDC Seaside'
+	^ 'MDC Seaside'
 ]
 
 { #category : #accessing }
 MCWDemoCatalogApp >> applicationTitle [
 
-	^'Material Design Catalog'
+	^ 'Material Design Catalog'
 ]
 
 { #category : #initialization }
 MCWDemoCatalogApp >> buildMainFab [
 
-	^nil
+	^ nil
 ]
 
 { #category : #initialization }
@@ -47,16 +47,12 @@ MCWDemoCatalogApp >> buildSideNavList [
 	| navList |
 
 	navList := MCWListBasic new.
-	navList addListItem: (
-		MCWListItemIcon 
-			itemText: 'Home'
-			callback: [ self catalogCanvas pageName: #home ]).
-	self catalogCanvas catalogList do: [:eachItem |
-		navList addListItem: (
-			MCWListItemIcon
+	navList addListItem: (MCWListItemIcon itemText: 'Home' callback: [ self catalogCanvas pageName: #home ]).
+	self catalogCanvas catalogList do: [ :eachItem |
+		navList addListItem: (MCWListItemIcon
 				itemText: eachItem second
-				callback: [ self catalogCanvas pageName: eachItem first asSymbol ])].
-	^navList
+				callback: [ self catalogCanvas pageName: eachItem first asSymbol ]) ].
+	^ navList
 ]
 
 { #category : #accessing }

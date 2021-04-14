@@ -5,13 +5,13 @@ Class {
 		'fontSettings',
 		'colorTheme'
 	],
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #'instance creation' }
 MCWApplicationSettings class >> newDefault [
 
-	^self new
+	^ self new
 		fontSettings: MCWFontSettings new;
 		colorTheme: MCWColorTheme new;
 		yourself

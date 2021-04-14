@@ -144,7 +144,7 @@ MCWOneToManyComponent >> renderListAjaxOn: html [
 						] ] ]
 ]
 
-{ #category : #rendering }
+{ #category : #'rendering-buttons' }
 MCWOneToManyComponent >> renderSelectButtonOn: html [
 
 	"Place the add button elsewhere"

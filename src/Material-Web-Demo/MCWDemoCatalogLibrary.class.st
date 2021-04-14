@@ -7,7 +7,7 @@ Class {
 { #category : #uploaded }
 MCWDemoCatalogLibrary >> appCss [
 
-	^'
+	^ '
 body {
     margin: 0
 }
@@ -197,7 +197,7 @@ a.catalog-image-link {
 { #category : #uploaded }
 MCWDemoCatalogLibrary >> buttonCatalogCss [
 
-	^'
+	^ '
 .demo-button {
   margin: 8px 16px; }
 

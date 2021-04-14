@@ -1,13 +1,13 @@
 Class {
 	#name : #MCWListMenuItems,
 	#superclass : #MCWList,
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #hack }
 MCWListMenuItems >> iconName [
 
-	^nil
+	^ nil
 ]
 
 { #category : #rendering }
@@ -28,8 +28,7 @@ MCWListMenuItems >> renderContentOn: html [
 				class: 'mdc-menu-surface';
 				id: self id;
 				mdcAutoInit: 'MDCMenu';
-				with: [self renderMenuItemsOn: html]]
-	
+				with:  [ self renderMenuItemsOn: html ] ]
 ]
 
 { #category : #rendering }
@@ -40,6 +39,6 @@ MCWListMenuItems >> renderMenuItemsOn: html [
 		mdcRole: 'menu';
 		attributeAt: 'aria-hidden' put: 'true';
 		with: [
-			self listItems do: [:eachMenuItem | html render: eachMenuItem]].
+			self listItems do: [ :eachMenuItem | html render: eachMenuItem ] ].
 
 ]

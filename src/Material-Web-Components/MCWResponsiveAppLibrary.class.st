@@ -1,13 +1,13 @@
 Class {
 	#name : #MCWResponsiveAppLibrary,
 	#superclass : #WAFileLibrary,
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #uploaded }
 MCWResponsiveAppLibrary >> responsiveAppCss [
 
-	^'
+	^ '
 .mcw-layout-mobile .mdc-fab {
 }
 

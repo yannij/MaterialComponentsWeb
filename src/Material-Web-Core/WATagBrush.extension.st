@@ -7,7 +7,7 @@ WATagBrush class >> generateMdcMethod: aCssClass [
 	selectorName := self generateMdcMethodName: aCssClass.
 	Transcript crShow: selectorName; show: ' <<<< '; show: aCssClass.
 
-	code := selectorName, String cr, String cr, String tab, 'self class: ', aCssClass printString.
+	code := selectorName, (String with: Character cr), (String with: Character cr), (String with: Character tab), 'self class: ', aCssClass printString.
 
 	self compile: code classified: '*Material-Web-Core'
 ]
@@ -36,17 +36,14 @@ WATagBrush class >> generateMdcMethodName: aCssClass [
 		blockPart := blockPart copyFrom: 1 to: index ].
 
 	selectorName := ''.
-	blockPart notEmpty
-		ifTrue: [
-			selectorName := selectorName, (self generateMdcSelectorFragment: blockPart) ].
+	blockPart notEmpty ifTrue: [
+		selectorName := selectorName, (self generateMdcSelectorFragment: blockPart) ].
 
-	elementPart notEmpty
-		ifTrue: [
-			selectorName := selectorName, '__', (self generateMdcSelectorFragment: elementPart) ].
+	elementPart notEmpty ifTrue: [
+		selectorName := selectorName, '__', (self generateMdcSelectorFragment: elementPart) ].
 
-	modifierPart notEmpty
-		ifTrue: [
-			selectorName := selectorName, '_', (self generateMdcSelectorFragment: modifierPart) ].
+	modifierPart notEmpty ifTrue: [
+		selectorName := selectorName, '_', (self generateMdcSelectorFragment: modifierPart) ].
 
 	^ selectorName
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWShrineLogin,
 	#superclass : #MCWWebComponent,
-	#category : 'Material-Study-Shrine'
+	#category : #'Material-Study-Shrine'
 }
 
 { #category : #rendering }
@@ -16,7 +16,7 @@ MCWShrineLogin >> renderContentOn: html [
 				html div class: 'mdc-layout-grid__cell grid-padding-off-tablet'; mdcLayoutGrid__cell_span1.
 				html div class: 'mdc-layout-grid__cell'; with: [
 					self renderLogoOn: html.
-					self renderFormOn: html]]]]
+					self renderFormOn: html ] ] ] ]
 ]
 
 { #category : #rendering }
@@ -30,7 +30,7 @@ MCWShrineLogin >> renderFormOn: html [
 				name: 'username';
 				required.
 			html label mdcFloatingLabel; for: 'username-input'; with: 'Username'.
-			html div mdcLineRipple].
+			html div mdcLineRipple ].
 		html div mdcTextField; mdcTextField__input; mdcAutoInit: 'MDCTextField'; class: 'password'; with: [
 			html passwordInput
 				id: 'password-input';
@@ -39,15 +39,15 @@ MCWShrineLogin >> renderFormOn: html [
 				attributeAt: 'minlength' put: 8;
 				required.
 			html label mdcFloatingLabel; for: 'password-input'; with: 'Password'.
-			html div mdcLineRipple].
+			html div mdcLineRipple ].
 
 		html div class: 'button-container'; with: [
 			html button mdcButton; mdcAutoInit: 'MDCRipple'; class: 'cancel'; with: 'Cancel'.
 			html button mdcButton; mdcButton_raised; mdcAutoInit: 'MDCRipple'; class: 'next';
 				onClick: ((html jQuery ajax)
-					callback: [self session properties at: #authenticatedUser put: #foobar];
+					callback: [ self session properties at: #authenticatedUser put: #foobar ];
 					onComplete: html javascript refresh);
-				with: 'Next']]
+				with: 'Next' ] ]
 ]
 
 { #category : #rendering }

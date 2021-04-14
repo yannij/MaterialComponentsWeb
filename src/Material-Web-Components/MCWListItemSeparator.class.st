@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWListItemSeparator,
 	#superclass : #MCWListItemComponent,
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #rendering }
@@ -18,7 +18,7 @@ MCWListItemSeparator >> renderContentOn: html [
 { #category : #accessing }
 MCWListItemSeparator >> selected [
 
-	^false
+	^ false
 ]
 
 { #category : #accessing }

@@ -1,13 +1,13 @@
 Class {
 	#name : #MCWListBasic,
 	#superclass : #MCWList,
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #rendering }
 MCWListBasic >> listTagOn: html [
 
-	^html navigation
+	^ html navigation
 		mdcList;
 		mdcRole: 'list';
 		"class: self cssClass if: self cssClass notNil;"

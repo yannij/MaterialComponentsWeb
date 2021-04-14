@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWListItemSelectionControl,
 	#superclass : #MCWListItemComponent,
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #rendering }
@@ -27,5 +27,5 @@ MCWListItemSelectionControl >> renderContentOn: html [
                 </span>
                 <label for="leading-checkbox-blueberries">',
 self itemText, '</label>
-']
+' ]
 ]

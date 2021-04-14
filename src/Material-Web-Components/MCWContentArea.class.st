@@ -10,7 +10,7 @@ Class {
 { #category : #accessing }
 MCWContentArea >> canvasDivId [
 
-	^'dsCanvas'
+	^ 'dsCanvas'
 ]
 
 { #category : #accessing }
@@ -28,15 +28,14 @@ MCWContentArea >> renderCanvasDivOn: html [
 
 	html div
 		id: self canvasDivId;
-		with: [self renderCanvasOn: html]
+		with: [ self renderCanvasOn: html ]
 
 ]
 
 { #category : #rendering }
 MCWContentArea >> renderCanvasOn: html [
 
-	self component isNil
-		ifTrue: [^self].
+	self component ifNil: [ ^ self ].
 
 	html div mdcLayoutGrid;
 		style: '--mdc-layout-grid-margin-desktop: 16px';
@@ -44,7 +43,7 @@ MCWContentArea >> renderCanvasOn: html [
 		with: [
 			html div mdcLayoutGrid__inner; with: [
 				html div mdcLayoutGrid__cell_span: self component layoutCellSpan; with: [
-					html render: self component]]]
+					html render: self component ] ] ]
 
 ]
 

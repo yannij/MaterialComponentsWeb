@@ -30,7 +30,7 @@ MCWDrawer >> beDirectionToRightToLeft [
 MCWDrawer >> beDismissed [
 
 	self isDismissed: true.
-	self session presenter ifNotNil: [:value | value layout topAppBar topAppBarSpacersHide]
+	self session presenter ifNotNil: [ :value | value layout topAppBar topAppBarSpacersHide ]
 ]
 
 { #category : #actions }
@@ -101,12 +101,12 @@ MCWDrawer >> drawerType: anObject [
 MCWDrawer >> getMenuIcon [
 
 	self isPersistentDrawer
-		ifTrue: [^self menuIconPersistent].
+		ifTrue: [ ^ self menuIconPersistent ].
 
 	self isModalDrawer
-		ifTrue: [^self menuIconTemporary].
+		ifTrue: [ ^ self menuIconTemporary ].
 
-	^self menuIconPersistent
+	^ self menuIconPersistent
 
 ]
 
@@ -138,45 +138,45 @@ MCWDrawer >> isDismissed: anObject [
 MCWDrawer >> isDismissedToggle [
 
 	self isDismissed: self isDismissed not.
-	(self isDismissed and: [self isDismissibleDrawer])
-		ifTrue: [self session presenter layout topAppBar topAppBarSpacersHide]
-		ifFalse: [self session presenter layout topAppBar topAppBarSpacersShow].
+	(self isDismissed and: [ self isDismissibleDrawer ])
+		ifTrue: [ self session presenter layout topAppBar topAppBarSpacersHide ]
+		ifFalse: [ self session presenter layout topAppBar topAppBarSpacersShow ].
 	(self isModalDrawer or: self isPersistentDrawer)
-		ifTrue: [self session presenter layout topAppBar topAppBarSpacersHide]
+		ifTrue: [ self session presenter layout topAppBar topAppBarSpacersHide ]
 ]
 
 { #category : #testing }
 MCWDrawer >> isDismissibleDrawer [
 
-	^self drawerType = #dismissible
+	^ self drawerType = #dismissible
 ]
 
 { #category : #testing }
 MCWDrawer >> isDrawerOpen [
 
-	^(self isDismissibleDrawer or: [self isModalDrawer]) and: [ self isDismissed not ]
+	^ (self isDismissibleDrawer or: [ self isModalDrawer ]) and: [ self isDismissed not ]
 ]
 
 { #category : #testing }
 MCWDrawer >> isModalDrawer [
 
-	^self drawerType = #modal
+	^ self drawerType = #modal
 ]
 
 { #category : #testing }
 MCWDrawer >> isPersistentDrawer [
 
-	^self drawerType = #persistent
+	^ self drawerType = #persistent
 ]
 
 { #category : #accessing }
 MCWDrawer >> jsDrawerType [
 
-	self isModalDrawer ifTrue: [^'mdc.drawer.MDCTemporaryDrawer'].
-	self isPersistentDrawer ifTrue: [^'mdc.drawer.MDCPersistentDrawer'].
+	self isModalDrawer ifTrue: [ ^ 'mdc.drawer.MDCTemporaryDrawer' ].
+	self isPersistentDrawer ifTrue: [ ^ 'mdc.drawer.MDCPersistentDrawer' ].
 	"self isPermanentAboveToolbarDrawer ifTrue: [^'mdc.drawer.MDCPermanentDrawer'].
 	self isPermanentBelowToolbarDrawer ifTrue: [^'mdc.drawer.MDCPermanentDrawer']."
-	^''
+	^ ''
 
 ]
 
@@ -213,7 +213,7 @@ MCWDrawer >> menuIconTemporary: anObject [
 { #category : #actions }
 MCWDrawer >> menuItemCallback [
 
-	self isModalDrawer ifTrue: [self isDismissed: true]
+	self isModalDrawer ifTrue: [ self isDismissed: true ]
 ]
 
 { #category : #rendering }
@@ -221,19 +221,18 @@ MCWDrawer >> renderContentOn: html [
 	| drawerTag |
 
 	drawerTag := html aside mdcDrawer.
-	self isModalDrawer ifTrue: [drawerTag mdcDrawer_modal].
-	self isDismissibleDrawer ifTrue: [drawerTag mdcDrawer_dismissible].
+	self isModalDrawer ifTrue: [ drawerTag mdcDrawer_modal ].
+	self isDismissibleDrawer ifTrue: [ drawerTag mdcDrawer_dismissible ].
 
 	drawerTag
 		id: self id;
 		mdcTopAppBar_fixedAdjust;
-		class: (self isDrawerOpen ifTrue: ['mdc-drawer--open'] ifFalse: ['']);
+		class: (self isDrawerOpen ifTrue: [ 'mdc-drawer--open' ] ifFalse: [ '' ]);
 		with: [
 			self renderDrawerHeaderOn: html.
-			self renderDrawerContentOn: html].
+			self renderDrawerContentOn: html ].
 
-	self isModalDrawer ifTrue: [html div class: 'mdc-drawer-scrim'].
-
+	self isModalDrawer ifTrue: [ html div class: 'mdc-drawer-scrim' ]
 ]
 
 { #category : #rendering }
@@ -270,12 +269,11 @@ if (el) {
 { #category : #rendering }
 MCWDrawer >> renderDrawerHeaderOn: html [
 
-	(self drawerTitle notEmpty or: [self drawerSubtitle notEmpty]) ifTrue: [
+	(self drawerTitle notEmpty or: [ self drawerSubtitle notEmpty ]) ifTrue: [
 		html div mdcDrawer__header; with: [
 			self drawerTitle notEmpty ifTrue: [
-				html div mdcDrawer__title; with: self drawerTitle].
+				html div mdcDrawer__title; with: self drawerTitle ].
 			self drawerSubtitle notEmpty ifTrue: [
-				html div mdcDrawer__subtitle; with: self drawerSubtitle]]
-		]
+				html div mdcDrawer__subtitle; with: self drawerSubtitle ] ] ]
 
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWListItemSlider,
 	#superclass : #MCWListItemComponent,
-	#category : 'Material-Web-Components'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #rendering }
@@ -23,5 +23,5 @@ MCWListItemSlider >> renderContentOn: html [
                 </svg>
                 <div class="mdc-slider__focus-ring"></div>
               </div>
-</div>']
+</div>' ]
 ]
