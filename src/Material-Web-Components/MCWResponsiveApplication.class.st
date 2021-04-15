@@ -280,6 +280,7 @@ MCWResponsiveApplication >> initialize [
 	self materialVersionLocalServer.
 	"self materialVersion: '10.0.0'."
 	self settings: self buildApplicationSettings.
+	"self loginComponent: MCWLogin new."
 	self layout: self buildLayout.
 	self beLayoutStructureDesktop.
 

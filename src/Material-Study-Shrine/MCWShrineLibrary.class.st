@@ -47,37 +47,11 @@ MCWShrineLibrary >> bundleCss [
 
 /* Login page styles */
 
-.header {
-  text-align: center;
-}
-
-.shrine-login {
-  width: 100%;
-}
-
 .shrine-logo {
   width: 150px;
   height: 150px;
   padding-top: 80px;
   fill: currentColor;
-}
-
-.username,
-.password {
-  display: block;
-  width: 300px;
-  margin: 20px auto;
-}
-
-.button-container {
-  display: flex;
-  justify-content: flex-end;
-  width: 300px;
-  margin: auto;
-}
-
-.button-container button {
-  margin: 3px;
 }
 
 /* Home page styles */

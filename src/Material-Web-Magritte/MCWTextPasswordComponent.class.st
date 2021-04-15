@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWTextPasswordComponent,
 	#superclass : #MATextPasswordComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #rendering }
@@ -25,8 +25,11 @@ MCWTextPasswordComponent >> renderEditorOn: html [
 
 { #category : #rendering }
 MCWTextPasswordComponent >> renderFieldOn: html [
+	| element |
 
-	html label
+	element := html label.
+	self magritteDescription currentCssClasses do: [ :eachCssClass | element class: eachCssClass ].
+	element
 		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
 		with: [
 			html span mdcTextField__ripple.

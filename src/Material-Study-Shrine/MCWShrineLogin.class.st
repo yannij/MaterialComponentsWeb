@@ -1,59 +1,14 @@
 Class {
 	#name : #MCWShrineLogin,
-	#superclass : #MCWWebComponent,
+	#superclass : #MCWLogin,
 	#category : #'Material-Study-Shrine'
 }
 
 { #category : #rendering }
-MCWShrineLogin >> renderContentOn: html [ 
+MCWShrineLogin >> renderLoginHeaderOn: html [
 
-	html div class: 'shrine-login'; with: [
-		html div class: 'mdc-layout-grid'; with: [
-			html div class: 'mdc-layout-grid__inner'; with: [
-				html div class: 'mdc-layout-grid__cell grid-padding-off-mobile'; mdcLayoutGrid__cell_span1.
-				html div class: 'mdc-layout-grid__cell grid-padding-off-mobile'; mdcLayoutGrid__cell_span1.
-				html div class: 'mdc-layout-grid__cell grid-padding-off-tablet'; mdcLayoutGrid__cell_span1.
-				html div class: 'mdc-layout-grid__cell grid-padding-off-tablet'; mdcLayoutGrid__cell_span1.
-				html div class: 'mdc-layout-grid__cell'; with: [
-					self renderLogoOn: html.
-					self renderFormOn: html ] ] ] ]
-]
-
-{ #category : #rendering }
-MCWShrineLogin >> renderFormOn: html [ 
-
-	html form with: [
-		html div mdcTextField; mdcTextField__input; mdcAutoInit: 'MDCTextField'; class: 'username'; with: [
-			html textInput
-				id: 'username-input';
-				mdcTextField__input;
-				name: 'username';
-				required.
-			html label mdcFloatingLabel; for: 'username-input'; with: 'Username'.
-			html div mdcLineRipple ].
-		html div mdcTextField; mdcTextField__input; mdcAutoInit: 'MDCTextField'; class: 'password'; with: [
-			html passwordInput
-				id: 'password-input';
-				mdcTextField__input;
-				name: 'password';
-				attributeAt: 'minlength' put: 8;
-				required.
-			html label mdcFloatingLabel; for: 'password-input'; with: 'Password'.
-			html div mdcLineRipple ].
-
-		html div class: 'button-container'; with: [
-			html button mdcButton; mdcAutoInit: 'MDCRipple'; class: 'cancel'; with: 'Cancel'.
-			html button mdcButton; mdcButton_raised; mdcAutoInit: 'MDCRipple'; class: 'next';
-				onClick: ((html jQuery ajax)
-					callback: [ self session properties at: #authenticatedUser put: #foobar ];
-					onComplete: html javascript refresh);
-				with: 'Next' ] ]
-]
-
-{ #category : #rendering }
-MCWShrineLogin >> renderLogoOn: html [
-
-	html html: '<section class="header">
+	html section class: 'mcw-login-header'; with: [
+		html html: '
     <svg class="shrine-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" fill="#000000">
       <g id="XMLID_2_">
         <g id="XMLID_4_">
@@ -63,6 +18,5 @@ MCWShrineLogin >> renderLogoOn: html [
       </g>
     </svg>
     <h1>SHRINE</h1>
-  </section>
-'
+' ]
 ]

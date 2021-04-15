@@ -28,8 +28,8 @@ MCWTextInputComponent >> renderFieldOn: html [
 	| element |
 
 	element := html label.
-	element
-		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
+	self magritteDescription currentCssClasses do: [ :eachCssClass | element class: eachCssClass ].
+	element mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
 		with: [
 			html span mdcTextField__ripple.
 			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';

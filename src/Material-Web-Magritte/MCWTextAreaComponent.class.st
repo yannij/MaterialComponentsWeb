@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWTextAreaComponent,
 	#superclass : #MATextAreaComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #rendering }
@@ -25,8 +25,11 @@ MCWTextAreaComponent >> renderEditorOn: html [
 
 { #category : #rendering }
 MCWTextAreaComponent >> renderFieldOn: html [
+	| element |
 
-	html label
+	element := html label.
+	self magritteDescription currentCssClasses do: [ :eachCssClass | element class: eachCssClass ].
+	element
 		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
 		mcwFormField; mdcTextField_textarea;
 		with: [
