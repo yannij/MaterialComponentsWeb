@@ -36,7 +36,7 @@ MCWTextPasswordComponent >> renderFieldOn: html [
 			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
 				id: self labelId;
 				with: self magritteDescription label.
-			html textInput mdcTextField__input;
+			html passwordInput mdcTextField__input;
 				ariaDescribedBy: self labelId;
 				on: self inputAspect of: self.
 			html span mdcLineRipple ]

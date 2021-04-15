@@ -1,6 +1,6 @@
 Extension { #name : #WAComponent }
 
-{ #category : #'*Material-Web-Components' }
+{ #category : #'*Material-Web-Magritte' }
 WAComponent >> layoutCellSpan [
 
 	^ 12

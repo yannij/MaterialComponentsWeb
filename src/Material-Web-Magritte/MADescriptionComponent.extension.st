@@ -1,6 +1,6 @@
 Extension { #name : #MADescriptionComponent }
 
-{ #category : #'*Material-Web-Components' }
+{ #category : #'*Material-Web-Magritte' }
 MADescriptionComponent >> mcwPostBuild [
 	"Subclasses may specialize"
 ]

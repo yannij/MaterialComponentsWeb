@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWModel,
 	#superclass : #Object,
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #accessing }

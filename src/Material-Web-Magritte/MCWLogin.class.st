@@ -4,10 +4,34 @@ Class {
 	#instVars : [
 		'loginId',
 		'password',
-		'loginTitle'
+		'loginTitle',
+		'authenticationBlock'
 	],
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Magritte'
 }
+
+{ #category : #'utility - password' }
+MCWLogin class >> passwordHashFor: aPassword [
+
+	^ (Base64MimeConverter mimeEncode: (ReadStream on: (SHA1 hashMessage: aPassword))) contents
+]
+
+{ #category : #actions }
+MCWLogin >> authenticate [
+
+	self authenticationBlock
+		ifNotNil: [ :theBlock | theBlock value: self loginId value: self password ]
+]
+
+{ #category : #accessing }
+MCWLogin >> authenticationBlock [
+	^ authenticationBlock
+]
+
+{ #category : #accessing }
+MCWLogin >> authenticationBlock: anObject [
+	authenticationBlock := anObject
+]
 
 { #category : #'accessing - magritte' }
 MCWLogin >> descriptionLoginId [
@@ -40,6 +64,8 @@ MCWLogin >> initialize [
 
 	super initialize.
 
+	self loginId: String new.
+	self password: String new.
 	self loginTitle: self loginTitleDefault
 ]
 
@@ -101,7 +127,7 @@ MCWLogin >> renderLoginFormOn: html [
 		html div class: 'mcw-login-button'; with: [
 			html button mdcButton; mdcButton_raised; mdcAutoInit: 'MDCRipple'; class: 'next';
 				onClick: ((html jQuery ajax)
-					callback: [ self session properties at: #authenticatedUser put: #foobar ];
+					callback: [ self authenticate ];
 					onComplete: html javascript refresh);
 				with: 'Login' ] ]
 ]

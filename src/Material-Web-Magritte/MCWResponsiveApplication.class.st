@@ -9,7 +9,7 @@ Class {
 		'settings',
 		'loginComponent'
 	],
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #initialization }
@@ -294,7 +294,9 @@ MCWResponsiveApplication >> isLoggedIn [
 
 	self session ifNil: [ ^ false ].
 
-	^ self session properties includesKey: #authenticatedUser
+	(self session properties at: #authenticatedUser ifAbsent: [ nil ])
+		ifNil: [ ^ false ]
+		ifNotNil: [ :value | ^ value notNil ]
 ]
 
 { #category : #accessing }
@@ -409,6 +411,18 @@ MCWResponsiveApplication >> rightNavDrawerId [
 
 	^ 'rightNavDrawer'
 
+]
+
+{ #category : #'accessing - model' }
+MCWResponsiveApplication >> sessionUserGet [
+
+	^ self session properties at: #authenticatedUser ifAbsent: [ nil ]
+]
+
+{ #category : #'accessing - model' }
+MCWResponsiveApplication >> sessionUserSet: aUser [
+
+	self session properties at: #authenticatedUser put: aUser
 ]
 
 { #category : #accessing }

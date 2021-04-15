@@ -5,7 +5,7 @@ Class {
 		'fontSettings',
 		'colorTheme'
 	],
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #'instance creation' }

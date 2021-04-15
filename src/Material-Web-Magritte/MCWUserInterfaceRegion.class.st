@@ -5,7 +5,7 @@ Class {
 		'containingLayout',
 		'displayType'
 	],
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #accessing }
