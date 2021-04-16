@@ -21,7 +21,7 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 				package: 'Material-Web-Demo' with: [ spec requires: #('Material-Web-Magritte') ].
 
 			spec
-				group: 'default' with: #('Material-Web-Magritte' 'Demo' 'Shrine');
+				group: 'default' with: #('Material-Web-Magritte' 'Material-Web-Demo' 'Material-Study-Shrine');
 				group: 'MagritteComponents' with: #('Material-Web-Magritte');
 				group: 'Components' with: #('Material-Web-Components');
 				group: 'Core' with: #('Material-Web-Core') ]
