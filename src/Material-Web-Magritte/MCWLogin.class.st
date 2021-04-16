@@ -5,7 +5,9 @@ Class {
 		'loginId',
 		'password',
 		'loginTitle',
-		'authenticationBlock'
+		'authenticationBlock',
+		'loginIdComponent',
+		'passwordComponent'
 	],
 	#category : #'Material-Web-Magritte'
 }
@@ -17,10 +19,10 @@ MCWLogin class >> passwordHashFor: aPassword [
 ]
 
 { #category : #actions }
-MCWLogin >> authenticate [
+MCWLogin >> authenticate: aPassword [
 
 	self authenticationBlock
-		ifNotNil: [ :theBlock | theBlock value: self loginId value: self password ]
+		ifNotNil: [ :theBlock | theBlock value: self loginId value: aPassword ]
 ]
 
 { #category : #accessing }
@@ -66,7 +68,18 @@ MCWLogin >> initialize [
 
 	self loginId: String new.
 	self password: String new.
-	self loginTitle: self loginTitleDefault
+	self loginTitle: self loginTitleDefault.
+
+	self loginIdComponent:
+		(MCWTextInputComponent memento: (MAStraightMemento model: self description: self descriptionLoginId)).
+	self passwordComponent:
+		(MCWTextPasswordComponent memento: (MAStraightMemento model: self description: self descriptionPassword)).
+]
+
+{ #category : #actions }
+MCWLogin >> loggedOut [
+
+	self reinitialize
 ]
 
 { #category : #accessing }
@@ -77,6 +90,16 @@ MCWLogin >> loginId [
 { #category : #accessing }
 MCWLogin >> loginId: anObject [
 	loginId := anObject
+]
+
+{ #category : #accessing }
+MCWLogin >> loginIdComponent [
+	^ loginIdComponent
+]
+
+{ #category : #accessing }
+MCWLogin >> loginIdComponent: anObject [
+	loginIdComponent := anObject
 ]
 
 { #category : #accessing }
@@ -105,6 +128,28 @@ MCWLogin >> password: anObject [
 	password := anObject
 ]
 
+{ #category : #accessing }
+MCWLogin >> passwordComponent [
+	^ passwordComponent
+]
+
+{ #category : #accessing }
+MCWLogin >> passwordComponent: anObject [
+	passwordComponent := anObject
+]
+
+{ #category : #initialization }
+MCWLogin >> reinitialize [
+
+	self loginId: String new.
+	self password: String new.
+
+	self loginIdComponent:
+		(MCWTextInputComponent memento: (MAStraightMemento model: self description: self descriptionLoginId)).
+	self passwordComponent:
+		(MCWTextPasswordComponent memento: (MAStraightMemento model: self description: self descriptionPassword)).
+]
+
 { #category : #rendering }
 MCWLogin >> renderContentOn: html [ 
 
@@ -113,22 +158,19 @@ MCWLogin >> renderContentOn: html [
 
 { #category : #rendering }
 MCWLogin >> renderLoginFormOn: html [
-	| loginIdComponent passwordComponent |
-
-	loginIdComponent := MCWTextInputComponent
-		memento: (MAStraightMemento model: self description: self descriptionLoginId).
-	passwordComponent := MCWTextPasswordComponent
-		memento: (MAStraightMemento model: self description: self descriptionPassword).
 
 	html form with: [
 		html render: loginIdComponent.
 		html render: passwordComponent.
 
 		html div class: 'mcw-login-button'; with: [
-			html button mdcButton; mdcButton_raised; mdcAutoInit: 'MDCRipple'; class: 'next';
-				onClick: ((html jQuery ajax)
-					callback: [ self authenticate ];
-					onComplete: html javascript refresh);
+			html submitButton mdcButton; mdcButton_raised; mdcAutoInit: 'MDCRipple';
+				callback: [ self authenticate: self password ];
+				"onClick: ((html jQuery ajax)
+					callback: [ :value | self authenticate: value ] value: ((html jQuery id: passwordComponent htmlIdPassword) value);
+					script: [ :s | s alert: 'The submitted value is: ''', self password, '''.' ];
+					onComplete: html javascript refresh;
+					yourself);"
 				with: 'Login' ] ]
 ]
 

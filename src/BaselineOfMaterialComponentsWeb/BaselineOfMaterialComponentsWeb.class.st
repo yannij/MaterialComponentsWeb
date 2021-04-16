@@ -15,18 +15,16 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 
 			spec
 				package: 'Material-Web-Core' with: [ spec requires: #('Seaside3') ];
-				package: 'Material-Web-CoreExtra' with: [ spec requires: #('Material-Web-Core') ];
-				package: 'Material-Web-Magritte' with: [ spec requires: #('Material-Web-CoreExtra' 'Magritte') ];
-				package: 'Material-Web-Components' with: [ spec requires: #('Material-Web-Magritte') ];
-				package: 'Material-Study-Shrine' with: [ spec requires: #('Material-Web-Components') ];
-				package: 'Material-Web-Demo' with: [ spec requires: #('Material-Web-Components') ].
+				package: 'Material-Web-Components' with: [ spec requires: #('Material-Web-Core') ];
+				package: 'Material-Web-Magritte' with: [ spec requires: #('Magritte' 'Material-Web-Components') ];
+				package: 'Material-Study-Shrine' with: [ spec requires: #('Material-Web-Magritte') ];
+				package: 'Material-Web-Demo' with: [ spec requires: #('Material-Web-Magritte') ].
 
 			spec
-				group: 'default' with: #('Demo' 'Shrine');
-				group: 'Core' with: #('Material-Web-CoreExtra');
+				group: 'default' with: #('Material-Web-Magritte' 'Demo' 'Shrine');
+				group: 'MagritteComponents' with: #('Material-Web-Magritte');
 				group: 'Components' with: #('Material-Web-Components');
-				group: 'Shrine' with: #('Material-Study-Shrine');
-				group: 'Demo' with: #('Material-Web-Demo') ]
+				group: 'Core' with: #('Material-Web-Core') ]
 ]
 
 { #category : #dependencies }

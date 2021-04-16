@@ -131,6 +131,7 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 		addListItem: (MCWListItemIcon new iconName: 'computer'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Colors'; callback: [ self chooseColors ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
+		addListItem: (MCWListItemIcon new iconName: 'logout'; itemText: 'Logout'; callback: [ self userLogout ]; yourself);
 		yourself.
 
 	"self layout sideSheet notNil
@@ -217,42 +218,6 @@ MCWResponsiveApplication >> colorThemeCss [
 	^ aStream contents
 ]
 
-{ #category : #actions }
-MCWResponsiveApplication >> colorThemeExample [
-	| libraryHandler library |
-
-	#(
-"('primary' '#3f51b5')"
-('primary' 'green')
-('primary-light' '#757de8')
-('primary-dark' '#002984')
-('secondary' '#e91e63')
-('secondary-light' '#ff6090')
-('secondary-dark' '#b0003a')
-('background' '#fff')
-	) do: [ :each |
-		self colorTheme at: each first put: each second ].
-
-	libraryHandler := (WADispatcher default handlerAt: 'files') libraryAt: 'MCWCustomizableLibrary' ifAbsent: [ ].
-	libraryHandler notNil
-		ifTrue: [
-			library := libraryHandler default.
-			library colorThemeCss: self colorThemeCss ].
-]
-
-{ #category : #actions }
-MCWResponsiveApplication >> colorThemeExampleClear [
-	| libraryHandler library |
-
-	self colorTheme removeAll.
-
-	libraryHandler := (WADispatcher default handlerAt: 'files') libraryAt: 'MCWCustomizableLibrary' ifAbsent: [ ].
-	libraryHandler notNil
-		ifTrue: [
-			library := libraryHandler default.
-			library colorThemeCss: self colorThemeCss ].
-]
-
 { #category : #rendering }
 MCWResponsiveApplication >> currentFont [
 
@@ -294,9 +259,7 @@ MCWResponsiveApplication >> isLoggedIn [
 
 	self session ifNil: [ ^ false ].
 
-	(self session properties at: #authenticatedUser ifAbsent: [ nil ])
-		ifNil: [ ^ false ]
-		ifNotNil: [ :value | ^ value notNil ]
+	^ self sessionUserGet notNil
 ]
 
 { #category : #accessing }
@@ -512,5 +475,14 @@ MCWResponsiveApplication >> updateRootFonts: anHtmlRoot [
 
 	self settings fontSettings fontChoices do: [ :eachChoice |
 		anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', eachChoice googleFontsFamily) ].
+
+]
+
+{ #category : #actions }
+MCWResponsiveApplication >> userLogout [
+
+	self sessionUserGet ifNotNil: [ :sessionUser |
+		self sessionUserSet: nil.
+		self loginComponent ifNotNil: [ :component | component loggedOut ] ]
 
 ]

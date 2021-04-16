@@ -2,20 +2,19 @@
 A realization of the Material Design  layout structures described at: https://material.io/guidelines/layout/structure.html
 "
 Class {
-	#name : #MCWBasicLayoutApp,
+	#name : #MCWBasicResponsiveApp,
 	#superclass : #MCWResponsiveApplication,
 	#category : #'Material-Web-Demo'
 }
 
 { #category : #initialization }
-MCWBasicLayoutApp class >> applicationPath [
+MCWBasicResponsiveApp class >> applicationPath [
 
-	^ 'material/layout'
-
+	^ 'material/basic-layout'
 ]
 
 { #category : #'class initialization' }
-MCWBasicLayoutApp class >> initialize [
+MCWBasicResponsiveApp class >> initialize [
 	"Register path with Seaside.
 	WAAdmin unregister: self applicationPath.
 	"
@@ -24,30 +23,14 @@ MCWBasicLayoutApp class >> initialize [
 
 ]
 
-{ #category : #'instance creation' }
-MCWBasicLayoutApp class >> registerMaterialWebDeployment: aName [
-
-	^ (super registerMaterialWebDeployment: aName)
-		"addLibrary: MCWBasicLayoutLibrary;"
-		yourself
-]
-
-{ #category : #initialization }
-MCWBasicLayoutApp class >> registerToDeployment: aName [
-
-	^ (super registerToDeployment: aName)
-		"addLibrary: MCWBasicLayoutLibrary;"
-		yourself
-]
-
 { #category : #accessing }
-MCWBasicLayoutApp >> applicationTitle [
+MCWBasicResponsiveApp >> applicationTitle [
 
 	^ 'Layout Example'
 ]
 
 { #category : #initialization }
-MCWBasicLayoutApp >> buildSideNavList [
+MCWBasicResponsiveApp >> buildSideNavList [
 
 	^ MCWListGroup new
 		addGroupedList: (MCWListBasic new
@@ -71,13 +54,13 @@ MCWBasicLayoutApp >> buildSideNavList [
 ]
 
 { #category : #initialization }
-MCWBasicLayoutApp >> buildSideSheet [
+MCWBasicResponsiveApp >> buildSideSheet [
 
 	^ MCWSideSheet new
 ]
 
 { #category : #initialization }
-MCWBasicLayoutApp >> buildSideSheetList [
+MCWBasicResponsiveApp >> buildSideSheetList [
 
 	^ MCWListGroup new
 		addGroupedList: (MCWListBasic new
@@ -103,13 +86,24 @@ MCWBasicLayoutApp >> buildSideSheetList [
 ]
 
 { #category : #accessing }
-MCWBasicLayoutApp >> drawerSubtitle [
+MCWBasicResponsiveApp >> drawerSubtitle [
 
 	^ 'Sub-example'
 ]
 
 { #category : #accessing }
-MCWBasicLayoutApp >> drawerTitle [
+MCWBasicResponsiveApp >> drawerTitle [
 
 	^ 'Example'
+]
+
+{ #category : #updating }
+MCWBasicResponsiveApp >> updateRoot: anHtmlRoot [
+
+	super updateRoot: anHtmlRoot.
+
+	anHtmlRoot stylesheet url: (MCWBasicResponsiveLibrary urlOf: #appCss).
+
+	anHtmlRoot bodyAttributes addClass: 'mdc-typography'.
+
 ]

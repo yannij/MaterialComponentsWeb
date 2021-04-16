@@ -5,6 +5,12 @@ Class {
 }
 
 { #category : #rendering }
+MCWTextPasswordComponent >> htmlIdPassword [
+
+	^ self ajaxId, '-password'
+]
+
+{ #category : #rendering }
 MCWTextPasswordComponent >> inputAspect [
 
 	^ #string
@@ -37,6 +43,7 @@ MCWTextPasswordComponent >> renderFieldOn: html [
 				id: self labelId;
 				with: self magritteDescription label.
 			html passwordInput mdcTextField__input;
+				id: self htmlIdPassword;
 				ariaDescribedBy: self labelId;
 				on: self inputAspect of: self.
 			html span mdcLineRipple ]
