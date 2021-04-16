@@ -47,10 +47,20 @@ MCWShrineLibrary >> bundleCss [
 
 /* Login page styles */
 
+@media (max-height: 840px) {
+  .shrine-logo-spacer {
+    display: none;
+  }
+}
+
+.shrine-logo-spacer {
+  padding-top: 80px;
+}
+
 .shrine-logo {
   width: 150px;
   height: 150px;
-  padding-top: 80px;
+  padding-top: 0px;
   fill: currentColor;
 }
 

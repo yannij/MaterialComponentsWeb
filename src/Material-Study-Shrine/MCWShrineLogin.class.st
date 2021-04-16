@@ -8,6 +8,7 @@ Class {
 MCWShrineLogin >> renderLoginHeaderOn: html [
 
 	html section class: 'mcw-login-header'; with: [
+		html div class: 'shrine-logo-spacer'.
 		html html: '
     <svg class="shrine-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" fill="#000000">
       <g id="XMLID_2_">

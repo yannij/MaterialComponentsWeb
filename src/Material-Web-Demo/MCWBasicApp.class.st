@@ -16,7 +16,7 @@ MCWBasicApp class >> initialize [
 	WAAdmin unregister: self applicationPath.
 	"
 
-	^ self registerMaterialWebDevelopment: self applicationPath
+	^ self registerMaterialWebDeployment: self applicationPath
 
 ]
 

@@ -16,8 +16,8 @@ MCWApplication class >> canBeRoot [
 MCWApplication class >> registerMaterialWebDeployment: aName [
 	| app |
 
-	WAAdmin applicationDefaults
-		removeParent: WADevelopmentConfiguration instance.
+	self environment at: #WADevelopmentConfiguration ifPresent: [ :class |
+		WAAdmin applicationDefaults removeParent: WADevelopmentConfiguration instance ].
 
 	app := WAAdmin register: self asApplicationAt: aName.
 	app
@@ -31,8 +31,8 @@ MCWApplication class >> registerMaterialWebDeployment: aName [
 MCWApplication class >> registerMaterialWebDevelopment: aName [
 	| app |
 
-	WAAdmin applicationDefaults
-		addParent: WADevelopmentConfiguration instance.
+	self environment at: #WADevelopmentConfiguration ifPresent: [ :class |
+		WAAdmin applicationDefaults addParent: WADevelopmentConfiguration instance ].
 
 	app := WAAdmin register: self asApplicationAt: aName.
 	app
