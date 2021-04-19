@@ -118,12 +118,6 @@ MCWWebComponent >> mcwStyle: anObject [
 ]
 
 { #category : #accessing }
-MCWWebComponent >> rootComponent [
-
-	^ self session presenter
-]
-
-{ #category : #accessing }
 MCWWebComponent >> title [
 	^ title
 ]

@@ -41,7 +41,7 @@ MCWExternalEditorComponent >> renderOneItemListOn: html [
 					html listItem
 						mdcListItem;
 						onClick: ((html jQuery ajax)
-							callback: [ self session presenter setCanvasContent2: self value ];
+							callback: [ self mcwApplicationGet setCanvasContent2: self value ];
 							onComplete: html javascript refresh);
 						with: [
 							html span mdcListItem__text; with: [

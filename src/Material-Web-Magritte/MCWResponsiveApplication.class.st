@@ -97,6 +97,13 @@ MCWResponsiveApplication >> buildLayout [
 ]
 
 { #category : #initialization }
+MCWResponsiveApplication >> buildLoginComponent [
+
+	^ nil
+
+]
+
+{ #category : #initialization }
 MCWResponsiveApplication >> buildMainFab [
 
 	^ MCWFloatingActionButton new
@@ -131,7 +138,7 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 		addListItem: (MCWListItemIcon new iconName: 'computer'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Colors'; callback: [ self chooseColors ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'logout'; itemText: 'Logout'; callback: [ self userLogout ]; yourself);
+		addListItem: (MCWListItemIcon new iconName: 'logout'; itemText: 'Logout'; callback: [ self logout ]; yourself);
 		yourself.
 
 	"self layout sideSheet notNil
@@ -244,22 +251,17 @@ MCWResponsiveApplication >> initialize [
 	"self materialVersion100."
 	self materialVersionLocalServer.
 	"self materialVersion: '10.0.0'."
+
 	self settings: self buildApplicationSettings.
-	"self loginComponent: MCWLogin new."
 	self layout: self buildLayout.
 	self beLayoutStructureDesktop.
+
+	"No login required if loginComponent is nil"
+	"self loginComponent: MCWLogin new."
 
 	"Subclasses may invoke #applicationPostInitialize: if necessary"
 	"self applicationPostInitialize: self"
 
-]
-
-{ #category : #testing }
-MCWResponsiveApplication >> isLoggedIn [
-
-	self session ifNil: [ ^ false ].
-
-	^ self sessionUserGet notNil
 ]
 
 { #category : #accessing }
@@ -280,6 +282,17 @@ MCWResponsiveApplication >> loginComponent [
 { #category : #accessing }
 MCWResponsiveApplication >> loginComponent: anObject [
 	loginComponent := anObject
+]
+
+{ #category : #actions }
+MCWResponsiveApplication >> logout [
+
+	self loginComponent
+		ifNotNil: [ :component |
+			component loggedOut ]
+		ifNil: [
+			self session ifNotNil: [ :value | value unregister ].
+			self redirect ]
 ]
 
 { #category : #initialization }
@@ -321,12 +334,14 @@ element.mdcDrawer.open = !element.mdcDrawer.open'
 MCWResponsiveApplication >> renderContentOn: html [
 
 	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'mdc.autoInit()'); yourself).
+	html document addLoadScript: (JSStream new nextPutAll: 'window.addEventListener("resize", function(){alert("hhh")})').
+	html document addLoadScript: (JSStream new nextPutAll: 'document.querySelector("body").onresize=function(){alert("ggg")}').
 
 	self renderSetColorThemeOn: html.
 
 	self renderSetGoogleFont: self currentFont on: html.
 
-	(self isLoggedIn or: [ self loginComponent isNil ])
+	(self loginComponent isNil or: [ self loginComponent isLoggedIn ])
 		ifTrue: [ self renderLayoutOn: html ]
 		ifFalse: [ self renderLoginOn: html ].
 
@@ -374,18 +389,6 @@ MCWResponsiveApplication >> rightNavDrawerId [
 
 	^ 'rightNavDrawer'
 
-]
-
-{ #category : #'accessing - model' }
-MCWResponsiveApplication >> sessionUserGet [
-
-	^ self session properties at: #authenticatedUser ifAbsent: [ nil ]
-]
-
-{ #category : #'accessing - model' }
-MCWResponsiveApplication >> sessionUserSet: aUser [
-
-	self session properties at: #authenticatedUser put: aUser
 ]
 
 { #category : #accessing }
@@ -475,14 +478,5 @@ MCWResponsiveApplication >> updateRootFonts: anHtmlRoot [
 
 	self settings fontSettings fontChoices do: [ :eachChoice |
 		anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', eachChoice googleFontsFamily) ].
-
-]
-
-{ #category : #actions }
-MCWResponsiveApplication >> userLogout [
-
-	self sessionUserGet ifNotNil: [ :sessionUser |
-		self sessionUserSet: nil.
-		self loginComponent ifNotNil: [ :component | component loggedOut ] ]
 
 ]

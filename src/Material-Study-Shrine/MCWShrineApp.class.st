@@ -105,7 +105,7 @@ MCWShrineApp >> initialize [
 
 	self layout contentArea component: MCWShrineCanvas new.
 	self loginComponent: (MCWShrineLogin new
-			authenticationBlock: [ :loginId :password | self sessionUserSet: #guest ];
+			authenticationBlock: [ :loginId :password | #guest ];
 			yourself).
 
 	self settings setFont: (MCWGoogleFont fontNamed: 'Rubik').

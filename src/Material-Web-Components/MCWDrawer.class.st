@@ -30,7 +30,7 @@ MCWDrawer >> beDirectionToRightToLeft [
 MCWDrawer >> beDismissed [
 
 	self isDismissed: true.
-	self session presenter ifNotNil: [ :value | value layout topAppBar topAppBarSpacersHide ]
+	self mcwApplicationGet ifNotNil: [ :value | value layout topAppBar topAppBarSpacersHide ]
 ]
 
 { #category : #actions }
@@ -139,10 +139,10 @@ MCWDrawer >> isDismissedToggle [
 
 	self isDismissed: self isDismissed not.
 	(self isDismissed and: [ self isDismissibleDrawer ])
-		ifTrue: [ self session presenter layout topAppBar topAppBarSpacersHide ]
-		ifFalse: [ self session presenter layout topAppBar topAppBarSpacersShow ].
+		ifTrue: [ self mcwApplicationGet layout topAppBar topAppBarSpacersHide ]
+		ifFalse: [ self mcwApplicationGet layout topAppBar topAppBarSpacersShow ].
 	(self isModalDrawer or: self isPersistentDrawer)
-		ifTrue: [ self session presenter layout topAppBar topAppBarSpacersHide ]
+		ifTrue: [ self mcwApplicationGet layout topAppBar topAppBarSpacersHide ]
 ]
 
 { #category : #testing }

@@ -10,15 +10,3 @@ MCWComponent >> applicationPostInitialize: anApplication [
 	"The application>>initialize method must invoke #applicationInitialize:,
 	becuase #initialize has to invoke 'super initalize', typically."
 ]
-
-{ #category : #acccessing }
-MCWComponent >> applicationRootGet [
-
-	^ self session properties at: #materialSeaside ifAbsent: [ nil ]
-]
-
-{ #category : #acccessing }
-MCWComponent >> applicationRootSet: anMCWApplication [
-
-	self session properties at: #materialSeaside put: anMCWApplication
-]
