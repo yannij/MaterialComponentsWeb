@@ -42,6 +42,42 @@ MCWApplication class >> registerMaterialWebDevelopment: aName [
 	^ app
 ]
 
+{ #category : #logging }
+MCWApplication >> logFormat: aFormatString with: aValue [
+
+	self logString: (aFormatString format: (Array with: aValue))
+]
+
+{ #category : #logging }
+MCWApplication >> logFormat: aFormatString with: aValue1 with: aValue2 [
+
+	self logString: (aFormatString format: (Array with: aValue1 with: aValue2))
+]
+
+{ #category : #logging }
+MCWApplication >> logFormat: aFormatString with: aValue1 with: aValue2 with: aValue3 [
+
+	self logString: (aFormatString format: (Array with: aValue1 with: aValue2 with: aValue3))
+]
+
+{ #category : #logging }
+MCWApplication >> logFormat: aFormatString with: aValue1 with: aValue2 with: aValue3 with: aValue4 [
+
+	self logString: (aFormatString format: (Array with: aValue1 with: aValue2 with: aValue3 with: aValue4))
+]
+
+{ #category : #logging }
+MCWApplication >> logFormat: aFormatString with: aValue1 with: aValue2 with: aValue3 with: aValue4 with: aValue5 [
+
+	self logString: (aFormatString format: (Array with: aValue1 with: aValue2 with: aValue3 with: aValue4 with: aValue5))
+]
+
+{ #category : #logging }
+MCWApplication >> logString: aString [
+
+	Transcript crShow: aString
+]
+
 { #category : #accessing }
 MCWApplication >> materialComponentsWebCssUrl [
 

@@ -35,6 +35,18 @@ MCWShrineApp >> applicationTitle [
 ]
 
 { #category : #initialization }
+MCWShrineApp >> buildLoginComponent [
+
+	^ MCWLogin new
+		loginTitle: self applicationTitle;
+		authenticationBlock: [ :loginId :password | #guest ];
+		recoverBlock: [ :loginId :tokenTyped :tokenSent | #guest ];
+		registerBlock: [ :loginId :password | #guest ];
+		sendTokenBlock: [ :loginId | '' ];
+		yourself
+]
+
+{ #category : #initialization }
 MCWShrineApp >> buildMainFab [
 
 	^ nil
@@ -104,9 +116,7 @@ MCWShrineApp >> initialize [
 	super initialize.
 
 	self layout contentArea component: MCWShrineCanvas new.
-	self loginComponent: (MCWShrineLogin new
-			authenticationBlock: [ :loginId :password | #guest ];
-			yourself).
+	self loginComponent: self buildLoginComponent.
 
 	self settings setFont: (MCWGoogleFont fontNamed: 'Rubik').
 

@@ -6,12 +6,12 @@ Class {
 		'loginTitle',
 		'loginId',
 		'password',
-		'recoveryToken',
+		'tokenTyped',
+		'tokenSent',
 		'authenticationBlock',
 		'recoverBlock',
 		'registerBlock',
-		'loginIdComponent',
-		'passwordComponent'
+		'sendTokenBlock'
 	],
 	#category : #'Material-Web-Magritte'
 }
@@ -28,23 +28,25 @@ MCWLogin >> attemptRecovery [
 
 	userOrNil := self recoverBlock
 		ifNil: [ nil ]
-		ifNotNil: [ :block | block value: self loginId value: self password value: self recoveryToken ].
+		ifNotNil: [ :block | block value: self loginId value: self tokenTyped value: self tokenSent ].
 
 	userOrNil
-		ifNotNil: [ self handleEvent: self eventTokenMatch ]
-		ifNil: [ self handleEvent: self eventTokenMismatch ]
+		ifNotNil: [
+			self transitionOnEvent: self eventTokenMatch.
+			self transitionOnEvent: self eventContinue ]
+		ifNil: [ self transitionOnEvent: self eventTokenMismatch ]
 ]
 
 { #category : #'model - api' }
-MCWLogin >> authenticate: aPassword [
+MCWLogin >> authenticate: aLoginId password: aPassword [
 
 	self authenticationBlock
 		ifNotNil: [ :theBlock |
 			| userOrNil |
-			userOrNil := theBlock value: self loginId value: aPassword.
+			userOrNil := theBlock value: aLoginId value: aPassword.
 			userOrNil
-				ifNil: [ self handleEvent: self eventPasswordMismatch ]
-				ifNotNil: [ self handleEvent: self eventPasswordMatch ] ]
+				ifNil: [ self transitionOnEvent: self eventPasswordMismatch ]
+				ifNotNil: [ self transitionOnEvent: self eventPasswordMatch ] ]
 ]
 
 { #category : #accessing }
@@ -60,45 +62,49 @@ MCWLogin >> authenticationBlock: anObject [
 { #category : #'model - api' }
 MCWLogin >> beginLoggingIn [
 
-	self handleEvent: self eventLoginStart
+	self password: String new.
+	self transitionOnEvent: self eventLoginStart
 ]
 
 { #category : #'model - api' }
 MCWLogin >> beginRecovering [
 
-	self handleEvent: self eventRecover
+	self transitionOnEvent: self eventRecover
 ]
 
 { #category : #'model - api' }
 MCWLogin >> beginRegistration [
 
-	self handleEvent: self eventRegister
+	self transitionOnEvent: self eventRegister
 ]
 
-{ #category : #'accessing - magritte' }
-MCWLogin >> descriptionLoginId [
-	<magritteDescription>
+{ #category : #private }
+MCWLogin >> clearInputs [
 
-	^ MAStringDescription new
-		accessor: #loginId;
-		default: '';
-		label: 'Your email or user ID';
-		cssClass: 'mcw-login-username';
-		priority: 10;
-		yourself
+	self loginId: String new.
+	self password: String new.
+	self tokenTyped: String new.
+	self tokenSent: String new.
+
 ]
 
-{ #category : #'accessing - magritte' }
-MCWLogin >> descriptionPassword [
-	<magritteDescription>
+{ #category : #'model - api' }
+MCWLogin >> confirmRegistration [
 
-	^ MAPasswordDescription new
-		accessor: #password;
-		default: '';
-		label: 'Password';
-		cssClass: 'mcw-login-password';
-		priority: 20;
-		yourself
+	self tokenTyped = self tokenSent
+		ifFalse: [
+			self mcwApplicationGet logFormat: 'Token mismatch: tokenTyped={1}, tokenSent={2}' with: self tokenTyped with: self tokenSent. 
+			self transitionOnEvent: self eventTokenMismatch ]
+		ifTrue: [
+			self registerBlock
+				ifNotNil: [ :theBlock |
+					| userOrNil |
+					userOrNil := theBlock value: self loginId value: self password.
+					userOrNil
+						ifNil: [ self error: 'Failed to create user: ', self loginId ]
+						ifNotNil: [
+							self clearInputs.
+							self transitionOnEvent: self eventTokenMatch ] ] ]
 ]
 
 { #category : #'model - events' }
@@ -161,51 +167,6 @@ MCWLogin >> eventTokenSent [
 	^ #TokenSent
 ]
 
-{ #category : #'model - api' }
-MCWLogin >> handleEvent: anEvent [
-	| currentState nextState |
-
-	anEvent = self eventLoginStart ifTrue: [ ^ self stateLoggingIn ].
-
-	currentState := self loginState.
-	nextState := #none.
-
-	currentState = self stateLoggingIn ifTrue: [
-		anEvent = self eventPasswordMismatch ifTrue: [ nextState := self stateLoggingIn ].
-		anEvent = self eventPasswordMatch ifTrue: [ nextState := self stateLoggedIn ].
-		anEvent = self eventRecover ifTrue: [ nextState := self stateRecoveryStarted ].
-		anEvent = self eventRegister ifTrue: [ nextState := self stateRegistrationStarted ] ].
-
-	currentState = self stateRecoveryStarted ifTrue: [
-		anEvent = self eventTokenSent ifTrue: [ nextState := self stateRecovering ] ].
-
-	currentState = self stateRecovering ifTrue: [
-		anEvent = self eventTokenMatch ifTrue: [ nextState := self stateRecovered ].
-		anEvent = self eventTokenMismatch ifTrue: [ nextState := self stateRecovering ] ].
-
-	currentState = self stateRecovered ifTrue: [
-		anEvent = self eventContinue ifTrue: [ nextState := self stateLoggedIn ] ].
-
-	currentState = self stateRegistrationStarted ifTrue: [
-		anEvent = self eventTokenSent ifTrue: [ nextState := self stateRegistering ] ].
-
-	currentState = self stateRegistering ifTrue: [
-		anEvent = self eventTokenMatch ifTrue: [ nextState := self stateRegistered ] ].
-
-	currentState = self stateRegistered ifTrue: [
-		anEvent = self eventContinue ifTrue: [ nextState := self stateLoggedIn ] ].
-
-	currentState = self stateLoggedIn ifTrue: [
-		nextState := self stateLoggedIn.
-		anEvent = self eventLogout ifTrue: [ nextState := self stateLoggedOut ] ].
-
-	nextState = #none
-		ifTrue: [ self error: self printString, ' has no transition from: ', currentState printString, ' on: ', anEvent printString ]
-		ifFalse: [
-			Transcript crShow: self printString, ' ', currentState printString, ' -> ', nextState printString, ' on: ', anEvent printString.
-			self loginState: nextState ]
-]
-
 { #category : #initialization }
 MCWLogin >> initialize [
 
@@ -213,14 +174,8 @@ MCWLogin >> initialize [
 
 	self loginState: self stateLoggingIn.
 	self loginTitle: self loginTitleDefault.
-
 	self loginId: String new.
-	self loginIdComponent:
-		(MCWTextInputComponent memento: (MAStraightMemento model: self description: self descriptionLoginId)).
-
 	self password: String new.
-	self passwordComponent:
-		(MCWTextPasswordComponent memento: (MAStraightMemento model: self description: self descriptionPassword)).
 ]
 
 { #category : #testing }
@@ -232,13 +187,13 @@ MCWLogin >> isLoggedIn [
 { #category : #'model - api' }
 MCWLogin >> loggedIn [
 
-	self handleEvent: self eventContinue
+	self transitionOnEvent: self eventContinue
 ]
 
 { #category : #'model - api' }
 MCWLogin >> loggedOut [
 
-	self handleEvent: self eventLogout.
+	self transitionOnEvent: self eventLogout.
 
 	self session ifNotNil: [ :value | value unregister ].
 	self mcwApplicationGet redirect
@@ -252,16 +207,6 @@ MCWLogin >> loginId [
 { #category : #accessing }
 MCWLogin >> loginId: anObject [
 	loginId := anObject
-]
-
-{ #category : #accessing }
-MCWLogin >> loginIdComponent [
-	^ loginIdComponent
-]
-
-{ #category : #accessing }
-MCWLogin >> loginIdComponent: anObject [
-	loginIdComponent := anObject
 ]
 
 { #category : #accessing }
@@ -290,7 +235,7 @@ MCWLogin >> loginTitleDefault [
 	^ 'MCW Seaside'
 ]
 
-{ #category : #'model - api' }
+{ #category : #rendering }
 MCWLogin >> onClickNotYetImplementedScript: html [
 
 	^ (html jQuery ajax)
@@ -310,16 +255,6 @@ MCWLogin >> password: anObject [
 ]
 
 { #category : #accessing }
-MCWLogin >> passwordComponent [
-	^ passwordComponent
-]
-
-{ #category : #accessing }
-MCWLogin >> passwordComponent: anObject [
-	passwordComponent := anObject
-]
-
-{ #category : #accessing }
 MCWLogin >> recoverBlock [
 	^ recoverBlock
 ]
@@ -329,14 +264,18 @@ MCWLogin >> recoverBlock: anObject [
 	recoverBlock := anObject
 ]
 
-{ #category : #accessing }
-MCWLogin >> recoveryToken [
-	^ recoveryToken
-]
+{ #category : #'model - api' }
+MCWLogin >> register: aLoginId password: aPassword [
 
-{ #category : #accessing }
-MCWLogin >> recoveryToken: anObject [
-	recoveryToken := anObject
+	self registerBlock
+		ifNotNil: [ :theBlock |
+			| userOrNil |
+			userOrNil := theBlock value: aLoginId value: aPassword.
+			userOrNil
+				ifNil: [ self error: 'Failed to create user: ', aLoginId ]
+				ifNotNil: [
+					self sendToken.
+					self transitionOnEvent: self eventTokenSent ] ]
 ]
 
 { #category : #accessing }
@@ -349,11 +288,36 @@ MCWLogin >> registerBlock: anObject [
 	registerBlock := anObject
 ]
 
-{ #category : #'model - api' }
-MCWLogin >> registerUser: aPassword [
+{ #category : #rendering }
+MCWLogin >> renderButton: aButtonText callback: aBlock on: html [
 
-	"self authenticationBlock
-		ifNotNil: [ :theBlock | theBlock value: self loginId value: aPassword ]"
+	html div class: 'mcw-login-action'; with: [
+		html submitButton mdcButton; mdcButton_raised; mdcAutoInit: 'MDCRipple';
+			callback: aBlock;
+			"onClick: ((html jQuery ajax)
+				callback: [ :value | self authenticate: value ] value: ((html jQuery id: passwordComponent htmlIdPassword) value);
+				script: [ :s | s alert: 'The submitted value is: ''', self password, '''.' ];
+				onComplete: html javascript refresh;
+				yourself);"
+			with: aButtonText ]
+]
+
+{ #category : #rendering }
+MCWLogin >> renderButtonInline: aButtonText caption: aCaptionText callback: aBlock on: html [
+
+	html form: [
+		html div class: 'mcw-login-action'; with: [
+			html span mdcTypography_caption; with: aCaptionText.
+			html submitButton mdcButton; mdcAutoInit: 'MDCRipple';
+				callback: aBlock;
+				with: aButtonText ] ]
+]
+
+{ #category : #rendering }
+MCWLogin >> renderCaption: aString on: html [
+
+	html div style: 'margin: 4px auto 0px auto; width: 300px; text-align: left'; with: [
+		html span mdcTypography_caption; with: aString ]
 ]
 
 { #category : #rendering }
@@ -385,32 +349,47 @@ MCWLogin >> renderCurrentStateOn: html [
 		at: self stateRegistrationStarted put: #renderRegistrationStartedOn:;
 		yourself.
 
-Transcript crShow: self loginState printString.
 	(renderMap at: self loginState ifAbsent: [ nil ]) ifNotNil: [ :value |
 		self perform: value with: html ]
 ]
 
 { #category : #rendering }
-MCWLogin >> renderFieldLoginIdOn: html [
+MCWLogin >> renderField: aLabel type: anInputType for: anAspect on: html [
+	| fieldId |
 
-	html render: self loginIdComponent
+	fieldId := html nextId.
+	html label
+		class: 'mcw-login-username';
+		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
+		with: [
+			html span mdcTextField__ripple.
+			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
+				id: fieldId;
+				with: aLabel.
+			html textInput mdcTextField__input;
+				type: anInputType;
+				ariaDescribedBy: fieldId;
+				attributeAt: 'step' put: '1';
+				on: anAspect of: self.
+			html span mdcLineRipple ]
 ]
 
 { #category : #rendering }
-MCWLogin >> renderFieldPasswordOn: html [
+MCWLogin >> renderFieldPassword: aLabel for: anAspect on: html [
 
-	html render: self passwordComponent
+	self renderField: aLabel type: 'password' for: anAspect on: html
 ]
 
 { #category : #rendering }
-MCWLogin >> renderFormButton: aButtonText caption: aCaptionText callback: aBlock on: html [
+MCWLogin >> renderFieldText: aLabel for: anAspect on: html [
 
-	html form: [
-		html div class: 'mcw-login-action'; with: [
-			html span mdcTypography_caption; with: aCaptionText.
-			html button mdcButton; mdcAutoInit: 'MDCRipple';
-				callback: aBlock;
-				with: aButtonText ] ]
+	self renderField: aLabel type: 'text' for: anAspect on: html
+]
+
+{ #category : #rendering }
+MCWLogin >> renderLineOn: html [
+
+	html horizontalRule style: 'border-top: 1px dashed black; margin: 12px auto 8px auto; width: 300px'
 ]
 
 { #category : #'rendering - model' }
@@ -418,38 +397,28 @@ MCWLogin >> renderLoggedInOn: html [
 
 	self renderLoginHeaderOn: html.
 
-	html horizontalRule style: 'border-top: 1px dashed black; margin: 8px auto; width: 300px'.
-	html div style: 'margin: 0px auto; width: 300px; text-align: left'; with: [
-		html span mdcTypography_caption; with: 'Welcome' ]
+	self renderLineOn: html.
+	self renderCaption: 'Welcome' on: html
 ]
 
 { #category : #'rendering - model' }
 MCWLogin >> renderLoggingInOn: html [
 
 	self renderLoginHeaderOn: html.
+
 	self renderSingleSignOnOn: html.
 
-	html horizontalRule style: 'border-top: 1px dashed black; margin: 8px auto; width: 300px'.
-	html div style: 'margin: 0px auto; width: 300px; text-align: left'; with: [
-		html span mdcTypography_caption; with: 'Or use your email to login' ].
+	self renderLineOn: html.
+	self renderCaption: 'Or use your email to login' on: html.
 
 	html form with: [
-		self renderFieldLoginIdOn: html.
-		self renderFieldPasswordOn: html.
+		self renderLoginIdOn: html.
+		self renderPasswordOn: html.
+		self renderButton: 'Login' callback: [ self authenticate: self loginId password: self password ] on: html ].
 
-		html div class: 'mcw-login-button'; with: [
-			html submitButton mdcButton; mdcButton_raised; mdcAutoInit: 'MDCRipple';
-				callback: [ self authenticate: self password ];
-				"onClick: ((html jQuery ajax)
-					callback: [ :value | self authenticate: value ] value: ((html jQuery id: passwordComponent htmlIdPassword) value);
-					script: [ :s | s alert: 'The submitted value is: ''', self password, '''.' ];
-					onComplete: html javascript refresh;
-					yourself);"
-				with: 'Login' ] ].
-
-	html div class: 'mcw-login-spacer'.
-	self renderFormButton: 'Recover' caption: 'Forgot password ?' callback: [ self beginRecovering ] on: html.
-	self renderFormButton: 'Register' caption: 'Don''t have an account ?' callback: [ self beginRegistration ] on: html.
+	self renderSpacerOn: html.
+	self renderButtonInline: 'Recover' caption: 'Forgot password ?' callback: [ self beginRecovering ] on: html.
+	self renderButtonInline: 'Register' caption: 'Don''t have an account ?' callback: [ self beginRegistration ] on: html.
 
 ]
 
@@ -461,17 +430,28 @@ MCWLogin >> renderLoginHeaderOn: html [
 		html heading level1; mdcTypography_headline3; with: self loginTitle ]
 ]
 
+{ #category : #rendering }
+MCWLogin >> renderLoginIdOn: html [
+
+	self renderFieldText: 'Your email or user ID' for: #loginId on: html
+]
+
+{ #category : #rendering }
+MCWLogin >> renderPasswordOn: html [
+
+	self renderFieldPassword: 'Password' for: #password on: html
+]
+
 { #category : #'rendering - model' }
 MCWLogin >> renderRecoveredOn: html [
 
 	self renderLoginHeaderOn: html.
 
-	html horizontalRule style: 'border-top: 1px dashed black; margin: 8px auto; width: 300px'.
-	html div style: 'margin: 0px auto; width: 300px; text-align: left'; with: [
-		html span mdcTypography_caption; with: 'Recovered' ].
+	self renderLineOn: html.
+	self renderCaption: 'Recovered' on: html.
 
-	html div class: 'mcw-login-spacer'.
-	self renderFormButton: 'Continue' caption: '' callback: [ self loggedIn ] on: html.
+	self renderSpacerOn: html.
+	self renderButtonInline: 'Continue' caption: '' callback: [ self loggedIn ] on: html.
 ]
 
 { #category : #'rendering - model' }
@@ -479,20 +459,15 @@ MCWLogin >> renderRecoveringOn: html [
 
 	self renderLoginHeaderOn: html.
 
-	html horizontalRule style: 'border-top: 1px dashed black; margin: 8px auto; width: 300px'.
-	html div style: 'margin: 0px auto; width: 300px; text-align: left'; with: [
-		html span mdcTypography_caption; with: 'Enter recovery token ...' ].
+	self renderLineOn: html.
+	self renderCaption: 'Enter recovery token' on: html.
 
 	html form with: [
-		self renderFieldPasswordOn: html.
+		self renderTokenTypedOn: html.
+		self renderButton: 'Recover' callback: [ self attemptRecovery ] on: html ].
 
-		html div class: 'mcw-login-button'; with: [
-			html submitButton mdcButton; mdcButton_raised; mdcAutoInit: 'MDCRipple';
-				callback: [ self attemptRecovery ];
-				with: 'Recover' ] ].
-
-	html div class: 'mcw-login-spacer'.
-	self renderFormButton: 'Login here' caption: 'Already a member ?' callback: [ self beginLoggingIn ] on: html.
+	self renderSpacerOn: html.
+	self renderButtonInline: 'Login here' caption: 'Already a member ?' callback: [ self beginLoggingIn ] on: html.
 ]
 
 { #category : #'rendering - model' }
@@ -500,20 +475,43 @@ MCWLogin >> renderRecoveryStartedOn: html [
 
 	self renderLoginHeaderOn: html.
 
-	html horizontalRule style: 'border-top: 1px dashed black; margin: 8px auto; width: 300px'.
-	html div style: 'margin: 0px auto; width: 300px; text-align: left'; with: [
-		html span mdcTypography_caption; with: 'Reset account ...' ].
+	self renderLineOn: html.
+	self renderCaption: 'Reset account' on: html.
 
 	html form with: [
-		self renderFieldLoginIdOn: html.
+		self renderLoginIdOn: html.
+		self renderButton: 'Reset' callback: [ self sendToken ] on: html ].
 
-		html div class: 'mcw-login-button'; with: [
-			html submitButton mdcButton; mdcButton_raised; mdcAutoInit: 'MDCRipple';
-				callback: [ self sendToken ];
-				with: 'Reset' ] ].
+	self renderSpacerOn: html.
+	self renderButtonInline: 'Login here' caption: 'Already a member ?' callback: [ self beginLoggingIn ] on: html.
+]
 
-	html div class: 'mcw-login-spacer'.
-	self renderFormButton: 'Login here' caption: 'Already a member ?' callback: [ self beginLoggingIn ] on: html.
+{ #category : #'rendering - model' }
+MCWLogin >> renderRegisteredOn: html [
+
+	self renderLoginHeaderOn: html.
+
+	self renderLineOn: html.
+	self renderCaption: 'Registered successfully !' on: html.
+
+	self renderSpacerOn: html.
+	self renderButtonInline: 'Continue' caption: '' callback: [ self loggedIn ] on: html.
+]
+
+{ #category : #'rendering - model' }
+MCWLogin >> renderRegisteringOn: html [
+
+	self renderLoginHeaderOn: html.
+
+	self renderLineOn: html.
+	self renderCaption: 'Enter registration token' on: html.
+
+	html form with: [
+		self renderTokenTypedOn: html.
+		self renderButton: 'Submit' callback: [ self confirmRegistration ] on: html ].
+
+	self renderSpacerOn: html.
+	self renderButtonInline: 'Login here' caption: 'Already a member ?' callback: [ self beginLoggingIn ] on: html.
 ]
 
 { #category : #'rendering - model' }
@@ -521,21 +519,16 @@ MCWLogin >> renderRegistrationStartedOn: html [
 
 	self renderLoginHeaderOn: html.
 
-	html horizontalRule style: 'border-top: 1px dashed black; margin: 8px auto; width: 300px'.
-	html div style: 'margin: 0px auto; width: 300px; text-align: left'; with: [
-		html span mdcTypography_caption; with: 'Create new account ...' ].
+	self renderLineOn: html.
+	self renderCaption: 'Create new account' on: html.
 
 	html form with: [
-		self renderFieldLoginIdOn: html.
-		self renderFieldPasswordOn: html.
+		self renderLoginIdOn: html.
+		self renderPasswordOn: html.
+		self renderButton: 'Register me' callback: [ self sendToken ] on: html ].
 
-		html div class: 'mcw-login-button'; with: [
-			html submitButton mdcButton; mdcButton_raised; mdcAutoInit: 'MDCRipple';
-				callback: [ self registerUser: self password ];
-				with: 'Submit' ] ].
-
-	html div class: 'mcw-login-spacer'.
-	self renderFormButton: 'Login here' caption: 'Already a member ?' callback: [ self beginLoggingIn ] on: html.
+	self renderSpacerOn: html.
+	self renderButtonInline: 'Login here' caption: 'Already a member ?' callback: [ self beginLoggingIn ] on: html.
 ]
 
 { #category : #rendering }
@@ -555,20 +548,44 @@ MCWLogin >> renderSingleSignOnOn: html [
 			with: 'Facebook' ]
 ]
 
-{ #category : #'model - api' }
-MCWLogin >> sendRecoveryTokenTo: aUser [
+{ #category : #rendering }
+MCWLogin >> renderSpacerOn: html [
 
-	^ '123456'
+	html div class: 'mcw-login-spacer'
+]
+
+{ #category : #rendering }
+MCWLogin >> renderTokenTypedOn: html [
+
+	self renderFieldPassword: 'Token' for: #tokenTyped on: html
 ]
 
 { #category : #'model - api' }
 MCWLogin >> sendToken [
 	| token |
 
-	token := self sendRecoveryTokenTo: self loginId.
-	token ifNotNil: [ :value | self recoveryToken: token ].
+	token := self sendTokenTo: self loginId.
+	token ifNotNil: [ :value | self tokenSent: token ].
 
-	self handleEvent: self eventTokenSent
+	self transitionOnEvent: self eventTokenSent
+]
+
+{ #category : #accessing }
+MCWLogin >> sendTokenBlock [
+	^ sendTokenBlock
+]
+
+{ #category : #accessing }
+MCWLogin >> sendTokenBlock: anObject [
+	sendTokenBlock := anObject
+]
+
+{ #category : #private }
+MCWLogin >> sendTokenTo: aLoginId [
+
+	^ self sendTokenBlock
+		ifNil: [ nil ]
+		ifNotNil: [ :block | block value: self loginId ]
 ]
 
 { #category : #'model - states' }
@@ -623,4 +640,70 @@ MCWLogin >> stateRegistering [
 MCWLogin >> stateRegistrationStarted [
 
 	^ #RegistrationStarted
+]
+
+{ #category : #accessing }
+MCWLogin >> tokenSent [
+	^ tokenSent
+]
+
+{ #category : #accessing }
+MCWLogin >> tokenSent: anObject [
+	tokenSent := anObject
+]
+
+{ #category : #accessing }
+MCWLogin >> tokenTyped [
+	^ tokenTyped
+]
+
+{ #category : #accessing }
+MCWLogin >> tokenTyped: anObject [
+	tokenTyped := anObject
+]
+
+{ #category : #'model - events' }
+MCWLogin >> transitionOnEvent: anEvent [
+	| currentState nextState |
+
+	anEvent = self eventLoginStart ifTrue: [ ^ self loginState: self stateLoggingIn ].
+
+	currentState := self loginState.
+	"Stay in same state when not specified, to avoid noise from error"
+	nextState := currentState.
+
+	currentState = self stateLoggingIn ifTrue: [
+		anEvent = self eventPasswordMismatch ifTrue: [ nextState := self stateLoggingIn ].
+		anEvent = self eventPasswordMatch ifTrue: [ nextState := self stateLoggedIn ].
+		anEvent = self eventRecover ifTrue: [ nextState := self stateRecoveryStarted ].
+		anEvent = self eventRegister ifTrue: [ nextState := self stateRegistrationStarted ] ].
+
+	currentState = self stateRecoveryStarted ifTrue: [
+		anEvent = self eventTokenSent ifTrue: [ nextState := self stateRecovering ] ].
+
+	currentState = self stateRecovering ifTrue: [
+		anEvent = self eventTokenMatch ifTrue: [ nextState := self stateRecovered ].
+		anEvent = self eventTokenMismatch ifTrue: [ nextState := self stateRecovering ] ].
+
+	currentState = self stateRecovered ifTrue: [
+		anEvent = self eventContinue ifTrue: [ nextState := self stateLoggedIn ] ].
+
+	currentState = self stateRegistrationStarted ifTrue: [
+		anEvent = self eventTokenSent ifTrue: [ nextState := self stateRegistering ] ].
+
+	currentState = self stateRegistering ifTrue: [
+		anEvent = self eventTokenMatch ifTrue: [ nextState := self stateRegistered.
+		anEvent = self eventTokenMismatch ifTrue: [ nextState := self stateRegistering ] ] ].
+
+	currentState = self stateRegistered ifTrue: [
+		anEvent = self eventContinue ifTrue: [ nextState := self stateLoggedIn ] ].
+
+	currentState = self stateLoggedIn ifTrue: [
+		anEvent = self eventLogout ifTrue: [ nextState := self stateLoggedOut ] ].
+
+	nextState = #none
+		ifTrue: [ self error: self printString, ' has no transition from: ', currentState printString, ' on: ', anEvent printString ]
+		ifFalse: [
+			self mcwApplicationGet logFormat: '{1}: {2} -> {3} on {4}' with: self printString with: currentState printString with: nextState printString with: anEvent printString.
+			self loginState: nextState ]
 ]

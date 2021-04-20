@@ -334,8 +334,7 @@ element.mdcDrawer.open = !element.mdcDrawer.open'
 MCWResponsiveApplication >> renderContentOn: html [
 
 	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'mdc.autoInit()'); yourself).
-	html document addLoadScript: (JSStream new nextPutAll: 'window.addEventListener("resize", function(){alert("hhh")})').
-	html document addLoadScript: (JSStream new nextPutAll: 'document.querySelector("body").onresize=function(){alert("ggg")}').
+	"self renderResizeScriptOn: html."
 
 	self renderSetColorThemeOn: html.
 
@@ -358,6 +357,14 @@ MCWResponsiveApplication >> renderLayoutOn: html [
 MCWResponsiveApplication >> renderLoginOn: html [
 
 	html render: self loginComponent
+]
+
+{ #category : #rendering }
+MCWResponsiveApplication >> renderResizeScriptOn: html [
+
+	html document addLoadScript: (JSStream new nextPutAll: 'window.addEventListener("resize", function(){alert("hhh")})').
+	html document addLoadScript: (JSStream new nextPutAll: 'document.querySelector("body").onresize=function(){alert("ggg")}').
+
 ]
 
 { #category : #rendering }

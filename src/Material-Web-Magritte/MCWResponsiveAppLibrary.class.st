@@ -58,7 +58,7 @@ MCWResponsiveAppLibrary >> responsiveAppCss [
 .mcw-login-password {
   display: block;
   width: 300px;
-  margin: 20px auto;
+  margin: 8px auto;
 }
 
 .mcw-login-button {
