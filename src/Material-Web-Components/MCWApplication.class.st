@@ -13,7 +13,7 @@ MCWApplication class >> canBeRoot [
 ]
 
 { #category : #'instance creation' }
-MCWApplication class >> registerMaterialWebDeployment: aName [
+MCWApplication class >> mcwRegisterDeployment: aName [
 	| app |
 
 	self environment at: #WADevelopmentConfiguration ifPresent: [ :class |
@@ -28,7 +28,7 @@ MCWApplication class >> registerMaterialWebDeployment: aName [
 ]
 
 { #category : #'instance creation' }
-MCWApplication class >> registerMaterialWebDevelopment: aName [
+MCWApplication class >> mcwRegisterDevelopment: aName [
 	| app |
 
 	self environment at: #WADevelopmentConfiguration ifPresent: [ :class |

@@ -24,7 +24,9 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 				group: 'default' with: #('Material-Web-Magritte' 'Material-Web-Demo' 'Material-Study-Shrine');
 				group: 'MagritteComponents' with: #('Material-Web-Magritte');
 				group: 'Components' with: #('Material-Web-Components');
-				group: 'Core' with: #('Material-Web-Core') ]
+				group: 'Core' with: #('Material-Web-Core');
+				"Use preload for staged docker build"
+				group: 'preload' with: #('Seaside3' 'Magritte') ]
 ]
 
 { #category : #dependencies }

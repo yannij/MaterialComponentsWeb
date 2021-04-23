@@ -17,7 +17,7 @@ MCWShrineApp class >> initialize [
 	WAAdmin unregister: self applicationPath.
 	"
 
-	^ self registerMaterialWebDeployment: self applicationPath
+	^ self mcwRegisterDeployment: self applicationPath
 
 ]
 
@@ -39,10 +39,10 @@ MCWShrineApp >> buildLoginComponent [
 
 	^ MCWLogin new
 		loginTitle: self applicationTitle;
-		authenticationBlock: [ :loginId :password | #guest ];
-		recoverBlock: [ :loginId :tokenTyped :tokenSent | #guest ];
-		registerBlock: [ :loginId :password | #guest ];
-		sendTokenBlock: [ :loginId | '' ];
+		authenticationBlock: [ :username :password | #guest ];
+		recoverBlock: [ :username :tokenTyped :tokenSent | #guest ];
+		registerBlock: [ :username :password | #guest ];
+		sendTokenBlock: [ :username | '' ];
 		yourself
 ]
 

@@ -36,7 +36,7 @@ MCWSliderComponent >> renderSliderOn: html [
 		html textInput mdcSlider__input; type: 'range';
 			attributeAt: 'min' put: '0';
 			attributeAt: 'max' put: '100';
-			attributeAt: 'step' put: '10';
+			attributeAt: 'step' put: self magritteDescription mcwSliderStep;
 			tabIndex: 0;
 			ariaLabel: 'Select Value';
 			on: self inputAspect of: self;

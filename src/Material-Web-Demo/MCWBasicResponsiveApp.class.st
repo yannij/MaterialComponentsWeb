@@ -19,7 +19,7 @@ MCWBasicResponsiveApp class >> initialize [
 	WAAdmin unregister: self applicationPath.
 	"
 
-	^ self registerMaterialWebDeployment: self applicationPath
+	^ self mcwRegisterDeployment: self applicationPath
 
 ]
 
