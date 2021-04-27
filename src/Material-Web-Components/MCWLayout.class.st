@@ -198,8 +198,8 @@ MCWLayout >> renderContentAreaDesktopOn: html [
 		"No padding for desktop, because no bottom bar"
 		"style: 'padding-bottom: 40px';"
 		"style: 'position: relative';"
-		style: 'min-width: 959px';
-		style: 'max-width: 959px';
+		style: 'min-width: 1279px';
+		style: 'max-width: 1279px';
 		with: [
 			"html div with: [
 				html span style: 'height: 30vh; opacity: .99'; with: [ html text: 'red' ]]."

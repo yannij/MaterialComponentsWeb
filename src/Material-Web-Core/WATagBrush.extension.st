@@ -1,93 +1,6 @@
 Extension { #name : #WATagBrush }
 
 { #category : #'*Material-Web-Core' }
-WATagBrush class >> generateMdcMethod: aCssClass [
-	| selectorName code |
-
-	selectorName := self generateMdcMethodName: aCssClass.
-	Transcript crShow: selectorName; show: ' <<<< '; show: aCssClass.
-
-	code := selectorName, (String with: Character cr), (String with: Character cr), (String with: Character tab), 'self class: ', aCssClass printString.
-
-	self compile: code classified: '*Material-Web-Core'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush class >> generateMdcMethodName: aCssClass [
-	| selectorName blockPart elementPart modifierPart index |
-
-	blockPart := aCssClass.
-	elementPart := ''.
-	modifierPart := ''.
-
-	index := blockPart findString: '__'.
-	index > 0 ifTrue: [
-		elementPart := blockPart copyFrom: index + 2 to: blockPart size.
-		blockPart := blockPart copyFrom: 1 to: index ].
-
-	index := elementPart findString: '--'.
-	index > 0 ifTrue: [
-		modifierPart := elementPart copyFrom: index + 2 to: elementPart size.
-		elementPart := elementPart copyFrom: 1 to: index ].
-
-	index := blockPart findString: '--'.
-	index > 0 ifTrue: [
-		modifierPart := blockPart copyFrom: index + 2 to: blockPart size.
-		blockPart := blockPart copyFrom: 1 to: index ].
-
-	selectorName := ''.
-	blockPart notEmpty ifTrue: [
-		selectorName := selectorName, (self generateMdcSelectorFragment: blockPart) ].
-
-	elementPart notEmpty ifTrue: [
-		selectorName := selectorName, '__', (self generateMdcSelectorFragment: elementPart) ].
-
-	modifierPart notEmpty ifTrue: [
-		selectorName := selectorName, '_', (self generateMdcSelectorFragment: modifierPart) ].
-
-	^ selectorName
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush class >> generateMdcSelectorFragment: aBlockElementModifierPart [
-	"
-	(self generateMdcTagSelectorFragment: 'aaa-bbb-ccc') = 'aaaBbbCcc'
-	"
-
-	^ ('' join: ((aBlockElementModifierPart substrings: '-') collect: [ :each | each asCamelCase ])) asValidSelector
-
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush class >> generateMdcTagsFrom: aFilename [
-	"
-	MDC uses BEM naming convention:
-		.block {}
-		.block__element {}
-		.block--modifier {}
-
-	self generateMdcTagsFrom: 'test.dat'
-
-aaaBbbCcc <<<< aaa-bbb-ccc
-aaaBbbCcc_eeeFffGgg <<<< aaa-bbb-ccc__eee-fff-ggg
-aaaBbbCcc__xxxYyyZzz <<<< aaa-bbb-ccc--xxx-yyy-zzz
-aaaBbbCcc_eeeFffGgg__xxxYyyZzz <<<< aaa-bbb-ccc__eee-fff-ggg--xxx-yyy-zzz
-
-	self generateMdcTagsFrom: '../../material-design/mdc.dat'
-	"
-	| reference |
-
-	reference := FileSystem disk workingDirectory / aFilename.
-	reference readStreamDo: [ :stream |
-		[ stream atEnd ] whileFalse: [
-			| nextLine |
-			nextLine := stream upTo: Character lf.
-			self generateMdcMethod: nextLine
-		].
-	]
-]
-
-{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcBanner [
 
 	self class: 'mdc-banner'
@@ -1579,6 +1492,121 @@ WATagBrush >> mdcFormField_nowrap [
 WATagBrush >> mdcFormField_spaceBetween [
 
 	self class: 'mdc-form-field--space-between'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush class >> mdcGenerateCssToMdcDatShell [
+	"Copy the shell script in the comment below to css-to-list.sh - remember to change
+	the doubled double-quote's to single double-quote's.
+	Make the file executable, and run it with input file from material design .css file.
+
+	For example:
+	1. curl -L https://unpkg.com/material-components-web@latest/dist/material-components-web.css > mdc.css
+	2. ./css-to-list.sh < mdc.css > mdc.dat
+	3. use mdc.dat when invoking #mdcGenerateTagsFrom:
+			self mdcGenerateTagsFrom: 'mdc.dat'
+	"
+
+	"
+sed ""s/^ *//"" $1 \
+| grep '^\.mdc-' \
+| awk -F' ' '{for (i = 0; ++i <= NF;) print $i}' \
+| awk -F',' '{for (i = 0; ++i <= NF;) print $i}' \
+| awk -F'+' '{for (i = 0; ++i <= NF;) print $i}' \
+| awk -F'>' '{for (i = 0; ++i <= NF;) print $i}' \
+| awk -F'.' '{for (i = 0; ++i <= NF;) print $i}' \
+| grep '^mdc-' \
+| sed -e 's/[:\[].*//' \
+| sed -e 's/[~)]$//' \
+| sort -u
+	"
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush class >> mdcGenerateMethod: aCssClass [
+	| selectorName code |
+
+	selectorName := self mdcGenerateMethodName: aCssClass.
+	Transcript crShow: selectorName; show: ' <<<< '; show: aCssClass.
+
+	code := selectorName, (String with: Character cr), (String with: Character cr), (String with: Character tab), 'self class: ', aCssClass printString.
+
+	self compile: code classified: '*Material-Web-Core'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush class >> mdcGenerateMethodName: aCssClass [
+	| selectorName blockPart elementPart modifierPart index |
+
+	blockPart := aCssClass.
+	elementPart := ''.
+	modifierPart := ''.
+
+	index := blockPart findString: '__'.
+	index > 0 ifTrue: [
+		elementPart := blockPart copyFrom: index + 2 to: blockPart size.
+		blockPart := blockPart copyFrom: 1 to: index ].
+
+	index := elementPart findString: '--'.
+	index > 0 ifTrue: [
+		modifierPart := elementPart copyFrom: index + 2 to: elementPart size.
+		elementPart := elementPart copyFrom: 1 to: index ].
+
+	index := blockPart findString: '--'.
+	index > 0 ifTrue: [
+		modifierPart := blockPart copyFrom: index + 2 to: blockPart size.
+		blockPart := blockPart copyFrom: 1 to: index ].
+
+	selectorName := ''.
+	blockPart notEmpty ifTrue: [
+		selectorName := selectorName, (self mdcGenerateSelectorFragment: blockPart) ].
+
+	elementPart notEmpty ifTrue: [
+		selectorName := selectorName, '__', (self mdcGenerateSelectorFragment: elementPart) ].
+
+	modifierPart notEmpty ifTrue: [
+		selectorName := selectorName, '_', (self mdcGenerateSelectorFragment: modifierPart) ].
+
+	^ selectorName
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush class >> mdcGenerateSelectorFragment: aBlockElementModifierPart [
+	"
+	(self mdcGenerateSelectorFragment: 'aaa-bbb-ccc') = 'aaaBbbCcc'
+	"
+
+	^ ('' join: ((aBlockElementModifierPart substrings: '-') collect: [ :each | each asCamelCase ])) asValidSelector
+
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush class >> mdcGenerateTagsFrom: aFilename [
+	"
+	MDC uses BEM naming convention:
+		.block {}
+		.block__element {}
+		.block--modifier {}
+
+	self generateMdcTagsFrom: 'test.dat'
+
+aaaBbbCcc <<<< aaa-bbb-ccc
+aaaBbbCcc_eeeFffGgg <<<< aaa-bbb-ccc__eee-fff-ggg
+aaaBbbCcc__xxxYyyZzz <<<< aaa-bbb-ccc--xxx-yyy-zzz
+aaaBbbCcc_eeeFffGgg__xxxYyyZzz <<<< aaa-bbb-ccc__eee-fff-ggg--xxx-yyy-zzz
+
+	self mdcGenerateTagsFrom: '../../material-design/mdc.dat'
+	"
+	| reference |
+
+	reference := FileSystem disk workingDirectory / aFilename.
+	reference readStreamDo: [ :stream |
+		[ stream atEnd ] whileFalse: [
+			| nextLine |
+			nextLine := stream upTo: Character lf.
+			self mdcGenerateMethod: nextLine
+		].
+	]
 ]
 
 { #category : #'*Material-Web-Core' }
