@@ -224,9 +224,12 @@ MCWDrawer >> renderContentOn: html [
 	self isModalDrawer ifTrue: [ drawerTag mdcDrawer_modal ].
 	self isDismissibleDrawer ifTrue: [ drawerTag mdcDrawer_dismissible ].
 
+	self mcwDenseView
+		ifTrue: [ drawerTag mdcTopAppBar_denseFixedAdjust_if: self mcwApplicationGet layout topAppBar shortCollapsed not ]
+		ifFalse:  [ drawerTag mdcTopAppBar_fixedAdjust_if: self mcwApplicationGet layout topAppBar shortCollapsed not ].
+
 	drawerTag
 		id: self id;
-		mdcTopAppBar_fixedAdjust;
 		class: (self isDrawerOpen ifTrue: [ 'mdc-drawer--open' ] ifFalse: [ '' ]);
 		with: [
 			self renderDrawerHeaderOn: html.

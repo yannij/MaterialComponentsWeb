@@ -1,11 +1,11 @@
 Class {
-	#name : #MCWShrineLibrary,
+	#name : #ShrineLibrary,
 	#superclass : #WAFileLibrary,
 	#category : #'Material-Study-Shrine'
 }
 
 { #category : #uploaded }
-MCWShrineLibrary >> bundleCss [
+ShrineLibrary >> bundleCss [
 
 	^ '/* Custom Theme */
 :root {
@@ -32,6 +32,11 @@ MCWShrineLibrary >> bundleCss [
 --mdc-theme-on-background: #FFFFFF;
 }
 */
+
+:root {
+--mdc-layout-grid-margin-desktop: 0px;
+--mdc-layout-grid-gutter-desktop: 0px;
+}
 
 @media (max-width: 840px) {
   .grid-padding-off-tablet {
@@ -78,7 +83,6 @@ MCWShrineLibrary >> bundleCss [
 .shrine-logo-drawer {
   width: 48px;
   padding: 40px 0 0;
-  margin: 0 auto;
   fill: currentColor;
 }
 
@@ -125,8 +129,6 @@ border-right-width: 0;
 */
 
   text-transform: uppercase;
-
-  margin: 70px 5px auto 5px;
 }
 
 .shrine-drawer .mdc-list-item {

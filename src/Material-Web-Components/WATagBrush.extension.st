@@ -57,9 +57,33 @@ WATagBrush >> mdcLayoutGrid__cell_span: aSpanNumber [
 ]
 
 { #category : #'*Material-Web-Components' }
+WATagBrush >> mdcList_dense_if: aBoolean [
+
+	aBoolean ifTrue: [ self mdcList_dense ]
+]
+
+{ #category : #'*Material-Web-Components' }
 WATagBrush >> mdcRole: aRole [
 
 	self attributeAt: 'role' put: aRole
+]
+
+{ #category : #'*Material-Web-Components' }
+WATagBrush >> mdcTopAppBar_denseFixedAdjust_if: aBoolean [
+
+	aBoolean ifTrue: [ self mdcTopAppBar_denseFixedAdjust ]
+]
+
+{ #category : #'*Material-Web-Components' }
+WATagBrush >> mdcTopAppBar_dense_if: aBoolean [
+
+	aBoolean ifTrue: [ self mdcTopAppBar_dense ]
+]
+
+{ #category : #'*Material-Web-Components' }
+WATagBrush >> mdcTopAppBar_fixedAdjust_if: aBoolean [
+
+	aBoolean ifTrue: [ self mdcTopAppBar_fixedAdjust ]
 ]
 
 { #category : #'*Material-Web-Components' }

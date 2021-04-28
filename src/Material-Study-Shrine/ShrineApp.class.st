@@ -1,18 +1,21 @@
 Class {
-	#name : #MCWShrineApp,
+	#name : #ShrineApp,
 	#superclass : #MCWResponsiveApplication,
+	#instVars : [
+		'topSheet'
+	],
 	#category : #'Material-Study-Shrine'
 }
 
 { #category : #initialization }
-MCWShrineApp class >> applicationPath [
+ShrineApp class >> applicationPath [
 
 	^ 'material/shrine'
 
 ]
 
 { #category : #'class initialization' }
-MCWShrineApp class >> initialize [
+ShrineApp class >> initialize [
 	"Register path with Seaside.
 	WAAdmin unregister: self applicationPath.
 	"
@@ -21,23 +24,37 @@ MCWShrineApp class >> initialize [
 
 ]
 
+{ #category : #accessing }
+ShrineApp class >> shrineSvg: aCssClass [
+
+	^ '<svg class="', aCssClass, '" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" fill="#000000">
+      <g id="XMLID_2_">
+        <g id="XMLID_4_">
+          <path id="XMLID_5_" d="M17,2H7L2,6.62L12,22L22,6.62L17,2z M16.5,3.58l3.16,2.92H16.5V3.58z M7.59,3.5H15v3H4.34L7.59,3.5z     M11.25,18.1L7.94,13h3.31V18.1z M11.25,11.5H6.96L4.69,8h6.56V11.5z M16.5,12.32 M12.75,18.09V8h6.56L12.75,18.09z"/>
+        </g>
+        <rect id="XMLID_1_" fill="none" width="24" height="24"/>
+      </g>
+    </svg>
+'
+]
+
 { #category : #initialization }
-MCWShrineApp >> appBarTitle [
+ShrineApp >> appBarTitle [
 
 	^ ''
 
 ]
 
 { #category : #accessing }
-MCWShrineApp >> applicationTitle [
+ShrineApp >> applicationTitle [
 
 	^ 'Shrine'
 ]
 
 { #category : #initialization }
-MCWShrineApp >> buildLoginComponent [
+ShrineApp >> buildLoginComponent [
 
-	^ MCWLogin new
+	^ ShrineLogin new
 		loginTitle: self applicationTitle;
 		authenticationBlock: [ :username :password | #guest ];
 		recoverBlock: [ :username :tokenTyped :tokenSent | #guest ];
@@ -47,13 +64,13 @@ MCWShrineApp >> buildLoginComponent [
 ]
 
 { #category : #initialization }
-MCWShrineApp >> buildMainFab [
+ShrineApp >> buildMainFab [
 
 	^ nil
 ]
 
 { #category : #initialization }
-MCWShrineApp >> buildSideNav [
+ShrineApp >> buildSideNav [
 
 	^ (super buildSideNav)
 		cssClass: 'shrine-drawer';
@@ -61,10 +78,10 @@ MCWShrineApp >> buildSideNav [
 ]
 
 { #category : #initialization }
-MCWShrineApp >> buildSideNavList [
+ShrineApp >> buildSideNavList [
 
 	^ MCWListBasic new
-		addListItem: (MCWShrineBranding new);
+		addListItem: (ShrineBranding new);
 		addListItem: (MCWListItemIcon itemText: 'Featured' iconName: '' callback: [ ]);
 		"Divider Line"
 		addListItem: (MCWListItemIcon itemText: 'Apartment' iconName: '' callback: [ ]);
@@ -78,8 +95,20 @@ MCWShrineApp >> buildSideNavList [
 
 ]
 
+{ #category : #initialization }
+ShrineApp >> buildSideSheet [
+
+	^ MCWSideSheet new
+]
+
+{ #category : #initialization }
+ShrineApp >> buildTopSheet [
+
+	^ ShrineTopSheet new
+]
+
 { #category : #accessing }
-MCWShrineApp >> colorThemeCustom [
+ShrineApp >> colorThemeCustom [
 
 	#(
 ('primary' '#FEDBD0')
@@ -95,7 +124,7 @@ MCWShrineApp >> colorThemeCustom [
 ]
 
 { #category : #accessing }
-MCWShrineApp >> colorThemeCustomDark [
+ShrineApp >> colorThemeCustomDark [
 
 	#(
 ('primary' '#FFCF44')
@@ -111,14 +140,17 @@ MCWShrineApp >> colorThemeCustomDark [
 ]
 
 { #category : #initialization }
-MCWShrineApp >> initialize [
+ShrineApp >> initialize [
 
 	super initialize.
 
-	self layout contentArea component: MCWShrineCanvas new.
+	self layout contentArea component: ShrineCanvas new.
 	self loginComponent: self buildLoginComponent.
+	self topSheet: self buildTopSheet.
 
 	self settings setFont: (MCWGoogleFont fontNamed: 'Rubik').
+
+	self layout sideSheet component: self topSheet.
 
 	"self colorThemeCustom.
 	self colorThemeCustomDark.
@@ -126,37 +158,33 @@ MCWShrineApp >> initialize [
 ]
 
 { #category : #accessing }
-MCWShrineApp >> shrineIcon [
-
-	^ '<svg class="shrine-logo-drawer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" fill="#000000">
-      <g id="XMLID_2_">
-        <g id="XMLID_4_">
-          <path id="XMLID_5_" d="M17,2H7L2,6.62L12,22L22,6.62L17,2z M16.5,3.58l3.16,2.92H16.5V3.58z M7.59,3.5H15v3H4.34L7.59,3.5z     M11.25,18.1L7.94,13h3.31V18.1z M11.25,11.5H6.96L4.69,8h6.56V11.5z M16.5,12.32 M12.75,18.09V8h6.56L12.75,18.09z"/>
-        </g>
-        <rect id="XMLID_1_" fill="none" width="24" height="24"/>
-      </g>
-    </svg>
-'
-]
-
-{ #category : #accessing }
-MCWShrineApp >> shrineTitle [
+ShrineApp >> shrineTitle [
 
 	^ '<h1 class="shrine-title">SHRINE</h1>'
 ]
 
+{ #category : #accessing }
+ShrineApp >> topSheet [
+	^ topSheet
+]
+
+{ #category : #accessing }
+ShrineApp >> topSheet: anObject [
+	topSheet := anObject
+]
+
 { #category : #updating }
-MCWShrineApp >> updateRoot: anHtmlRoot [
+ShrineApp >> updateRoot: anHtmlRoot [
 
 	super updateRoot: anHtmlRoot.
 
 	"anHtmlRoot stylesheet url: (WAUrl absolute: 'http://localhost:8081/assets/bundle.css')."
-	anHtmlRoot stylesheet url: (MCWShrineLibrary urlOf: #bundleCss).
+	anHtmlRoot stylesheet url: (ShrineLibrary urlOf: #bundleCss).
 
 ]
 
 { #category : #updating }
-MCWShrineApp >> updateRootFonts: anHtmlRoot [
+ShrineApp >> updateRootFonts: anHtmlRoot [
 
 	super updateRootFonts: anHtmlRoot.
 

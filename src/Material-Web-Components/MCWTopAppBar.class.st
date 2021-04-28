@@ -13,16 +13,6 @@ Class {
 }
 
 { #category : #accessing }
-MCWTopAppBar >> dense [
-	^ dense
-]
-
-{ #category : #accessing }
-MCWTopAppBar >> dense: anObject [
-	dense := anObject
-]
-
-{ #category : #accessing }
 MCWTopAppBar >> endSection [
 	^ endSection
 ]
@@ -47,15 +37,8 @@ MCWTopAppBar >> initialize [
 	self startSection: OrderedCollection new.
 	self endSection: OrderedCollection new.
 
-	self dense: false.
 	self short: false.
 	self shortCollapsed: false
-]
-
-{ #category : #testing }
-MCWTopAppBar >> isDense [
-
-	^ self dense
 ]
 
 { #category : #testing }
@@ -90,7 +73,7 @@ MCWTopAppBar >> renderContentOn: html [
 
 	tag := html header mdcTopAppBar.
 
-	self isDense ifTrue: [ tag mdcTopAppBar_dense ].
+	tag mdcTopAppBar_dense_if: self mcwDenseView.
 	self isShort ifTrue: [ tag mdcTopAppBar_short ].
 	self isShortCollapsed ifTrue: [ tag mdcTopAppBar_shortCollapsed ].
 

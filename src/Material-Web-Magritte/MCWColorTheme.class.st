@@ -110,7 +110,7 @@ MCWColorTheme >> surfaceDescription [
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #surface));
-		default: (Color fromHexString: 'ffffff');
+		default: (Color fromHexString: 'eeeeee');
 		label: 'Surface';
 		priority: 130;
 		yourself

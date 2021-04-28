@@ -3,7 +3,8 @@ Class {
 	#superclass : #MCWModel,
 	#instVars : [
 		'fontSettings',
-		'colorTheme'
+		'colorTheme',
+		'denseView'
 	],
 	#category : #'Material-Web-Magritte'
 }
@@ -14,6 +15,7 @@ MCWApplicationSettings class >> newDefault [
 	^ self new
 		fontSettings: MCWFontSettings new;
 		colorTheme: MCWColorTheme new;
+		denseView: true;
 		yourself
 ]
 
@@ -25,6 +27,16 @@ MCWApplicationSettings >> colorTheme [
 { #category : #accessing }
 MCWApplicationSettings >> colorTheme: anObject [
 	colorTheme := anObject
+]
+
+{ #category : #accessing }
+MCWApplicationSettings >> denseView [
+	^ denseView
+]
+
+{ #category : #accessing }
+MCWApplicationSettings >> denseView: anObject [
+	denseView := anObject
 ]
 
 { #category : #accessing }
@@ -47,4 +59,10 @@ MCWApplicationSettings >> setFont: aFont [
 MCWApplicationSettings >> setFontNamed: aFontName [
 
 	self fontSettings setFontNamed: aFontName
+]
+
+{ #category : #accessing }
+MCWApplicationSettings >> toggleDenseView [
+
+	self denseView: self denseView not
 ]

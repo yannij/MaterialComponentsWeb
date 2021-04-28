@@ -1,11 +1,11 @@
 Class {
-	#name : #MCWShrineCanvas,
+	#name : #ShrineCanvas,
 	#superclass : #MCWWebComponent,
 	#category : #'Material-Study-Shrine'
 }
 
 { #category : #rendering }
-MCWShrineCanvas >> products [
+ShrineCanvas >> products [
 
 	^ #(
 ('assets/ginger-scarf.jpg' 'Ginger scarf')
@@ -28,14 +28,14 @@ MCWShrineCanvas >> products [
 ]
 
 { #category : #rendering }
-MCWShrineCanvas >> renderContentOn: html [
+ShrineCanvas >> renderContentOn: html [
 
 	self renderProductsOn: html
 
 ]
 
 { #category : #rendering }
-MCWShrineCanvas >> renderProductsOn: html [
+ShrineCanvas >> renderProductsOn: html [
 
 	html div class: 'shrine-body'; mdcElevation_z4; with: [
 		html unorderedList

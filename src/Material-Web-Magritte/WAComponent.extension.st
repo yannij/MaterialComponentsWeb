@@ -13,3 +13,19 @@ WAComponent >> mcwApplicationGet [
 		ifNil: [ nil ]
 		ifNotNil: [ :value | value presenter ]
 ]
+
+{ #category : #'*Material-Web-Magritte' }
+WAComponent >> mcwDenseView [
+
+	^ self mcwApplicationGet
+		ifNil: [ false ]
+		ifNotNil: [ :value | value mcwIsResponsiveApplication
+			ifTrue: [ value denseView ]
+			ifFalse: [ false ] ]
+]
+
+{ #category : #'*Material-Web-Magritte' }
+WAComponent >> mcwIsResponsiveApplication [
+
+	^ false
+]

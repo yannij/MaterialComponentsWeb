@@ -138,6 +138,7 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 		addListItem: (MCWListItemIcon new iconName: 'computer'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Colors'; callback: [ self chooseColors ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
+		addListItem: (MCWListItemIcon new iconName: 'all_out'; itemText: 'Dense'; callback: [ self toggleDenseView ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'logout'; itemText: 'Logout'; callback: [ self logout ]; yourself);
 		yourself.
 
@@ -232,6 +233,12 @@ MCWResponsiveApplication >> currentFont [
 ]
 
 { #category : #accessing }
+MCWResponsiveApplication >> denseView [
+
+	^ self settings denseView
+]
+
+{ #category : #accessing }
 MCWResponsiveApplication >> drawerSubtitle [
 
 	^ ''
@@ -314,6 +321,12 @@ MCWResponsiveApplication >> materialVersionLocalServer [
 	"Use version served by Seaside"
 
 	self materialVersion: nil
+]
+
+{ #category : #testing }
+MCWResponsiveApplication >> mcwIsResponsiveApplication [
+
+	^ true
 ]
 
 { #category : #initialization }
@@ -443,9 +456,15 @@ var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 
 MCWResponsiveApplication >> toggleAppBarCollapse [
 
 	self layout topAppBar shortCollapsed
-		ifTrue: [ self layout topAppBar short: false; shortCollapsed: false ]
-		ifFalse: [ self layout topAppBar short: true; shortCollapsed: true; dense: false ]
+		ifTrue: [ self layout topAppBar "short: false;" shortCollapsed: false ]
+		ifFalse: [ self layout topAppBar "short: false; dense: false;" shortCollapsed: true ]
 
+]
+
+{ #category : #actions }
+MCWResponsiveApplication >> toggleDenseView [
+
+	^ self settings toggleDenseView
 ]
 
 { #category : #actions }

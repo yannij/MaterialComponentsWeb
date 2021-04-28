@@ -52,7 +52,8 @@ MCWListItemIcon >> renderContentOn: html [
 
 	tag
 		callback: self callback if: self hasCallback;
-		mdcListItem; with: [
+		mdcListItem;
+		with: [
 			(self iconName notNil and: [ self iconName notEmpty ]) ifTrue: [
 				html span
 					mdcMaterialIcons; mdcListItem__graphic;

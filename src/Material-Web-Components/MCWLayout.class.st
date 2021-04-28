@@ -15,7 +15,7 @@ Class {
 { #category : #actions }
 MCWLayout >> adjustToolbarsDesktop [
 
-	self topAppBar dense: false.
+	"self topAppBar dense: false."
 	"self topAppBar startSection: self rootComponent appBarStartSection."
 	"self topAppBar startSection do: [:each |
 		each iconName = 'menu' ifTrue: [each beHidden]]."
@@ -25,7 +25,7 @@ MCWLayout >> adjustToolbarsDesktop [
 { #category : #actions }
 MCWLayout >> adjustToolbarsMobile [
 
-	self topAppBar dense: false.
+	"self topAppBar dense: false."
 	"self topAppBar startSection: self rootComponent appBarStartSection."
 	self topAppBar startSection do: [ :each | each beUnHidden ].
 
@@ -34,7 +34,7 @@ MCWLayout >> adjustToolbarsMobile [
 { #category : #actions }
 MCWLayout >> adjustToolbarsTablet [
 
-	self topAppBar dense: false.
+	"self topAppBar dense: false."
 	"self topAppBar startSection: self rootComponent appBarStartSection."
 	self topAppBar startSection do: [ :each | each beUnHidden ].
 
@@ -193,7 +193,6 @@ MCWLayout >> renderContentAreaDesktopOn: html [
 
 	(html tag: 'main')
 		class: 'mcw-layout-desktop';
-		style: 'background-color: #FAFAFA';
 		style: 'overflow-x: auto';
 		"No padding for desktop, because no bottom bar"
 		"style: 'padding-bottom: 40px';"
@@ -201,8 +200,6 @@ MCWLayout >> renderContentAreaDesktopOn: html [
 		style: 'min-width: 1279px';
 		style: 'max-width: 1279px';
 		with: [
-			"html div with: [
-				html span style: 'height: 30vh; opacity: .99'; with: [ html text: 'red' ]]."
 			html render: self contentArea.
 			html render: self mainFab ]
 ]
@@ -212,7 +209,6 @@ MCWLayout >> renderContentAreaMobileOn: html [
 
 	(html tag: 'main')
 		class: 'mcw-layout-mobile';
-		style: 'background-color: #FAFAFA';
 		style: 'overflow-x: auto';
 		style: 'padding-bottom: 40px';
 		style: 'min-width: 359px';
@@ -227,7 +223,6 @@ MCWLayout >> renderContentAreaTabletOn: html [
 
 	(html tag: 'main')
 		class: 'mcw-layout-tablet';
-		style: 'background-color: #FAFAFA';
 		style: 'overflow-x: auto';
 		style: 'padding-bottom: 40px';
 		style: 'min-width: 959px';
@@ -249,67 +244,68 @@ MCWLayout >> renderContentOn: html [
 { #category : #rendering }
 MCWLayout >> renderLayoutDesktopOn: html [
 
-	"self appBar isShortCollapsed
-		ifTrue: [self sideNav cssClass: 'appBarPadding']
-		ifFalse: [self sideNav cssClass: nil]."
-
 	html render: self sideNav.
 	html render: self topAppBar.
 
-	html div
-		mdcDrawerAppContent;
-		"style: 'margin-top: ', self appBar marginHeight printString, 'px';
-		style: 'display: inline-flex; flex-direction: row; flex-grow: 1; height: 100%; box-sizing: border-box;';"
-		with: [
-			html div
-				mdcTopAppBar_fixedAdjust;
-				with: [ self renderContentAreaDesktopOn: html ] ].
+	html div mdcDrawerAppContent; with: [
+		| div |
+		div := html div.
+		self mcwDenseView
+			ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
+			ifFalse:  [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
+		div with: [ self renderContentAreaDesktopOn: html ] ].
 
 	self sideSheet ifNotNil: [ :arg |
-		html div mdcTopAppBar_fixedAdjust;
-			style: 'min-width: 320px; max-width: 320px';
-			with: [ html render: self sideSheet ] ]
+		| div |
+		div := html div.
+		div style: 'min-width: 320px; max-width: 320px'.
+		self mcwDenseView
+			ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
+			ifFalse:  [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
+		div with: [ html render: self sideSheet ] ]
 
 ]
 
 { #category : #rendering }
 MCWLayout >> renderLayoutMobileOn: html [
 
-	self sideNav cssClass: nil.
-
 	html render: self sideNav.
 
 	html div
-		"mdcDrawerAppContent;"
 		with: [
+			| div |
 			html render: self topAppBar.
-			html div
-				mdcTopAppBar_fixedAdjust;
-				with: [ self renderContentAreaMobileOn: html ].
+			div := html div.
+			self mcwDenseView
+				ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
+				ifFalse:  [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
+			div with: [ self renderContentAreaMobileOn: html ].
 			html render: self sideSheet ]
 ]
 
 { #category : #rendering }
 MCWLayout >> renderLayoutTabletOn: html [
-
-	"self appBar isShortCollapsed
-		ifTrue: [self sideNav cssClass: 'appBarPadding']
-		ifFalse: [self sideNav cssClass: nil]."
+	| sideDiv |
 
 	html render: self sideNav.
 
 	html div
 		mdcDrawerAppContent;
 		with: [
+			| div |
 			html render: self topAppBar.
-			html div
-				mdcTopAppBar_fixedAdjust;
-				with: [ self renderContentAreaTabletOn: html ].
+			div := html div.
+			self mcwDenseView
+				ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
+				ifFalse:  [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
+			div with: [ self renderContentAreaTabletOn: html ].
 		].
 
-	html div
-		mdcTopAppBar_fixedAdjust;
-		with: [ html render: self sideSheet ]
+	sideDiv := html div.
+	self mcwDenseView
+		ifTrue: [ sideDiv mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
+		ifFalse:  [ sideDiv mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
+	sideDiv with: [ html render: self sideSheet ]
 
 ]
 
