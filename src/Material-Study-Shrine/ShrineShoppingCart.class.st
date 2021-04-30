@@ -2,8 +2,9 @@ Class {
 	#name : #ShrineShoppingCart,
 	#superclass : #MCWWebComponent,
 	#instVars : [
-		'topSheet',
-		'cartItems'
+		'cartState',
+		'cartItems',
+		'topSheet'
 	],
 	#category : #'Material-Study-Shrine'
 }
@@ -16,6 +17,20 @@ ShrineShoppingCart class >> on: aTopSheet [
 		yourself
 ]
 
+{ #category : #stripe }
+ShrineShoppingCart >> actionCancel [
+
+	self mcwApplicationGet logString: 'Cancel'
+]
+
+{ #category : #stripe }
+ShrineShoppingCart >> actionSuccess [
+
+	self mcwApplicationGet logString: 'Success'.
+
+	self cartState: self cartStatePaid
+]
+
 { #category : #accessing }
 ShrineShoppingCart >> cartItems [
 	^ cartItems
@@ -24,6 +39,37 @@ ShrineShoppingCart >> cartItems [
 { #category : #accessing }
 ShrineShoppingCart >> cartItems: anObject [
 	cartItems := anObject
+]
+
+{ #category : #accessing }
+ShrineShoppingCart >> cartItemsClear [
+
+	self cartState: self cartStateShopping.
+
+	"self cartItems: OrderedCollection new."
+	self cartItems: (OrderedCollection with: Object new)
+]
+
+{ #category : #accessing }
+ShrineShoppingCart >> cartState [
+	^ cartState
+]
+
+{ #category : #accessing }
+ShrineShoppingCart >> cartState: anObject [
+	cartState := anObject
+]
+
+{ #category : #accessing }
+ShrineShoppingCart >> cartStatePaid [
+
+	^ #Paid
+]
+
+{ #category : #accessing }
+ShrineShoppingCart >> cartStateShopping [
+
+	^ #Shopping
 ]
 
 { #category : #accessing }
@@ -42,16 +88,47 @@ ShrineShoppingCart >> cartValues [
 		yourself
 ]
 
+{ #category : #stripe }
+ShrineShoppingCart >> createCheckoutSessionRequest: html json: json [
+	| serverUrlString successUrl cancelUrl client stripeResponse |
+
+	serverUrlString := self serverUrl printString.
+	serverUrlString last = $/ ifTrue: [
+		serverUrlString := serverUrlString copyWithoutIndex: serverUrlString size ].
+	successUrl := html urlForAction: [ self actionSuccess ].
+	cancelUrl := html urlForAction: [ self actionCancel ].
+
+"self mcwApplicationGet logString: serverUrlString.
+self mcwApplicationGet logString: successUrl printString.
+self mcwApplicationGet logString: cancelUrl printString."
+
+	(client := ZnClient new)
+		https;
+		host: 'api.stripe.com';
+		addPath: (Array with: 'v1' with: 'checkout' with: 'sessions');
+		username: self stripeSecretKey password: self stripeSecretKey;
+		formAt: 'success_url' put: serverUrlString, successUrl printString;
+		formAt: 'cancel_url' put: serverUrlString, cancelUrl printString;
+		formAt: 'payment_method_types[0]' put: 'card';
+		formAt: 'line_items[0][price]' put: 'price_0IlPNK6QgJXWI9aTI0CX40eD';
+		formAt: 'line_items[0][quantity]' put: '2';
+		formAt: 'mode' put: 'payment';
+		yourself.
+
+	stripeResponse := client post.
+
+	^ json string: stripeResponse
+]
+
 { #category : #initialization }
 ShrineShoppingCart >> initialize [
 
 	super initialize.
 
-	"self cartItems: OrderedCollection new"
-	self cartItems: (OrderedCollection with: Object new with: Object new)
+	self cartItemsClear.
 ]
 
-{ #category : #rendering }
+{ #category : #utility }
 ShrineShoppingCart >> printAsMoney: aValue [
 
 	^ '$', (aValue printShowingDecimalPlaces: 2)
@@ -64,6 +141,34 @@ ShrineShoppingCart >> renderCartLine: lineItemName total: lineItemValue on: html
 	html text: ' . . . '.
 	html span mdcTypography_body1; with: lineItemValue.
 	html break
+]
+
+{ #category : #rendering }
+ShrineShoppingCart >> renderCartOn: html [
+
+	self cartState = self cartStateShopping
+		ifTrue: [ ^ self renderCartShoppingOn: html ].
+	self cartState = self cartStatePaid
+		ifTrue: [ ^ self renderCartPaidOn: html ].
+	html text: 'Cart error'
+]
+
+{ #category : #rendering }
+ShrineShoppingCart >> renderCartPaidOn: html [
+
+	self renderCartSummaryOn: html.
+	self renderCartTotalsOn: html.
+	html span mdcTypography_headline6; with: 'Payment successful !'.
+	self renderClearCartButtonOn: html
+]
+
+{ #category : #rendering }
+ShrineShoppingCart >> renderCartShoppingOn: html [
+
+	self renderCartSummaryOn: html.
+	self renderCartTotalsOn: html.
+	self renderCheckoutButtonOn: html.
+	self renderClearCartButtonOn: html
 ]
 
 { #category : #rendering }
@@ -88,11 +193,21 @@ ShrineShoppingCart >> renderCartTotalsOn: html [
 { #category : #rendering }
 ShrineShoppingCart >> renderCheckoutButtonOn: html [
 
+	html button
+		mdcButton;
+		mdcButton_raised;
+		onClick: (self stripeRedirectScriptOn: html);
+		with: 'Proceed to checkout'
+]
+
+{ #category : #rendering }
+ShrineShoppingCart >> renderClearCartButtonOn: html [
+
 	html anchor
 		mdcButton;
 		mdcButton_raised;
-		callback: [  ];
-		with: 'Proceed to checkout'
+		callback: [ self cartItemsClear ];
+		with: 'Clear cart'
 ]
 
 { #category : #rendering }
@@ -100,9 +215,7 @@ ShrineShoppingCart >> renderContentOn: html [
 
 	html div style: 'margin: 16px 0px'; with: [
 		self renderDismissButtonOn: html.
-		self renderCartSummaryOn: html.
-		self renderCartTotalsOn: html.
-		self renderCheckoutButtonOn: html ]
+		self renderCartOn: html ]
 ]
 
 { #category : #rendering }
@@ -114,6 +227,71 @@ ShrineShoppingCart >> renderDismissButtonOn: html [
 		callback: [ self topSheet shoppingCartVisible: false ];
 		with: [
 			html span mdcMaterialIcons; with: 'expand_less' ]
+]
+
+{ #category : #stripe }
+ShrineShoppingCart >> serverUrl [
+	| basicUrl serverUrl |
+
+	serverUrl := WAUrl new.
+	basicUrl := self session basicUrl.
+	basicUrl host
+		ifNotNil: [ :value |
+			serverUrl scheme: basicUrl scheme.
+			serverUrl host: basicUrl host.
+			serverUrl port: basicUrl port ]
+		ifNil: [
+			| serverUrlZinc |
+			serverUrlZinc := self serverUrlZinc.
+			serverUrl scheme: serverUrlZinc scheme.
+			serverUrl host: serverUrlZinc host.
+			serverUrl port: serverUrlZinc port ].
+
+	^ serverUrl
+]
+
+{ #category : #stripe }
+ShrineShoppingCart >> serverUrlZinc [
+	| adaptors server |
+
+	adaptors := WAServerManager default adaptors.
+	adaptors size = 1 ifFalse: [ self error: 'Seaside server configuration problem' ].
+	
+	server := adaptors any server.
+	^ server serverUrl
+		ifNotNil: [ :value | value ]
+		ifNil: [ server localUrl ]
+]
+
+{ #category : #stripe }
+ShrineShoppingCart >> stripePublishableKey [
+	"
+	OSEnvironment current at: 'STRIPE_PUBLISHABLE_KEY' put: 'pk_your_key'
+	"
+
+	^ OSEnvironment current at: 'STRIPE_PUBLISHABLE_KEY' ifAbsent: [ 'PUBLISHABLE_KEY_NOT_SET' ]
+]
+
+{ #category : #stripe }
+ShrineShoppingCart >> stripeRedirectScriptOn: html [
+
+	^ html jQuery getJson 
+		json: [ :json | self createCheckoutSessionRequest: html json: json ];
+		onSuccess: (html javascript << (JSStream new
+				nextPutAll: 'Stripe(''';
+				nextPutAll: self stripePublishableKey;
+				nextPutAll: ''').redirectToCheckout({sessionId: JSON.parse(arguments[0]).id})';
+				yourself);
+			yourself)
+]
+
+{ #category : #stripe }
+ShrineShoppingCart >> stripeSecretKey [
+	"
+	OSEnvironment current at: 'STRIPE_SECRET_KEY' put: 'sk_your_key'
+	"
+
+	^ OSEnvironment current at: 'STRIPE_SECRET_KEY' ifAbsent: [ 'SECRET_KEY_NOT_SET' ]
 ]
 
 { #category : #accessing }

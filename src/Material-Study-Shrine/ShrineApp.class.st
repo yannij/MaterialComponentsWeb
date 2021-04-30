@@ -180,6 +180,7 @@ ShrineApp >> updateRoot: anHtmlRoot [
 
 	"anHtmlRoot stylesheet url: (WAUrl absolute: 'http://localhost:8081/assets/bundle.css')."
 	anHtmlRoot stylesheet url: (ShrineLibrary urlOf: #bundleCss).
+	anHtmlRoot javascript url: 'https://js.stripe.com/v3/'
 
 ]
 
