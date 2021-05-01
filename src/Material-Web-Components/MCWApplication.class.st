@@ -19,7 +19,11 @@ MCWApplication class >> dockerSecrets [
 	^ self dockerSecretsFile
 		ifNil: [ nil ]
 		ifNotNil: [ :value |
-			WAJsonParser parse: ((SmalltalkImage current imageDirectory / value) contents) ]
+			| secretsFile |
+			secretsFile := SmalltalkImage current imageDirectory / value.
+			secretsFile exists
+				ifFalse: [ secretsFile := FileSystem root / 'run' / 'secrets' / value ].	
+			WAJsonParser parse: secretsFile contents ]
 ]
 
 { #category : #'docker secrets' }
