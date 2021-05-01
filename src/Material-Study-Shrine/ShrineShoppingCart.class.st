@@ -90,34 +90,34 @@ ShrineShoppingCart >> cartValues [
 
 { #category : #stripe }
 ShrineShoppingCart >> createCheckoutSessionRequest: html json: json [
-	| serverUrlString successUrl cancelUrl client stripeResponse |
+	| successUrl cancelUrl client responseJsonString responseJson |
 
-	serverUrlString := self serverUrl printString.
-	serverUrlString last = $/ ifTrue: [
-		serverUrlString := serverUrlString copyWithoutIndex: serverUrlString size ].
 	successUrl := html urlForAction: [ self actionSuccess ].
 	cancelUrl := html urlForAction: [ self actionCancel ].
-
-"self mcwApplicationGet logString: serverUrlString.
+"
 self mcwApplicationGet logString: successUrl printString.
-self mcwApplicationGet logString: cancelUrl printString."
+self mcwApplicationGet logString: cancelUrl printString.
+"
 
 	(client := ZnClient new)
 		https;
 		host: 'api.stripe.com';
 		addPath: (Array with: 'v1' with: 'checkout' with: 'sessions');
-		username: self stripeSecretKey password: self stripeSecretKey;
-		formAt: 'success_url' put: serverUrlString, successUrl printString;
-		formAt: 'cancel_url' put: serverUrlString, cancelUrl printString;
+		username: self mcwApplicationGet stripeSecretKey password: '';
+		formAt: 'success_url' put: successUrl printString;
+		formAt: 'cancel_url' put: cancelUrl printString;
 		formAt: 'payment_method_types[0]' put: 'card';
 		formAt: 'line_items[0][price]' put: 'price_0IlPNK6QgJXWI9aTI0CX40eD';
 		formAt: 'line_items[0][quantity]' put: '2';
 		formAt: 'mode' put: 'payment';
 		yourself.
 
-	stripeResponse := client post.
+	responseJsonString := client post.
+	responseJson := WAJsonParser parse: responseJsonString.
+	(responseJson includesKey: 'id')
+		ifFalse: [ self mcwApplicationGet logString: 'Stripe error response: ', responseJsonString ].
 
-	^ json string: stripeResponse
+	^ json string: responseJsonString
 ]
 
 { #category : #initialization }
@@ -231,45 +231,10 @@ ShrineShoppingCart >> renderDismissButtonOn: html [
 
 { #category : #stripe }
 ShrineShoppingCart >> serverUrl [
-	| basicUrl serverUrl |
 
-	serverUrl := WAUrl new.
-	basicUrl := self session basicUrl.
-	basicUrl host
-		ifNotNil: [ :value |
-			serverUrl scheme: basicUrl scheme.
-			serverUrl host: basicUrl host.
-			serverUrl port: basicUrl port ]
-		ifNil: [
-			| serverUrlZinc |
-			serverUrlZinc := self serverUrlZinc.
-			serverUrl scheme: serverUrlZinc scheme.
-			serverUrl host: serverUrlZinc host.
-			serverUrl port: serverUrlZinc port ].
-
-	^ serverUrl
-]
-
-{ #category : #stripe }
-ShrineShoppingCart >> serverUrlZinc [
-	| adaptors server |
-
-	adaptors := WAServerManager default adaptors.
-	adaptors size = 1 ifFalse: [ self error: 'Seaside server configuration problem' ].
-	
-	server := adaptors any server.
-	^ server serverUrl
+	^ self mcwPublicServerUrl
 		ifNotNil: [ :value | value ]
-		ifNil: [ server localUrl ]
-]
-
-{ #category : #stripe }
-ShrineShoppingCart >> stripePublishableKey [
-	"
-	OSEnvironment current at: 'STRIPE_PUBLISHABLE_KEY' put: 'pk_your_key'
-	"
-
-	^ OSEnvironment current at: 'STRIPE_PUBLISHABLE_KEY' ifAbsent: [ 'PUBLISHABLE_KEY_NOT_SET' ]
+		ifNil: [ self error: 'Public server URL not set' ]
 ]
 
 { #category : #stripe }
@@ -279,19 +244,10 @@ ShrineShoppingCart >> stripeRedirectScriptOn: html [
 		json: [ :json | self createCheckoutSessionRequest: html json: json ];
 		onSuccess: (html javascript << (JSStream new
 				nextPutAll: 'Stripe(''';
-				nextPutAll: self stripePublishableKey;
+				nextPutAll: self mcwApplicationGet stripePublishableKey;
 				nextPutAll: ''').redirectToCheckout({sessionId: JSON.parse(arguments[0]).id})';
 				yourself);
 			yourself)
-]
-
-{ #category : #stripe }
-ShrineShoppingCart >> stripeSecretKey [
-	"
-	OSEnvironment current at: 'STRIPE_SECRET_KEY' put: 'sk_your_key'
-	"
-
-	^ OSEnvironment current at: 'STRIPE_SECRET_KEY' ifAbsent: [ 'SECRET_KEY_NOT_SET' ]
 ]
 
 { #category : #accessing }

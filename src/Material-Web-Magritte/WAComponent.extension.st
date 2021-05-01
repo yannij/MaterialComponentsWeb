@@ -29,3 +29,65 @@ WAComponent >> mcwIsResponsiveApplication [
 
 	^ false
 ]
+
+{ #category : #'*Material-Web-Magritte' }
+WAComponent class >> mcwPublicServerUrl [
+	"Answer URL based on Seaside configuration of:
+		serverProtocol
+		serverHostname
+		serverPort
+		serverPath
+	Answer nil if serverHostname is not set.
+	Example:
+		WAComponent mcwPublicServerUrl
+	"
+	| serverUrl |
+
+	serverUrl := WADispatcher default url.
+	^ serverUrl host
+		ifNil: [ nil ]
+		ifNotNil: [ :value | serverUrl ]
+]
+
+{ #category : #'*Material-Web-Magritte' }
+WAComponent >> mcwPublicServerUrl [
+
+	^ self class mcwPublicServerUrl
+]
+
+{ #category : #'*Material-Web-Magritte' }
+WAComponent class >> mcwPublicServerUrl: aUrlString [
+	"Set Seaside configuration of:
+		serverProtocol
+		serverHostname
+		serverPort
+		serverPath
+
+	Example:
+		WAComponent mcwPublicServerUrl: 'http://localhost:8080/seaside'
+	"
+	| newUrl |
+
+	newUrl := WAUrl absolute: aUrlString.
+
+	WADispatcher default
+	serverProtocol: newUrl scheme;
+	serverHostname: newUrl host;
+	serverPort: newUrl port;
+	serverPath: newUrl pathStringUnencoded.
+]
+
+{ #category : #'*Material-Web-Magritte' }
+WAComponent class >> mcwPublicServerUrlInstallDockerConfig [
+	"
+	WAComponent mcwPublicServerUrlInstallDockerConfig
+	"
+	| configFileName configFile |
+
+	configFileName := 'publicServerUrl.json'.
+	configFile := SmalltalkImage current imageDirectory / configFileName.
+	configFile exists
+		ifFalse: [ configFile := FileSystem root / configFileName ].
+
+	self mcwPublicServerUrl: (WAJsonParser parse: configFile contents)
+]

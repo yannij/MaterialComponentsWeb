@@ -14,6 +14,13 @@ ShrineApp class >> applicationPath [
 
 ]
 
+{ #category : #initialization }
+ShrineApp class >> dockerSecretsFile [
+
+	^ 'shrine.json'
+
+]
+
 { #category : #'class initialization' }
 ShrineApp class >> initialize [
 	"Register path with Seaside.
@@ -36,6 +43,34 @@ ShrineApp class >> shrineSvg: aCssClass [
       </g>
     </svg>
 '
+]
+
+{ #category : #accessing }
+ShrineApp class >> stripePublishableKey [
+	| result |
+
+	"
+	ShrineApp stripePublishableKey
+	"
+	result := 'missing-stripPublishableKey'.
+	self dockerSecrets
+		ifNotNil: [ :secrets |
+			secrets at: 'stripePublishableKey' ifPresent: [ :value | result := value ] ].
+	^ result
+]
+
+{ #category : #accessing }
+ShrineApp class >> stripeSecretKey [
+	| result |
+
+	"
+	ShrineApp stripeSecretKey
+	"
+	result := 'missing-stripeSecretKey'.
+	self dockerSecrets
+		ifNotNil: [ :secrets |
+			secrets at: 'stripeSecretKey' ifPresent: [ :value | result := value ] ].
+	^ result
 ]
 
 { #category : #initialization }
@@ -161,6 +196,18 @@ ShrineApp >> initialize [
 ShrineApp >> shrineTitle [
 
 	^ '<h1 class="shrine-title">SHRINE</h1>'
+]
+
+{ #category : #accessing }
+ShrineApp >> stripePublishableKey [
+
+	^ self class stripePublishableKey
+]
+
+{ #category : #accessing }
+ShrineApp >> stripeSecretKey [
+
+	^ self class stripeSecretKey
 ]
 
 { #category : #accessing }
