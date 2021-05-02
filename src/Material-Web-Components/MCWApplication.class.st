@@ -12,41 +12,6 @@ MCWApplication class >> canBeRoot [
 	^ true
 ]
 
-{ #category : #'docker secrets' }
-MCWApplication class >> dockerSecrets [
-	"Subclasses may override #dockerSecretsFile, and use this method to retrieve the secrets"
-
-	^ self dockerSecretsFile
-		ifNil: [ nil ]
-		ifNotNil: [ :value |
-			| secretsFile |
-			secretsFile := SmalltalkImage current imageDirectory / value.
-			secretsFile exists
-				ifFalse: [ secretsFile := FileSystem root / 'run' / 'secrets' / value ].	
-			WAJsonParser parse: secretsFile contents ]
-]
-
-{ #category : #'docker secrets' }
-MCWApplication class >> dockerSecretsCache [
-	"Subclasses may override to cache result from #dockerSecrets"
-
-	^ nil
-]
-
-{ #category : #'docker secrets' }
-MCWApplication class >> dockerSecretsFile [
-	"Subclasses may override"
-
-	^ nil
-]
-
-{ #category : #'docker secrets' }
-MCWApplication class >> installDockerSecrets [
-
-	(self allSubclasses select: [ :eachClass | eachClass class methodDictionary includesKey: #dockerSecretsFile])
-		do: [ :eachRoot | eachRoot dockerSecretsCache ].
-]
-
 { #category : #'instance creation' }
 MCWApplication class >> mcwRegisterDeployment: aName [
 	| app |

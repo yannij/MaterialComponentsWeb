@@ -15,10 +15,9 @@ ShrineApp class >> applicationPath [
 ]
 
 { #category : #initialization }
-ShrineApp class >> dockerSecretsFile [
+ShrineApp class >> dockerSecretsName [
 
-	^ 'shrine.json'
-
+	^ 'shrine'
 ]
 
 { #category : #'class initialization' }
@@ -47,30 +46,28 @@ ShrineApp class >> shrineSvg: aCssClass [
 
 { #category : #accessing }
 ShrineApp class >> stripePublishableKey [
-	| result |
+	"
+	DockerDeploy current loadSecretNamed: ShrineApp dockerSecretsName.
+	ShrineApp stripePublishableKey.
+	"
 
-	"
-	ShrineApp stripePublishableKey
-	"
-	result := 'missing-stripPublishableKey'.
-	self dockerSecrets
-		ifNotNil: [ :secrets |
-			secrets at: 'stripePublishableKey' ifPresent: [ :value | result := value ] ].
-	^ result
+	^ DockerDeploy current
+		secretsAt: self dockerSecretsName
+		atKey: 'stripePublishableKey'
+		ifAbsent: [ 'missing-stripePublishableKey' ]
 ]
 
 { #category : #accessing }
 ShrineApp class >> stripeSecretKey [
-	| result |
+	"
+	DockerDeploy current loadSecretNamed: ShrineApp dockerSecretsName.
+	ShrineApp stripeSecretKey.
+	"
 
-	"
-	ShrineApp stripeSecretKey
-	"
-	result := 'missing-stripeSecretKey'.
-	self dockerSecrets
-		ifNotNil: [ :secrets |
-			secrets at: 'stripeSecretKey' ifPresent: [ :value | result := value ] ].
-	^ result
+	^ DockerDeploy current
+		secretsAt: self dockerSecretsName
+		atKey: 'stripeSecretKey'
+		ifAbsent: [ 'missing-stripeSecretKey' ]
 ]
 
 { #category : #initialization }

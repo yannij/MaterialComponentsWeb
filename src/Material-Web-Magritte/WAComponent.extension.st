@@ -80,14 +80,13 @@ WAComponent class >> mcwPublicServerUrl: aUrlString [
 { #category : #'*Material-Web-Magritte' }
 WAComponent class >> mcwPublicServerUrlInstallDockerConfig [
 	"
+	DockerDeploy current loadConfigNamed: DockerDeploy configNameDefault.
 	WAComponent mcwPublicServerUrlInstallDockerConfig
 	"
-	| configFileName configFile |
+	| publicServerUrl |
 
-	configFileName := 'publicServerUrl.json'.
-	configFile := SmalltalkImage current imageDirectory / configFileName.
-	configFile exists
-		ifFalse: [ configFile := FileSystem root / configFileName ].
+	publicServerUrl := DockerDeploy current configsAt: DockerDeploy configNameDefault atKey: 'publicServerUrl'.
+	publicServerUrl ifNil: [ ^ self ].
 
-	self mcwPublicServerUrl: (WAJsonParser parse: configFile contents)
+	self mcwPublicServerUrl: publicServerUrl
 ]
