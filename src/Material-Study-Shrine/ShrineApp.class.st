@@ -14,6 +14,13 @@ ShrineApp class >> applicationPath [
 
 ]
 
+{ #category : #'class initialization' }
+ShrineApp class >> dockerDeployPreLoad [
+	<dockerDeployPreLoad>
+
+	DockerDeploy current secretNamesAdd: ShrineApp dockerSecretsName
+]
+
 { #category : #initialization }
 ShrineApp class >> dockerSecretsName [
 

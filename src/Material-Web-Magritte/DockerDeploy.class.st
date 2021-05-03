@@ -40,7 +40,7 @@ Class {
 	#classInstVars : [
 		'default'
 	],
-	#category : #'Material-Study-Shrine'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #accessing }
@@ -75,6 +75,12 @@ DockerDeploy >> configNames: anObject [
 DockerDeploy >> configNamesAdd: aConfigName [
 
 	self configNames add: aConfigName
+]
+
+{ #category : #'api - configs' }
+DockerDeploy >> configNamesAddDefault [
+
+	self configNamesAdd: self class configNameDefault
 ]
 
 { #category : #'api - configs' }
@@ -118,9 +124,9 @@ DockerDeploy >> initialize [
 
 	super initialize.
 
-	self configNames: OrderedCollection new.
+	self configNames: Set new.
 	self configs: Dictionary new.
-	self secretNames: OrderedCollection new.
+	self secretNames: Set new.
 	self secrets: Dictionary new
 ]
 
@@ -171,11 +177,51 @@ DockerDeploy >> loadSecretNamed: aSecretName [
 	secretFileName := aSecretName, '.json'.
 	secretFile := SmalltalkImage current imageDirectory / secretFileName.
 	secretFile exists
-		ifFalse: [ secretFile := FileSystem root / secretFileName ].
+		ifFalse: [ secretFile := FileSystem root / 'run' / 'secrets' / secretFileName ].
 
 	json := WAJsonParser parse: secretFile contents.
 
 	self secretsAt: aSecretName put: json
+]
+
+{ #category : #private }
+DockerDeploy >> runAppMethodsWithPragmaNamed: aPragmaName [
+	| appRootClass |
+
+	appRootClass := #MCWApplication asClassInEnvironment: Smalltalk globals ifAbsent: [ nil ].
+	appRootClass ifNil: [ ^ self ].
+
+	appRootClass allSubclasses do: [ :eachClass | | pragmas appMetaClass |
+		appMetaClass := eachClass class.
+		pragmas := Pragma allNamed: aPragmaName in: appMetaClass.
+		pragmas do: [ :eachPragma |
+			appMetaClass soleInstance perform: eachPragma method selector asSymbol ] ]
+]
+
+{ #category : #'api - deploy' }
+DockerDeploy >> runStartup [
+	"
+	Invoke this method during Docker container start up.
+
+	DockerDeploy current runStartup
+	"
+
+	self runStartupPreLoad.
+	self loadAllConfigs.
+	self loadAllSecrets.
+	self runStartupPostLoad
+]
+
+{ #category : #private }
+DockerDeploy >> runStartupPostLoad [
+
+	self runAppMethodsWithPragmaNamed: #dockerDeployPostLoad
+]
+
+{ #category : #private }
+DockerDeploy >> runStartupPreLoad [
+
+	self runAppMethodsWithPragmaNamed: #dockerDeployPreLoad
 ]
 
 { #category : #accessing }
