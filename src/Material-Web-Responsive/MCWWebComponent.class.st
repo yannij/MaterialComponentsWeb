@@ -9,7 +9,7 @@ Class {
 		'hidden',
 		'mcwStyle'
 	],
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #'instance creation' }

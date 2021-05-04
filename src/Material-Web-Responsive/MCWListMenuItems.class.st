@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWListMenuItems,
 	#superclass : #MCWList,
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #hack }

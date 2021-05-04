@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWAnchorTextButton,
 	#superclass : #MCWActionComponent,
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #rendering }

@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWListItemSeparator,
 	#superclass : #MCWListItemComponent,
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #rendering }

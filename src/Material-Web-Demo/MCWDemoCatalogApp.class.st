@@ -73,9 +73,17 @@ MCWDemoCatalogApp >> initialize [
 	self catalogCanvas: MCWDemoCatalogCanvas new.
 
 	super initialize.
-	self layout topAppBar toolbarTitle: (MCWDemoCatalogTopAppBarTtile titled: self appBarTitle).
+	self layout topAppBar appBarTitle: self appBarTitle.
 	self layout contentArea component: self catalogCanvas.
 
+]
+
+{ #category : #rendering }
+MCWDemoCatalogApp >> renderTopAppBarTitleOn: html [
+
+	html span mdcTopAppBar__title; class: 'catalog-top-app-bar__title'; with: [
+		html span class: 'catalog-top-app-bar__title--small-screen'; with: 'MDC Seaside'.
+		html span class: 'catalog-top-app-bar__title--large-screen'; with: 'Material Components for Seaside' ]
 ]
 
 { #category : #updating }

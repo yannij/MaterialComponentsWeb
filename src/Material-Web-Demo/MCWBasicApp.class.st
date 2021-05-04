@@ -45,7 +45,7 @@ MCWBasicApp >> renderLayoutOn: html [
 	| topAppBar |
 
 	topAppBar := MCWTopAppBar new
-		toolbarTitle: (MCWTopAppBarTtile titled: 'Hello World!');
+		appBarTitle: 'Hello World!';
 		yourself.
 
 	html div

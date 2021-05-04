@@ -194,7 +194,7 @@ MCWResponsiveApplication >> buildSideSheetList [
 MCWResponsiveApplication >> buildTopAppBar [
 
 	^ MCWTopAppBar new
-		toolbarTitle: (MCWTopAppBarTtile titled: self appBarTitle);
+		appBarTitle: self appBarTitle;
 		startSection: self appBarStartSection;
 		endSection: self appBarEndSection;
 		yourself

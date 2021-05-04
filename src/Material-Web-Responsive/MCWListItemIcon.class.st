@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'iconName'
 	],
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #'instance creation' }

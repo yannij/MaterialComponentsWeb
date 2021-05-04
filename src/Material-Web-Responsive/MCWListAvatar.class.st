@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWListAvatar,
 	#superclass : #MCWList,
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #rendering }

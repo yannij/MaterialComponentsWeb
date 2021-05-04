@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWButton,
 	#superclass : #MCWActionComponent,
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #rendering }

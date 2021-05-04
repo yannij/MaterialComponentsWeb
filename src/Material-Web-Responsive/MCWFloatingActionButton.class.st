@@ -5,7 +5,7 @@ Class {
 		'rippledFab',
 		'miniFab'
 	],
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #accessing }

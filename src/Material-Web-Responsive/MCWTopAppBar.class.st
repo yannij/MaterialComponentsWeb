@@ -5,12 +5,22 @@ Class {
 		'dense',
 		'short',
 		'shortCollapsed',
-		'toolbarTitle',
 		'startSection',
-		'endSection'
+		'endSection',
+		'appBarTitle'
 	],
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Responsive'
 }
+
+{ #category : #accessing }
+MCWTopAppBar >> appBarTitle [
+	^ appBarTitle
+]
+
+{ #category : #accessing }
+MCWTopAppBar >> appBarTitle: anObject [
+	appBarTitle := anObject
+]
 
 { #category : #accessing }
 MCWTopAppBar >> endSection [
@@ -33,7 +43,7 @@ MCWTopAppBar >> initialize [
 
 	super initialize.
 
-	self toolbarTitle: ''.
+	self appBarTitle: ''.
 	self startSection: OrderedCollection new.
 	self endSection: OrderedCollection new.
 
@@ -87,7 +97,7 @@ MCWTopAppBar >> renderContentOn: html [
 					mdcTopAppBar__section; mdcTopAppBar__section_alignStart;
 					with: [
 						self startSection do: [ :each | html render: each ].
-						html render: self toolbarTitle ].
+						html span mdcTopAppBar__title; with: self appBarTitle ].
 				html section
 					mdcTopAppBar__section; mdcTopAppBar__section_alignEnd;
 					with: [
@@ -122,16 +132,6 @@ MCWTopAppBar >> startSection [
 { #category : #accessing }
 MCWTopAppBar >> startSection: anObject [
 	startSection := anObject
-]
-
-{ #category : #accessing }
-MCWTopAppBar >> toolbarTitle [
-	^ toolbarTitle
-]
-
-{ #category : #accessing }
-MCWTopAppBar >> toolbarTitle: anObject [
-	toolbarTitle := anObject
 ]
 
 { #category : #actions }
