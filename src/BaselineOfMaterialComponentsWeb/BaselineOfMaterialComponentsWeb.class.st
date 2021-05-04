@@ -17,12 +17,13 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 				package: 'Material-Web-Core' with: [ spec requires: #('Seaside3') ];
 				package: 'Material-Web-Components' with: [ spec requires: #('Material-Web-Core') ];
 				package: 'Material-Web-Magritte' with: [ spec requires: #('Magritte' 'Material-Web-Components') ];
-				package: 'Material-Study-Shrine' with: [ spec requires: #('Material-Web-Magritte') ];
-				package: 'Material-Web-Demo' with: [ spec requires: #('Material-Web-Magritte') ].
+				package: 'Material-Web-Responsive' with: [ spec requires: #('Material-Web-Magritte') ];
+				package: 'Material-Study-Shrine' with: [ spec requires: #('Material-Web-Responsive') ];
+				package: 'Material-Web-Demo' with: [ spec requires: #('Material-Web-Responsive') ].
 
 			spec
-				group: 'default' with: #('Material-Web-Magritte' 'Material-Web-Demo' 'Material-Study-Shrine');
-				group: 'MagritteComponents' with: #('Material-Web-Magritte');
+				group: 'default' with: #('Material-Web-Responsive' 'Material-Web-Demo' 'Material-Study-Shrine');
+				group: 'Responsive' with: #('Material-Web-Responsive');
 				group: 'Components' with: #('Material-Web-Components');
 				group: 'Core' with: #('Material-Web-Core');
 				"Use preload for staged docker build"

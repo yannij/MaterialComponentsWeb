@@ -13,7 +13,7 @@ Class {
 		'registerBlock',
 		'sendTokenBlock'
 	],
-	#category : #'Material-Web-Magritte'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #'utility - password' }

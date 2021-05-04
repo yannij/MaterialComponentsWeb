@@ -9,7 +9,7 @@ Class {
 		'sideSheet',
 		'mainFab'
 	],
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #actions }

@@ -1,24 +1,24 @@
 Class {
-	#name : #MCWSideSheet,
+	#name : #MCWContentArea,
 	#superclass : #MCWUserInterfaceRegion,
 	#instVars : [
 		'component'
 	],
-	#category : #'Material-Web-Magritte'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #accessing }
-MCWSideSheet >> component [
+MCWContentArea >> component [
 	^ component
 ]
 
 { #category : #accessing }
-MCWSideSheet >> component: anObject [
+MCWContentArea >> component: anObject [
 	component := anObject
 ]
 
 { #category : #rendering }
-MCWSideSheet >> renderCanvasOn: html [
+MCWContentArea >> renderCanvasOn: html [
 
 	self component ifNil: [ ^ self ].
 
@@ -33,9 +33,7 @@ MCWSideSheet >> renderCanvasOn: html [
 ]
 
 { #category : #rendering }
-MCWSideSheet >> renderContentOn: html [
-
-	self isHidden ifTrue: [ ^ self ].
+MCWContentArea >> renderContentOn: html [ 
 
 	self renderCanvasOn: html
 

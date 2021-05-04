@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWResponsiveAppLibrary,
 	#superclass : #WAFileLibrary,
-	#category : #'Material-Web-Magritte'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #uploaded }

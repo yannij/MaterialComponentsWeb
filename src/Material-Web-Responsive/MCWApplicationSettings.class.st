@@ -6,7 +6,7 @@ Class {
 		'colorTheme',
 		'denseView'
 	],
-	#category : #'Material-Web-Magritte'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #'instance creation' }

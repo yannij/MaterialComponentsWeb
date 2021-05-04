@@ -9,7 +9,7 @@ Class {
 		'settings',
 		'loginComponent'
 	],
-	#category : #'Material-Web-Magritte'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #initialization }
