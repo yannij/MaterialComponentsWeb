@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWListGroup,
-	#superclass : #MCWWebComponent,
+	#superclass : #MCWLayoutComponent,
 	#instVars : [
 		'groupedLists'
 	],

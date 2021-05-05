@@ -25,7 +25,6 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 				group: 'default' with: #('Material-Web-Responsive' 'Material-Web-Demo' 'Material-Study-Shrine');
 				group: 'Responsive' with: #('Material-Web-Responsive');
 				group: 'Components' with: #('Material-Web-Components');
-				group: 'Core' with: #('Material-Web-Core');
 				"Use preload for staged docker build"
 				group: 'preload' with: #('Seaside3' 'Magritte') ]
 ]

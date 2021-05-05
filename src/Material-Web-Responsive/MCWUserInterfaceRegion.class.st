@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWUserInterfaceRegion,
-	#superclass : #MCWWebComponent,
+	#superclass : #MCWLayoutComponent,
 	#instVars : [
 		'containingLayout',
 		'displayType'

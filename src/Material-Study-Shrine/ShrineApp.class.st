@@ -77,13 +77,6 @@ ShrineApp class >> stripeSecretKey [
 		ifAbsent: [ 'missing-stripeSecretKey' ]
 ]
 
-{ #category : #initialization }
-ShrineApp >> appBarTitle [
-
-	^ ''
-
-]
-
 { #category : #accessing }
 ShrineApp >> applicationTitle [
 
@@ -179,9 +172,13 @@ ShrineApp >> colorThemeCustomDark [
 ]
 
 { #category : #initialization }
-ShrineApp >> initialize [
+ShrineApp >> initializeLayout [
 
-	super initialize.
+	self materialVersionDefault.
+
+	self settings: self buildApplicationSettings.
+	self layout: self buildLayout.
+	self beLayoutStructureDesktop.
 
 	self layout contentArea component: ShrineCanvas new.
 	self loginComponent: self buildLoginComponent.

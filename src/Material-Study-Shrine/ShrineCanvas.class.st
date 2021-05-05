@@ -1,6 +1,6 @@
 Class {
 	#name : #ShrineCanvas,
-	#superclass : #MCWWebComponent,
+	#superclass : #MCWLayoutComponent,
 	#category : #'Material-Study-Shrine'
 }
 

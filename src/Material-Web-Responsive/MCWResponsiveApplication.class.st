@@ -39,13 +39,6 @@ MCWResponsiveApplication >> appBarStartSection [
 		with: self buildMenuIconPersistent
 ]
 
-{ #category : #initialization }
-MCWResponsiveApplication >> appBarTitle [
-
-	^ 'Top app bar'
-
-]
-
 { #category : #accessing }
 MCWResponsiveApplication >> applicationTitle [
 
@@ -86,14 +79,20 @@ MCWResponsiveApplication >> buildApplicationSettings [
 
 { #category : #initialization }
 MCWResponsiveApplication >> buildLayout [
+	| newLayout newSideNav newTopAppBar newContentArea |
 
-	^ MCWLayout new
-		primaryRegionSet: MCWContentArea new;
-		sideNav: self buildSideNav;
+	newLayout := MCWResponsiveLayout new.
+	newSideNav := self buildSideNav layout: newLayout; yourself.
+	newTopAppBar := self buildTopAppBar layout: newLayout; yourself.
+	newContentArea := MCWContentArea on: newLayout.
+	newLayout
+		primaryRegionSet: newContentArea;
+		sideNav: newSideNav;
 		sideSheetSet: self buildSideSheet;
 		mainFab: self buildMainFab;
-		topAppBar: self buildTopAppBar;
-		yourself
+		topAppBar: newTopAppBar;
+		yourself.
+	^ newLayout
 ]
 
 { #category : #initialization }
@@ -155,8 +154,6 @@ MCWResponsiveApplication >> buildSideNav [
 
 	^ MCWDrawer new
 		id: self sideNavDrawerId;
-		drawerTitle: self drawerTitle;
-		drawerSubtitle: self drawerSubtitle;
 		list: self buildSideNavList;
 		menuIconPersistent: self buildMenuIconPersistent;
 		"menuIconTemporary: self buildMenuIconTemporary;"
@@ -185,16 +182,10 @@ MCWResponsiveApplication >> buildSideSheet [
 ]
 
 { #category : #initialization }
-MCWResponsiveApplication >> buildSideSheetList [
-
-	^ nil
-]
-
-{ #category : #initialization }
 MCWResponsiveApplication >> buildTopAppBar [
 
 	^ MCWTopAppBar new
-		appBarTitle: self appBarTitle;
+		appBarTitle: self applicationTitle;
 		startSection: self appBarStartSection;
 		endSection: self appBarEndSection;
 		yourself
@@ -255,20 +246,13 @@ MCWResponsiveApplication >> initialize [
 
 	super initialize.
 
-	"self materialVersion100."
-	self materialVersionLocalServer.
-	"self materialVersion: '10.0.0'."
+	self initializeLayout
+]
 
-	self settings: self buildApplicationSettings.
-	self layout: self buildLayout.
-	self beLayoutStructureDesktop.
+{ #category : #initialization }
+MCWResponsiveApplication >> initializeLayout [
 
-	"No login required if loginComponent is nil"
-	"self loginComponent: MCWLogin new."
-
-	"Subclasses may invoke #applicationPostInitialize: if necessary"
-	"self applicationPostInitialize: self"
-
+	self subclassResponsibility
 ]
 
 { #category : #accessing }
@@ -307,6 +291,12 @@ MCWResponsiveApplication >> materialVersion100 [
 	"Use 1.0.0 unpkg.com"
 
 	self materialVersion: '1.0.0'
+]
+
+{ #category : #initialization }
+MCWResponsiveApplication >> materialVersionDefault [
+
+	self materialVersionLocalServer
 ]
 
 { #category : #initialization }

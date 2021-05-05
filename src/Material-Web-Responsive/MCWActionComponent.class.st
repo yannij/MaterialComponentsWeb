@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWActionComponent,
-	#superclass : #MCWWebComponent,
+	#superclass : #MCWLayoutComponent,
 	#instVars : [
 		'actionLabel',
 		'onClickScript',

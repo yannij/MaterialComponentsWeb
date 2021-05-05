@@ -1,6 +1,6 @@
 Class {
 	#name : #ShrineShoppingCart,
-	#superclass : #MCWWebComponent,
+	#superclass : #MCWLayoutComponent,
 	#instVars : [
 		'cartState',
 		'cartItems',

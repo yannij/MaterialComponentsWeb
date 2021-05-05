@@ -1,6 +1,6 @@
 Class {
 	#name : #ShrineTopSheet,
-	#superclass : #MCWWebComponent,
+	#superclass : #MCWLayoutComponent,
 	#instVars : [
 		'shoppingCart',
 		'shoppingCartVisible'
@@ -21,7 +21,7 @@ ShrineTopSheet >> initialize [
 ShrineTopSheet >> renderContentOn: html [
 
 	self shoppingCartVisible
-		ifTrue: [ html div with: [ html render: self shoppingCart ] ]
+		ifTrue: [ html div with: self shoppingCart ]
 		ifFalse: [ self renderShoppingCartButtonOn: html ]
 ]
 
@@ -31,6 +31,7 @@ ShrineTopSheet >> renderShoppingCartButtonOn: html [
 	html anchor
 		mdcIconButton;
 		mdcButton_raised;
+		style: 'margin-top: 16px';
 		callback: [ self shoppingCartVisible: true ];
 		with: [
 			html span mdcMaterialIcons; with: 'shopping_cart' ]

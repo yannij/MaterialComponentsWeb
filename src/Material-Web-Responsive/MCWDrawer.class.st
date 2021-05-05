@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWDrawer,
-	#superclass : #MCWWebComponent,
+	#superclass : #MCWLayoutComponent,
 	#instVars : [
 		'drawerType',
 		'drawerTitle',
@@ -222,11 +222,12 @@ MCWDrawer >> renderContentOn: html [
 
 	drawerTag := html aside mdcDrawer.
 	self isModalDrawer ifTrue: [ drawerTag mdcDrawer_modal ].
-	self isDismissibleDrawer ifTrue: [ drawerTag mdcDrawer_dismissible ].
-
-	self mcwDenseView
-		ifTrue: [ drawerTag mdcTopAppBar_denseFixedAdjust_if: self mcwApplicationGet layout topAppBar shortCollapsed not ]
-		ifFalse:  [ drawerTag mdcTopAppBar_fixedAdjust_if: self mcwApplicationGet layout topAppBar shortCollapsed not ].
+	self isDismissibleDrawer
+		ifTrue: [ drawerTag mdcDrawer_dismissible ]
+		ifFalse: [
+			self mcwDenseView
+				ifTrue: [ drawerTag mdcTopAppBar_denseFixedAdjust_if: self mcwApplicationGet layout topAppBar shortCollapsed not ]
+				ifFalse:  [ drawerTag mdcTopAppBar_fixedAdjust_if: self mcwApplicationGet layout topAppBar shortCollapsed not ] ].
 
 	drawerTag
 		id: self id;

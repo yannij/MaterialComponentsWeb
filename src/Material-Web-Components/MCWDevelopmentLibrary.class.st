@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWDevelopmentLibrary,
 	#superclass : #WAFileLibrary,
-	#category : #'Material-Web-Core'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #uploaded }

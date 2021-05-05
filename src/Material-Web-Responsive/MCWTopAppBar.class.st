@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWTopAppBar,
-	#superclass : #MCWWebComponent,
+	#superclass : #MCWLayoutComponent,
 	#instVars : [
 		'dense',
 		'short',
@@ -69,6 +69,12 @@ MCWTopAppBar >> marginHeight [
 	^ self isShortCollapsed ifTrue: [ 0 ] ifFalse: [ self height ]
 ]
 
+{ #category : #testing }
+MCWTopAppBar >> needsPaddingRight [
+
+	^ self layout sideNav isDrawerOpen and: [ self isShortCollapsed not ]
+]
+
 { #category : #accessing }
 MCWTopAppBar >> paddingHeight [
 
@@ -87,9 +93,11 @@ MCWTopAppBar >> renderContentOn: html [
 	self isShort ifTrue: [ tag mdcTopAppBar_short ].
 	self isShortCollapsed ifTrue: [ tag mdcTopAppBar_shortCollapsed ].
 
+	self needsPaddingRight ifTrue: [ tag style: 'padding-right: 256px' ].
+
 	tag
 		mdcAutoInit: 'MDCTopAppBar';
-		style: self mcwStyle;
+		"style: 'position: absolute';"
 		style: 'z-index: 7';
 		with: [
 			html div mdcTopAppBar__row; with: [

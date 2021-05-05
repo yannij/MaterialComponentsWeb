@@ -35,31 +35,39 @@ MCWBasicApp >> renderContentOn: html [
 		'var bodyStyle = document.querySelector("body").style;'
 		, 'bodyStyle.setProperty("--mdc-theme-primary", "#0088F0");'.
 
-	self renderLayoutOn: html.
+	html div with: [
+		self renderTopAppBarOn: html.
+		self renderLayoutOn: html ].
 
 	self renderMaterialComponentsWebJsOn: html
 ]
 
 { #category : #rendering }
 MCWBasicApp >> renderLayoutOn: html [
-	| topAppBar |
 
-	topAppBar := MCWTopAppBar new
-		appBarTitle: 'Hello World!';
-		yourself.
+	html div mdcTopAppBar_fixedAdjust; with: [
+		html div
+			style: 'width: 250px; margin: 20px auto';
+			with: [
+				html span
+					mdcTypography_body2;
+					with: 'Start your application here, to use Material Components directly' ] ]
+]
 
-	html div
+{ #category : #rendering }
+MCWBasicApp >> renderTopAppBarOn: html [
+	| tag |
+
+	tag := html header mdcTopAppBar.
+
+	tag
+		mdcAutoInit: 'MDCTopAppBar';
 		with: [
-			html render: topAppBar.
-			html div
-				mdcTopAppBar_fixedAdjust;
-				with: [
-					html div
-						style: 'width: 250px; margin: 20px auto';
-						with: [
-							html span
-								mdcTypography_body2;
-								with: 'Start your application here, to not have Magritte dependency' ] ] ]
+			html div mdcTopAppBar__row; with: [
+				html section
+					mdcTopAppBar__section; mdcTopAppBar__section_alignStart;
+					with: [
+						html span mdcTopAppBar__title; with: 'Hello world!' ] ] ]
 ]
 
 { #category : #updating }

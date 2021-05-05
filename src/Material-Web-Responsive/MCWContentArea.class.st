@@ -22,14 +22,13 @@ MCWContentArea >> renderCanvasOn: html [
 
 	self component ifNil: [ ^ self ].
 
-	html div mdcLayoutGrid;
-		"style: '--mdc-layout-grid-margin-desktop: 16px';
-		style: '--mdc-layout-grid-gutter-desktop: 16px';"
+	"html div mdcLayoutGrid;
 		with: [
 			html div mdcLayoutGrid__inner; with: [
-				html div mdcLayoutGrid__cell_span: self component layoutCellSpan; with: [
-					html render: self component ] ] ]
+				self mcwApplicationGet logString: 'cellSpan: ', self layout cellSpan printString.
+				html div mdcLayoutGrid__cell_span: self layout cellSpan; with: self component ] ]"
 
+	html render: self component
 ]
 
 { #category : #rendering }

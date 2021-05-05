@@ -21,10 +21,6 @@ MCWResponsiveAppLibrary >> responsiveAppCss [
 	left: 0rem;
 }
 
-.appBarPadding {
-	padding-top: 56px;
-}
-
 
 .mcw-textfield {
   display: block;

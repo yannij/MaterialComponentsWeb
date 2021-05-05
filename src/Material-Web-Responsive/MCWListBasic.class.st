@@ -12,7 +12,6 @@ MCWListBasic >> listTagOn: html [
 		mdcList_dense_if: self mcwDenseView;
 		mdcRole: 'list';
 		"class: self cssClass if: self cssClass notNil;"
-		style: self mcwStyle;
 		yourself
 
 ]

@@ -26,7 +26,7 @@ MCWBasicResponsiveApp class >> initialize [
 { #category : #accessing }
 MCWBasicResponsiveApp >> applicationTitle [
 
-	^ 'Layout Example'
+	^ 'Responsive Example'
 ]
 
 { #category : #initialization }
@@ -57,6 +57,8 @@ MCWBasicResponsiveApp >> buildSideNavList [
 MCWBasicResponsiveApp >> buildSideSheet [
 
 	^ MCWSideSheet new
+		component: self buildSideSheetList;
+		yourself
 ]
 
 { #category : #initialization }
@@ -85,16 +87,25 @@ MCWBasicResponsiveApp >> buildSideSheetList [
 
 ]
 
-{ #category : #accessing }
-MCWBasicResponsiveApp >> drawerSubtitle [
+{ #category : #initialization }
+MCWBasicResponsiveApp >> initializeLayout [
 
-	^ 'Sub-example'
+	self materialVersionDefault.
+
+	self settings: self buildApplicationSettings.
+	self layout: self buildLayout.
+	self sideNavTitlesSet.
+	self beLayoutStructureDesktop.
+	self layout contentArea component: [ 'foobar' ].
 ]
 
-{ #category : #accessing }
-MCWBasicResponsiveApp >> drawerTitle [
+{ #category : #initialization }
+MCWBasicResponsiveApp >> sideNavTitlesSet [
 
-	^ 'Example'
+	self sideNav
+		drawerTitle: 'Example';
+		drawerSubtitle: 'Sub-example';
+		yourself
 ]
 
 { #category : #updating }

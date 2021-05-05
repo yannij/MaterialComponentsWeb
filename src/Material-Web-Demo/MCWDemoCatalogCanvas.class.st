@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWDemoCatalogCanvas,
-	#superclass : #MCWWebComponent,
+	#superclass : #MCWLayoutComponent,
 	#instVars : [
 		'pageName'
 	],

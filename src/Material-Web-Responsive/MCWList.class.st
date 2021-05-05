@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWList,
-	#superclass : #MCWWebComponent,
+	#superclass : #MCWLayoutComponent,
 	#instVars : [
 		'selectedIndex',
 		'listItems',

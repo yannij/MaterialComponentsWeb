@@ -1,91 +1,99 @@
 Class {
-	#name : #MCWWebComponent,
+	#name : #MCWLayoutComponent,
 	#superclass : #MCWComponent,
 	#instVars : [
+		'layout',
 		'id',
 		'title',
 		'cssClass',
 		'ariaLabel',
-		'hidden',
-		'mcwStyle'
+		'hidden'
 	],
 	#category : #'Material-Web-Responsive'
 }
 
 { #category : #'instance creation' }
-MCWWebComponent class >> id: anIdString [
+MCWLayoutComponent class >> id: anIdString [
 
 	^ self new
 		id: anIdString;
 		yourself
 ]
 
+{ #category : #'instance creation' }
+MCWLayoutComponent class >> on: aResponsiveLayout [
+
+	^ self new
+		layout: aResponsiveLayout;
+		yourself
+]
+
 { #category : #accessing }
-MCWWebComponent >> ariaLabel [
+MCWLayoutComponent >> ariaLabel [
 	^ ariaLabel
 ]
 
 { #category : #accessing }
-MCWWebComponent >> ariaLabel: anObject [
+MCWLayoutComponent >> ariaLabel: anObject [
 	ariaLabel := anObject
 ]
 
 { #category : #actions }
-MCWWebComponent >> beHidden [
+MCWLayoutComponent >> beHidden [
 
 	self hidden: true
 ]
 
 { #category : #actions }
-MCWWebComponent >> beUnHidden [
+MCWLayoutComponent >> beUnHidden [
 
 	self hidden: false
 ]
 
 { #category : #accessing }
-MCWWebComponent >> cssClass [
+MCWLayoutComponent >> cssClass [
 	^ cssClass
 ]
 
 { #category : #accessing }
-MCWWebComponent >> cssClass: anObject [
+MCWLayoutComponent >> cssClass: anObject [
 	cssClass := anObject
 ]
 
 { #category : #testing }
-MCWWebComponent >> hasAriaLabel [
+MCWLayoutComponent >> hasAriaLabel [
 
 	^ self ariaLabel notNil
 ]
 
 { #category : #testing }
-MCWWebComponent >> hasTitle [
+MCWLayoutComponent >> hasTitle [
 
 	^ self title notNil
 ]
 
 { #category : #accessing }
-MCWWebComponent >> hidden [
+MCWLayoutComponent >> hidden [
 	^ hidden
 ]
 
 { #category : #accessing }
-MCWWebComponent >> hidden: anObject [
+MCWLayoutComponent >> hidden: anObject [
 	hidden := anObject
 ]
 
 { #category : #accessing }
-MCWWebComponent >> id [
+MCWLayoutComponent >> id [
 	^ id
 ]
 
 { #category : #accessing }
-MCWWebComponent >> id: anObject [
+MCWLayoutComponent >> id: anObject [
 	id := anObject
 ]
 
 { #category : #initialization }
-MCWWebComponent >> initialize [
+MCWLayoutComponent >> initialize [
 
 	super initialize.
 
@@ -102,27 +110,27 @@ MCWWebComponent >> initialize [
 ]
 
 { #category : #testing }
-MCWWebComponent >> isHidden [
+MCWLayoutComponent >> isHidden [
 
 	^ self hidden
 ]
 
 { #category : #accessing }
-MCWWebComponent >> mcwStyle [
-	^ mcwStyle
+MCWLayoutComponent >> layout [
+	^ layout
 ]
 
 { #category : #accessing }
-MCWWebComponent >> mcwStyle: anObject [
-	mcwStyle := anObject
+MCWLayoutComponent >> layout: anObject [
+	layout := anObject
 ]
 
 { #category : #accessing }
-MCWWebComponent >> title [
+MCWLayoutComponent >> title [
 	^ title
 ]
 
 { #category : #accessing }
-MCWWebComponent >> title: anObject [
+MCWLayoutComponent >> title: anObject [
 	title := anObject
 ]

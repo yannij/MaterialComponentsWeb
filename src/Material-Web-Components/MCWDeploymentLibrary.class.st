@@ -1,5 +1,5 @@
 Class {
 	#name : #MCWDeploymentLibrary,
 	#superclass : #WAFileLibrary,
-	#category : 'Material-Web-Core'
+	#category : #'Material-Web-Components'
 }

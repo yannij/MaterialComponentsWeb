@@ -24,12 +24,6 @@ MCWDemoCatalogApp class >> initialize [
 
 ]
 
-{ #category : #initialization }
-MCWDemoCatalogApp >> appBarTitle [
-
-	^ 'MDC Seaside'
-]
-
 { #category : #accessing }
 MCWDemoCatalogApp >> applicationTitle [
 
@@ -66,16 +60,20 @@ MCWDemoCatalogApp >> catalogCanvas: anObject [
 ]
 
 { #category : #initialization }
-MCWDemoCatalogApp >> initialize [
+MCWDemoCatalogApp >> initializeLayout [
+
+	self materialVersionDefault.
 
 	"Side nav initialization needs the catalog list from the catalog canvas,
 	so this must be set before the initialize is invoked"
 	self catalogCanvas: MCWDemoCatalogCanvas new.
 
-	super initialize.
-	self layout topAppBar appBarTitle: self appBarTitle.
-	self layout contentArea component: self catalogCanvas.
+	self settings: self buildApplicationSettings.
+	self layout: self buildLayout.
+	self beLayoutStructureDesktop.
 
+	self layout topAppBar appBarTitle: self applicationTitle.
+	self layout contentArea component: self catalogCanvas.
 ]
 
 { #category : #rendering }
