@@ -69,6 +69,12 @@ WATagBrush >> mdcRole: aRole [
 ]
 
 { #category : #'*Material-Web-Components' }
+WATagBrush >> mdcStyle: aString if: aBoolean [
+
+	aBoolean ifTrue: [ self style: aString ]
+]
+
+{ #category : #'*Material-Web-Components' }
 WATagBrush >> mdcTopAppBar_denseFixedAdjust_if: aBoolean [
 
 	aBoolean ifTrue: [ self mdcTopAppBar_denseFixedAdjust ]

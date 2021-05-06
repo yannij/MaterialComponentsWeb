@@ -70,9 +70,9 @@ MCWResponsiveLayout >> beTabletStyle [
 { #category : #rendering }
 MCWResponsiveLayout >> cellSpan [
 
-	self isMobileStyle ifTrue: [ ^ 4 ].
-	self isTabletStyle ifTrue: [ ^ 8 ].
-	^ 12
+	self isMobileStyle ifTrue: [ ^ 6 ].
+	self isTabletStyle ifTrue: [ ^ 6 ].
+	^ 6
 ]
 
 { #category : #accessing }
@@ -210,8 +210,12 @@ MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 	html render: self sideNav.
 	html render: self topAppBar.
 
+html div style: 'width: 100%'; style: 'min-width: 1000px'; with: [
 	html div mdcDrawerAppContent;
-		style: 'width: calc(100% - 200px)';
+		style: 'border: 2px solid blue';
+		style: 'float: left';
+		style: 'overflow-x: auto';
+		mdcStyle: 'width: calc(100% - 210px)' if: self sideSheetVisible;
 		with: [
 			| div |
 			div := html tag: 'main'.
@@ -219,20 +223,21 @@ MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 				ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
 				ifFalse:  [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
 			div
-				style: 'width: calc(100% - 200px)';
 				class: 'mcw-layout-desktop';
-				style: 'overflow-x: auto';
+				style: 'min-width: 780px';
 				with: self contentArea ].
 
-	self sideSheet ifNotNil: [ :arg |
+	self sideSheetVisible ifTrue: [
 		| sideDiv |
 		sideDiv := html div.
-		sideDiv style: 'position: fixed; top: 0; right: 0; width: 200px'.
+		sideDiv style: 'border: 2px solid blue'.
+		"sideDiv style: 'position: fixed; top: 0; right: 0; width: 200px'."
+		sideDiv style: 'width: 200px; float: right'.
 		self mcwDenseView
 			ifTrue: [ sideDiv mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
-			ifFalse:  [ sideDiv mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
+			ifFalse: [ sideDiv mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
 		sideDiv with: self sideSheet ]
-
+]
 ]
 
 { #category : #rendering }
@@ -254,13 +259,14 @@ MCWResponsiveLayout >> renderLayoutMobileOn: html [
 		style: 'max-width: 359px';"
 		with: self contentArea ].
 
-	self sideSheet ifNotNil: [ :arg |
+	self sideSheetVisible ifTrue: [
 		| sideDiv |
 		sideDiv := html div.
 		"sideDiv style: 'position: fixed; top: 0; right: 0'."
+		sideDiv style: 'width: 200px'.
 		self mcwDenseView
 			ifTrue: [ sideDiv mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
-			ifFalse:  [ sideDiv mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
+			ifFalse: [ sideDiv mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
 		sideDiv with: self sideSheet ]
 ]
 
@@ -269,7 +275,12 @@ MCWResponsiveLayout >> renderLayoutTabletOn: html [
 
 	html render: self sideNav.
 
-	html div mdcDrawerAppContent; style: 'width: calc(100% - 200px)'; with: [
+	html div mdcDrawerAppContent;
+		"style: 'border: 2px solid red';"
+		style: 'float: left';
+		style: 'overflow-x: auto';
+		mdcStyle: 'width: calc(100% - 210px)' if: self sideSheetVisible;
+		with: [
 		| div |
 		html render: self topAppBar.
 		div := html div.
@@ -277,18 +288,20 @@ MCWResponsiveLayout >> renderLayoutTabletOn: html [
 			ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
 			ifFalse:  [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
 		div
-				style: 'width: calc(100% - 200px)';
-				class: 'mcw-layout-tablet';
-				style: 'overflow-x: auto';
-				with: self contentArea ].
+			class: 'mcw-layout-tablet';
+			with: self contentArea ].
 
-	self sideSheet ifNotNil: [ :arg |
+	self sideSheetVisible ifTrue: [
 		| sideDiv |
 		sideDiv := html div.
-		sideDiv style: 'position: fixed; top: 0; right: 0'.
+		sideDiv
+			"style: 'position: fixed; top: 0; right: 0';"
+			style: 'width: 200px; float: right';
+			"style: 'border: 2px solid red';"
+			yourself.
 		self mcwDenseView
 			ifTrue: [ sideDiv mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
-			ifFalse:  [ sideDiv mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
+			ifFalse: [ sideDiv mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
 		sideDiv with: self sideSheet ]
 ]
 
@@ -327,6 +340,14 @@ MCWResponsiveLayout >> sideSheetSet: aSideSheet [
 
 	self sideSheet: aSideSheet.
 	aSideSheet ifNotNil: [ :arg | aSideSheet containingLayout: self ]
+]
+
+{ #category : #testing }
+MCWResponsiveLayout >> sideSheetVisible [
+
+	^ self sideSheet
+		ifNil: [ false ]
+		ifNotNil: [ :value | value isHidden not ]
 ]
 
 { #category : #accessing }

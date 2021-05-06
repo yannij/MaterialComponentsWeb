@@ -96,7 +96,7 @@ MCWBasicResponsiveApp >> initializeLayout [
 	self layout: self buildLayout.
 	self sideNavTitlesSet.
 	self beLayoutStructureDesktop.
-	self layout contentArea component: [ 'foobar' ].
+	self layout contentArea component: (String loremIpsum: 5000).
 ]
 
 { #category : #initialization }

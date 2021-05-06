@@ -43457,11 +43457,3 @@ MCWDevelopmentLibrary >> themeDefaultCss [
   --mdc-theme-text-icon-on-dark: rgba(255, 255, 255, 0.5); }
 '
 ]
-
-{ #category : #uploaded }
-MCWDevelopmentLibrary >> todoDataTable [
-	"
-https://github.com/material-components/material-components-web/issues/57
-https://codepen.io/jfily/pen/OzqmdV
-	"
-]
