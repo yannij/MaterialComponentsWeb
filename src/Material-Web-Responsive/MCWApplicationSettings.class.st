@@ -2,67 +2,63 @@ Class {
 	#name : #MCWApplicationSettings,
 	#superclass : #MCWModel,
 	#instVars : [
-		'fontSettings',
-		'colorTheme',
-		'denseView'
+		'mdcDensity',
+		'mdcTypography',
+		'mdcTheme'
 	],
 	#category : #'Material-Web-Responsive'
 }
 
-{ #category : #'instance creation' }
-MCWApplicationSettings class >> newDefault [
-
-	^ self new
-		fontSettings: MCWFontSettings new;
-		colorTheme: MCWColorTheme new;
-		denseView: true;
-		yourself
-]
-
-{ #category : #accessing }
-MCWApplicationSettings >> colorTheme [
-	^ colorTheme
-]
-
-{ #category : #accessing }
-MCWApplicationSettings >> colorTheme: anObject [
-	colorTheme := anObject
-]
-
 { #category : #accessing }
 MCWApplicationSettings >> denseView [
-	^ denseView
+
+	^ self mdcDensity density < 0
+]
+
+{ #category : #initialization }
+MCWApplicationSettings >> initialize [
+
+	super initialize.
+
+	self mdcDensity: MDCDensity new.
+	self mdcTypography: MDCTypography new.
+	self mdcTheme: MDCTheme new
 ]
 
 { #category : #accessing }
-MCWApplicationSettings >> denseView: anObject [
-	denseView := anObject
+MCWApplicationSettings >> mdcDensity [
+	^ mdcDensity
 ]
 
 { #category : #accessing }
-MCWApplicationSettings >> fontSettings [
-	^ fontSettings
+MCWApplicationSettings >> mdcDensity: anObject [
+	mdcDensity := anObject
 ]
 
 { #category : #accessing }
-MCWApplicationSettings >> fontSettings: anObject [
-	fontSettings := anObject
+MCWApplicationSettings >> mdcTheme [
+	^ mdcTheme
 ]
 
-{ #category : #actions }
-MCWApplicationSettings >> setFont: aFont [
-
-	self fontSettings setFont: aFont
+{ #category : #accessing }
+MCWApplicationSettings >> mdcTheme: anObject [
+	mdcTheme := anObject
 ]
 
-{ #category : #actions }
-MCWApplicationSettings >> setFontNamed: aFontName [
+{ #category : #accessing }
+MCWApplicationSettings >> mdcTypography [
+	^ mdcTypography
+]
 
-	self fontSettings setFontNamed: aFontName
+{ #category : #accessing }
+MCWApplicationSettings >> mdcTypography: anObject [
+	mdcTypography := anObject
 ]
 
 { #category : #accessing }
 MCWApplicationSettings >> toggleDenseView [
 
-	self denseView: self denseView not
+	self mdcDensity density > 0
+		ifTrue: [ self mdcDensity density: 0 ]
+		ifFalse: [ self mdcDensity density: 1 ]
 ]

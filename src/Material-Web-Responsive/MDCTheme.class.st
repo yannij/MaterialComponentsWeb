@@ -1,5 +1,5 @@
 Class {
-	#name : #MCWColorTheme,
+	#name : #MDCTheme,
 	#superclass : #MCWModel,
 	#instVars : [
 		'themeItems'
@@ -8,19 +8,19 @@ Class {
 }
 
 { #category : #'accessing-magritte' }
-MCWColorTheme >> backgroundDescription [
+MDCTheme >> backgroundDescription [
 	<magritteDescription>
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #background));
-		default: (self themeItemAt: 'background');
+		default: (self themeItemAt: #'background');
 		label: 'Background';
 		priority: 140;
 		yourself
 ]
 
 { #category : #accessing }
-MCWColorTheme >> colorThemeDefault [
+MDCTheme >> colorThemeDefault [
 	"
 TODO:
 --mdc-theme-text-<TEXT_STYLE>-on-light
@@ -44,7 +44,7 @@ where:
 ]
 
 { #category : #accessing }
-MCWColorTheme >> colorThemeMCWSeaside [
+MDCTheme >> colorThemeMCWSeaside [
 	"
 TODO:
 --mdc-theme-text-<TEXT_STYLE>-on-light
@@ -68,7 +68,7 @@ where:
 ]
 
 { #category : #initialization }
-MCWColorTheme >> initialize [
+MDCTheme >> initialize [
 
 	super initialize.
 
@@ -77,101 +77,101 @@ MCWColorTheme >> initialize [
 ]
 
 { #category : #'accessing-magritte' }
-MCWColorTheme >> onPrimaryDescription [
+MDCTheme >> onPrimaryDescription [
 	<magritteDescription>
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #'on-primary'));
-		default: (self themeItemAt: 'on-primary');
+		default: (self themeItemAt: #'on-primary');
 		label: 'On Primary';
 		priority: 105;
 		yourself
 ]
 
 { #category : #'accessing-magritte' }
-MCWColorTheme >> onSecondaryDescription [
+MDCTheme >> onSecondaryDescription [
 	<magritteDescription>
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #'on-secondary'));
-		default: (self themeItemAt: 'on-secondary');
+		default: (self themeItemAt: #'on-secondary');
 		label: 'On Secondary';
 		priority: 115;
 		yourself
 ]
 
 { #category : #'accessing-magritte' }
-MCWColorTheme >> onSurfaceDescription [
+MDCTheme >> onSurfaceDescription [
 	<magritteDescription>
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #'on-surface'));
-		default: (self themeItemAt: 'on-surface');
+		default: (self themeItemAt: #'on-surface');
 		label: 'On Surface';
 		priority: 135;
 		yourself
 ]
 
 { #category : #'accessing-magritte' }
-MCWColorTheme >> primaryDescription [
+MDCTheme >> primaryDescription [
 	<magritteDescription>
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #primary));
-		default: (self themeItemAt: 'primary');
+		default: (self themeItemAt: #'primary');
 		label: 'Primary';
 		priority: 100;
 		yourself
 ]
 
 { #category : #'accessing-magritte' }
-MCWColorTheme >> secondaryDescription [
+MDCTheme >> secondaryDescription [
 	<magritteDescription>
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #secondary));
-		default: (self themeItemAt: 'secondary');
+		default: (self themeItemAt: #'secondary');
 		label: 'Secondary';
 		priority: 110;
 		yourself
 ]
 
 { #category : #'accessing-magritte' }
-MCWColorTheme >> surfaceDescription [
+MDCTheme >> surfaceDescription [
 	<magritteDescription>
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #surface));
-		default: (self themeItemAt: 'surface');
+		default: (self themeItemAt: #'surface');
 		label: 'Surface';
 		priority: 130;
 		yourself
 ]
 
 { #category : #accessing }
-MCWColorTheme >> themeItemAt: aKey [
+MDCTheme >> themeItemAt: aKey [
 
 	^ self themeItemAt: aKey ifAbsent: [ Color fromHexString: '888888' ]
 ]
 
 { #category : #accessing }
-MCWColorTheme >> themeItemAt: aKey ifAbsent: aBlock [
+MDCTheme >> themeItemAt: aKey ifAbsent: aBlock [
 
 	^ self themeItems at: aKey ifAbsent: aBlock
 ]
 
 { #category : #accessing }
-MCWColorTheme >> themeItems [
+MDCTheme >> themeItems [
 	^ themeItems
 ]
 
 { #category : #accessing }
-MCWColorTheme >> themeItems: anObject [
+MDCTheme >> themeItems: anObject [
 	themeItems := anObject
 ]
 
 { #category : #accessing }
-MCWColorTheme >> themeItemsSet: aThemeItemList [
+MDCTheme >> themeItemsSet: aThemeItemList [
 
 	self themeItems: OrderedIdentityDictionary new.
 
@@ -180,7 +180,7 @@ MCWColorTheme >> themeItemsSet: aThemeItemList [
 ]
 
 { #category : #accessing }
-MCWColorTheme >> themeItemsSetDefault [
+MDCTheme >> themeItemsSetDefault [
 
 	self themeItemsSet: self colorThemeMCWSeaside
 ]

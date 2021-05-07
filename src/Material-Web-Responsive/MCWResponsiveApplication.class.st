@@ -74,7 +74,7 @@ MCWResponsiveApplication >> bodyCssClasses [
 { #category : #initialization }
 MCWResponsiveApplication >> buildApplicationSettings [
 
-	^ MCWApplicationSettings newDefault
+	^ MCWApplicationSettings new
 ]
 
 { #category : #initialization }
@@ -137,7 +137,7 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 		addListItem: (MCWListItemIcon new iconName: 'computer'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'all_out'; itemText: 'Dense'; callback: [ self toggleDenseView ]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Colors'; callback: [ self chooseColors ]; yourself);
+		addListItem: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Style'; callback: [ self configureStyle ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'logout'; itemText: 'Logout'; callback: [ self logout ]; yourself);
 		yourself.
 
@@ -192,12 +192,6 @@ MCWResponsiveApplication >> buildTopAppBar [
 
 ]
 
-{ #category : #actions }
-MCWResponsiveApplication >> chooseColors [
-
-	self layout settingsView toggleHiddenValue
-]
-
 { #category : #accessing }
 MCWResponsiveApplication >> colorThemeCss [
 	| aStream |
@@ -205,7 +199,7 @@ MCWResponsiveApplication >> colorThemeCss [
 	aStream := WriteStream on: String new.
 	aStream nextPutAll: ':root {'.
 	aStream nextPutAll: '--mdc-typography-font-family: Rubik, sans-serif;'.
-	self settings colorTheme keysAndValuesDo: [ :eachKey :eachValue |
+	self settings mdcTheme keysAndValuesDo: [ :eachKey :eachValue |
 		aStream
 			nextPutAll: '--mdc-theme-'; nextPutAll: eachKey;
 			nextPutAll: ': '; nextPutAll: eachValue; nextPut: $;;
@@ -214,10 +208,10 @@ MCWResponsiveApplication >> colorThemeCss [
 	^ aStream contents
 ]
 
-{ #category : #'accessing - settings' }
-MCWResponsiveApplication >> currentFont [
+{ #category : #actions }
+MCWResponsiveApplication >> configureStyle [
 
-	^ self settings fontSettings font
+	self layout settingsView toggleHiddenValue
 ]
 
 { #category : #accessing }
@@ -338,7 +332,7 @@ MCWResponsiveApplication >> renderContentOn: html [
 
 	self renderSetColorThemeOn: html.
 
-	self renderSetGoogleFont: self currentFont on: html.
+	self renderSetGoogleFont: self settings mdcTypography on: html.
 
 	(self loginComponent isNil or: [ self loginComponent isLoggedIn ])
 		ifTrue: [ self renderLayoutOn: html ]
@@ -374,7 +368,7 @@ MCWResponsiveApplication >> renderSetColorThemeOn: html [
 	stream := WriteStream on: String new.
 
 	stream nextPutAll: 'var bodyStyle = document.querySelector(":root").style;'.
-	self settings colorTheme themeItems keysAndValuesDo: [ :eachKey :eachValue |
+	self settings mdcTheme themeItems keysAndValuesDo: [ :eachKey :eachValue |
 		stream
 			nextPutAll: 'bodyStyle.setProperty("--mdc-theme-', eachKey, '", "#', eachValue asHexString, '");';
 			yourself ].
@@ -384,11 +378,10 @@ MCWResponsiveApplication >> renderSetColorThemeOn: html [
 ]
 
 { #category : #rendering }
-MCWResponsiveApplication >> renderSetGoogleFont: aGoogleFont on: html [
+MCWResponsiveApplication >> renderSetGoogleFont: aFontSettings on: html [
 
-	html script with: 
-		'document.querySelector("body").style.setProperty("--mdc-typography-font-family"'
-		, ', "''', aGoogleFont familyName, ''', ', aGoogleFont genericFamily, '")'
+	html script: 'document.querySelector("body").style.setProperty("--mdc-typography-font-family", "'
+		, aFontSettings fontFamily, '")'
 ]
 
 { #category : #initialization }
@@ -489,7 +482,6 @@ MCWResponsiveApplication >> updateRootFonts: anHtmlRoot [
 	"fontNames := 'Roboto|Roboto+Condensed|Bree+Serif|Fontdiner+Swanky|Open+Sans|Oxygen+Mono|Pacifico'."
 	"fontNames := '|' join: (self fonts collect: [:eachChoice | eachChoice googleFontsFamily])."
 
-	self settings fontSettings fontChoices do: [ :eachChoice |
-		anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', eachChoice googleFontsFamily) ].
+	anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', self settings mdcTypography fontFamily)
 
 ]

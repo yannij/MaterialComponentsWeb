@@ -166,8 +166,8 @@ ShrineApp >> initializeLayout [
 	self loginComponent: self buildLoginComponent.
 	self topSheet: self buildTopSheet.
 
-	self settings setFont: (MCWGoogleFont fontNamed: 'Rubik').
-	self settings colorTheme themeItemsSet: self colorThemeCustom.
+	self settings mdcTypography fontFamily: 'Rubik'.
+	self settings mdcTheme themeItemsSet: self colorThemeCustom.
 
 	self layout sideSheet component: self topSheet.
 ]
