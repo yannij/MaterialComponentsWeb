@@ -134,3 +134,9 @@ MCWLayoutComponent >> title [
 MCWLayoutComponent >> title: anObject [
 	title := anObject
 ]
+
+{ #category : #actions }
+MCWLayoutComponent >> toggleHiddenValue [
+
+	self hidden: self hidden not
+]

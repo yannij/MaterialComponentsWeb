@@ -13,25 +13,58 @@ MCWColorTheme >> backgroundDescription [
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #background));
-		default: (Color fromHexString: 'ffffff');
+		default: (self themeItemAt: 'background');
 		label: 'Background';
 		priority: 140;
 		yourself
 ]
 
-{ #category : #initialization }
-MCWColorTheme >> buildThemeItems [
+{ #category : #accessing }
+MCWColorTheme >> colorThemeDefault [
+	"
+TODO:
+--mdc-theme-text-<TEXT_STYLE>-on-light
+--mdc-theme-text-<TEXT_STYLE>-on-dark
+--mdc-theme-text-<TEXT_STYLE>-on-background
+where:
+	TEXT_STYLE = { primary secondary hint disabled icon }
+	"
 
-	#(
-('primary' '6200ee')
-"('on-primary' '#757de8')"
-('secondary' '018786')
-"('on-secondary' '#018786')"
-"('surface' '#ffffff')"
-"('on-surface' '#ff6090')"
-"('background' '#ffffff')"
-	) do: [ :each |
-		self themeItems at: each first put: (Color fromHexString: each second) ]
+	^ #(
+(#'primary' '#6200ee')
+(#'on-primary' '#ffffff')
+(#'secondary' '#03dac6')
+(#'on-secondary' '000000')
+(#'surface' '#ffffff')
+(#'on-surface' '#000000')
+(#'error' '#b00020')
+(#'on-error' '#ffffff')
+(#'background' '#ffffff')
+	)
+]
+
+{ #category : #accessing }
+MCWColorTheme >> colorThemeMCWSeaside [
+	"
+TODO:
+--mdc-theme-text-<TEXT_STYLE>-on-light
+--mdc-theme-text-<TEXT_STYLE>-on-dark
+--mdc-theme-text-<TEXT_STYLE>-on-background
+where:
+	TEXT_STYLE = { primary secondary hint disabled icon }
+	"
+
+	^ #(
+(#'primary' '#00695C')
+(#'on-primary' '#ffffff')
+(#'secondary' '#EF6C00')
+(#'on-secondary' '000000')
+(#'surface' '#E0F2F1')
+(#'on-surface' '#000000')
+(#'error' '#b00020')
+(#'on-error' '#ffffff')
+(#'background' '#ffffff')
+	)
 ]
 
 { #category : #initialization }
@@ -39,8 +72,7 @@ MCWColorTheme >> initialize [
 
 	super initialize.
 
-	self themeItems: OrderedIdentityDictionary new.
-	"self buildThemeItems"
+	self themeItemsSetDefault
 
 ]
 
@@ -50,7 +82,7 @@ MCWColorTheme >> onPrimaryDescription [
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #'on-primary'));
-		default: (Color fromHexString: 'ffffff');
+		default: (self themeItemAt: 'on-primary');
 		label: 'On Primary';
 		priority: 105;
 		yourself
@@ -62,7 +94,7 @@ MCWColorTheme >> onSecondaryDescription [
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #'on-secondary'));
-		default: (Color fromHexString: 'ffffff');
+		default: (self themeItemAt: 'on-secondary');
 		label: 'On Secondary';
 		priority: 115;
 		yourself
@@ -74,7 +106,7 @@ MCWColorTheme >> onSurfaceDescription [
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #'on-surface'));
-		default: (Color fromHexString: 'ff6090');
+		default: (self themeItemAt: 'on-surface');
 		label: 'On Surface';
 		priority: 135;
 		yourself
@@ -86,7 +118,7 @@ MCWColorTheme >> primaryDescription [
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #primary));
-		default: (Color fromHexString: '6200ee');
+		default: (self themeItemAt: 'primary');
 		label: 'Primary';
 		priority: 100;
 		yourself
@@ -98,7 +130,7 @@ MCWColorTheme >> secondaryDescription [
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #secondary));
-		default: (Color fromHexString: '018786');
+		default: (self themeItemAt: 'secondary');
 		label: 'Secondary';
 		priority: 110;
 		yourself
@@ -110,10 +142,22 @@ MCWColorTheme >> surfaceDescription [
 
 	^ MAColorDescription new
 		accessor: ((MAChainAccessor on: #themeItems) accessor: (MADictionaryAccessor key: #surface));
-		default: (Color fromHexString: 'eeeeee');
+		default: (self themeItemAt: 'surface');
 		label: 'Surface';
 		priority: 130;
 		yourself
+]
+
+{ #category : #accessing }
+MCWColorTheme >> themeItemAt: aKey [
+
+	^ self themeItemAt: aKey ifAbsent: [ Color fromHexString: '888888' ]
+]
+
+{ #category : #accessing }
+MCWColorTheme >> themeItemAt: aKey ifAbsent: aBlock [
+
+	^ self themeItems at: aKey ifAbsent: aBlock
 ]
 
 { #category : #accessing }
@@ -124,4 +168,19 @@ MCWColorTheme >> themeItems [
 { #category : #accessing }
 MCWColorTheme >> themeItems: anObject [
 	themeItems := anObject
+]
+
+{ #category : #accessing }
+MCWColorTheme >> themeItemsSet: aThemeItemList [
+
+	self themeItems: OrderedIdentityDictionary new.
+
+	aThemeItemList do: [ :each |
+		self themeItems at: each first put: (Color fromHexString: each second) ]
+]
+
+{ #category : #accessing }
+MCWColorTheme >> themeItemsSetDefault [
+
+	self themeItemsSet: self colorThemeMCWSeaside
 ]

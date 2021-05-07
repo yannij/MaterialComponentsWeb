@@ -86,9 +86,9 @@ MCWResponsiveApplication >> buildLayout [
 	newTopAppBar := self buildTopAppBar layout: newLayout; yourself.
 	newContentArea := MCWContentArea on: newLayout.
 	newLayout
-		primaryRegionSet: newContentArea;
+		contentArea: newContentArea;
 		sideNav: newSideNav;
-		sideSheetSet: self buildSideSheet;
+		sideSheet: self buildSideSheet;
 		mainFab: self buildMainFab;
 		topAppBar: newTopAppBar;
 		yourself.
@@ -131,13 +131,13 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 	| list |
 
 	list := (MCWListMenuItems id: 'settingsPopup')
-		addListItem: (MCWListItemIcon new iconName: 'cancel'; itemText: 'Cancel'; yourself);
+		"addListItem: (MCWListItemIcon new iconName: 'cancel'; itemText: 'Cancel'; yourself);"
 		addListItem: (MCWListItemIcon new iconName: 'smartphone'; itemText: 'Phone'; callback: [ self beLayoutStructureMobile ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'tablet'; itemText: 'Tablet'; callback: [ self beLayoutStructureTablet ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'computer'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Colors'; callback: [ self chooseColors ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'all_out'; itemText: 'Dense'; callback: [ self toggleDenseView ]; yourself);
+		addListItem: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Colors'; callback: [ self chooseColors ]; yourself);
 		addListItem: (MCWListItemIcon new iconName: 'logout'; itemText: 'Logout'; callback: [ self logout ]; yourself);
 		yourself.
 
@@ -195,10 +195,7 @@ MCWResponsiveApplication >> buildTopAppBar [
 { #category : #actions }
 MCWResponsiveApplication >> chooseColors [
 
-	self layout contentArea component notNil
-		ifTrue: [ self layout contentArea component: nil ]
-		ifFalse: [ self layout contentArea component: (self settings colorTheme asComponent addValidatedForm) ]
-
+	self layout settingsView toggleHiddenValue
 ]
 
 { #category : #accessing }
@@ -217,7 +214,7 @@ MCWResponsiveApplication >> colorThemeCss [
 	^ aStream contents
 ]
 
-{ #category : #rendering }
+{ #category : #'accessing - settings' }
 MCWResponsiveApplication >> currentFont [
 
 	^ self settings fontSettings font
@@ -376,13 +373,13 @@ MCWResponsiveApplication >> renderSetColorThemeOn: html [
 
 	stream := WriteStream on: String new.
 
-	stream nextPutAll: 'var bodyStyle = document.querySelector("body").style;'.
+	stream nextPutAll: 'var bodyStyle = document.querySelector(":root").style;'.
 	self settings colorTheme themeItems keysAndValuesDo: [ :eachKey :eachValue |
 		stream
 			nextPutAll: 'bodyStyle.setProperty("--mdc-theme-', eachKey, '", "#', eachValue asHexString, '");';
 			yourself ].
 
-	html script with: stream contents.
+	html script: stream contents.
 
 ]
 

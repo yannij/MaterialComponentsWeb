@@ -142,33 +142,15 @@ ShrineApp >> buildTopSheet [
 { #category : #accessing }
 ShrineApp >> colorThemeCustom [
 
-	#(
-('primary' '#FEDBD0')
-('on-primary' '#442C2E')
-('secondary' '#FEEAE6')
-('on-secondary' '442C2E')
-('surface:' '#FFFBFA')
-('on-surface:' '#442C2E')
-('background' '#FFFFFF')
-('on-background' '#442C2E')
-	) do: [ :each |
-		self colorTheme at: each first put: each second ]
-]
-
-{ #category : #accessing }
-ShrineApp >> colorThemeCustomDark [
-
-	#(
-('primary' '#FFCF44')
-('on-primary' '#33333D')
-('secondary' '#FFCF44')
-('on-secondary' 'FFFFFF')
-('surface:' '#33333D')
-('on-surface:' '#FFFFFF')
-('background' '#33333D')
-('on-background' '#FFFFFF')
-	) do: [ :each |
-		self colorTheme at: each first put: each second ]
+	^ #(
+(#'primary' '#FEDBD0')
+(#'on-primary' '#442C2E')
+(#'secondary' '#FEEAE6')
+(#'on-secondary' '442C2E')
+(#'surface' '#FFFBFA')
+(#'on-surface' '#442C2E')
+(#'background' '#FFFFFF')
+	)
 ]
 
 { #category : #initialization }
@@ -185,12 +167,9 @@ ShrineApp >> initializeLayout [
 	self topSheet: self buildTopSheet.
 
 	self settings setFont: (MCWGoogleFont fontNamed: 'Rubik').
+	self settings colorTheme themeItemsSet: self colorThemeCustom.
 
 	self layout sideSheet component: self topSheet.
-
-	"self colorThemeCustom.
-	self colorThemeCustomDark.
-	self colorThemeCss inspect"
 ]
 
 { #category : #accessing }
