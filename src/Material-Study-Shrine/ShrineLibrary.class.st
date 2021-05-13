@@ -7,32 +7,7 @@ Class {
 { #category : #uploaded }
 ShrineLibrary >> bundleCss [
 
-	^ '/* Custom Theme */
-:root {
---mdc-theme-primary: #FEDBD0;
---mdc-theme-on-primary: #442C2E;
---mdc-theme-secondary: #FEEAE6;
---mdc-theme-on-secondary: 442C2E;
---mdc-theme-surface:: #FFFBFA;
---mdc-theme-on-surface:: #442C2E;
---mdc-theme-background: #FFFFFF;
---mdc-theme-on-background: #442C2E;
-}
-
-/* Custom Dark Theme */
-/*
-:root {
---mdc-theme-primary: #FFCF44;
---mdc-theme-on-primary: #33333D;
---mdc-theme-secondary: #FFCF44;
---mdc-theme-on-secondary: FFFFFF;
---mdc-theme-surface:: #33333D;
---mdc-theme-on-surface:: #FFFFFF;
---mdc-theme-background: #33333D;
---mdc-theme-on-background: #FFFFFF;
-}
-*/
-
+	^ '
 :root {
 --mdc-layout-grid-margin-desktop: 0px;
 --mdc-layout-grid-gutter-desktop: 0px;
@@ -73,11 +48,6 @@ ShrineLibrary >> bundleCss [
 
 .home {
   display: flex; /* Flexbox is used to easily arrange the persistent drawer and content side-by-side */
-
-  /* Dark Theme
-  background-color: #33333D;
-  color: #FFFFFF;
-*/
 }
 
 .shrine-logo-drawer {
@@ -101,43 +71,21 @@ ShrineLibrary >> bundleCss [
   padding: 80px 100px 0 100px;
 }
 
-.shrine-drawer .mdc-drawer__drawer {
-@include mdc-drawer-fill-color-accessible(surface);
-@include mdc-drawer-ink-color(on-surface);
-border-right-width: 0;
-
-  /* Dark Theme
-  color: #FFFFFF;
-  background-color: #33333D;
-*/
-
-  color: #442C2E;
-  background-color: #FEDBD0;
-}
-
 .shrine-drawer .mdc-list {
 /*
   @include mdc-drawer-fill-color-accessible(primary);
   @include mdc-drawer-ink-color(on-primary);
-*/
   color: #442C2E;
   background-color: #FEDBD0;
-
-  /* Dark Theme
-  color: #FFFFFF;
-  background-color: #33333D;
 */
+  color: var(--mdc-theme-on-primary);
+  background-color: var(--mdc-theme-primary);
 
   text-transform: uppercase;
 }
 
 .shrine-drawer .mdc-list-item {
-  /* @include mdc-list-item-primary-text-ink-color(on-primary); */
-  color: #442C2E;
-
-  /* Dark Theme
-  color: #FFFFFF;
-*/
+  color: var(--mdc-theme-on-primary);
 
   border-radius: 6px;
   justify-content: center;
@@ -153,9 +101,6 @@ border-right-width: 0;
 
 .mdc-image-list__label {
 /* @include mdc-typography(subtitle2); */
-  /* Dark Theme
-  color: #FFFFFF;
-*/
 }
 
 .shrine-body {
@@ -163,11 +108,6 @@ border-right-width: 0;
 
   display: block;
   overflow: auto;
-
-  /* Dark Theme
-  color: #FFFFFF;
-  background-color: #33333D;
-*/
 
 /*
   font-family: Rubik, sans-serif;

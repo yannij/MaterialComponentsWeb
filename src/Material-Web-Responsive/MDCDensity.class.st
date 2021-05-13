@@ -40,5 +40,5 @@ MDCDensity >> initialize [
 
 	super initialize.
 	
-	self density: 1
+	self density: -1
 ]

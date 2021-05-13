@@ -58,7 +58,7 @@ MCWApplicationSettings >> mdcTypography: anObject [
 { #category : #accessing }
 MCWApplicationSettings >> toggleDenseView [
 
-	self mdcDensity density > 0
+	self mdcDensity density < 0
 		ifTrue: [ self mdcDensity density: 0 ]
-		ifFalse: [ self mdcDensity density: 1 ]
+		ifFalse: [ self mdcDensity density: -1 ]
 ]

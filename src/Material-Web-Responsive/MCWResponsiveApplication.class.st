@@ -132,13 +132,13 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 
 	list := (MCWListMenuItems id: 'settingsPopup')
 		"addListItem: (MCWListItemIcon new iconName: 'cancel'; itemText: 'Cancel'; yourself);"
-		addListItem: (MCWListItemIcon new iconName: 'smartphone'; itemText: 'Phone'; callback: [ self beLayoutStructureMobile ]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'tablet'; itemText: 'Tablet'; callback: [ self beLayoutStructureTablet ]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'computer'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'all_out'; itemText: 'Dense'; callback: [ self toggleDenseView ]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Style'; callback: [ self configureStyle ]; yourself);
-		addListItem: (MCWListItemIcon new iconName: 'logout'; itemText: 'Logout'; callback: [ self logout ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'smartphone'; itemText: 'Phone'; callback: [ self beLayoutStructureMobile ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'tablet'; itemText: 'Tablet'; callback: [ self beLayoutStructureTablet ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'computer'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'all_out'; itemText: 'Dense'; callback: [ self toggleDenseView ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Style'; callback: [ self configureStyle ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'logout'; itemText: 'Logout'; callback: [ self logout ]; yourself);
 		yourself.
 
 	"self layout sideSheet notNil
@@ -166,10 +166,10 @@ MCWResponsiveApplication >> buildSideNav [
 MCWResponsiveApplication >> buildSideNavList [
 
 	^ MCWListBasic new
-		addListItem: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [ self sideNav menuItemCallback ]);
-		addListItem: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [ self sideNav menuItemCallback ]);
-		addListItem: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [ self sideNav menuItemCallback ]);
-		addListItem: (MCWListItemIcon  itemText: 'Nav Item 4' iconName: 'delete' callback: [ self sideNav menuItemCallback ]);
+		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [ self sideNav menuItemCallback ]);
+		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [ self sideNav menuItemCallback ]);
+		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [ self sideNav menuItemCallback ]);
+		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 4' iconName: 'delete' callback: [ self sideNav menuItemCallback ]);
 		yourself.
 
 ]

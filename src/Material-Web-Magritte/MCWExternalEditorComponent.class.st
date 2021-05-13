@@ -48,7 +48,7 @@ MCWExternalEditorComponent >> renderOneItemListOn: html [
 								html text: self value mdPrimaryString.
 								html span
 									mdcListItem__secondaryText;
-									with: [ html text: self value mdDisplaySecondaryString ] ].
+									with: [ html text: self value mdSecondaryString ] ].
 							html span mdcListItem__meta; with: [ html space ].
 								"html span mdcListItem__text; with: [super renderViewerOn: html]" ].
 			] ]

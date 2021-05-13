@@ -113,16 +113,16 @@ ShrineApp >> buildSideNav [
 ShrineApp >> buildSideNavList [
 
 	^ MCWListBasic new
-		addListItem: (ShrineBranding new);
-		addListItem: (MCWListItemIcon itemText: 'Featured' iconName: '' callback: [ ]);
+		listItemAdd: (ShrineBranding new);
+		listItemAdd: (MCWListItemIcon itemText: 'Featured' iconName: '' callback: [ ]);
 		"Divider Line"
-		addListItem: (MCWListItemIcon itemText: 'Apartment' iconName: '' callback: [ ]);
-		addListItem: (MCWListItemIcon itemText: 'Accessories' iconName: '' callback: [ ]);
-		addListItem: (MCWListItemIcon itemText: 'Shoes' iconName: '' callback: [ ]);
-		addListItem: (MCWListItemIcon itemText: 'Tops' iconName: '' callback: [ ]);
-		addListItem: (MCWListItemIcon itemText: 'Bottoms' iconName: '' callback: [ ]);
-		addListItem: (MCWListItemIcon itemText: 'Dresses' iconName: '' callback: [ ]);
-		addListItem: (MCWListItemIcon itemText: 'My Account' iconName: '' callback: [ ]);
+		listItemAdd: (MCWListItemIcon itemText: 'Apartment' iconName: '' callback: [ ]);
+		listItemAdd: (MCWListItemIcon itemText: 'Accessories' iconName: '' callback: [ ]);
+		listItemAdd: (MCWListItemIcon itemText: 'Shoes' iconName: '' callback: [ ]);
+		listItemAdd: (MCWListItemIcon itemText: 'Tops' iconName: '' callback: [ ]);
+		listItemAdd: (MCWListItemIcon itemText: 'Bottoms' iconName: '' callback: [ ]);
+		listItemAdd: (MCWListItemIcon itemText: 'Dresses' iconName: '' callback: [ ]);
+		listItemAdd: (MCWListItemIcon itemText: 'My Account' iconName: '' callback: [ ]);
 		yourself.
 
 ]
@@ -139,20 +139,6 @@ ShrineApp >> buildTopSheet [
 	^ ShrineTopSheet new
 ]
 
-{ #category : #accessing }
-ShrineApp >> colorThemeCustom [
-
-	^ #(
-(#'primary' '#FEDBD0')
-(#'on-primary' '#442C2E')
-(#'secondary' '#FEEAE6')
-(#'on-secondary' '442C2E')
-(#'surface' '#FFFBFA')
-(#'on-surface' '#442C2E')
-(#'background' '#FFFFFF')
-	)
-]
-
 { #category : #initialization }
 ShrineApp >> initializeLayout [
 
@@ -167,7 +153,7 @@ ShrineApp >> initializeLayout [
 	self topSheet: self buildTopSheet.
 
 	self settings mdcTypography fontFamily: 'Rubik'.
-	self settings mdcTheme themeItemsSet: self colorThemeCustom.
+	self settings mdcTheme themeItemsSet: self themeSetting.
 
 	self layout sideSheet component: self topSheet.
 ]
@@ -188,6 +174,20 @@ ShrineApp >> stripePublishableKey [
 ShrineApp >> stripeSecretKey [
 
 	^ self class stripeSecretKey
+]
+
+{ #category : #accessing }
+ShrineApp >> themeSetting [
+
+	^ #(
+(#'primary' '#FEDBD0')
+(#'on-primary' '#442C2E')
+(#'secondary' '#FEEAE6')
+(#'on-secondary' '442C2E')
+(#'surface' '#FFFBFA')
+(#'on-surface' '#442C2E')
+(#'background' '#FFFFFF')
+	)
 ]
 
 { #category : #accessing }

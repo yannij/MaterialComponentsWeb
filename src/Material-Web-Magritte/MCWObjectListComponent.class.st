@@ -88,7 +88,7 @@ MCWObjectListComponent >> renderListTwoLineAjaxOn: html [
 								html text: eachItem mdPrimaryString.
 								html span
 									mdcListItem__secondaryText;
-									with: [ html text: eachItem mdDisplaySecondaryString ] ].
+									with: [ html text: eachItem mdSecondaryString ] ].
 						"html span mdcListItem__meta; with: [
 							html span mdcMaterialIcons; mdcAriaHidden: 'true'; with: 'more_vert']"
 						] ] ]

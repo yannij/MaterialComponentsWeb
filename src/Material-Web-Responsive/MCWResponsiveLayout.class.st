@@ -216,7 +216,7 @@ MCWResponsiveLayout >> renderContentOn: html [
 { #category : #rendering }
 MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 
-	html render: self sideNav.
+	html div style: 'height: 100vh'; with: self sideNav.
 	html render: self topAppBar.
 
 	html div style: 'width: 100%'; "style: 'min-width: 1000px';" with: [

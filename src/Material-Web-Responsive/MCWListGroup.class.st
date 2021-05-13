@@ -15,13 +15,6 @@ MCWListGroup >> addGroupedList: aList [
 ]
 
 { #category : #accessing }
-MCWListGroup >> addListItem: aListItem [
-
-	self listItems add: aListItem
-
-]
-
-{ #category : #accessing }
 MCWListGroup >> groupedLists [
 	^ groupedLists
 ]

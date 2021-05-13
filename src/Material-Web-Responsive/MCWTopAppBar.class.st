@@ -104,7 +104,7 @@ MCWTopAppBar >> renderContentOn: html [
 				html section
 					mdcTopAppBar__section; mdcTopAppBar__section_alignStart;
 					with: [
-						self startSection do: [ :each | html render: each ].
+						self startSectionFiltered do: [ :each | html render: each ].
 						html span mdcTopAppBar__title; with: self appBarTitle ].
 				html section
 					mdcTopAppBar__section; mdcTopAppBar__section_alignEnd;
@@ -140,6 +140,16 @@ MCWTopAppBar >> startSection [
 { #category : #accessing }
 MCWTopAppBar >> startSection: anObject [
 	startSection := anObject
+]
+
+{ #category : #accessing }
+MCWTopAppBar >> startSectionFiltered [
+
+	self layout isDesktopStyle ifTrue: [
+		"TODO: make the drawer dismiss menu icon findable, and leave it off the answer"
+		^ #() ].
+	
+	^ self startSection
 ]
 
 { #category : #actions }

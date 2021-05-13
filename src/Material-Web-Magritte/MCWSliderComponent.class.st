@@ -34,8 +34,8 @@ MCWSliderComponent >> renderSliderOn: html [
 
 	html div mdcSlider; mdcSlider_discrete; mdcAutoInit: 'MDCSlider'; style: 'width: 150px'; with: [
 		html textInput mdcSlider__input; type: 'range';
-			attributeAt: 'min' put: '0';
-			attributeAt: 'max' put: '100';
+			attributeAt: 'min' put: (self magritteDescription min ifNil: [ 0 ] ifNotNil: [ :value | value ]);
+			attributeAt: 'max' put: (self magritteDescription max ifNil: [ 100 ] ifNotNil: [ :value | value ]);
 			attributeAt: 'step' put: self magritteDescription mcwSliderStep;
 			tabIndex: 0;
 			ariaLabel: 'Select Value';
@@ -48,7 +48,7 @@ MCWSliderComponent >> renderSliderOn: html [
 		html div mdcSlider__thumb; with: [
 			html div mdcSlider__valueIndicatorContainer with: [
 				html div mdcSlider__valueIndicator; with: [
-					html span mdcSlider__valueIndicatorText; with: 50 ] ].
+					html span mdcSlider__valueIndicatorText; with: self magritteDescription value ] ].
 			html div mdcSlider__thumbKnob ] ].
 
 ]

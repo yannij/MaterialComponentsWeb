@@ -8,6 +8,10 @@ Class {
 MCWResponsiveAppLibrary >> responsiveAppCss [
 
 	^ '
+body {
+	background: var(--mdc-theme-background);
+}
+
 .mcw-layout-mobile .mdc-fab {
 }
 

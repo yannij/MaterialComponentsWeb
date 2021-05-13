@@ -9,7 +9,7 @@ MCWListItemSeparator >> renderContentOn: html [
 
 	html listItem
 		mdcListDivider;
-		mdcListDivider_inset;
+		"mdcListDivider_inset;"
 		mdcRole: 'separator';
 		yourself
 

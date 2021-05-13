@@ -3,7 +3,8 @@ Extension { #name : #MANumberDescription }
 { #category : #'*Material-Web-Magritte' }
 MANumberDescription >> mcwComponentClass [
 
-	^ self propertyAt: #mcwComponentClass ifAbsentPut: [ MCWSliderComponent ]
+	^ MCWSliderComponent
+	"^ self propertyAt: #mcwComponentClass ifAbsentPut: [ MCWSliderComponent ]"
 
 ]
 

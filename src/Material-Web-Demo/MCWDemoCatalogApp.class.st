@@ -41,9 +41,9 @@ MCWDemoCatalogApp >> buildSideNavList [
 	| navList |
 
 	navList := MCWListBasic new.
-	navList addListItem: (MCWListItemIcon itemText: 'Home' callback: [ self catalogCanvas pageName: #home ]).
+	navList listItemAdd: (MCWListItemIcon itemText: 'Home' callback: [ self catalogCanvas pageName: #home ]).
 	self catalogCanvas catalogList do: [ :eachItem |
-		navList addListItem: (MCWListItemIcon
+		navList listItemAdd: (MCWListItemIcon
 				itemText: eachItem second
 				callback: [ self catalogCanvas pageName: eachItem first asSymbol ]) ].
 	^ navList

@@ -9,14 +9,6 @@ Class {
 	#category : #'Material-Web-Responsive'
 }
 
-{ #category : #accessing }
-MCWList >> addListItem: aListItem [
-
-	self listItems add: aListItem.
-	aListItem list: self
-
-]
-
 { #category : #rendering }
 MCWList >> closeScript [
 
@@ -33,6 +25,14 @@ MCWList >> initialize [
 
 	"Check for nil, when rendering"
 	"self subheading: nil."
+
+]
+
+{ #category : #accessing }
+MCWList >> listItemAdd: aListItem [
+
+	self listItems add: aListItem.
+	aListItem list: self
 
 ]
 
