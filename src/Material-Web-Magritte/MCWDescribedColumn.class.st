@@ -6,8 +6,6 @@ Class {
 
 { #category : #rendering }
 MCWDescribedColumn >> renderCell: anObject index: anInteger on: html [
-self magritteDescription label = 'Dangles' ifTrue: [
-	Transcript crShow: 'foobar' ].
 
 	html tableData mdcDataTable__cell; scope: 'row'; with: [
 		self magritteDescription mcwNavMethodName

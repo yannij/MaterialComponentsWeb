@@ -71,6 +71,11 @@ ShrineLibrary >> bundleCss [
   padding: 80px 100px 0 100px;
 }
 
+.shrine .mdc-drawer__content { 
+  color: var(--mdc-theme-on-primary);
+  background-color: var(--mdc-theme-primary);
+}
+
 .shrine-drawer .mdc-list {
 /*
   @include mdc-drawer-fill-color-accessible(primary);

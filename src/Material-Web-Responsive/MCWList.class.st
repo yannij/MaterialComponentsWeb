@@ -37,6 +37,12 @@ MCWList >> listItemAdd: aListItem [
 ]
 
 { #category : #accessing }
+MCWList >> listItemAddAll: aCollection [
+
+	aCollection do: [ :eachItem | self listItemAdd: eachItem ]
+]
+
+{ #category : #accessing }
 MCWList >> listItems [
 	^ listItems
 ]

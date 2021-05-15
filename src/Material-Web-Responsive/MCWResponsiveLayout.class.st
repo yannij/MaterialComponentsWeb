@@ -8,7 +8,8 @@ Class {
 		'sideNav',
 		'sideSheet',
 		'mainFab',
-		'settingsView'
+		'settingsView',
+		'cssStyle'
 	],
 	#category : #'Material-Web-Responsive'
 }
@@ -98,6 +99,16 @@ MCWResponsiveLayout >> contentToShow [
 	^ self settingsView isHidden
 		ifTrue: [ self contentArea ]
 		ifFalse: [ self settingsView ]
+]
+
+{ #category : #accessing }
+MCWResponsiveLayout >> cssStyle [
+	^ cssStyle
+]
+
+{ #category : #accessing }
+MCWResponsiveLayout >> cssStyle: anObject [
+	cssStyle := anObject
 ]
 
 { #category : #accessing }
@@ -216,7 +227,7 @@ MCWResponsiveLayout >> renderContentOn: html [
 { #category : #rendering }
 MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 
-	html div style: 'height: 100vh'; with: self sideNav.
+	html div class: self cssStyle if: (self cssStyle notNil); style: 'height: 100vh'; with: self sideNav.
 	html render: self topAppBar.
 
 	html div style: 'width: 100%'; "style: 'min-width: 1000px';" with: [
@@ -224,7 +235,7 @@ MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 			"style: 'border: 2px solid blue';"
 			style: 'float: left';
 			style: 'overflow-x: auto';
-			mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;
+			"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
 			with: [
 				| div |
 				div := html tag: 'main'.
@@ -271,7 +282,7 @@ MCWResponsiveLayout >> renderLayoutTabletOn: html [
 		"style: 'border: 2px solid red';"
 		style: 'float: left';
 		style: 'overflow-x: auto';
-		mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;
+		"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
 		with: [
 			| div |
 			html render: self topAppBar.

@@ -121,6 +121,20 @@ MCWOneToManyComponent >> renderExpandSwitchOnListId: listId on: html [
 ]
 
 { #category : #rendering }
+MCWOneToManyComponent >> renderLabelOn: html [
+
+	self magritteDescription mcwNavPriority ifNil: [
+		^ html text: self magritteDescription label ].
+
+	html div mdcChip; mdcRippleUpgraded; tabIndex: 0;
+		"style: 'background: #', nil mdColorCode asHexString;"
+		onClick: ((html jQuery ajax)
+			callback: [ self mcwApplicationGet navTo: self memento model aspect: self magritteDescription label ];
+			onComplete: html javascript refresh);
+		with: self magritteDescription label
+]
+
+{ #category : #rendering }
 MCWOneToManyComponent >> renderListAjaxOn: html [
 
 	self isExpanded
@@ -139,13 +153,13 @@ MCWOneToManyComponent >> renderListAjaxOn: html [
 						html span
 							mdcListItem__text;
 							onClick: ((html jQuery ajax)
-								callback: [ self showObject: eachItem ];
+								callback: [ self mcwApplicationGet navTo: eachItem ];
 								onComplete: html javascript refresh);
 							with: [
 								html text: eachItem mdPrimaryString.
 								html span
 									mdcListItem__secondaryText;
-									with: [ html text: eachItem mdSecondaryString ] ].
+									with: eachItem mdSecondaryString ].
 						"html span mdcListItem__meta; with: [
 							html span mdcMaterialIcons; mdcAriaHidden: 'true'; with: 'more_vert']"
 						] ] ]
@@ -169,16 +183,9 @@ MCWOneToManyComponent >> renderViewerOn: html [
 		style: 'border: 1px solid rgba(0, 0, 0, 0.1);';
 		with: [
 			html heading level3; mdcListGroup__subheader; with: [
-				html text: self magritteDescription label.
+				self renderLabelOn: html.
 				self renderAddButtonOn: html.
 				self renderExpandIconOnListId: listId on: html ].
 
 		html div id: listId; with: [ self renderListAjaxOn: html ] ]
-]
-
-{ #category : #actions }
-MCWOneToManyComponent >> showObject: aModel [
-
-	"self root show: (aModel asComponent addValidatedForm; yourself)"
-	self mcwApplicationGet setCanvasContent2: aModel
 ]

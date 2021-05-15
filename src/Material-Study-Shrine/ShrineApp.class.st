@@ -2,7 +2,7 @@ Class {
 	#name : #ShrineApp,
 	#superclass : #MCWResponsiveApplication,
 	#instVars : [
-		'topSheet'
+		'shoppingCart'
 	],
 	#category : #'Material-Study-Shrine'
 }
@@ -134,28 +134,33 @@ ShrineApp >> buildSideSheet [
 ]
 
 { #category : #initialization }
-ShrineApp >> buildTopSheet [
-
-	^ ShrineTopSheet new
-]
-
-{ #category : #initialization }
 ShrineApp >> initializeLayout [
 
 	self materialVersionDefault.
 
 	self settings: self buildApplicationSettings.
 	self layout: self buildLayout.
+	self layout cssStyle: 'shrine'.
 	self beLayoutStructureDesktop.
 
 	self layout contentArea component: ShrineCanvas new.
 	self loginComponent: self buildLoginComponent.
-	self topSheet: self buildTopSheet.
+	self shoppingCart: (ShrineShoppingCart on: self layout).
 
 	self settings mdcTypography fontFamily: 'Rubik'.
 	self settings mdcTheme themeItemsSet: self themeSetting.
 
-	self layout sideSheet component: self topSheet.
+	self layout sideSheet component: self shoppingCart.
+]
+
+{ #category : #accessing }
+ShrineApp >> shoppingCart [
+	^ shoppingCart
+]
+
+{ #category : #accessing }
+ShrineApp >> shoppingCart: anObject [
+	shoppingCart := anObject
 ]
 
 { #category : #accessing }
@@ -188,16 +193,6 @@ ShrineApp >> themeSetting [
 (#'on-surface' '#442C2E')
 (#'background' '#FFFFFF')
 	)
-]
-
-{ #category : #accessing }
-ShrineApp >> topSheet [
-	^ topSheet
-]
-
-{ #category : #accessing }
-ShrineApp >> topSheet: anObject [
-	topSheet := anObject
 ]
 
 { #category : #updating }

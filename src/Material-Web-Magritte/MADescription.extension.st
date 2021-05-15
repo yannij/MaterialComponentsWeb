@@ -31,6 +31,18 @@ MADescription >> mcwNavMethodName: aMethodName [
 ]
 
 { #category : #'*Material-Web-Magritte' }
+MADescription >> mcwNavPriority [
+
+	^ self propertyAt: #mcwNavPriority ifAbsent: [ nil ]
+]
+
+{ #category : #'*Material-Web-Magritte' }
+MADescription >> mcwNavPriority: anIndex [
+
+	self propertyAt: #mcwNavPriority put: anIndex
+]
+
+{ #category : #'*Material-Web-Magritte' }
 MADescription >> mcwReportColumnClass [
 
 	^ self propertyAt: #mcwReportColumnClass ifAbsent: [ self class mcwDefaultReportColumnClass ]
