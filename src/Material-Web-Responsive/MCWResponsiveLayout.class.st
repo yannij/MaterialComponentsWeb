@@ -2,6 +2,7 @@ Class {
 	#name : #MCWResponsiveLayout,
 	#superclass : #MCWComponent,
 	#instVars : [
+		'app',
 		'screenStyle',
 		'contentArea',
 		'topAppBar',
@@ -13,6 +14,14 @@ Class {
 	],
 	#category : #'Material-Web-Responsive'
 }
+
+{ #category : #'instance creation' }
+MCWResponsiveLayout class >> on: aResponsiveApplication [
+
+	^ self new
+		app: aResponsiveApplication;
+		yourself
+]
 
 { #category : #actions }
 MCWResponsiveLayout >> adjustToolbarsDesktop [
@@ -40,6 +49,16 @@ MCWResponsiveLayout >> adjustToolbarsTablet [
 	"self topAppBar startSection: self rootComponent appBarStartSection."
 	self topAppBar startSection do: [ :each | each beUnHidden ].
 
+]
+
+{ #category : #accessing }
+MCWResponsiveLayout >> app [
+	^ app
+]
+
+{ #category : #accessing }
+MCWResponsiveLayout >> app: anObject [
+	app := anObject
 ]
 
 { #category : #actions }

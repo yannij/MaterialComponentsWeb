@@ -81,7 +81,7 @@ MCWResponsiveApplication >> buildApplicationSettings [
 MCWResponsiveApplication >> buildLayout [
 	| newLayout newSideNav newTopAppBar newContentArea |
 
-	newLayout := MCWResponsiveLayout new.
+	newLayout := MCWResponsiveLayout on: self.
 	newSideNav := self buildSideNav layout: newLayout; yourself.
 	newTopAppBar := self buildTopAppBar layout: newLayout; yourself.
 	newContentArea := MCWContentArea on: newLayout.

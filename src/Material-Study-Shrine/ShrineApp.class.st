@@ -2,7 +2,8 @@ Class {
 	#name : #ShrineApp,
 	#superclass : #MCWResponsiveApplication,
 	#instVars : [
-		'shoppingCart'
+		'shoppingCart',
+		'stripeInterface'
 	],
 	#category : #'Material-Study-Shrine'
 }
@@ -12,19 +13,6 @@ ShrineApp class >> applicationPath [
 
 	^ 'material/shrine'
 
-]
-
-{ #category : #'class initialization' }
-ShrineApp class >> dockerDeployPreLoad [
-	<dockerDeployPreLoad>
-
-	DockerDeploy current secretNamesAdd: ShrineApp dockerSecretsName
-]
-
-{ #category : #initialization }
-ShrineApp class >> dockerSecretsName [
-
-	^ 'shrine'
 ]
 
 { #category : #'class initialization' }
@@ -49,32 +37,6 @@ ShrineApp class >> shrineSvg: aCssClass [
       </g>
     </svg>
 '
-]
-
-{ #category : #accessing }
-ShrineApp class >> stripePublishableKey [
-	"
-	DockerDeploy current loadSecretNamed: ShrineApp dockerSecretsName.
-	ShrineApp stripePublishableKey.
-	"
-
-	^ DockerDeploy current
-		secretsAt: self dockerSecretsName
-		atKey: 'stripePublishableKey'
-		ifAbsent: [ 'missing-stripePublishableKey' ]
-]
-
-{ #category : #accessing }
-ShrineApp class >> stripeSecretKey [
-	"
-	DockerDeploy current loadSecretNamed: ShrineApp dockerSecretsName.
-	ShrineApp stripeSecretKey.
-	"
-
-	^ DockerDeploy current
-		secretsAt: self dockerSecretsName
-		atKey: 'stripeSecretKey'
-		ifAbsent: [ 'missing-stripeSecretKey' ]
 ]
 
 { #category : #accessing }
@@ -134,6 +96,14 @@ ShrineApp >> buildSideSheet [
 ]
 
 { #category : #initialization }
+ShrineApp >> initialize [
+
+	self stripeInterface: StripeInterfaceBasic new.
+
+	super initialize.
+]
+
+{ #category : #initialization }
 ShrineApp >> initializeLayout [
 
 	self materialVersionDefault.
@@ -145,7 +115,8 @@ ShrineApp >> initializeLayout [
 
 	self layout contentArea component: ShrineCanvas new.
 	self loginComponent: self buildLoginComponent.
-	self shoppingCart: (ShrineShoppingCart on: self layout).
+	self shoppingCart: self stripeInterface shoppingCartNew.
+	self shoppingCart layout: self layout.
 
 	self settings mdcTypography fontFamily: 'Rubik'.
 	self settings mdcTheme themeItemsSet: self themeSetting.
@@ -170,15 +141,13 @@ ShrineApp >> shrineTitle [
 ]
 
 { #category : #accessing }
-ShrineApp >> stripePublishableKey [
-
-	^ self class stripePublishableKey
+ShrineApp >> stripeInterface [
+	^ stripeInterface
 ]
 
 { #category : #accessing }
-ShrineApp >> stripeSecretKey [
-
-	^ self class stripeSecretKey
+ShrineApp >> stripeInterface: anObject [
+	stripeInterface := anObject
 ]
 
 { #category : #accessing }

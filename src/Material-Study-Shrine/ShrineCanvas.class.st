@@ -5,6 +5,15 @@ Class {
 }
 
 { #category : #rendering }
+ShrineCanvas >> addToShoppingCart: aProduct [
+	| app |
+	app := self mcwApplicationGet.
+	app stripeInterface
+		shoppingCart: app shoppingCart
+		addProduct: aProduct
+]
+
+{ #category : #rendering }
 ShrineCanvas >> products [
 
 	true ifTrue: [ ^ WAJsonParser parse: self productsJson ].
@@ -80,7 +89,7 @@ ShrineCanvas >> renderProductsOn: html [
 					html div: [
 						html anchor mdcMaterialIcons; mdcIconButton;
 							style: 'position: absolute; top: 10; left: 10';
-							callback: [ self mcwApplicationGet shoppingCart cartItemsAdd: eachProduct ];
+							callback: [ self addToShoppingCart: eachProduct ];
 							with: [ html div mdcButton__ripple; with: 'add_shopping_cart' ].
 						self renderProduct: eachProduct on: html ] ] ] ] ]
 ]

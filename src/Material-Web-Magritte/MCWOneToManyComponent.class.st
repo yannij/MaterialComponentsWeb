@@ -56,12 +56,19 @@ MCWOneToManyComponent >> mcwPostBuild [
 { #category : #rendering }
 MCWOneToManyComponent >> renderAddButtonOn: html [
 
-	html render: (MCWButton new
+	"html render: (MCWButton new
 		actionLabel: 'Add';
 		onClickScript: ((html jQuery ajax)
 			callback: [ self add ];
 			onComplete: html javascript refresh);
-		yourself).
+		yourself)."
+	html anchor
+		mdcMaterialIcons; mdcIconButton;
+		tabIndex: 0;
+		onClick: ((html jQuery ajax)
+			callback: [ self add ];
+			onComplete: html javascript refresh);
+		with: [ html div mdcButton__ripple; with: 'add' ]
 
 ]
 
@@ -81,19 +88,19 @@ MCWOneToManyComponent >> renderExpandIconOnListId: listId on: html [
 	html span
 		"mdcIconToggle;"
 		mdcMaterialIcons;
-		mdcRippleUpgraded;
-		mdcRippleUpgraded_unbounded;
+		mdcIconButton;
 		"mdcAutoInit: 'MDCIconToggle';"
 		mdcRole: 'button';
 		tabIndex: 0;
 		attributeAt: 'data-toggle-on' put: toggleOnValue;
 		attributeAt: 'data-toggle-off' put: toggleOffValue;
-		style: '--mdc-ripple-fg-size:28.8px; --mdc-ripple-fg-scale:1.66667; --mdc-ripple-left:10px; --mdc-ripple-top:10px;';
 		ariaLabel: 'Expand'; 
 		onClick: ((html jQuery ajax)
 			callback: [ self expanded: self expanded not ];
 			onComplete: ((html jQuery id: listId) load html: [ :renderer | self renderListAjaxOn: renderer ]));
-		with: (self expanded ifTrue: [ 'expand_less' ] ifFalse: [ 'expand_more' ]).
+		with: [
+			html div mdcButton__ripple;
+				with: (self expanded ifTrue: [ 'expand_less' ] ifFalse: [ 'expand_more' ]) ]
 
 ]
 

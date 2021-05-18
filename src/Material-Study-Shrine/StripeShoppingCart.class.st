@@ -1,5 +1,8 @@
+"
+I am a shopping cart that uses Stripe to process the transaction
+"
 Class {
-	#name : #ShrineShoppingCart,
+	#name : #StripeShoppingCart,
 	#superclass : #MCWLayoutComponent,
 	#instVars : [
 		'cartVisible',
@@ -9,14 +12,20 @@ Class {
 	#category : #'Material-Study-Shrine'
 }
 
+{ #category : #testing }
+StripeShoppingCart class >> isVoyageRoot [
+
+	^ true
+]
+
 { #category : #stripe }
-ShrineShoppingCart >> actionCancel [
+StripeShoppingCart >> actionCancel [
 
 	self mcwApplicationGet logString: 'Cancel'
 ]
 
 { #category : #stripe }
-ShrineShoppingCart >> actionSuccess [
+StripeShoppingCart >> actionSuccess [
 
 	self mcwApplicationGet logString: 'Success'.
 
@@ -24,35 +33,35 @@ ShrineShoppingCart >> actionSuccess [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> addValidatedForm [
+StripeShoppingCart >> addValidatedForm [
 
 	^ self
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> asComponent [
+StripeShoppingCart >> asComponent [
 
 	^ self
 ]
 
 { #category : #accessing }
-ShrineShoppingCart >> cartItems [
+StripeShoppingCart >> cartItems [
 	^ cartItems
 ]
 
 { #category : #accessing }
-ShrineShoppingCart >> cartItems: anObject [
+StripeShoppingCart >> cartItems: anObject [
 	cartItems := anObject
 ]
 
 { #category : #accessing }
-ShrineShoppingCart >> cartItemsAdd: aProduct [
+StripeShoppingCart >> cartItemsAdd: aProduct [
 
 	self cartItems add: aProduct
 ]
 
 { #category : #accessing }
-ShrineShoppingCart >> cartItemsClear [
+StripeShoppingCart >> cartItemsClear [
 
 	self cartState: self cartStateShopping.
 
@@ -61,29 +70,29 @@ ShrineShoppingCart >> cartItemsClear [
 ]
 
 { #category : #accessing }
-ShrineShoppingCart >> cartState [
+StripeShoppingCart >> cartState [
 	^ cartState
 ]
 
 { #category : #accessing }
-ShrineShoppingCart >> cartState: anObject [
+StripeShoppingCart >> cartState: anObject [
 	cartState := anObject
 ]
 
 { #category : #accessing }
-ShrineShoppingCart >> cartStatePaid [
+StripeShoppingCart >> cartStatePaid [
 
 	^ #Paid
 ]
 
 { #category : #accessing }
-ShrineShoppingCart >> cartStateShopping [
+StripeShoppingCart >> cartStateShopping [
 
 	^ #Shopping
 ]
 
 { #category : #accessing }
-ShrineShoppingCart >> cartValues [
+StripeShoppingCart >> cartValues [
 	| subtotal shipping tax |
 
 	subtotal := self cartItems inject: 0.0 into: [ :sum :each |  sum + ((each hash \\ 10000) / 100.0) ].
@@ -99,17 +108,17 @@ ShrineShoppingCart >> cartValues [
 ]
 
 { #category : #accessing }
-ShrineShoppingCart >> cartVisible [
+StripeShoppingCart >> cartVisible [
 	^ cartVisible
 ]
 
 { #category : #accessing }
-ShrineShoppingCart >> cartVisible: anObject [
+StripeShoppingCart >> cartVisible: anObject [
 	cartVisible := anObject
 ]
 
 { #category : #stripe }
-ShrineShoppingCart >> createCheckoutSessionRequest: html json: json [
+StripeShoppingCart >> createCheckoutSessionRequest: html json: json [
 	| successUrl cancelUrl client responseJsonString responseJson |
 
 	successUrl := html urlForAction: [ self actionSuccess ].
@@ -123,7 +132,7 @@ self mcwApplicationGet logString: cancelUrl printString.
 		https;
 		host: 'api.stripe.com';
 		addPath: (Array with: 'v1' with: 'checkout' with: 'sessions');
-		username: self mcwApplicationGet stripeSecretKey password: '';
+		username: StripeAPI current stripeSecretKey password: '';
 		formAt: 'success_url' put: successUrl printString;
 		formAt: 'cancel_url' put: cancelUrl printString;
 		formAt: 'payment_method_types[0]' put: 'card';
@@ -141,7 +150,7 @@ self mcwApplicationGet logString: cancelUrl printString.
 ]
 
 { #category : #initialization }
-ShrineShoppingCart >> initialize [
+StripeShoppingCart >> initialize [
 
 	super initialize.
 
@@ -150,13 +159,13 @@ ShrineShoppingCart >> initialize [
 ]
 
 { #category : #utility }
-ShrineShoppingCart >> printAsMoney: aValue [
+StripeShoppingCart >> printAsMoney: aValue [
 
 	^ '$', (aValue printShowingDecimalPlaces: 2)
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderCartHeaderOn: html [
+StripeShoppingCart >> renderCartHeaderOn: html [
 
 	html div: [
 		self renderDismissButtonOn: html.
@@ -165,7 +174,7 @@ ShrineShoppingCart >> renderCartHeaderOn: html [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderCartItemImagesOn: html [
+StripeShoppingCart >> renderCartItemImagesOn: html [
 
 	self cartItems do: [ :eachItem |			
 		html image "mdcImageList__image;"
@@ -174,7 +183,7 @@ ShrineShoppingCart >> renderCartItemImagesOn: html [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderCartItemsOn: html [
+StripeShoppingCart >> renderCartItemsOn: html [
 
 	html unorderedList mdcList; mdcTheme_surface; mdcList_twoLine; mdcList_imageList; with: [
 		self cartItems do: [ :eachItem |			
@@ -188,7 +197,7 @@ ShrineShoppingCart >> renderCartItemsOn: html [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderCartLine: lineItemName total: lineItemValue on: html [
+StripeShoppingCart >> renderCartLine: lineItemName total: lineItemValue on: html [
 
 	html span mdcTypography_body1; with: lineItemName.
 	html text: ' . . . '.
@@ -197,7 +206,7 @@ ShrineShoppingCart >> renderCartLine: lineItemName total: lineItemValue on: html
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderCartOn: html [
+StripeShoppingCart >> renderCartOn: html [
 
 	self renderCartHeaderOn: html.
 	
@@ -211,7 +220,7 @@ ShrineShoppingCart >> renderCartOn: html [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderCartPaidOn: html [
+StripeShoppingCart >> renderCartPaidOn: html [
 
 	self renderCartTotalsOn: html.
 	html span mdcTypography_headline6; with: 'Payment successful !'.
@@ -219,7 +228,7 @@ ShrineShoppingCart >> renderCartPaidOn: html [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderCartShoppingOn: html [
+StripeShoppingCart >> renderCartShoppingOn: html [
 
 	self renderCartItemsOn: html.
 	self renderCartTotalsOn: html.
@@ -228,7 +237,7 @@ ShrineShoppingCart >> renderCartShoppingOn: html [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderCartSummaryOn: html [
+StripeShoppingCart >> renderCartSummaryOn: html [
 
 	html span mdcTypography_subtitle1; with: [
 		html text: 'CART'; space; space; space.
@@ -237,7 +246,7 @@ ShrineShoppingCart >> renderCartSummaryOn: html [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderCartTotalsOn: html [
+StripeShoppingCart >> renderCartTotalsOn: html [
 	| cartValues |
 
 	cartValues := self cartValues.
@@ -249,18 +258,18 @@ ShrineShoppingCart >> renderCartTotalsOn: html [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderCheckoutButtonOn: html [
+StripeShoppingCart >> renderCheckoutButtonOn: html [
 
 	html button
 		mdcButton;
 		mdcButton_raised;
-		style: 'width: 100%';
+		style: 'margin-bottom: 8px; width: 100%';
 		onClick: (self stripeRedirectScriptOn: html);
 		with: 'Proceed to checkout'
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderClearCartButtonOn: html [
+StripeShoppingCart >> renderClearCartButtonOn: html [
 
 	html anchor
 		mdcButton;
@@ -271,7 +280,7 @@ ShrineShoppingCart >> renderClearCartButtonOn: html [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderContentOn: html [
+StripeShoppingCart >> renderContentOn: html [
 
 	html div
 		style: 'padding: 8px';
@@ -285,7 +294,7 @@ ShrineShoppingCart >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderDismissButtonOn: html [
+StripeShoppingCart >> renderDismissButtonOn: html [
 
 	html anchor mdcMaterialIcons; mdcIconButton; "mdcButton_raised;"
 		callback: [ self cartVisible: false ];
@@ -293,7 +302,7 @@ ShrineShoppingCart >> renderDismissButtonOn: html [
 ]
 
 { #category : #rendering }
-ShrineShoppingCart >> renderShowCartButtonOn: html [
+StripeShoppingCart >> renderShowCartButtonOn: html [
 
 	html anchor mdcMaterialIcons; mdcIconButton; "mdcButton_unelevated;" "mdcButton_raised;"
 		callback: [ self cartVisible: true ];
@@ -303,7 +312,7 @@ ShrineShoppingCart >> renderShowCartButtonOn: html [
 ]
 
 { #category : #stripe }
-ShrineShoppingCart >> serverUrl [
+StripeShoppingCart >> serverUrl [
 
 	^ self mcwPublicServerUrl
 		ifNotNil: [ :value | value ]
@@ -311,13 +320,13 @@ ShrineShoppingCart >> serverUrl [
 ]
 
 { #category : #stripe }
-ShrineShoppingCart >> stripeRedirectScriptOn: html [
+StripeShoppingCart >> stripeRedirectScriptOn: html [
 
 	^ html jQuery getJson 
 		json: [ :json | self createCheckoutSessionRequest: html json: json ];
 		onSuccess: (html javascript << (JSStream new
 				nextPutAll: 'Stripe(''';
-				nextPutAll: self mcwApplicationGet stripePublishableKey;
+				nextPutAll: StripeAPI current stripePublishableKey;
 				nextPutAll: ''').redirectToCheckout({sessionId: JSON.parse(arguments[0]).id})';
 				yourself);
 			yourself)
