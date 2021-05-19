@@ -160,7 +160,7 @@ MCWOneToManyComponent >> renderListAjaxOn: html [
 						html span
 							mdcListItem__text;
 							onClick: ((html jQuery ajax)
-								callback: [ self mcwApplicationGet navTo: eachItem ];
+								callback: [ self mcwApplicationGet navTo: eachItem aspect: nil ];
 								onComplete: html javascript refresh);
 							with: [
 								html text: eachItem mdPrimaryString.

@@ -40,7 +40,7 @@ MCWExternalEditorComponent >> renderOneItemListOn: html [
 					html listItem
 						mdcListItem;
 						onClick: ((html jQuery ajax)
-							callback: [ self mcwApplicationGet navTo: self value ];
+							callback: [ self mcwApplicationGet navTo: self value aspect: nil ];
 							onComplete: html javascript refresh);
 						with: [
 							html span mdcListItem__text; with: [

@@ -249,24 +249,23 @@ MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 	html div class: self cssStyle if: (self cssStyle notNil); style: 'height: 100vh'; with: self sideNav.
 	html render: self topAppBar.
 
-	html div style: 'width: 100%'; "style: 'min-width: 1000px';" with: [
-		html div mdcDrawerAppContent;
-			"style: 'border: 2px solid blue';"
-			style: 'float: left';
-			style: 'overflow-x: auto';
-			"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
-			with: [
-				| div |
-				div := html tag: 'main'.
-				self mcwDenseView
-					ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
-					ifFalse: [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
-				div
-					class: 'mcw-layout-desktop';
-					"style: 'min-width: 780px';"
-					with: self contentToShow ].
+	html div
+		style: 'max-width: 1200px';
+		mdcDrawerAppContent;
+		with: [
+			| div |
+			div := html div.
+			self mcwDenseView
+				ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
+				ifFalse: [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
+			div
+				style: 'float: left';
+				style: 'overflow-x: auto';
+				"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
+				class: 'mcw-layout-desktop';
+				with: self contentToShow ].
 
-		self renderSideSheetOn: html ]
+	self renderSideSheetOn: html
 ]
 
 { #category : #rendering }
@@ -281,7 +280,7 @@ MCWResponsiveLayout >> renderLayoutMobileOn: html [
 		ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
 		ifFalse:  [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
 	div with: [
-		(html tag: 'main')
+		html div
 			class: 'mcw-layout-mobile';
 			style: 'overflow-x: auto';
 			style: 'padding-bottom: 40px';
@@ -298,10 +297,6 @@ MCWResponsiveLayout >> renderLayoutTabletOn: html [
 	html render: self sideNav.
 
 	html div mdcDrawerAppContent;
-		"style: 'border: 2px solid red';"
-		style: 'float: left';
-		style: 'overflow-x: auto';
-		"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
 		with: [
 			| div |
 			html render: self topAppBar.
@@ -310,6 +305,10 @@ MCWResponsiveLayout >> renderLayoutTabletOn: html [
 				ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
 				ifFalse:  [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
 			div
+				"style: 'border: 2px solid red';"
+				style: 'float: left';
+				style: 'overflow-x: auto';
+				"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
 				class: 'mcw-layout-tablet';
 				with: self contentToShow ].
 
@@ -321,10 +320,11 @@ MCWResponsiveLayout >> renderSideSheetOn: html [
 	| sideDiv |
 
 	self sideSheetVisible ifFalse: [ ^ self ].
-	
+
 	sideDiv := html div
 		"style: 'border: 2px solid blue';"
-		style: 'float: right';
+		style: 'position: absolute; top: 0; right: 0';
+		"style: 'float: right';"
 		style: 'width: ', self sideSheetWidth printString, 'px';
 		yourself.
 	self mcwDenseView

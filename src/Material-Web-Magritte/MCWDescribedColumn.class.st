@@ -13,6 +13,6 @@ MCWDescribedColumn >> renderCell: anObject index: anInteger on: html [
 			ifNotNil: [ :method |
 				html div mdcChip; mdcRippleUpgraded; with: [
 					html anchor mdcChip__text;
-						callback: [ self report mcwApplicationGet perform: method with: anObject ];
+						callback: [ self report mcwApplicationGet perform: method with: anObject with: nil ];
 						with: [ self renderer valueWithEnoughArguments: (Array with: anObject with: html with: anInteger) ] ]  ] ]
 ]
