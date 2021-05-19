@@ -7,7 +7,7 @@ Class {
 { #category : #rendering }
 ShrineCanvas >> addToShoppingCart: aProduct [
 	| app |
-	app := self mcwApplicationGet.
+	app := self layout app.
 	app stripeInterface
 		shoppingCart: app shoppingCart
 		addProduct: aProduct

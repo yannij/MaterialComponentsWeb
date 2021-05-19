@@ -21,13 +21,13 @@ StripeShoppingCart class >> isVoyageRoot [
 { #category : #stripe }
 StripeShoppingCart >> actionCancel [
 
-	self mcwApplicationGet logString: 'Cancel'
+	self layout app logString: 'Cancel'
 ]
 
 { #category : #stripe }
 StripeShoppingCart >> actionSuccess [
 
-	self mcwApplicationGet logString: 'Success'.
+	self layout app logString: 'Success'.
 
 	self cartState: self cartStatePaid
 ]
@@ -144,7 +144,7 @@ self mcwApplicationGet logString: cancelUrl printString.
 	responseJsonString := client post.
 	responseJson := WAJsonParser parse: responseJsonString.
 	(responseJson includesKey: 'id')
-		ifFalse: [ self mcwApplicationGet logString: 'Stripe error response: ', responseJsonString ].
+		ifFalse: [ self layout app logString: 'Stripe error response: ', responseJsonString ].
 
 	^ json string: responseJsonString
 ]

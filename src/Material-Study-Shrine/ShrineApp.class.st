@@ -113,7 +113,7 @@ ShrineApp >> initializeLayout [
 	self layout cssStyle: 'shrine'.
 	self beLayoutStructureDesktop.
 
-	self layout contentArea component: ShrineCanvas new.
+	self layout contentArea component: (ShrineCanvas on: self layout).
 	self loginComponent: self buildLoginComponent.
 	self shoppingCart: self stripeInterface shoppingCartNew.
 	self shoppingCart layout: self layout.
