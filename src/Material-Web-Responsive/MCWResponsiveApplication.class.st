@@ -24,9 +24,6 @@ MCWResponsiveApplication >> appBarEndSection [
 		add: settingsPopup;
 		yourself.
 
-	"These buttons are here because persistent side nav causes toolbar to be pushed right"
-	"5 timesRepeat: [data add: (MCWAppBarMenuIcon materialIcon: 'bookmark')]."
-
 	^ data
 
 ]
@@ -138,6 +135,7 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 		listItemAdd: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'all_out'; itemText: 'Dense'; callback: [ self toggleDenseView ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Style'; callback: [ self configureStyle ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'login'; itemText: 'Login'; callback: [ self login ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'logout'; itemText: 'Logout'; callback: [ self logout ]; yourself);
 		yourself.
 
@@ -256,6 +254,15 @@ MCWResponsiveApplication >> layout: anObject [
 	layout := anObject
 ]
 
+{ #category : #actions }
+MCWResponsiveApplication >> login [
+
+	self loginComponent
+		ifNil: [
+			self loginComponent: self buildLoginComponent.
+			self redirectToLogin ]
+]
+
 { #category : #accessing }
 MCWResponsiveApplication >> loginComponent [
 	^ loginComponent
@@ -322,6 +329,18 @@ MCWResponsiveApplication >> openSideNavScript [
 
 	^ 'element = document.getElementById(''', self sideNavDrawerId, ''');
 element.mdcDrawer.open = !element.mdcDrawer.open'
+]
+
+{ #category : #actions }
+MCWResponsiveApplication >> redirectToLogin [
+
+	| url |
+	url := self application url.
+	url addAllToPath: self requestContext consumer upToEnd.
+	url addToPath: 'login'.
+	^ self requestContext responseGenerator
+		redirectTo: url;
+		respond
 ]
 
 { #category : #rendering }

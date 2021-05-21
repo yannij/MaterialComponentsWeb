@@ -29,8 +29,7 @@ MCWDrawer >> beDirectionToRightToLeft [
 { #category : #actions }
 MCWDrawer >> beDismissed [
 
-	self isDismissed: true.
-	self mcwApplicationGet ifNotNil: [ :value | value layout topAppBar topAppBarSpacersHide ]
+	self isDismissed: true
 ]
 
 { #category : #actions }
@@ -137,12 +136,7 @@ MCWDrawer >> isDismissed: anObject [
 { #category : #actions }
 MCWDrawer >> isDismissedToggle [
 
-	self isDismissed: self isDismissed not.
-	(self isDismissed and: [ self isDismissibleDrawer ])
-		ifTrue: [ self mcwApplicationGet layout topAppBar topAppBarSpacersHide ]
-		ifFalse: [ self mcwApplicationGet layout topAppBar topAppBarSpacersShow ].
-	(self isModalDrawer or: self isPersistentDrawer)
-		ifTrue: [ self mcwApplicationGet layout topAppBar topAppBarSpacersHide ]
+	self isDismissed: self isDismissed not
 ]
 
 { #category : #testing }

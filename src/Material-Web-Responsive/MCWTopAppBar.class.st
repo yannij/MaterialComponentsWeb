@@ -151,19 +151,3 @@ MCWTopAppBar >> startSectionFiltered [
 	
 	^ self startSection
 ]
-
-{ #category : #actions }
-MCWTopAppBar >> topAppBarSpacersHide [
-	"Workaround to handle problem with dismissable drawer that obscures right side of appBar"
-
-	self endSection do: [ :each |
-		each iconName = 'bookmark' ifTrue: [ each beHidden ] ]
-]
-
-{ #category : #actions }
-MCWTopAppBar >> topAppBarSpacersShow [
-	"Workaround to handle problem with dismissable drawer that obscures right side of appBar"
-
-	self endSection do: [ :each |
-		each iconName = 'bookmark' ifTrue: [ each beUnHidden ] ]
-]
