@@ -250,7 +250,7 @@ MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 	html render: self topAppBar.
 
 	html div
-		style: 'max-width: 1200px';
+		style: 'max-width: 1920px';
 		mdcDrawerAppContent;
 		with: [
 			| div |

@@ -3,13 +3,19 @@ Extension { #name : #MADescription }
 { #category : #'*Material-Web-Magritte' }
 MADescription >> mcwComponentClass [
 
-	^ self propertyAt: #mcwComponentClass ifAbsent: [ self componentClass ]
+	^ self propertyAt: #mcwComponentClass ifAbsent: [ self mcwComponentClassDefault ]
 ]
 
 { #category : #'*Material-Web-Magritte' }
 MADescription >> mcwComponentClass: aClass [
 
 	self propertyAt: #mcwComponentClass put: aClass
+]
+
+{ #category : #'*Material-Web-Magritte' }
+MADescription >> mcwComponentClassDefault [
+
+	^ nil
 ]
 
 { #category : #'*Material-Web-Magritte' }
@@ -40,6 +46,18 @@ MADescription >> mcwNavPriority [
 MADescription >> mcwNavPriority: anIndex [
 
 	self propertyAt: #mcwNavPriority put: anIndex
+]
+
+{ #category : #'*Material-Web-Magritte' }
+MADescription >> mcwOptionsClass [
+
+	^ self propertyAt: #mcwOptionsClass ifAbsent: [ nil ]
+]
+
+{ #category : #'*Material-Web-Magritte' }
+MADescription >> mcwOptionsClass: aClass [
+
+	self propertyAt: #mcwOptionsClass put: aClass
 ]
 
 { #category : #'*Material-Web-Magritte' }

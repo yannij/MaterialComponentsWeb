@@ -56,12 +56,6 @@ MCWOneToManyComponent >> mcwPostBuild [
 { #category : #rendering }
 MCWOneToManyComponent >> renderAddButtonOn: html [
 
-	"html render: (MCWButton new
-		actionLabel: 'Add';
-		onClickScript: ((html jQuery ajax)
-			callback: [ self add ];
-			onComplete: html javascript refresh);
-		yourself)."
 	html anchor
 		mdcMaterialIcons; mdcIconButton;
 		tabIndex: 0;
@@ -69,7 +63,6 @@ MCWOneToManyComponent >> renderAddButtonOn: html [
 			callback: [ self add ];
 			onComplete: html javascript refresh);
 		with: [ html div mdcButton__ripple; with: 'add' ]
-
 ]
 
 { #category : #rendering }
@@ -187,7 +180,9 @@ MCWOneToManyComponent >> renderViewerOn: html [
 
 	html div
 		mdcListGroup;
-		style: 'border: 1px solid rgba(0, 0, 0, 0.1);';
+		style: 'border-bottom: 1px solid rgba(0, 0, 0, 0.4);';
+		style: 'margin: 4px 4px 0 4px';
+		style: 'background-color: whitesmoke';
 		with: [
 			html heading level3; mdcListGroup__subheader; with: [
 				self renderLabelOn: html.

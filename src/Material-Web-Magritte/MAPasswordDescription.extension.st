@@ -1,7 +1,7 @@
 Extension { #name : #MAPasswordDescription }
 
 { #category : #'*Material-Web-Magritte' }
-MAPasswordDescription >> mcwComponentClass [
+MAPasswordDescription >> mcwComponentClassDefault [
 
 	^ MCWTextPasswordComponent
 

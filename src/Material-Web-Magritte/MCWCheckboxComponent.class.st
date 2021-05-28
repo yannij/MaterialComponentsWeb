@@ -43,5 +43,12 @@ MCWCheckboxComponent >> renderFieldOn: html [
 { #category : #rendering }
 MCWCheckboxComponent >> renderViewerOn: html [
 
-	self renderFieldOn: html
+	html div
+		mdcListGroup;
+		style: 'border-bottom: 1px solid rgba(0, 0, 0, 0.4);';
+		style: 'margin: 4px 4px 0 4px';
+		"style: 'background: var(--mdc-theme-background)';"
+		style: 'background-color: whitesmoke';
+		with: [
+			self renderFieldOn: html ]
 ]

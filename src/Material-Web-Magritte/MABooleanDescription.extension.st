@@ -1,7 +1,7 @@
 Extension { #name : #MABooleanDescription }
 
 { #category : #'*Material-Web-Magritte' }
-MABooleanDescription >> mcwComponentClass [
+MABooleanDescription >> mcwComponentClassDefault [
 
 	^ MCWCheckboxComponent
 

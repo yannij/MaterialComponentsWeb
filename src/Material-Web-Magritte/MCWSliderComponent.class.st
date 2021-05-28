@@ -23,10 +23,7 @@ MCWSliderComponent >> renderFieldOn: html [
 				id: self labelId;
 				with: self magritteDescription label.
 
-			self renderSliderOn: html.
-
-			"html textInput mdcTextField__input."
-			html span mdcLineRipple ]
+			self renderSliderOn: html ]
 ]
 
 { #category : #rendering }
@@ -56,5 +53,12 @@ MCWSliderComponent >> renderSliderOn: html [
 { #category : #rendering }
 MCWSliderComponent >> renderViewerOn: html [
 
-	self renderFieldOn: html
+	html div
+		mdcListGroup;
+		style: 'border-bottom: 1px solid rgba(0, 0, 0, 0.4);';
+		style: 'margin: 4px 4px 0 4px';
+		style: 'background-color: whitesmoke';
+		with: [
+			html heading level3; mdcListGroup__subheader; with: self magritteDescription label.
+			self renderSliderOn: html ]
 ]

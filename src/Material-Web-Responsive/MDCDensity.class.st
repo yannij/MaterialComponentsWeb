@@ -31,7 +31,6 @@ MDCDensity >> densityDescription [
 		min: -3 max: 0;
 		mcwSliderStep: 1;
 		"mcwComponentClass: MARangeComponent;"
-		mcwComponentClass: MATextInputComponent;
 		yourself
 ]
 

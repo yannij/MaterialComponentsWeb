@@ -8,9 +8,15 @@ Class {
 }
 
 { #category : #accessing }
-MCWPriorityContainer >> componentClass [
+MCWPriorityContainer class >> defaultComponentClass [
 
 	^ MCWContainerComponent
+]
+
+{ #category : #accessing }
+MCWPriorityContainer class >> defaultComponentRenderer [
+
+	^ MCWCssRenderer
 ]
 
 { #category : #accessing }
@@ -21,12 +27,6 @@ MCWPriorityContainer >> componentClassMap [
 { #category : #accessing }
 MCWPriorityContainer >> componentClassMap: anObject [
 	componentClassMap := anObject
-]
-
-{ #category : #accessing }
-MCWPriorityContainer >> componentRenderer [
-
-	^ MCWCssRenderer
 ]
 
 { #category : #initialization }

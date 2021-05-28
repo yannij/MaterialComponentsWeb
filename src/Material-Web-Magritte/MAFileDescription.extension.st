@@ -1,7 +1,7 @@
 Extension { #name : #MAFileDescription }
 
 { #category : #'*Material-Web-Magritte' }
-MAFileDescription >> mcwComponentClass [
+MAFileDescription >> mcwComponentClassDefault [
 
 	^ MCWFileUploadComponent
 
