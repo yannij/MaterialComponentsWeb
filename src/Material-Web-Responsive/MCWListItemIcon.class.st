@@ -56,7 +56,9 @@ MCWListItemIcon >> renderContentOn: html [
 		with: [
 			(self iconName notNil and: [ self iconName notEmpty ]) ifTrue: [
 				html span
-					mdcMaterialIcons; mdcListItem__graphic;
+					mdcMaterialIcons;
+					style: 'font-family: Material Icons Outlined';
+					mdcListItem__graphic;
 					attributeAt: 'aria-hidden' put: 'true';
 					with: [ html text: self iconName ] ].
 			html text: self itemText ]

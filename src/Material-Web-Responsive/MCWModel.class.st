@@ -17,7 +17,6 @@ MCWModel >> descriptionContainer [
 	<magritteContainer>
 
 	^ self class descriptionContainerClass new
-		componentRenderer: DangleHorizontalRenderer;
 		label: self class label;
 		propertyAt: #cardWidth ifAbsentPut: [ 600 ];
 		yourself
