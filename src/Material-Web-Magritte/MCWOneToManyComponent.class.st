@@ -66,6 +66,19 @@ MCWOneToManyComponent >> renderAddButtonOn: html [
 ]
 
 { #category : #rendering }
+MCWOneToManyComponent >> renderAssociateManyButtonOn: html [
+
+	html anchor
+		mdcMaterialIcons; mdcIconButton; mdcButton__ripple;
+		style: 'font-family: Material Icons Outlined';
+		tabIndex: 0;
+		onClick: ((html jQuery ajax)
+			callback: [ self associateMany ];
+			onComplete: html javascript refresh);
+		with: 'ballot'
+]
+
+{ #category : #rendering }
 MCWOneToManyComponent >> renderExpandIconOnListId: listId on: html [
 	| toggleOnValue toggleOffValue |
 
@@ -187,6 +200,7 @@ MCWOneToManyComponent >> renderViewerOn: html [
 			html heading level3; mdcListGroup__subheader; with: [
 				self renderLabelOn: html.
 				self renderAddButtonOn: html.
+				self renderAssociateManyButtonOn: html.
 				self renderExpandIconOnListId: listId on: html ].
 
 		html div id: listId; with: [ self renderListAjaxOn: html ] ]

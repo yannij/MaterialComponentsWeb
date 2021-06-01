@@ -25,6 +25,13 @@ MADescription class >> mcwDefaultReportColumnClass [
 ]
 
 { #category : #'*Material-Web-Magritte' }
+MADescription >> mcwIsReference [
+	"Answer ==true== if the receiver is a reference description."
+
+	^ false
+]
+
+{ #category : #'*Material-Web-Magritte' }
 MADescription >> mcwNavMethodName [
 
 	^ self propertyAt: #mcwNavMethodName ifAbsent: [ nil ]

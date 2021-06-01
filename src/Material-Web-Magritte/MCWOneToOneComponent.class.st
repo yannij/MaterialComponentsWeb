@@ -10,26 +10,6 @@ MCWOneToOneComponent class >> isAbstract [
 ]
 
 { #category : #actions }
-MCWOneToOneComponent >> associate [
-	| choiceDescription newComponent containerComponent |
-
-	choiceDescription := self magritteDescription copy.
-
-	containerComponent := MCWContainerComponent memento: self memento.
-
-	newComponent := MCWAssociatorComponent memento: self memento description: choiceDescription parent: containerComponent.
-	newComponent mcwPostBuild.
-	"choiceDescription options: newComponent options."
-
-	containerComponent setChildren: (Dictionary new
-			at: choiceDescription put: newComponent;
-			yourself).
-	containerComponent addValidatedForm.
-
-	self chooser: newComponent
-]
-
-{ #category : #actions }
 MCWOneToOneComponent >> create [
 
 	self chooser: (self editorFor: self selected new)
@@ -46,11 +26,20 @@ MCWOneToOneComponent >> renderAssociateButtonOn: html [
 
 	html anchor
 		mdcMaterialIcons; mdcIconButton; mdcButton__ripple;
+		style: 'font-family: Material Icons Outlined';
 		tabIndex: 0;
 		onClick: ((html jQuery ajax)
 			callback: [ self associate ];
 			onComplete: html javascript refresh);
-		with: 'view_array'
+		with: 'ballot'
+
+	"html button mdcButton;
+		tabIndex: 0;
+		onClick: ((html jQuery ajax)
+			callback: [ self associate ];
+			onComplete: html javascript refresh);
+		with: [
+			html span mdcMaterialIcons; mdcIconButton__icon; with: 'ballot' ]"
 ]
 
 { #category : #rendering }
@@ -82,22 +71,32 @@ MCWOneToOneComponent >> renderEditButtonOn: html [
 ]
 
 { #category : #rendering }
+MCWOneToOneComponent >> renderEditorOn: html [
+
+	self renderViewerOn: html
+]
+
+{ #category : #rendering }
 MCWOneToOneComponent >> renderOneItemListOn: html [
 
-	html unorderedList mdcList; mdcList_twoLine; mdcList_dense;
-		with: [
-			html listItem
-				mdcListItem;
-				onClick: ((html jQuery ajax)
-					callback: [ self mcwApplicationGet navTo: self value aspect: nil ];
-					onComplete: html javascript refresh);
-				with: [
-					html span mdcListItem__text; with: [
-						html text: self value mdPrimaryString.
-						html span
-							mdcListItem__secondaryText;
-							with: self value mdSecondaryString ].
-					"html span mdcListItem__meta; with: [ html space ]" ] ]
+	self value ifNil: [
+		html unorderedList mdcList; mdcList_twoLine; mdcList_dense; with: [
+			html listItem mdcListItem; with: [
+				html span mdcListItem__text; with: '** NONE **' ] ].
+		^ self ].
+
+	html unorderedList mdcList; mdcList_twoLine; mdcList_dense; with: [
+		html listItem
+			mdcListItem;
+			onClick: ((html jQuery ajax)
+				callback: [ self mcwApplicationGet navTo: self value aspect: nil ];
+				onComplete: html javascript refresh);
+			with: [
+				html span mdcListItem__text; with: [
+					html text: self value mdPrimaryString.
+					html span
+						mdcListItem__secondaryText;
+						with: self value mdSecondaryString ] ] ]
 ]
 
 { #category : #rendering }
