@@ -1,7 +1,7 @@
 Extension { #name : #MANumberDescription }
 
 { #category : #'*Material-Web-Magritte' }
-MANumberDescription >> mcwComponentClassDefault [
+MANumberDescription class >> mcwComponentClassDefault [
 
 	^ MCWTextInputComponent
 

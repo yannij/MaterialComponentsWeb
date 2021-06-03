@@ -1,7 +1,7 @@
 Extension { #name : #MAStringDescription }
 
 { #category : #'*Material-Web-Magritte' }
-MAStringDescription >> mcwComponentClassDefault [
+MAStringDescription class >> mcwComponentClassDefault [
 
 	^ MCWTextInputComponent
 

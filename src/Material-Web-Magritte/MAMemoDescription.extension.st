@@ -1,7 +1,7 @@
 Extension { #name : #MAMemoDescription }
 
 { #category : #'*Material-Web-Magritte' }
-MAMemoDescription >> mcwComponentClassDefault [
+MAMemoDescription class >> mcwComponentClassDefault [
 
 	^ MCWTextAreaComponent
 

@@ -1,7 +1,7 @@
 Extension { #name : #MATimeDescription }
 
 { #category : #'*Material-Web-Magritte' }
-MATimeDescription >> mcwComponentClassDefault [
+MATimeDescription class >> mcwComponentClassDefault [
 
 	^ MCWTimeComponent
 

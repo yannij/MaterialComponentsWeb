@@ -1,7 +1,7 @@
 Extension { #name : #MAMultipleOptionDescription }
 
 { #category : #'*Material-Web-Magritte' }
-MAMultipleOptionDescription >> mcwComponentClassDefault [
+MAMultipleOptionDescription class >> mcwComponentClassDefault [
 
 	^ MCWMultiselectListComponent
 ]

@@ -182,7 +182,7 @@ MCWReport >> renderRowsPerPageSelectOn: html [
 	inputId := html nextId.
 	html div mdcSelect; mdcSelect_outlined; mdcSelect_noLabel; mdcDataTable__paginationRowsPerPageSelect; mdcAutoInit: 'MDCSelect'; with: [
 		"This hidden input is updated by MDC"
-		html hiddenInput callback: [ :value | self batchSize: value asInteger ].
+		html hiddenInput callback: [ :value | self batchSize: (value asInteger ifNil: [ self defaultBatchSize ] ifNotNil: [ :size | size ]) ].
 		"html hiddenInput
 			id: inputId;
 			onChange: ((html jQuery ajax)

@@ -1,7 +1,7 @@
 Extension { #name : #MAToManyRelationDescription }
 
 { #category : #'*Material-Web-Magritte' }
-MAToManyRelationDescription >> mcwComponentClassDefault [
+MAToManyRelationDescription class >> mcwComponentClassDefault [
 
 	^ MCWOneToManyComponent
 

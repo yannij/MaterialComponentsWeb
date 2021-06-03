@@ -6,3 +6,10 @@ MAReferenceDescription >> mcwIsReference [
 
 	^ true
 ]
+
+{ #category : #'*Material-Web-Magritte' }
+MAReferenceDescription >> mcwIsToOne [
+	"Answer ==true== if the receiver is a description for a one to one relationship."
+
+	^ false
+]

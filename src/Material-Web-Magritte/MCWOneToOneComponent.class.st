@@ -29,7 +29,7 @@ MCWOneToOneComponent >> renderAssociateButtonOn: html [
 		style: 'font-family: Material Icons Outlined';
 		tabIndex: 0;
 		onClick: ((html jQuery ajax)
-			callback: [ self associate ];
+			callback: [ self associateToOne ];
 			onComplete: html javascript refresh);
 		with: 'ballot'
 
@@ -53,7 +53,7 @@ MCWOneToOneComponent >> renderCreateButtonOn: html [
 		mdcMaterialIcons; mdcIconButton; mdcButton__ripple;
 		tabIndex: 0;
 		onClick: ((html jQuery ajax)
-			callback: [ self associate ];
+			callback: [ self associateToOne ];
 			onComplete: html javascript refresh);
 		with: 'view_array'
 ]

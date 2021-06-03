@@ -3,7 +3,7 @@ Extension { #name : #MADescription }
 { #category : #'*Material-Web-Magritte' }
 MADescription >> mcwComponentClass [
 
-	^ self propertyAt: #mcwComponentClass ifAbsent: [ self mcwComponentClassDefault ]
+	^ self propertyAt: #mcwComponentClass ifAbsent: [ self class mcwComponentClassDefault ]
 ]
 
 { #category : #'*Material-Web-Magritte' }
@@ -13,7 +13,7 @@ MADescription >> mcwComponentClass: aClass [
 ]
 
 { #category : #'*Material-Web-Magritte' }
-MADescription >> mcwComponentClassDefault [
+MADescription class >> mcwComponentClassDefault [
 
 	^ nil
 ]

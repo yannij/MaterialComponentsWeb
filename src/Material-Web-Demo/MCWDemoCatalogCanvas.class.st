@@ -509,7 +509,7 @@ MCWDemoCatalogCanvas >> renderDialogAlertOn: html [
 	| dialogId |
 
 	dialogId := html nextId.
-	html div mdcDialog; id: dialogId; mdcRole: 'alertdialog'; mdcAutoInit: 'MDCDialog'; with: [
+	html div mdcDialog; "mdcDialog_open;" id: dialogId; mdcRole: 'alertdialog'; mdcAutoInit: 'MDCDialog'; with: [
 		html div mdcDialog__scrim.
 		html div mdcDialog__container; with: [
 			html div mdcDialog__surface; with: [

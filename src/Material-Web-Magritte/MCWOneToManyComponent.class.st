@@ -73,7 +73,7 @@ MCWOneToManyComponent >> renderAssociateManyButtonOn: html [
 		style: 'font-family: Material Icons Outlined';
 		tabIndex: 0;
 		onClick: ((html jQuery ajax)
-			callback: [ self associateMany ];
+			callback: [ self associateToMany ];
 			onComplete: html javascript refresh);
 		with: 'ballot'
 ]

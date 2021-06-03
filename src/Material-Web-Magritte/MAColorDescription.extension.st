@@ -1,7 +1,7 @@
 Extension { #name : #MAColorDescription }
 
 { #category : #'*Material-Web-Magritte' }
-MAColorDescription >> mcwComponentClassDefault [
+MAColorDescription class >> mcwComponentClassDefault [
 
 	^ MCWColorComponent
 
