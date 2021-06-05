@@ -22,24 +22,24 @@ MCWOneToOneComponent >> edit [
 ]
 
 { #category : #rendering }
-MCWOneToOneComponent >> renderAssociateButtonOn: html [
+MCWOneToOneComponent >> renderAssociateButtonOn: html [	
+	| button |
 
-	html anchor
+	button := html button.
+	button mdcButton; mdcButton_unelevated;
+		onClick: ((html jQuery ajax)
+			callback: [ self associateToOne ];
+			onComplete: html javascript refresh);
+		with: [ html span mdcMaterialIcons; mdcIconButton__icon; with: 'ballot' ].
+
+	"html anchor
 		mdcMaterialIcons; mdcIconButton; mdcButton__ripple;
 		style: 'font-family: Material Icons Outlined';
 		tabIndex: 0;
 		onClick: ((html jQuery ajax)
 			callback: [ self associateToOne ];
 			onComplete: html javascript refresh);
-		with: 'ballot'
-
-	"html button mdcButton;
-		tabIndex: 0;
-		onClick: ((html jQuery ajax)
-			callback: [ self associate ];
-			onComplete: html javascript refresh);
-		with: [
-			html span mdcMaterialIcons; mdcIconButton__icon; with: 'ballot' ]"
+		with: 'ballot'"
 ]
 
 { #category : #rendering }

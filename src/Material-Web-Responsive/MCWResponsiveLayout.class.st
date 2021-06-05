@@ -3,6 +3,7 @@ Class {
 	#superclass : #MCWComponent,
 	#instVars : [
 		'app',
+		'maxWidth',
 		'screenStyle',
 		'contentArea',
 		'topAppBar',
@@ -14,6 +15,12 @@ Class {
 	],
 	#category : #'Material-Web-Responsive'
 }
+
+{ #category : #accessing }
+MCWResponsiveLayout class >> defaultMaxWidth [
+
+	^ 1920 "- 80" "decrease for scrollbar"
+]
 
 { #category : #'instance creation' }
 MCWResponsiveLayout class >> on: aResponsiveApplication [
@@ -88,7 +95,7 @@ MCWResponsiveLayout >> beTabletStyle [
 
 ]
 
-{ #category : #rendering }
+{ #category : #'rendering-width' }
 MCWResponsiveLayout >> cellSpan [
 
 	self isMobileStyle ifTrue: [ ^ 6 ].
@@ -104,12 +111,6 @@ MCWResponsiveLayout >> contentArea [
 { #category : #accessing }
 MCWResponsiveLayout >> contentArea: anObject [
 	contentArea := anObject
-]
-
-{ #category : #rendering }
-MCWResponsiveLayout >> contentAreaWidthCalc [
-
-	^ 'width: calc(100% - ', self sideSheetWidth printString, 'px)'
 ]
 
 { #category : #rendering }
@@ -203,6 +204,7 @@ MCWResponsiveLayout >> initialize [
 
 	super initialize.
 
+	self maxWidth: self class defaultMaxWidth.
 	self settingsView: (MCWApplicationSettingsView on: self).
 	self screenStyle: #desktop
 ]
@@ -235,6 +237,27 @@ MCWResponsiveLayout >> mainFab: anObject [
 	mainFab := anObject
 ]
 
+{ #category : #accessing }
+MCWResponsiveLayout >> maxWidth [
+	^ maxWidth
+]
+
+{ #category : #accessing }
+MCWResponsiveLayout >> maxWidth: anObject [
+	maxWidth := anObject
+]
+
+{ #category : #'rendering-width' }
+MCWResponsiveLayout >> maxWidthContentArea [
+	| result |
+
+	result := self maxWidth.
+	self sideNavVisible ifTrue: [ result := result - self sideNavWidth ].
+	"self sideSheetVisible ifTrue: [ result := result - self sideSheetWidth ]."
+
+	^ result
+]
+
 { #category : #rendering }
 MCWResponsiveLayout >> renderContentOn: html [
 
@@ -250,7 +273,7 @@ MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 	html render: self topAppBar.
 
 	html div
-		style: 'max-width: 1920px';
+		"style: 'max-width: 1920px';"
 		mdcDrawerAppContent;
 		with: [
 			| div |
@@ -363,6 +386,21 @@ MCWResponsiveLayout >> sideNav: anObject [
 	sideNav := anObject
 ]
 
+{ #category : #testing }
+MCWResponsiveLayout >> sideNavVisible [
+
+	^ self sideNav
+		ifNil: [ false ]
+		ifNotNil: [ :value |
+			self isDesktopStyle or: [ self isTabletStyle and: [ value isDrawerOpen ] ] ]
+]
+
+{ #category : #'rendering-width' }
+MCWResponsiveLayout >> sideNavWidth [
+
+	^ 256
+]
+
 { #category : #accessing }
 MCWResponsiveLayout >> sideSheet [
 	^ sideSheet
@@ -381,7 +419,7 @@ MCWResponsiveLayout >> sideSheetVisible [
 		ifNotNil: [ :value | value isHidden not ]
 ]
 
-{ #category : #rendering }
+{ #category : #'rendering-width' }
 MCWResponsiveLayout >> sideSheetWidth [
 
 	^ 256
