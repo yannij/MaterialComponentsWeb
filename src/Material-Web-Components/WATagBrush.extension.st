@@ -50,6 +50,13 @@ WATagBrush >> mdcFab_mini_if: aBoolean [
 ]
 
 { #category : #'*Material-Web-Components' }
+WATagBrush >> mdcLayoutGrid__cell_order: anOrderNumber [
+	"1 <= aSpanNumber <= 12"
+
+	self class: 'mdc-layout-grid__cell--order-', anOrderNumber printString
+]
+
+{ #category : #'*Material-Web-Components' }
 WATagBrush >> mdcLayoutGrid__cell_span: aSpanNumber [
 	"1 <= aSpanNumber <= 12"
 

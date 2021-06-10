@@ -27,12 +27,12 @@ MCWFormDecoration >> renderButtonsOn: html [
 	showDisabled := self decoratedComponent hasPendingChanges.
 
 	html div mdcCard__actions; with: [
-		html span mdcTypography_headline6; with: [ html text: self decoratedComponent model mdPrimaryString ].
+		html span mdcTypography_headline6; with: self decoratedComponent model mdPrimaryString.
 		html div mdcCard__actionIcons; with: [
 			html button
 				mdcIconButton; mdcMaterialIcons; mdcCard__action; mdcCard__action_icon;
 				mdcRippleUpgraded_unbounded; mdcRippleUpgraded; mdcAutoInit: 'MDCRipple';
-				style: '--mdc-ripple-fg-size:28.8px; --mdc-ripple-fg-scale:1.66667; --mdc-ripple-left:10px; --mdc-ripple-top:10px;';
+			"	mdcElevation_z1;"
 				"onClick: (html jQuery this closest: 'form'; triggerSubmit);
 				callback: [self execute: #save];"
 				"disabled: showDisabled;"
@@ -44,7 +44,7 @@ MCWFormDecoration >> renderButtonsOn: html [
 			html button
 				mdcIconButton; mdcMaterialIcons; mdcCard__action; mdcCard__action_icon;
 				mdcRippleSurface; mdcRippleUpgraded_unbounded; mdcRippleUpgraded; mdcAutoInit: 'MDCRipple';
-				style: '--mdc-ripple-fg-size:28.8px; --mdc-ripple-fg-scale:1.66667; --mdc-ripple-left:10px; --mdc-ripple-top:10px;';
+				"mdcElevation_z1;"
 				"disabled: showDisabled;"
 				onClick: ((html jQuery ajax)
 					callback: [ self execute: #cancel ];

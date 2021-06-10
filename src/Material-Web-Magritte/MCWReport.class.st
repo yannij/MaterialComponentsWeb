@@ -32,6 +32,13 @@ MCWReport >> dropdownIconHtml [
 </span>'
 ]
 
+{ #category : #initialization }
+MCWReport >> initialize [
+
+	super initialize.
+	self tableEmpty: '** NONE **'
+]
+
 { #category : #'rendering-table' }
 MCWReport >> mutationObserverScript: anHtmlId [
 "
@@ -161,7 +168,7 @@ MCWReport >> renderContentOn: html [
 				self renderTableOn: html ] ].
 
 		"(self showBatch and: [ self hasMoreThanOnePage ]) ifTrue: ["
-			self showBatch ifTrue: [
+			self showFooter ifTrue: [
 				self renderTableBatchOn: html ] ] "]"
 ]
 
