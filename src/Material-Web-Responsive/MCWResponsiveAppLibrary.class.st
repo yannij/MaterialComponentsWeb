@@ -6,6 +6,16 @@ Class {
 
 { #category : #uploaded }
 MCWResponsiveAppLibrary >> responsiveAppCss [
+"
+
+.mdc-menu .mdc-list {
+	color: var(--mdc-theme-on-surface);
+}
+
+.mdc-drawer .mdc-list-item {
+	color: var(--mdc-theme-on-surface);
+}
+"
 
 	^ '
 body {

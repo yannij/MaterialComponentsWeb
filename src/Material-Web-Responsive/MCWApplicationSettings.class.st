@@ -3,8 +3,8 @@ Class {
 	#superclass : #MCWModel,
 	#instVars : [
 		'mdcDensity',
-		'mdcTypography',
-		'mdcTheme'
+		'mdcTheme',
+		'mdcTypography'
 	],
 	#category : #'Material-Web-Responsive'
 }
@@ -21,8 +21,8 @@ MCWApplicationSettings >> initialize [
 	super initialize.
 
 	self mdcDensity: MDCDensity new.
-	self mdcTypography: MDCTypography new.
-	self mdcTheme: MDCTheme new
+	self mdcTheme: MDCTheme new.
+	self mdcTypography: MDCTypography new
 ]
 
 { #category : #accessing }

@@ -7,6 +7,10 @@ Class {
 	#category : #'Material-Web-Magritte'
 }
 
+{ #category : #'as yet unclassified' }
+MCWOneToManyComponent >> associateToMany [
+]
+
 { #category : #actions }
 MCWOneToManyComponent >> beExpanded [
 

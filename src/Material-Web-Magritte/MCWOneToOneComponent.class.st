@@ -10,6 +10,10 @@ MCWOneToOneComponent class >> isAbstract [
 ]
 
 { #category : #actions }
+MCWOneToOneComponent >> associateToOne [
+]
+
+{ #category : #actions }
 MCWOneToOneComponent >> create [
 
 	self chooser: (self editorFor: self selected new)

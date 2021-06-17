@@ -501,6 +501,7 @@ MCWResponsiveApplication >> updateRootFonts: anHtmlRoot [
 	"fontNames := 'Roboto|Roboto+Condensed|Bree+Serif|Fontdiner+Swanky|Open+Sans|Oxygen+Mono|Pacifico'."
 	"fontNames := '|' join: (self fonts collect: [:eachChoice | eachChoice googleFontsFamily])."
 
-	anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', self settings mdcTypography fontFamily)
-
+	anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', self settings mdcTypography fontFamily).
+	self settings mdcTypography fontFamilies do: [ :eachFontFamily |
+		anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', eachFontFamily) ]
 ]

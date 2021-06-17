@@ -2,7 +2,8 @@ Class {
 	#name : #MDCTypography,
 	#superclass : #MCWModel,
 	#instVars : [
-		'fontFamily'
+		'fontFamily',
+		'fontFamilies'
 	],
 	#classVars : [
 		'AvailableFonts'
@@ -70,6 +71,22 @@ MDCTypography class >> fontFamilyDefault [
 ]
 
 { #category : #accessing }
+MDCTypography >> fontFamilies [
+	^ fontFamilies
+]
+
+{ #category : #accessing }
+MDCTypography >> fontFamilies: anObject [
+	fontFamilies := anObject
+]
+
+{ #category : #accessing }
+MDCTypography >> fontFamiliesAdd: aFontFamilyName [
+
+	self fontFamilies add: aFontFamilyName
+]
+
+{ #category : #accessing }
 MDCTypography >> fontFamily [
 	^ fontFamily
 ]
@@ -98,5 +115,6 @@ MDCTypography >> initialize [
 
 	super initialize.
 
-	self fontFamily: self class fontFamilyDefault
+	self fontFamily: self class fontFamilyDefault.
+	self fontFamilies: OrderedCollection new
 ]
