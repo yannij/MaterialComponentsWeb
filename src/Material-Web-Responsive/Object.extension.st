@@ -1,6 +1,12 @@
 Extension { #name : #Object }
 
 { #category : #'*Material-Web-Responsive' }
+Object >> mdBackgroundColor [
+
+	^ '#', self mdColorCode asHexString
+]
+
+{ #category : #'*Material-Web-Responsive' }
 Object >> mdColorCode [
 
 	^ Color lightGray
@@ -9,7 +15,7 @@ Object >> mdColorCode [
 { #category : #'*Material-Web-Responsive' }
 Object >> mdIcon [
 
-	^ nil
+	^ 'star'
 ]
 
 { #category : #'*Material-Web-Responsive' }

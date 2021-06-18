@@ -32,18 +32,6 @@ MADescription >> mcwIsReference [
 ]
 
 { #category : #'*Material-Web-Magritte' }
-MADescription >> mcwNavMethodName [
-
-	^ self propertyAt: #mcwNavMethodName ifAbsent: [ nil ]
-]
-
-{ #category : #'*Material-Web-Magritte' }
-MADescription >> mcwNavMethodName: aMethodName [
-
-	self propertyAt: #mcwNavMethodName put: aMethodName
-]
-
-{ #category : #'*Material-Web-Magritte' }
 MADescription >> mcwNavPriority [
 
 	^ self propertyAt: #mcwNavPriority ifAbsent: [ nil ]
