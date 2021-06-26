@@ -6,3 +6,9 @@ MAToManyRelationDescription class >> mcwComponentClassDefault [
 	^ MCWOneToManyComponent
 
 ]
+
+{ #category : #'*Material-Web-Magritte' }
+MAToManyRelationDescription >> mcwIsToMany [
+
+	^ true
+]

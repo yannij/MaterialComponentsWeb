@@ -8,6 +8,13 @@ MAReferenceDescription >> mcwIsReference [
 ]
 
 { #category : #'*Material-Web-Magritte' }
+MAReferenceDescription >> mcwIsToMany [
+	"Answer ==true== if the receiver is a description for a one to one relationship."
+
+	^ false
+]
+
+{ #category : #'*Material-Web-Magritte' }
 MAReferenceDescription >> mcwIsToOne [
 	"Answer ==true== if the receiver is a description for a one to one relationship."
 
