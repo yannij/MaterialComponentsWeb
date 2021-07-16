@@ -57,6 +57,11 @@ StripeShoppingCart >> cartItems: anObject [
 { #category : #accessing }
 StripeShoppingCart >> cartItemsAdd: aProduct [
 
+	(aProduct includesKey: 'images') ifTrue: [
+		| url |
+		url := aProduct at: 'images'.
+		url isArray ifFalse: [ aProduct at: 'images' put: (Array with: url) ] ].
+
 	self cartItems add: aProduct
 ]
 

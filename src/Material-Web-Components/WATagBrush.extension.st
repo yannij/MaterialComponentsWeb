@@ -31,6 +31,13 @@ WATagBrush >> mdcAutoInit: aJavaScriptClass [
 ]
 
 { #category : #'*Material-Web-Components' }
+WATagBrush >> mdcCard__media_16x9 [
+	"Add this manually, because string manipulation yielded: mdcCard__media_v169"
+
+	self class: 'mdc-card__media--16-9'
+]
+
+{ #category : #'*Material-Web-Components' }
 WATagBrush >> mdcElevation_z: anInteger [
 	"0 <= anInteger <= 24"
 
