@@ -24,9 +24,7 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 			spec
 				group: 'default' with: #('Material-Web-Responsive' 'Material-Web-Demo' 'Material-Study-Shrine');
 				group: 'Responsive' with: #('Material-Web-Responsive');
-				group: 'Components' with: #('Material-Web-Components');
-				"Use preload for staged docker build"
-				group: 'preload' with: #('Seaside3' 'Magritte') ]
+				group: 'Components' with: #('Material-Web-Components') ]
 ]
 
 { #category : #dependencies }
@@ -44,6 +42,6 @@ BaselineOfMaterialComponentsWeb >> seaside: spec [
 	spec
 		baseline: 'Seaside3'
 		with: [ spec repository: 'github://SeasideSt/Seaside:v3.4.4/repository';
-			loads: #( 'OneClick' ) ].
+			loads: #('Core' 'JSON' 'Email' 'Javascript' 'JQuery' 'Zinc' 'Seaside-Welcome') ].
 
 ]
