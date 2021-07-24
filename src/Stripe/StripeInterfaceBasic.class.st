@@ -4,7 +4,7 @@ I am a basic interface to the Stripe domain. Unless a custom domain interface is
 Class {
 	#name : #StripeInterfaceBasic,
 	#superclass : #Object,
-	#category : #'Material-Study-Shrine'
+	#category : #Stripe
 }
 
 { #category : #testing }

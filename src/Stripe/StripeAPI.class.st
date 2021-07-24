@@ -7,7 +7,7 @@ Class {
 	#classVars : [
 		'Current'
 	],
-	#category : #'Material-Study-Shrine'
+	#category : #Stripe
 }
 
 { #category : #accessing }

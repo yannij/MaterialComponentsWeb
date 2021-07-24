@@ -9,7 +9,7 @@ Class {
 		'cartState',
 		'cartItems'
 	],
-	#category : #'Material-Study-Shrine'
+	#category : #Stripe
 }
 
 { #category : #testing }

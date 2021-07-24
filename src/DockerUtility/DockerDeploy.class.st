@@ -40,7 +40,7 @@ Class {
 	#classInstVars : [
 		'default'
 	],
-	#category : #'Material-Web-Responsive'
+	#category : #DockerUtility
 }
 
 { #category : #accessing }
