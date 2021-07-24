@@ -14,6 +14,7 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 			self magritte: spec.
 
 			spec
+				package: 'DockerUtility' with: [ spec requires: #('Seaside3') ];
 				package: 'Material-Web-Core' with: [ spec requires: #('Seaside3') ];
 				package: 'Material-Web-Components' with: [ spec requires: #('Material-Web-Core') ];
 				package: 'Material-Web-Magritte' with: [ spec requires: #('Material-Web-Components' 'Magritte') ];
