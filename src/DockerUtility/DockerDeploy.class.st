@@ -37,17 +37,8 @@ Class {
 	#classVars : [
 		'Current'
 	],
-	#classInstVars : [
-		'default'
-	],
 	#category : #DockerUtility
 }
-
-{ #category : #accessing }
-DockerDeploy class >> configNameDefault [
-
-	^ 'default'
-]
 
 { #category : #accessing }
 DockerDeploy class >> current [
@@ -59,6 +50,18 @@ DockerDeploy class >> current [
 DockerDeploy class >> currentReset [
 
 	Current := nil
+]
+
+{ #category : #accessing }
+DockerDeploy class >> defaultConfigName [
+
+	^ 'default'
+]
+
+{ #category : #accessing }
+DockerDeploy class >> defaultMongoSecretName [
+
+	^ 'mongo-secret'
 ]
 
 { #category : #accessing }
@@ -75,12 +78,6 @@ DockerDeploy >> configNames: anObject [
 DockerDeploy >> configNamesAdd: aConfigName [
 
 	self configNames add: aConfigName
-]
-
-{ #category : #'api - configs' }
-DockerDeploy >> configNamesAddDefault [
-
-	self configNamesAdd: self class configNameDefault
 ]
 
 { #category : #'api - configs' }
@@ -182,6 +179,24 @@ DockerDeploy >> loadSecretNamed: aSecretName [
 	json := WAJsonParser parse: secretFile contents.
 
 	self secretsAt: aSecretName put: json
+]
+
+{ #category : #accessing }
+DockerDeploy >> mongoHostDefault [
+
+	^ self
+		secretsAt: self class defaultMongoSecretName
+		atKey: 'mongo-host'
+		ifAbsent: [ nil ]
+]
+
+{ #category : #accessing }
+DockerDeploy >> mongoPortDefault [
+
+	^ self
+		secretsAt: self class defaultMongoSecretName
+		atKey: 'mongo-port'
+		ifAbsent: [ nil ]
 ]
 
 { #category : #private }

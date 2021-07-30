@@ -79,7 +79,7 @@ WAComponent class >> mcwPublicServerUrlInstallDockerConfig [
 	"
 	| publicServerUrl |
 
-	publicServerUrl := DockerDeploy current configsAt: DockerDeploy configNameDefault atKey: 'publicServerUrl'.
+	publicServerUrl := DockerDeploy current configsAt: DockerDeploy defaultConfigName atKey: 'publicServerUrl'.
 	publicServerUrl ifNil: [ ^ self ].
 
 	self mcwPublicServerUrl: publicServerUrl
