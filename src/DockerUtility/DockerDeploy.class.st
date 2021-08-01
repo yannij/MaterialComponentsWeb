@@ -30,9 +30,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'configNames',
-		'configs',
-		'secretNames',
-		'secrets'
+		'configs'
 	],
 	#classVars : [
 		'Current'
@@ -122,9 +120,7 @@ DockerDeploy >> initialize [
 	super initialize.
 
 	self configNames: Set new.
-	self configs: Dictionary new.
-	self secretNames: Set new.
-	self secrets: Dictionary new
+	self configs: Dictionary new
 ]
 
 { #category : #'api - configs' }
@@ -135,16 +131,6 @@ DockerDeploy >> loadAllConfigs [
 
 	self configNames do: [ :eachName |
 		self loadConfigNamed: eachName ]
-]
-
-{ #category : #'api - secrets' }
-DockerDeploy >> loadAllSecrets [
-	"
-	DockerDeploy current loadAllSecrets
-	"
-
-	self secretNames do: [ :eachName |
-		self loadSecretNamed: eachName ]
 ]
 
 { #category : #'api - configs' }
@@ -164,39 +150,28 @@ DockerDeploy >> loadConfigNamed: aString [
 	self configsAt: aString put: json
 ]
 
-{ #category : #'api - secrets' }
-DockerDeploy >> loadSecretNamed: aSecretName [
-	"
-	DockerDeploy current loadSecretNamed: 'foobar'
-	"
-	| secretFileName secretFile json |
+{ #category : #accessing }
+DockerDeploy >> mongoDatabaseDefault [
 
-	secretFileName := aSecretName, '.json'.
-	secretFile := SmalltalkImage current imageDirectory / secretFileName.
-	secretFile exists
-		ifFalse: [ secretFile := FileSystem root / 'run' / 'secrets' / secretFileName ].
-
-	json := WAJsonParser parse: secretFile contents.
-
-	self secretsAt: aSecretName put: json
+	^ self
+		configsAt: self class defaultConfigName
+		atKey: 'mongo-database'
 ]
 
 { #category : #accessing }
 DockerDeploy >> mongoHostDefault [
 
 	^ self
-		secretsAt: self class defaultMongoSecretName
+		configsAt: self class defaultConfigName
 		atKey: 'mongo-host'
-		ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
 DockerDeploy >> mongoPortDefault [
 
 	^ self
-		secretsAt: self class defaultMongoSecretName
+		configsAt: self class defaultConfigName
 		atKey: 'mongo-port'
-		ifAbsent: [ nil ]
 ]
 
 { #category : #private }
@@ -223,7 +198,6 @@ DockerDeploy >> runStartup [
 
 	self runStartupPreLoad.
 	self loadAllConfigs.
-	self loadAllSecrets.
 	self runStartupPostLoad
 ]
 
@@ -239,36 +213,25 @@ DockerDeploy >> runStartupPreLoad [
 	self runAppMethodsWithPragmaNamed: #dockerDeployPreLoad
 ]
 
-{ #category : #accessing }
-DockerDeploy >> secretNames [
-	^ secretNames
-]
-
-{ #category : #accessing }
-DockerDeploy >> secretNames: anObject [
-	secretNames := anObject
-]
-
 { #category : #'api - secrets' }
-DockerDeploy >> secretNamesAdd: aSecretName [
+DockerDeploy >> secretNamed: aSecretName [
+	| secretFileName secretFile json |
 
-	self secretNames add: aSecretName
-]
+	secretFileName := aSecretName, '.json'.
 
-{ #category : #'api - secrets' }
-DockerDeploy >> secretNamesRemove: aSecretName [
+	"If the secret file exists in the image directory, then it is used"
+	secretFile := SmalltalkImage current imageDirectory / secretFileName.
 
-	self secretNames remove: aSecretName ifAbsent: [ nil ]
-]
+	"Otherwise, look for it in the default docker secrets directory"
+	secretFile exists
+		ifFalse: [ secretFile := FileSystem root / 'run' / 'secrets' / secretFileName ].
 
-{ #category : #accessing }
-DockerDeploy >> secrets [
-	^ secrets
-]
+	secretFile exists
+		ifFalse: [ ^ nil ].
 
-{ #category : #accessing }
-DockerDeploy >> secrets: anObject [
-	secrets := anObject
+	json := WAJsonParser parse: secretFile contents.
+
+	^ json
 ]
 
 { #category : #'api - secrets' }
@@ -279,14 +242,9 @@ DockerDeploy >> secretsAt: aSecretName atKey: aKey [
 
 { #category : #'api - secrets' }
 DockerDeploy >> secretsAt: aSecretName atKey: aKey ifAbsent: aBlock [
-	| json |
+	| json secrets |
 
-	json := self secrets at: aSecretName ifAbsent: [ ^ aBlock value ].
+	secrets := self secretNamed: aSecretName.
+	json := secrets ifNil: [ ^ aBlock value ].
 	^ json at: aKey ifAbsent: aBlock
-]
-
-{ #category : #accessing }
-DockerDeploy >> secretsAt: aString put: aJsonDictionary [
-
-	self secrets at: aString put: aJsonDictionary
 ]

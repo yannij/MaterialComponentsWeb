@@ -58,7 +58,8 @@ WAComponent class >> mcwPublicServerUrl: aUrlString [
 		serverPath
 
 	Example:
-		WAComponent mcwPublicServerUrl: 'http://localhost:8080/seaside'
+		WAComponent mcwPublicServerUrl: 'http://foobar.com'.
+		WAComponent mcwPublicServerUrl: 'http://localhost:8080'.
 	"
 	| newUrl |
 

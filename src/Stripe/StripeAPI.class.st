@@ -22,13 +22,6 @@ StripeAPI class >> currentReset [
 	Current := nil
 ]
 
-{ #category : #'class initialization' }
-StripeAPI class >> dockerDeployPreLoad [
-	<dockerDeployPreLoad>
-
-	DockerDeploy current secretNamesAdd: self dockerSecretsName
-]
-
 { #category : #initialization }
 StripeAPI class >> dockerSecretsName [
 
