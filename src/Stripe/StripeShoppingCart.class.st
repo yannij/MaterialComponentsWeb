@@ -21,13 +21,13 @@ StripeShoppingCart class >> isVoyageRoot [
 { #category : #stripe }
 StripeShoppingCart >> actionCancel [
 
-	self layout app logString: 'Cancel'
+	self mcwApplicationGet logString: 'Cancel'
 ]
 
 { #category : #stripe }
 StripeShoppingCart >> actionSuccess [
 
-	self layout app logString: 'Success'.
+	self mcwApplicationGet logString: 'Success'.
 
 	self cartState: self cartStatePaid
 ]
@@ -124,10 +124,11 @@ StripeShoppingCart >> cartVisible: anObject [
 
 { #category : #stripe }
 StripeShoppingCart >> createCheckoutSessionRequest: html json: json [
-	| successUrl cancelUrl client responseJsonString responseJson |
+	| publicServerUrl successUrl cancelUrl client responseJsonString responseJson |
 
-	successUrl := html urlForAction: [ self actionSuccess ].
-	cancelUrl := html urlForAction: [ self actionCancel ].
+	publicServerUrl := DockerDeploy current configsAt: DockerDeploy defaultConfigName atKey: 'publicServerUrl'.
+	successUrl := html urlForAction: [ self actionSuccess ] absolute: publicServerUrl.
+	cancelUrl := html urlForAction: [ self actionCancel ] absolute: publicServerUrl.
 "
 self mcwApplicationGet logString: successUrl printString.
 self mcwApplicationGet logString: cancelUrl printString.
