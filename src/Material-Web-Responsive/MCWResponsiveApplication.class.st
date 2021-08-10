@@ -12,6 +12,12 @@ Class {
 	#category : #'Material-Web-Responsive'
 }
 
+{ #category : #testing }
+MCWResponsiveApplication >> anonymousLoginAllowed [
+
+	^ true
+]
+
 { #category : #initialization }
 MCWResponsiveApplication >> appBarEndSection [
 	| data settingsPopup |
@@ -244,6 +250,12 @@ MCWResponsiveApplication >> initializeLayout [
 	self subclassResponsibility
 ]
 
+{ #category : #testing }
+MCWResponsiveApplication >> isLoggedIn [
+
+	^ self loginComponent notNil and: [ self loginComponent isLoggedIn ]
+]
+
 { #category : #accessing }
 MCWResponsiveApplication >> layout [
 	^ layout
@@ -353,9 +365,17 @@ MCWResponsiveApplication >> renderContentOn: html [
 
 	self renderSetGoogleFont: self settings mdcTypography on: html.
 
-	(self loginComponent isNil or: [ self loginComponent isLoggedIn ])
+	self isLoggedIn
 		ifTrue: [ self renderLayoutOn: html ]
-		ifFalse: [ self renderLoginOn: html ].
+		ifFalse: [
+			self loginComponent
+				ifNotNil: [ self renderLoginOn: html ]
+				ifNil: [
+					self anonymousLoginAllowed
+						ifTrue: [ self renderLayoutOn: html ]
+						ifFalse: [
+							self loginComponent ifNil: [ self loginComponent: self buildLoginComponent ].
+							self renderLoginOn: html ] ] ].
 
 	self renderMaterialComponentsWebJsOn: html
 ]
