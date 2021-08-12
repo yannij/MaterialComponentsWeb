@@ -14,7 +14,8 @@ MCWContainerComponent >> addForm: aCollection [
 MCWContainerComponent >> buildChildren [
 	| map newChildren |
 
-	map := self magritteDescription componentClassMap.
+	"map := self magritteDescription componentClassMap."
+	map := Dictionary new.
 
 	self magritteDescription
 		componentClass: MCWContainerComponent;

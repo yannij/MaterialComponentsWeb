@@ -9,7 +9,7 @@ MCWDateComponent >> dateHtml5 [
 
 	^ self value
 		ifNil: [ Date today yyyymmdd ]
-		ifNotNil: [ :t | t isString ifTrue: [ t ] ifFalse: [ t yyyymmdd ] ]
+		ifNotNil: [ :t | t isString ifTrue: [ t asDate ] ifFalse: [ t asDate yyyymmdd ] ]
 
 ]
 
