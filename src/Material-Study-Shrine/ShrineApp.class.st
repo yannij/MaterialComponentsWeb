@@ -111,7 +111,7 @@ ShrineApp >> initializeLayout [
 	self settings: self buildApplicationSettings.
 	self layout: self buildLayout.
 	self layout cssStyle: 'shrine'.
-	self beLayoutStructureDesktop.
+	self layout beDesktopStyle.
 
 	self layout contentArea component: (ShrineCanvas on: self layout).
 	self loginComponent: self buildLoginComponent.

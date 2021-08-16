@@ -126,7 +126,7 @@ StripeShoppingCart >> cartVisible: anObject [
 StripeShoppingCart >> createCheckoutSessionRequest: html json: json [
 	| publicServerUrl successUrl cancelUrl client responseJsonString responseJson |
 
-	publicServerUrl := DockerDeploy current configsAt: DockerDeploy defaultConfigName atKey: 'publicServerUrl'.
+	publicServerUrl := WAUrl absolute: (DockerDeploy current configsAt: DockerDeploy defaultConfigName atKey: 'publicServerUrl').
 	successUrl := html urlForAction: [ self actionSuccess ] absolute: publicServerUrl.
 	cancelUrl := html urlForAction: [ self actionCancel ] absolute: publicServerUrl.
 "

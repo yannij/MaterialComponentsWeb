@@ -22,6 +22,30 @@ MCWResponsiveLayout class >> defaultMaxWidth [
 	^ 1920 "- 80" "decrease for scrollbar"
 ]
 
+{ #category : #accessing }
+MCWResponsiveLayout class >> layoutDesktop [
+
+	^ #large
+]
+
+{ #category : #accessing }
+MCWResponsiveLayout class >> layoutLaptop [
+
+	^ #medium
+]
+
+{ #category : #accessing }
+MCWResponsiveLayout class >> layoutPhone [
+
+	^ #'extra-small'
+]
+
+{ #category : #accessing }
+MCWResponsiveLayout class >> layoutTablet [
+
+	^ #small
+]
+
 { #category : #'instance creation' }
 MCWResponsiveLayout class >> on: aResponsiveApplication [
 
@@ -41,7 +65,7 @@ MCWResponsiveLayout >> adjustToolbarsDesktop [
 ]
 
 { #category : #actions }
-MCWResponsiveLayout >> adjustToolbarsMobile [
+MCWResponsiveLayout >> adjustToolbarsPhone [
 
 	"self topAppBar dense: false."
 	"self topAppBar startSection: self rootComponent appBarStartSection."
@@ -71,25 +95,34 @@ MCWResponsiveLayout >> app: anObject [
 { #category : #actions }
 MCWResponsiveLayout >> beDesktopStyle [
 
-	self screenStyle: #desktop.
+	self screenStyle: self class layoutDesktop.
 	self sideNav bePersistentDrawer; beDismissed.
 	self adjustToolbarsDesktop.
 
 ]
 
 { #category : #actions }
-MCWResponsiveLayout >> beMobileStyle [
+MCWResponsiveLayout >> beLaptopStyle [
 
-	self screenStyle: #mobile.
+	self screenStyle: self class layoutLaptop.
+	self sideNav bePersistentDrawer; beDismissed.
+	self adjustToolbarsDesktop.
+
+]
+
+{ #category : #actions }
+MCWResponsiveLayout >> bePhoneStyle [
+
+	self screenStyle: self class layoutPhone.
 	self sideNav beModalDrawer; beDismissed.
-	self adjustToolbarsMobile.
+	self adjustToolbarsPhone.
 
 ]
 
 { #category : #actions }
 MCWResponsiveLayout >> beTabletStyle [
 
-	self screenStyle: #tablet.
+	self screenStyle: self class layoutTablet.
 	self sideNav beDismissibleDrawer; beDismissed.
 	self adjustToolbarsTablet.
 
@@ -98,7 +131,7 @@ MCWResponsiveLayout >> beTabletStyle [
 { #category : #'rendering-width' }
 MCWResponsiveLayout >> cellSpan [
 
-	self isMobileStyle ifTrue: [ ^ 6 ].
+	self isPhoneStyle ifTrue: [ ^ 6 ].
 	self isTabletStyle ifTrue: [ ^ 6 ].
 	^ 6
 ]
@@ -134,7 +167,7 @@ MCWResponsiveLayout >> cssStyle: anObject [
 { #category : #accessing }
 MCWResponsiveLayout >> headStyle [
 
-	self isMobileStyle ifTrue: [ ^ self headStyleMobile ].
+	self isPhoneStyle ifTrue: [ ^ self headStylePhone ].
 	self isTabletStyle ifTrue: [ ^ self headStyleTablet ].
 	^ self headStyleDesktop
 ]
@@ -146,7 +179,7 @@ MCWResponsiveLayout >> headStyleDesktop [
 ]
 
 { #category : #accessing }
-MCWResponsiveLayout >> headStyleMobile [
+MCWResponsiveLayout >> headStylePhone [
 
 	^ ''
 ]
@@ -164,25 +197,31 @@ MCWResponsiveLayout >> initialize [
 
 	self maxWidth: self class defaultMaxWidth.
 	self settingsView: (MCWApplicationSettingsView on: self).
-	self screenStyle: #desktop
+	self screenStyle: self class layoutDesktop
 ]
 
 { #category : #testing }
 MCWResponsiveLayout >> isDesktopStyle [
 
-	^ self screenStyle = #desktop
+	^ self screenStyle = self class layoutDesktop
 ]
 
 { #category : #testing }
-MCWResponsiveLayout >> isMobileStyle [
+MCWResponsiveLayout >> isLaptopStyle [
 
-	^ self screenStyle = #mobile
+	^ self screenStyle = self class layoutLaptop
+]
+
+{ #category : #testing }
+MCWResponsiveLayout >> isPhoneStyle [
+
+	^ self screenStyle = self class layoutPhone
 ]
 
 { #category : #testing }
 MCWResponsiveLayout >> isTabletStyle [
 
-	^ self screenStyle = #tablet
+	^ self screenStyle = self class layoutTablet
 ]
 
 { #category : #accessing }
@@ -219,8 +258,9 @@ MCWResponsiveLayout >> maxWidthContentArea [
 { #category : #rendering }
 MCWResponsiveLayout >> renderContentOn: html [
 
-	self isMobileStyle ifTrue: [ ^ self renderLayoutMobileOn: html ].
+	self isPhoneStyle ifTrue: [ ^ self renderLayoutPhoneOn: html ].
 	self isTabletStyle ifTrue: [ ^ self renderLayoutTabletOn: html ].
+	self isLaptopStyle ifTrue: [ ^ self renderLayoutLaptopOn: html ].
 	self renderLayoutDesktopOn: html
 ]
 
@@ -250,7 +290,32 @@ MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 ]
 
 { #category : #rendering }
-MCWResponsiveLayout >> renderLayoutMobileOn: html [
+MCWResponsiveLayout >> renderLayoutLaptopOn: html [
+
+	html div class: self cssStyle if: (self cssStyle notNil); style: 'height: 100vh'; with: self sideNav.
+	html render: self topAppBar.
+
+	html div
+		"style: 'max-width: 1920px';"
+		mdcDrawerAppContent;
+		with: [
+			| div |
+			div := html div.
+			self mcwDenseView
+				ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
+				ifFalse: [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
+			div
+				style: 'float: left';
+				style: 'overflow-x: auto';
+				"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
+				class: 'mcw-layout-desktop';
+				with: self contentToShow ].
+
+	self renderSideSheetOn: html
+]
+
+{ #category : #rendering }
+MCWResponsiveLayout >> renderLayoutPhoneOn: html [
 	| div |
 
 	html render: self sideNav.

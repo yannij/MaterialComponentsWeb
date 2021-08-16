@@ -51,20 +51,29 @@ MCWResponsiveApplication >> applicationTitle [
 { #category : #actions }
 MCWResponsiveApplication >> beLayoutStructureDesktop [
 
-	self layout beDesktopStyle
-
+	self layout isDesktopStyle ifFalse: [
+		self layout beDesktopStyle ]
 ]
 
 { #category : #actions }
-MCWResponsiveApplication >> beLayoutStructureMobile [
+MCWResponsiveApplication >> beLayoutStructureLaptop [
 
-	self layout beMobileStyle
+	self layout isLaptopStyle ifFalse: [
+		self layout beLaptopStyle ]
+]
+
+{ #category : #actions }
+MCWResponsiveApplication >> beLayoutStructurePhone [
+
+	self layout isPhoneStyle ifFalse: [
+		self layout bePhoneStyle ]
 ]
 
 { #category : #actions }
 MCWResponsiveApplication >> beLayoutStructureTablet [
 
-	self layout beTabletStyle
+	self layout isTabletStyle ifFalse: [
+		self layout beTabletStyle ]
 ]
 
 { #category : #updating }
@@ -135,9 +144,11 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 
 	list := (MCWListMenuItems id: 'settingsPopup')
 		"addListItem: (MCWListItemIcon new iconName: 'cancel'; itemText: 'Cancel'; yourself);"
-		listItemAdd: (MCWListItemIcon new iconName: 'smartphone'; itemText: 'Phone'; callback: [ self beLayoutStructureMobile ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'smartphone'; itemText: 'Phone'; callback: [ self beLayoutStructurePhone ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'tablet'; itemText: 'Tablet'; callback: [ self beLayoutStructureTablet ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'computer'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'laptop'; itemText: 'Laptop'; callback: [ self beLayoutStructureLaptop ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'monitor'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'waves'; itemText: 'Responsive'; callback: [ self toggleAutoResponsive ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'all_out'; itemText: 'Dense'; callback: [ self toggleDenseView ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Style'; callback: [ self configureStyle ]; yourself);
@@ -224,6 +235,12 @@ MCWResponsiveApplication >> denseView [
 	^ self settings denseView
 ]
 
+{ #category : #actions }
+MCWResponsiveApplication >> dismissMenuIfModalDrawer [
+
+	self sideNav menuItemCallback
+]
+
 { #category : #accessing }
 MCWResponsiveApplication >> drawerSubtitle [
 
@@ -248,6 +265,12 @@ MCWResponsiveApplication >> initialize [
 MCWResponsiveApplication >> initializeLayout [
 
 	self subclassResponsibility
+]
+
+{ #category : #testing }
+MCWResponsiveApplication >> isAutoResponsive [
+
+	^ self settings autoResponsive
 ]
 
 { #category : #testing }
@@ -359,7 +382,7 @@ MCWResponsiveApplication >> redirectToLogin [
 MCWResponsiveApplication >> renderContentOn: html [
 
 	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'mdc.autoInit()'); yourself).
-	"self renderResizeScriptOn: html."
+	self renderResizeScriptOn: html.
 
 	self renderSetColorThemeOn: html.
 
@@ -395,9 +418,23 @@ MCWResponsiveApplication >> renderLoginOn: html [
 { #category : #rendering }
 MCWResponsiveApplication >> renderResizeScriptOn: html [
 
+	self isAutoResponsive ifFalse: [
+		^ self ].
+
+	html html:
+'<script>
+window.addEventListener("resize", '
+, (JSStream new argument:
+	(html jQuery ajax
+		callback: [ :value | self resizeString: value ] value: (JSStream on: '"[" + window.innerWidth + "," + window.innerHeight + "]"');
+		onComplete: html javascript refresh) asFunction;
+		yourself) contents, ')'
+, '</script>'.
+
+	false ifTrue: [
 	html document addLoadScript: (JSStream new nextPutAll: 'window.addEventListener("resize", function(){alert("hhh")})').
 	html document addLoadScript: (JSStream new nextPutAll: 'document.querySelector("body").onresize=function(){alert("ggg")}').
-
+	]
 ]
 
 { #category : #rendering }
@@ -421,6 +458,33 @@ MCWResponsiveApplication >> renderSetGoogleFont: aFontSettings on: html [
 
 	html script: 'document.querySelector("body").style.setProperty("--mdc-typography-font-family", "'
 		, aFontSettings fontFamily, '")'
+]
+
+{ #category : #actions }
+MCWResponsiveApplication >> resizeString: aString [
+	"Change layout based on window width breakpoints:
+		Extra-small (phone) 0-599
+		Small (tablet) 600-904,905-1239
+		Medium (laptop) 1240-1439
+		Large (desktop) 1440+
+	"
+	| newSize newWidth newHeight |
+
+	"Transcript crShow: aString."
+	newSize := WAJsonParser parse: aString.
+	newWidth := newSize first.
+	newHeight := newSize second.
+
+	newWidth < 600 ifTrue: [
+		^ self beLayoutStructurePhone ].
+
+	newWidth < 1240 ifTrue: [
+		^ self beLayoutStructureTablet ].
+
+	newWidth < 1440 ifTrue: [
+		^ self beLayoutStructureLaptop ].
+
+	self beLayoutStructureDesktop
 ]
 
 { #category : #initialization }
@@ -481,6 +545,12 @@ MCWResponsiveApplication >> toggleAppBarCollapse [
 ]
 
 { #category : #actions }
+MCWResponsiveApplication >> toggleAutoResponsive [
+
+	^ self settings toggleAutoResponsive
+]
+
+{ #category : #actions }
 MCWResponsiveApplication >> toggleDenseView [
 
 	^ self settings toggleDenseView
@@ -509,6 +579,9 @@ MCWResponsiveApplication >> updateRoot: anHtmlRoot [
 	anHtmlRoot meta
 		attributeAt: 'name' put: 'viewport';
 		attributeAt: 'content' put: 'width=device-width, initial-scale=1'.
+
+	"anHtmlRoot addScript: '
+window.addEventListener(""resize"", function(){alert( window.innerWidth.toString())})'."
 
 	self bodyCssClasses do: [ :each | anHtmlRoot bodyAttributes addClass: each ]
 ]

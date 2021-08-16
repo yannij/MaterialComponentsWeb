@@ -91,7 +91,7 @@ MCWBasicResponsiveApp >> initializeLayout [
 	self settings: self buildApplicationSettings.
 	self layout: self buildLayout.
 	self sideNavTitlesSet.
-	self beLayoutStructureDesktop.
+	self layout beDesktopStyle.
 	self layout contentArea component: (String loremIpsum: 5000).
 ]
 

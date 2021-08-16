@@ -70,7 +70,7 @@ MCWDemoCatalogApp >> initializeLayout [
 
 	self settings: self buildApplicationSettings.
 	self layout: self buildLayout.
-	self beLayoutStructureDesktop.
+	self layout beDesktopStyle.
 
 	self layout topAppBar appBarTitle: self applicationTitle.
 	self layout contentArea component: self catalogCanvas.

@@ -4,10 +4,35 @@ Class {
 	#instVars : [
 		'mdcDensity',
 		'mdcTheme',
-		'mdcTypography'
+		'mdcTypography',
+		'autoResponsive'
 	],
 	#category : #'Material-Web-Responsive'
 }
+
+{ #category : #accessing }
+MCWApplicationSettings >> autoResponsive [
+
+	^ autoResponsive
+]
+
+{ #category : #accessing }
+MCWApplicationSettings >> autoResponsive: anObject [
+
+	autoResponsive := anObject
+]
+
+{ #category : #accessing }
+MCWApplicationSettings >> autoResponsiveOff [
+
+	self autoResponsive: false
+]
+
+{ #category : #accessing }
+MCWApplicationSettings >> autoResponsiveOn [
+
+	self autoResponsive: true
+]
 
 { #category : #accessing }
 MCWApplicationSettings >> denseView [
@@ -20,6 +45,7 @@ MCWApplicationSettings >> initialize [
 
 	super initialize.
 
+	self autoResponsive: true.
 	self mdcDensity: MDCDensity new.
 	self mdcTheme: MDCTheme new.
 	self mdcTypography: MDCTypography new
@@ -53,6 +79,12 @@ MCWApplicationSettings >> mdcTypography [
 { #category : #accessing }
 MCWApplicationSettings >> mdcTypography: anObject [
 	mdcTypography := anObject
+]
+
+{ #category : #accessing }
+MCWApplicationSettings >> toggleAutoResponsive [
+
+	self autoResponsive: self autoResponsive not
 ]
 
 { #category : #accessing }
