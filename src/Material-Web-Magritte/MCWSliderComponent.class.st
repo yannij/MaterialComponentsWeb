@@ -7,27 +7,24 @@ Class {
 { #category : #rendering }
 MCWSliderComponent >> renderEditorOn: html [
 
-	self renderViewerOn: html
+	self renderFieldOn: html readonly: false
 ]
 
 { #category : #rendering }
-MCWSliderComponent >> renderFieldOn: html [
+MCWSliderComponent >> renderFieldOn: html readonly: aReadOnlyFlag [
 
-	html label
-		style: 'padding-top: 32px';
-		mcwFormField;
-		mdcTextField; "mdcTextField_filled; " mdcTextField_labelFloating; "mdcAutoInit: 'MDCTextField';"
+	html div
+		mdcListGroup;
+		style: 'border-bottom: 1px solid rgba(0, 0, 0, 0.4);';
+		style: 'margin: 4px 4px 0 4px';
+		style: 'background-color: whitesmoke';
 		with: [
-			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
-				style: 'height: 64px';
-				id: self labelId;
-				with: self magritteDescription label.
-
-			self renderSliderOn: html ]
+			html heading level3; mdcListGroup__subheader; with: self magritteDescription label.
+			self renderSliderOn: html readonly: aReadOnlyFlag ]
 ]
 
 { #category : #rendering }
-MCWSliderComponent >> renderSliderOn: html [
+MCWSliderComponent >> renderSliderOn: html readonly: aReadonlyFlag [
 
 	html div mdcSlider; mdcSlider_discrete; mdcAutoInit: 'MDCSlider'; style: 'width: 150px'; with: [
 		html textInput mdcSlider__input; type: 'range';
@@ -36,6 +33,7 @@ MCWSliderComponent >> renderSliderOn: html [
 			attributeAt: 'step' put: self magritteDescription mcwSliderStep;
 			tabIndex: 0;
 			ariaLabel: 'Select Value';
+			readonly: aReadonlyFlag;
 			on: self inputAspect of: self;
 			yourself.
 		html div mdcSlider__track; with: [
@@ -53,12 +51,5 @@ MCWSliderComponent >> renderSliderOn: html [
 { #category : #rendering }
 MCWSliderComponent >> renderViewerOn: html [
 
-	html div
-		mdcListGroup;
-		style: 'border-bottom: 1px solid rgba(0, 0, 0, 0.4);';
-		style: 'margin: 4px 4px 0 4px';
-		style: 'background-color: whitesmoke';
-		with: [
-			html heading level3; mdcListGroup__subheader; with: self magritteDescription label.
-			self renderSliderOn: html ]
+	self renderFieldOn: html readonly: true
 ]

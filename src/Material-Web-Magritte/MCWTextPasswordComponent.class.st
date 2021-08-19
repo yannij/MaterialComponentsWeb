@@ -25,12 +25,12 @@ MCWTextPasswordComponent >> inputType [
 { #category : #rendering }
 MCWTextPasswordComponent >> renderEditorOn: html [
 
-	self renderViewerOn: html
+	self renderFieldOn: html readonly: false
 
 ]
 
 { #category : #rendering }
-MCWTextPasswordComponent >> renderFieldOn: html [
+MCWTextPasswordComponent >> renderFieldOn: html readonly: aReadonlyFlag [
 	| element |
 
 	element := html label.
@@ -45,6 +45,7 @@ MCWTextPasswordComponent >> renderFieldOn: html [
 			html passwordInput mdcTextField__input;
 				id: self htmlIdPassword;
 				ariaDescribedBy: self labelId;
+				readonly: aReadonlyFlag;
 				on: self inputAspect of: self.
 			html span mdcLineRipple ]
 ]
@@ -52,6 +53,6 @@ MCWTextPasswordComponent >> renderFieldOn: html [
 { #category : #rendering }
 MCWTextPasswordComponent >> renderViewerOn: html [
 
-	self renderFieldOn: html
+	self renderFieldOn: html readonly: true
 
 ]

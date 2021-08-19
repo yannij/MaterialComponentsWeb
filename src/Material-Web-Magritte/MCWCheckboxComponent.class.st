@@ -5,22 +5,19 @@ Class {
 }
 
 { #category : #rendering }
-MCWCheckboxComponent >> renderEditorOn: html [
-
-	self renderViewerOn: html
-]
-
-{ #category : #rendering }
-MCWCheckboxComponent >> renderFieldOn: html [
-	| checkboxId |
+MCWCheckboxComponent >> renderCheckboxOn: html  readonly: readonlyFlag [
+	| checkboxId checkboxTag |
 
 	checkboxId := html nextId.
 
 	html div mdcFormField; mcwFormField; with: [
-		html div mdcCheckbox; with: [
+	checkboxTag := html div mdcCheckbox.
+	readonlyFlag ifTrue: [ checkboxTag mdcCheckbox_disabled ].
+	checkboxTag with: [
 		html checkbox
 			id: checkboxId;
 			mdcCheckbox__nativeControl;
+			disabled: readonlyFlag;
 			on: #value of: self;
 			with: [
 				html div mdcCheckbox__background with: [
@@ -41,7 +38,13 @@ MCWCheckboxComponent >> renderFieldOn: html [
 ]
 
 { #category : #rendering }
-MCWCheckboxComponent >> renderViewerOn: html [
+MCWCheckboxComponent >> renderEditorOn: html [
+
+	self renderFieldOn: html readonly: false
+]
+
+{ #category : #rendering }
+MCWCheckboxComponent >> renderFieldOn: html readonly: readonlyFlag [
 
 	html div
 		mdcListGroup;
@@ -50,5 +53,11 @@ MCWCheckboxComponent >> renderViewerOn: html [
 		"style: 'background: var(--mdc-theme-background)';"
 		style: 'background-color: whitesmoke';
 		with: [
-			self renderFieldOn: html ]
+			self renderCheckboxOn: html readonly: readonlyFlag ]
+]
+
+{ #category : #rendering }
+MCWCheckboxComponent >> renderViewerOn: html [
+
+	self renderFieldOn: html readonly: true
 ]

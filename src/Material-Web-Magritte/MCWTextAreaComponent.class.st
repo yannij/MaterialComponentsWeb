@@ -19,12 +19,12 @@ MCWTextAreaComponent >> inputType [
 { #category : #rendering }
 MCWTextAreaComponent >> renderEditorOn: html [
 
-	self renderViewerOn: html
+	self renderFieldOn: html readonly: false
 
 ]
 
 { #category : #rendering }
-MCWTextAreaComponent >> renderFieldOn: html [
+MCWTextAreaComponent >> renderFieldOn: html readonly: aReadonlyFlage [
 	| element |
 
 	element := html label.
@@ -39,6 +39,7 @@ MCWTextAreaComponent >> renderFieldOn: html [
 				with: self magritteDescription label.
 			html textArea mdcTextField__input;
 				ariaDescribedBy: self labelId;
+				 readonly: aReadonlyFlage;
 				on: self inputAspect of: self.
 			html span mdcLineRipple ]
 ]
@@ -46,6 +47,6 @@ MCWTextAreaComponent >> renderFieldOn: html [
 { #category : #rendering }
 MCWTextAreaComponent >> renderViewerOn: html [
 
-	self renderFieldOn: html
+	self renderFieldOn: html readonly: true
 
 ]

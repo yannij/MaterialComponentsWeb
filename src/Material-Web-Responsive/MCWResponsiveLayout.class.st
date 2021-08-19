@@ -265,6 +265,29 @@ MCWResponsiveLayout >> renderContentOn: html [
 ]
 
 { #category : #rendering }
+MCWResponsiveLayout >> renderContentToShowOn: html [
+
+	self sideSheetVisible ifFalse: [
+		html render: self contentToShow.
+		^ self].
+
+	html div mdcLayoutGrid; style: 'padding: 0px'; with: [
+		html div mdcLayoutGrid__inner; style: 'grid-gap: 0px'; with: [
+			html div
+				mdcLayoutGrid__cell;
+				mdcLayoutGrid__cell_span9Desktop;
+				mdcLayoutGrid__cell_span6Tablet;
+				mdcLayoutGrid__cell_span4Phone;
+				with: [ html render: self contentToShow ].
+			html div
+				mdcLayoutGrid__cell;
+				mdcLayoutGrid__cell_span3Desktop;
+				mdcLayoutGrid__cell_span2Tablet;
+				mdcLayoutGrid__cell_span4Phone;
+				with: [ html render: self sideSheet ] ] ]
+]
+
+{ #category : #rendering }
 MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 
 	html div class: self cssStyle if: (self cssStyle notNil); style: 'height: 100vh'; with: self sideNav.
@@ -284,9 +307,7 @@ MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 				style: 'overflow-x: auto';
 				"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
 				class: 'mcw-layout-desktop';
-				with: self contentToShow ].
-
-	self renderSideSheetOn: html
+				with: [ self renderContentToShowOn: html ] ]
 ]
 
 { #category : #rendering }
@@ -309,9 +330,7 @@ MCWResponsiveLayout >> renderLayoutLaptopOn: html [
 				style: 'overflow-x: auto';
 				"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
 				class: 'mcw-layout-desktop';
-				with: self contentToShow ].
-
-	self renderSideSheetOn: html
+				with: [ self renderContentToShowOn: html ] ]
 ]
 
 { #category : #rendering }
@@ -332,9 +351,7 @@ MCWResponsiveLayout >> renderLayoutPhoneOn: html [
 			style: 'padding-bottom: 40px';
 			"style: 'min-width: 359px';
 			style: 'max-width: 359px';"
-			with: self contentToShow ].
-
-	self renderSideSheetOn: html
+			with: [ self renderContentToShowOn: html ] ]
 ]
 
 { #category : #rendering }
@@ -356,9 +373,7 @@ MCWResponsiveLayout >> renderLayoutTabletOn: html [
 				style: 'overflow-x: auto';
 				"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
 				class: 'mcw-layout-tablet';
-				with: self contentToShow ].
-
-	self renderSideSheetOn: html
+				with: [ self renderContentToShowOn: html ] ]
 ]
 
 { #category : #rendering }

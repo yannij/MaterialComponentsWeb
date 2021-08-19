@@ -19,12 +19,12 @@ MCWTextInputComponent >> inputType [
 { #category : #rendering }
 MCWTextInputComponent >> renderEditorOn: html [
 
-	self renderViewerOn: html
+	self renderFieldWith: false on: html
 
 ]
 
 { #category : #rendering }
-MCWTextInputComponent >> renderFieldOn: html [
+MCWTextInputComponent >> renderFieldWith: aReadonlyFlag on: html [
 	| element |
 
 	element := html label.
@@ -39,16 +39,14 @@ MCWTextInputComponent >> renderFieldOn: html [
 				ariaDescribedBy: self labelId;
 				"title: (self perform: self inputAspect);"
 				type: self inputType;
-				disabled: self magritteDescription isReadonly;
+				readonly: aReadonlyFlag;
 				on: self inputAspect of: self.
-			html span mdcLineRipple ].
-	self magritteDescription isReadonly ifTrue: [
-		element mdcTextField_disabled ]
+			html span mdcLineRipple ]
 ]
 
 { #category : #rendering }
 MCWTextInputComponent >> renderViewerOn: html [
 
-	self renderFieldOn: html
+	self renderFieldWith: true on: html
 
 ]
