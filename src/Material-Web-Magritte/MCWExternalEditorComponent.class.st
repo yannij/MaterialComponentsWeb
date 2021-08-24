@@ -33,6 +33,12 @@ MCWExternalEditorComponent >> renderEditButtonOn: html [
 ]
 
 { #category : #rendering }
+MCWExternalEditorComponent >> renderEditorOn: html [
+
+	self renderViewerOn: html
+]
+
+{ #category : #rendering }
 MCWExternalEditorComponent >> renderMagritteViewerOn: html [
 
 	html div
@@ -82,8 +88,9 @@ MCWExternalEditorComponent >> renderViewerOn: html [
 		with: [
 			html heading level3; mdcListGroup__subheader; with: [
 				html text: self magritteDescription label.
-				self renderEditButtonOn: html.
-				self renderCreateButtonOn: html ].
+				self isReadonly ifFalse: [
+					self renderEditButtonOn: html.
+					self renderCreateButtonOn: html ] ].
 
 		html div id: listId; with: [ self renderOneItemListOn: html ] ]
 ]

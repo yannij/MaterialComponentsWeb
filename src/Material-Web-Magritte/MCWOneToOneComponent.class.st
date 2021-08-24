@@ -117,8 +117,9 @@ MCWOneToOneComponent >> renderViewerOn: html [
 		with: [
 			html heading level3; mdcListGroup__subheader; with: [
 				html text: self magritteDescription label.
-				"self renderEditButtonOn: html."
-				self renderAssociateButtonOn: html ].
+				self isReadonly ifFalse: [
+					"self renderEditButtonOn: html."
+					self renderAssociateButtonOn: html ] ].
 
 		html div id: listId; with: [ self renderOneItemListOn: html ] ]
 ]

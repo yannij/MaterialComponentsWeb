@@ -5,3 +5,9 @@ MAMultipleOptionDescription class >> mcwComponentClassDefault [
 
 	^ MCWMultiselectListComponent
 ]
+
+{ #category : #'*Material-Web-Magritte' }
+MAMultipleOptionDescription >> mcwIsToMany [
+
+	^ true
+]

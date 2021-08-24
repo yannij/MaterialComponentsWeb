@@ -26,6 +26,7 @@ MCWResponsiveApplication >> appBarEndSection [
 
 	data := OrderedCollection new.
 	data
+		"add: ((MCWAppBarMenuIcon materialIcon: 'more_horiz') ariaLabel: 'Side Sheet'; callback: [ self toggleSideSheet ]; yourself);"
 		add: ((MCWAppBarMenuIcon materialIcon: 'settings') ariaLabel: 'Settings'; onClickScript: settingsPopup openScript; yourself);
 		add: settingsPopup;
 		yourself.
@@ -143,11 +144,11 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 	| list |
 
 	list := (MCWListMenuItems id: 'settingsPopup')
-		"addListItem: (MCWListItemIcon new iconName: 'cancel'; itemText: 'Cancel'; yourself);"
 		listItemAdd: (MCWListItemIcon new iconName: 'smartphone'; itemText: 'Phone'; callback: [ self beLayoutStructurePhone ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'tablet'; itemText: 'Tablet'; callback: [ self beLayoutStructureTablet ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'laptop'; itemText: 'Laptop'; callback: [ self beLayoutStructureLaptop ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'monitor'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'view_sidebar'; itemText: 'Side Sheet'; callback: [ self toggleSideSheet ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'waves'; itemText: 'Responsive'; callback: [ self toggleAutoResponsive ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'all_out'; itemText: 'Dense'; callback: [ self toggleDenseView ]; yourself);
@@ -155,11 +156,6 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 		listItemAdd: (MCWListItemIcon new iconName: 'login'; itemText: 'Login'; callback: [ self login ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'logout'; itemText: 'Logout'; callback: [ self logout ]; yourself);
 		yourself.
-
-	"self layout sideSheet notNil
-		ifTrue: [
-			list addListItem:
-				(MCWListItemIcon new iconName: 'more_horiz'; itemText: 'Side Sheet'; onClickScript: self openRidghtNavScript; yourself)]."
 
 	^ list
 ]
@@ -562,6 +558,13 @@ MCWResponsiveApplication >> toggleDismissibleDrawer [
 	self layout sideNav dismissedToggle.
 	"self layoutComponent adjustToolbarsPersistedSideNav: self sideNav isPersisted."
 
+]
+
+{ #category : #actions }
+MCWResponsiveApplication >> toggleSideSheet [
+
+	^ self layout sideSheet ifNotNil: [ :value |
+		value toggleHiddenValue ]
 ]
 
 { #category : #updating }

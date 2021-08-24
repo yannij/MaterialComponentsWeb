@@ -7,6 +7,13 @@ Class {
 { #category : #rendering }
 MCWMultiselectListComponent >> renderEditorOn: html [
 
+	self renderMultiselectListOn: html readonly: false
+]
+
+{ #category : #rendering }
+MCWMultiselectListComponent >> renderMultiselectListOn: html readonly: readonlyFlag [
+	| multiselectTag |
+
 	html label
 		style: 'height: 160px';
 		mcwFormField;
@@ -17,7 +24,7 @@ MCWMultiselectListComponent >> renderEditorOn: html [
 				id: self labelId;
 				with: self magritteDescription label.
 
-			html multiSelect
+			multiselectTag := html multiSelect
 				mdcSelect__nativeControl;
 				size: 8;
 				style: 'height: 128px';
@@ -25,7 +32,10 @@ MCWMultiselectListComponent >> renderEditorOn: html [
 				list: self availableList;
 				selected: self selectedList;
 				labels: [ :value | self labelForOption: value ];
-				callback: [ :value | self value: value ].
+				enabled: [ :value | readonlyFlag not ];
+				yourself.
+			readonlyFlag ifFalse: [
+				multiselectTag callback: [ :value | self value: value ] ].
 
 			html textInput mdcTextField__input.
 			html span mdcLineRipple  ]
@@ -33,32 +43,7 @@ MCWMultiselectListComponent >> renderEditorOn: html [
 ]
 
 { #category : #rendering }
-MCWMultiselectListComponent >> renderEditorOnSave: html [
+MCWMultiselectListComponent >> renderViewerOn: html [
 
-	html div
-		"style: 'height: 128px';"
-		"mdcSelect;"
-		mdcFormField;
-		mcwFormField;
-		with: [
-			html label
-				mdcFloatingLabel;
-				mdcFloatingLabel_floatAbove;
-				"style: 'top: 33px';"
-				"mdcAutoInit: 'MDCFloatingLabel';"
-				for: self labelId;
-				with: self magritteDescription label.
-
-			html multiSelect
-				mdcSelect__nativeControl;
-				size:84;
-				"style: 'height: 128px';"
-				id: self labelId;
-				list: self availableList;
-				selected: self selectedList;
-				labels: [ :value | self labelForOption: value ];
-				callback: [ :value | self value: value ].
-
-			html div mdcLineRipple ]
-
+	self renderMultiselectListOn: html readonly: true
 ]

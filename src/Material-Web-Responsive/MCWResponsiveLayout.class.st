@@ -454,7 +454,7 @@ MCWResponsiveLayout >> sideSheetVisible [
 
 	^ self sideSheet
 		ifNil: [ false ]
-		ifNotNil: [ :value | value isHidden not ]
+		ifNotNil: [ :value | value isHidden not and: [ value component notNil ] ]
 ]
 
 { #category : #'rendering-width' }

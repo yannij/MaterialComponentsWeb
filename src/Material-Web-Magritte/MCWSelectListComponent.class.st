@@ -36,3 +36,24 @@ MCWSelectListComponent >> renderEditorOn: html [
 
 "html select callback: [ :value | self value: value ]"
 ]
+
+{ #category : #rendering }
+MCWSelectListComponent >> renderViewerOn: html [
+				
+	| labelTag inputTag |
+
+	labelTag := html label.
+	labelTag mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
+		with: [
+			html span mdcTextField__ripple.
+			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
+				id: self labelId;
+				with: self magritteDescription label.
+			inputTag := html textInput mdcTextField__input;
+				ariaDescribedBy: self labelId;
+				type: 'text';
+				readonly: true;
+				yourself.
+			inputTag value: self value.
+			html span mdcLineRipple ]
+]
