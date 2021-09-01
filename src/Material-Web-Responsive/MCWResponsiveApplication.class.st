@@ -591,13 +591,18 @@ window.addEventListener(""resize"", function(){alert( window.innerWidth.toString
 
 { #category : #updating }
 MCWResponsiveApplication >> updateRootFonts: anHtmlRoot [
+	| bugString |
 
 	super updateRootFonts: anHtmlRoot.
 
 	"fontNames := 'Roboto|Roboto+Condensed|Bree+Serif|Fontdiner+Swanky|Open+Sans|Oxygen+Mono|Pacifico'."
 	"fontNames := '|' join: (self fonts collect: [:eachChoice | eachChoice googleFontsFamily])."
 
-	anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', self settings mdcTypography fontFamily).
+	"Patch for: https://github.com/material-components/material-components-web/issues/7264
+	[MDC-Data-Table] thead > tr > th values are not bold as shown in the example"
+	bugString := ':ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'.
+
+	anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', self settings mdcTypography fontFamily, bugString).
 	self settings mdcTypography fontFamilies do: [ :eachFontFamily |
-		anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', eachFontFamily) ]
+		anHtmlRoot stylesheet url: (WAUrl absolute: 'https://fonts.googleapis.com/css?family=', eachFontFamily, bugString) ]
 ]
