@@ -167,7 +167,9 @@ StripeShoppingCart >> initialize [
 { #category : #utility }
 StripeShoppingCart >> printAsMoney: aValue [
 
-	^ '$', (aValue printShowingDecimalPlaces: 2)
+	^ aValue printString.
+
+	"^ '$', (aValue printShowingDecimalPlaces: 2)"
 ]
 
 { #category : #rendering }

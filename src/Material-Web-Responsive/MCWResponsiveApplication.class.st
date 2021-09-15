@@ -379,6 +379,7 @@ MCWResponsiveApplication >> renderContentOn: html [
 
 	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'mdc.autoInit()'); yourself).
 	self renderResizeScriptOn: html.
+	self renderResizeOnloadScriptOn: html.
 
 	self renderSetColorThemeOn: html.
 
@@ -409,6 +410,28 @@ MCWResponsiveApplication >> renderLayoutOn: html [
 MCWResponsiveApplication >> renderLoginOn: html [
 
 	html render: self loginComponent
+]
+
+{ #category : #rendering }
+MCWResponsiveApplication >> renderResizeOnloadScriptOn: html [
+	| sizeTestString |
+
+	self isAutoResponsive ifFalse: [
+		^ self ].
+
+	sizeTestString := nil.
+	self layout isPhoneStyle ifTrue: [
+		sizeTestString := 'window.innerWidth >= 600' ].
+	self layout isTabletStyle ifTrue: [
+		sizeTestString := 'window.innerWidth < 600 || window.innerWidth >= 1240' ].
+	self layout isLaptopStyle ifTrue: [
+		sizeTestString := 'window.innerWidth < 1240 || window.innerWidth >= 1440' ].
+	self layout isDesktopStyle ifTrue: [
+		sizeTestString := 'window.innerWidth < 1440' ].
+
+	sizeTestString ifNil: [
+		^ self ].
+	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'if (', sizeTestString, ') window.dispatchEvent(new Event(''resize''))'); yourself).
 ]
 
 { #category : #rendering }
