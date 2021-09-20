@@ -267,18 +267,26 @@ MCWResponsiveLayout >> renderContentOn: html [
 { #category : #rendering }
 MCWResponsiveLayout >> renderContentToShowOn: html [
 
+	self renderSnackbarOn: html.
+
 	self sideSheetVisible ifFalse: [
+		"self renderBannerDesktopOn: html."
 		html render: self contentToShow.
-		^ self].
+		^ self ].
 
 	html div mdcLayoutGrid; style: 'padding: 0px'; with: [
 		html div mdcLayoutGrid__inner; style: 'grid-gap: 0px'; with: [
+			"html div
+				mdcLayoutGrid__cell_span12;
+				with: [
+					self renderBannerDesktopOn: html ]"
 			html div
 				mdcLayoutGrid__cell;
 				mdcLayoutGrid__cell_span9Desktop;
 				mdcLayoutGrid__cell_span6Tablet;
 				mdcLayoutGrid__cell_span4Phone;
-				with: [ html render: self contentToShow ].
+				with: [
+					html render: self contentToShow ].
 			html div
 				mdcLayoutGrid__cell;
 				mdcLayoutGrid__cell_span3Desktop;
@@ -307,7 +315,8 @@ MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 				style: 'overflow-x: auto';
 				"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
 				class: 'mcw-layout-desktop';
-				with: [ self renderContentToShowOn: html ] ]
+				with: [
+					self renderContentToShowOn: html ] ]
 ]
 
 { #category : #rendering }
@@ -394,6 +403,27 @@ MCWResponsiveLayout >> renderSideSheetOn: html [
 	sideDiv with: self sideSheet
 ]
 
+{ #category : #rendering }
+MCWResponsiveLayout >> renderSnackbarOn: html [
+	| snackbarId |
+
+	self snackbarText ifNil: [ ^ self ].
+
+	snackbarId := html nextId.
+	html aside mdcSnackbar; mdcAutoInit: 'MDCSnackbar'; mdcSnackbar_open; with: [
+		html div mdcSnackbar__surface; mdcRole: 'status'; with: [
+			html div mdcSnackbar__label; with: self snackbarText.
+			html div mdcSnackbar__actions; with: [
+				html button mdcButton; mdcSnackbar__action;
+					style: 'color: var(--mdc-theme-secondary)';
+					onClick: ((html jQuery ajax) callback: [ self snackbarText: nil ]; onComplete: html javascript refresh; yourself);
+					with: [
+						"html div mdcButton__ripple."
+						html span mdcButton__label; with: 'Clear' ] ] ] ].
+
+	"html document addLoadScript: (JSStream on: 'document.querySelector(''.mdc-snackbar'').MDCSnackbar.open()')."
+]
+
 { #category : #accessing }
 MCWResponsiveLayout >> screenStyle [
 	^ screenStyle
@@ -461,6 +491,18 @@ MCWResponsiveLayout >> sideSheetVisible [
 MCWResponsiveLayout >> sideSheetWidth [
 
 	^ 256
+]
+
+{ #category : #actions }
+MCWResponsiveLayout >> snackbarText [
+
+	^ self app snackbarText
+]
+
+{ #category : #actions }
+MCWResponsiveLayout >> snackbarText: anObject [
+
+	self app snackbarText: anObject
 ]
 
 { #category : #accessing }

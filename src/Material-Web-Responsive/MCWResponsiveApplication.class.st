@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'layout',
 		'settings',
-		'loginComponent'
+		'loginComponent',
+		'snackbarText'
 	],
 	#category : #'Material-Web-Responsive'
 }
@@ -534,6 +535,18 @@ MCWResponsiveApplication >> sideNavDrawerId [
 
 	^ 'sideNavDrawer'
 
+]
+
+{ #category : #accessing }
+MCWResponsiveApplication >> snackbarText [
+
+	^ snackbarText
+]
+
+{ #category : #accessing }
+MCWResponsiveApplication >> snackbarText: anObject [
+
+	snackbarText := anObject
 ]
 
 { #category : #hooks }
