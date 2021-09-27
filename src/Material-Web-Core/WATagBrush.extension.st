@@ -43,12 +43,6 @@ WATagBrush >> mdcBanner__icon [
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcBanner__primaryAction [
-
-	self class: 'mdc-banner__primary-action'
-]
-
-{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcBanner__secondaryAction [
 
 	self class: 'mdc-banner__secondary-action'
@@ -118,6 +112,18 @@ WATagBrush >> mdcButton__ripple [
 WATagBrush >> mdcButton__touch [
 
 	self class: 'mdc-button__touch'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcButton_iconLeading [
+
+	self class: 'mdc-button--icon-leading'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcButton_iconTrailing [
+
+	self class: 'mdc-button--icon-trailing'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -226,6 +232,12 @@ WATagBrush >> mdcCard__media_v169 [
 WATagBrush >> mdcCard__primaryAction [
 
 	self class: 'mdc-card__primary-action'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcCard__ripple [
+
+	self class: 'mdc-card__ripple'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -364,30 +376,6 @@ WATagBrush >> mdcChipSet_filter [
 WATagBrush >> mdcChipSet_input [
 
 	self class: 'mdc-chip-set--input'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcChipTrailingAction [
-
-	self class: 'mdc-chip-trailing-action'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcChipTrailingAction__icon [
-
-	self class: 'mdc-chip-trailing-action__icon'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcChipTrailingAction__ripple [
-
-	self class: 'mdc-chip-trailing-action__ripple'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcChipTrailingAction__touch [
-
-	self class: 'mdc-chip-trailing-action__touch'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -661,6 +649,12 @@ WATagBrush >> mdcDataTable__headerCell_withSort [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDataTable__headerRow [
+
+	self class: 'mdc-data-table__header-row'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDataTable__headerRowCheckbox [
 
 	self class: 'mdc-data-table__header-row-checkbox'
@@ -781,6 +775,12 @@ WATagBrush >> mdcDataTable_stickyHeader [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedList_dense [
+
+	self class: 'mdc-deprecated-list--dense'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDialog [
 
 	self class: 'mdc-dialog'
@@ -847,15 +847,51 @@ WATagBrush >> mdcDialog__scrim [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDialog__scrim_hidden [
+
+	self class: 'mdc-dialog__scrim--hidden'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDialog__surface [
 
 	self class: 'mdc-dialog__surface'
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDialog__surfaceScrim [
+
+	self class: 'mdc-dialog__surface-scrim'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDialog__surfaceScrim_hiding [
+
+	self class: 'mdc-dialog__surface-scrim--hiding'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDialog__surfaceScrim_showing [
+
+	self class: 'mdc-dialog__surface-scrim--showing'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDialog__surfaceScrim_shown [
+
+	self class: 'mdc-dialog__surface-scrim--shown'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDialog__title [
 
 	self class: 'mdc-dialog__title'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDialog__titleIcon [
+
+	self class: 'mdc-dialog__title-icon'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -1135,264 +1171,6 @@ WATagBrush >> mdcElevation_z9 [
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionList [
-
-	self class: 'mdc-evolution-list'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider [
-
-	self class: 'mdc-evolution-list-divider'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider_withLeadingAvatar [
-
-	self class: 'mdc-evolution-list-divider--with-leading-avatar'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider_withLeadingCheckbox [
-
-	self class: 'mdc-evolution-list-divider--with-leading-checkbox'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider_withLeadingIcon [
-
-	self class: 'mdc-evolution-list-divider--with-leading-icon'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider_withLeadingImage [
-
-	self class: 'mdc-evolution-list-divider--with-leading-image'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider_withLeadingInset [
-
-	self class: 'mdc-evolution-list-divider--with-leading-inset'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider_withLeadingPadding [
-
-	self class: 'mdc-evolution-list-divider--with-leading-padding'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider_withLeadingRadio [
-
-	self class: 'mdc-evolution-list-divider--with-leading-radio'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider_withLeadingSwitch [
-
-	self class: 'mdc-evolution-list-divider--with-leading-switch'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider_withLeadingThumbnail [
-
-	self class: 'mdc-evolution-list-divider--with-leading-thumbnail'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider_withLeadingVideo [
-
-	self class: 'mdc-evolution-list-divider--with-leading-video'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListDivider_withTrailingInset [
-
-	self class: 'mdc-evolution-list-divider--with-trailing-inset'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListGroup [
-
-	self class: 'mdc-evolution-list-group'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListGroup__subheader [
-
-	self class: 'mdc-evolution-list-group__subheader'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem [
-
-	self class: 'mdc-evolution-list-item'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem__content [
-
-	self class: 'mdc-evolution-list-item__content'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem__end [
-
-	self class: 'mdc-evolution-list-item__end'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem__overlineText [
-
-	self class: 'mdc-evolution-list-item__overline-text'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem__primaryText [
-
-	self class: 'mdc-evolution-list-item__primary-text'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem__ripple [
-
-	self class: 'mdc-evolution-list-item__ripple'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem__secondaryText [
-
-	self class: 'mdc-evolution-list-item__secondary-text'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem__start [
-
-	self class: 'mdc-evolution-list-item__start'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_activated [
-
-	self class: 'mdc-evolution-list-item--activated'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_disabled [
-
-	self class: 'mdc-evolution-list-item--disabled'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_nonInteractive [
-
-	self class: 'mdc-evolution-list-item--non-interactive'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_selected [
-
-	self class: 'mdc-evolution-list-item--selected'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withLeadingAvatar [
-
-	self class: 'mdc-evolution-list-item--with-leading-avatar'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withLeadingCheckbox [
-
-	self class: 'mdc-evolution-list-item--with-leading-checkbox'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withLeadingIcon [
-
-	self class: 'mdc-evolution-list-item--with-leading-icon'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withLeadingImage [
-
-	self class: 'mdc-evolution-list-item--with-leading-image'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withLeadingRadio [
-
-	self class: 'mdc-evolution-list-item--with-leading-radio'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withLeadingSwitch [
-
-	self class: 'mdc-evolution-list-item--with-leading-switch'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withLeadingThumbnail [
-
-	self class: 'mdc-evolution-list-item--with-leading-thumbnail'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withLeadingVideo [
-
-	self class: 'mdc-evolution-list-item--with-leading-video'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withOneLine [
-
-	self class: 'mdc-evolution-list-item--with-one-line'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withThreeLines [
-
-	self class: 'mdc-evolution-list-item--with-three-lines'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withTrailingCheckbox [
-
-	self class: 'mdc-evolution-list-item--with-trailing-checkbox'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withTrailingIcon [
-
-	self class: 'mdc-evolution-list-item--with-trailing-icon'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withTrailingMeta [
-
-	self class: 'mdc-evolution-list-item--with-trailing-meta'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withTrailingRadio [
-
-	self class: 'mdc-evolution-list-item--with-trailing-radio'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withTrailingSwitch [
-
-	self class: 'mdc-evolution-list-item--with-trailing-switch'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcEvolutionListItem_withTwoLines [
-
-	self class: 'mdc-evolution-list-item--with-two-lines'
-]
-
-{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcFab [
 
 	self class: 'mdc-fab'
@@ -1610,48 +1388,6 @@ aaaBbbCcc_eeeFffGgg__xxxYyyZzz <<<< aaa-bbb-ccc__eee-fff-ggg--xxx-yyy-zzz
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcGridTile [
-
-	self class: 'mdc-grid-tile'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcGridTile__icon [
-
-	self class: 'mdc-grid-tile__icon'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcGridTile__primary [
-
-	self class: 'mdc-grid-tile__primary'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcGridTile__primaryContent [
-
-	self class: 'mdc-grid-tile__primary-content'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcGridTile__secondary [
-
-	self class: 'mdc-grid-tile__secondary'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcGridTile__supportText [
-
-	self class: 'mdc-grid-tile__support-text'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcGridTile__title [
-
-	self class: 'mdc-grid-tile__title'
-]
-
-{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcIconButton [
 
 	self class: 'mdc-icon-button'
@@ -1670,9 +1406,39 @@ WATagBrush >> mdcIconButton__icon_on [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcIconButton__ripple [
+
+	self class: 'mdc-icon-button__ripple'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcIconButton__touch [
+
+	self class: 'mdc-icon-button__touch'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcIconButton_displayFlex [
+
+	self class: 'mdc-icon-button--display-flex'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcIconButton_on [
 
 	self class: 'mdc-icon-button--on'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcIconButton_reducedSize [
+
+	self class: 'mdc-icon-button--reduced-size'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcIconButton_touch [
+
+	self class: 'mdc-icon-button--touch'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2240,39 +2006,69 @@ WATagBrush >> mdcListDivider [
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcListDivider_inset [
+WATagBrush >> mdcListDivider_withLeadingAvatar [
 
-	self class: 'mdc-list-divider--inset'
+	self class: 'mdc-list-divider--with-leading-avatar'
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcListDivider_insetLeading [
+WATagBrush >> mdcListDivider_withLeadingCheckbox [
 
-	self class: 'mdc-list-divider--inset-leading'
+	self class: 'mdc-list-divider--with-leading-checkbox'
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcListDivider_insetPadding [
+WATagBrush >> mdcListDivider_withLeadingIcon [
 
-	self class: 'mdc-list-divider--inset-padding'
+	self class: 'mdc-list-divider--with-leading-icon'
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcListDivider_insetTrailing [
+WATagBrush >> mdcListDivider_withLeadingImage [
 
-	self class: 'mdc-list-divider--inset-trailing'
+	self class: 'mdc-list-divider--with-leading-image'
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcListDivider_padded [
+WATagBrush >> mdcListDivider_withLeadingInset [
 
-	self class: 'mdc-list-divider--padded'
+	self class: 'mdc-list-divider--with-leading-inset'
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcListDivider_padding [
+WATagBrush >> mdcListDivider_withLeadingRadio [
 
-	self class: 'mdc-list-divider--padding'
+	self class: 'mdc-list-divider--with-leading-radio'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListDivider_withLeadingSwitch [
+
+	self class: 'mdc-list-divider--with-leading-switch'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListDivider_withLeadingText [
+
+	self class: 'mdc-list-divider--with-leading-text'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListDivider_withLeadingThumbnail [
+
+	self class: 'mdc-list-divider--with-leading-thumbnail'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListDivider_withLeadingVideo [
+
+	self class: 'mdc-list-divider--with-leading-video'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListDivider_withTrailingInset [
+
+	self class: 'mdc-list-divider--with-trailing-inset'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2294,6 +2090,18 @@ WATagBrush >> mdcListItem [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem__content [
+
+	self class: 'mdc-list-item__content'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem__end [
+
+	self class: 'mdc-list-item__end'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcListItem__graphic [
 
 	self class: 'mdc-list-item__graphic'
@@ -2303,6 +2111,12 @@ WATagBrush >> mdcListItem__graphic [
 WATagBrush >> mdcListItem__meta [
 
 	self class: 'mdc-list-item__meta'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem__overlineText [
+
+	self class: 'mdc-list-item__overline-text'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2324,6 +2138,12 @@ WATagBrush >> mdcListItem__secondaryText [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem__start [
+
+	self class: 'mdc-list-item__start'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcListItem__text [
 
 	self class: 'mdc-list-item__text'
@@ -2342,27 +2162,123 @@ WATagBrush >> mdcListItem_disabled [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_nonInteractive [
+
+	self class: 'mdc-list-item--non-interactive'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcListItem_selected [
 
 	self class: 'mdc-list-item--selected'
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcList_avatarList [
+WATagBrush >> mdcListItem_withLeadingAvatar [
 
-	self class: 'mdc-list--avatar-list'
+	self class: 'mdc-list-item--with-leading-avatar'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withLeadingCheckbox [
+
+	self class: 'mdc-list-item--with-leading-checkbox'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withLeadingIcon [
+
+	self class: 'mdc-list-item--with-leading-icon'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withLeadingImage [
+
+	self class: 'mdc-list-item--with-leading-image'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withLeadingRadio [
+
+	self class: 'mdc-list-item--with-leading-radio'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withLeadingSwitch [
+
+	self class: 'mdc-list-item--with-leading-switch'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withLeadingThumbnail [
+
+	self class: 'mdc-list-item--with-leading-thumbnail'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withLeadingVideo [
+
+	self class: 'mdc-list-item--with-leading-video'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withOneLine [
+
+	self class: 'mdc-list-item--with-one-line'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withOverline [
+
+	self class: 'mdc-list-item--with-overline'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withThreeLines [
+
+	self class: 'mdc-list-item--with-three-lines'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withTrailingCheckbox [
+
+	self class: 'mdc-list-item--with-trailing-checkbox'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withTrailingIcon [
+
+	self class: 'mdc-list-item--with-trailing-icon'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withTrailingMeta [
+
+	self class: 'mdc-list-item--with-trailing-meta'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withTrailingRadio [
+
+	self class: 'mdc-list-item--with-trailing-radio'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withTrailingSwitch [
+
+	self class: 'mdc-list-item--with-trailing-switch'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem_withTwoLines [
+
+	self class: 'mdc-list-item--with-two-lines'
 ]
 
 { #category : #'*Material-Web-Core' }
 WATagBrush >> mdcList_dense [
 
-	self class: 'mdc-list--dense'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcList_iconList [
-
-	self class: 'mdc-list--icon-list'
+	self mdcDeprecatedList_dense
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2372,21 +2288,9 @@ WATagBrush >> mdcList_imageList [
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcList_thumbnailList [
-
-	self class: 'mdc-list--thumbnail-list'
-]
-
-{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcList_twoLine [
 
 	self class: 'mdc-list--two-line'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcList_videoList [
-
-	self class: 'mdc-list--video-list'
 ]
 
 { #category : #'*Material-Web-Core-extra' }
@@ -2720,6 +2624,30 @@ WATagBrush >> mdcSelect__nativeControl [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSelect__oneLineOption [
+
+	self class: 'mdc-select__one-line-option'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSelect__option [
+
+	self class: 'mdc-select__option'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSelect__optionWithLeadingContent [
+
+	self class: 'mdc-select__option-with-leading-content'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSelect__optionWithMeta [
+
+	self class: 'mdc-select__option-with-meta'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcSelect__ripple [
 
 	self class: 'mdc-select__ripple'
@@ -2735,6 +2663,12 @@ WATagBrush >> mdcSelect__selectedText [
 WATagBrush >> mdcSelect__selectedTextContainer [
 
 	self class: 'mdc-select__selected-text-container'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSelect__twoLineOption [
+
+	self class: 'mdc-select__two-line-option'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2807,6 +2741,12 @@ WATagBrush >> mdcSlider__thumb [
 WATagBrush >> mdcSlider__thumbKnob [
 
 	self class: 'mdc-slider__thumb-knob'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSlider__thumb_focused [
+
+	self class: 'mdc-slider__thumb--focused'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2966,21 +2906,51 @@ WATagBrush >> mdcSwitch [
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcSwitch__nativeControl [
+WATagBrush >> mdcSwitch__handle [
 
-	self class: 'mdc-switch__native-control'
+	self class: 'mdc-switch__handle'
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcSwitch__thumb [
+WATagBrush >> mdcSwitch__handleTrack [
 
-	self class: 'mdc-switch__thumb'
+	self class: 'mdc-switch__handle-track'
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcSwitch__thumbUnderlay [
+WATagBrush >> mdcSwitch__icon [
 
-	self class: 'mdc-switch__thumb-underlay'
+	self class: 'mdc-switch__icon'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSwitch__icon_off [
+
+	self class: 'mdc-switch__icon--off'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSwitch__icon_on [
+
+	self class: 'mdc-switch__icon--on'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSwitch__icons [
+
+	self class: 'mdc-switch__icons'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSwitch__ripple [
+
+	self class: 'mdc-switch__ripple'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSwitch__shadow [
+
+	self class: 'mdc-switch__shadow'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2990,15 +2960,15 @@ WATagBrush >> mdcSwitch__track [
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcSwitch_checked [
+WATagBrush >> mdcSwitch_selected [
 
-	self class: 'mdc-switch--checked'
+	self class: 'mdc-switch--selected'
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcSwitch_disabled [
+WATagBrush >> mdcSwitch_unselected [
 
-	self class: 'mdc-switch--disabled'
+	self class: 'mdc-switch--unselected'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -3295,12 +3265,6 @@ WATagBrush >> mdcTextField_outlined [
 	self class: 'mdc-text-field--outlined'
 ]
 
-{ #category : #'*Material-Web-Core-generated' }
-WATagBrush >> mdcTextField_outlinedWithLeadingIcon [
-
-	self class: 'mdc-text-field--outlined--with-leading-icon'
-]
-
 { #category : #'*Material-Web-Core' }
 WATagBrush >> mdcTextField_textarea [
 
@@ -3494,6 +3458,18 @@ WATagBrush >> mdcTooltipWrapper_rich [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcTooltip__caretSurfaceBottom [
+
+	self class: 'mdc-tooltip__caret-surface-bottom'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcTooltip__caretSurfaceTop [
+
+	self class: 'mdc-tooltip__caret-surface-top'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcTooltip__content [
 
 	self class: 'mdc-tooltip__content'
@@ -3509,6 +3485,12 @@ WATagBrush >> mdcTooltip__contentLink [
 WATagBrush >> mdcTooltip__surface [
 
 	self class: 'mdc-tooltip__surface'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcTooltip__surfaceAnimation [
+
+	self class: 'mdc-tooltip__surface-animation'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -3539,6 +3521,12 @@ WATagBrush >> mdcTooltip_multiline [
 WATagBrush >> mdcTooltip_rich [
 
 	self class: 'mdc-tooltip--rich'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcTooltip_richActions [
+
+	self class: 'mdc-tooltip--rich-actions'
 ]
 
 { #category : #'*Material-Web-Core' }

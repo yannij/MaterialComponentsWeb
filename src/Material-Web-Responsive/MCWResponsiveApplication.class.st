@@ -317,16 +317,24 @@ MCWResponsiveApplication >> logout [
 ]
 
 { #category : #initialization }
-MCWResponsiveApplication >> materialVersion100 [
-	"Use 1.0.0 unpkg.com"
+MCWResponsiveApplication >> materialVersion10dot [
+	"Use 10.0.0 unpkg.com"
 
-	self materialVersion: '1.0.0'
+	self materialVersion: '10.0.0'
+]
+
+{ #category : #initialization }
+MCWResponsiveApplication >> materialVersion13dot [
+	"Use 13.0.0 unpkg.com"
+
+	self materialVersion: '13.0.0'
 ]
 
 { #category : #initialization }
 MCWResponsiveApplication >> materialVersionDefault [
 
 	self materialVersionLocalServer
+	"self materialVersion13dot"
 ]
 
 { #category : #initialization }
