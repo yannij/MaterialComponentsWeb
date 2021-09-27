@@ -18,22 +18,9 @@ MCWContentArea >> component: anObject [
 ]
 
 { #category : #rendering }
-MCWContentArea >> renderCanvasOn: html [
+MCWContentArea >> renderContentOn: html [
 
 	self component ifNil: [ ^ self ].
 
-	"html div mdcLayoutGrid;
-		with: [
-			html div mdcLayoutGrid__inner; with: [
-				self mcwApplicationGet logString: 'cellSpan: ', self layout cellSpan printString.
-				html div mdcLayoutGrid__cell_span: self layout cellSpan; with: self component ] ]"
-
 	html render: self component
-]
-
-{ #category : #rendering }
-MCWContentArea >> renderContentOn: html [ 
-
-	self renderCanvasOn: html
-
 ]

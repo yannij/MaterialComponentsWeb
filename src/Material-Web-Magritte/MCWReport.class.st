@@ -271,8 +271,3 @@ MCWReport >> renderTableOn: html [
 		self showBody
 			ifTrue: [ self renderTableBodyOn: html ] ]
 ]
-
-{ #category : #'accessing-readonly' }
-MCWReport >> states [
-	^ Array new
-]

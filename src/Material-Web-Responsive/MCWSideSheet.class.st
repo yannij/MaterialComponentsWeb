@@ -18,19 +18,11 @@ MCWSideSheet >> component: anObject [
 ]
 
 { #category : #rendering }
-MCWSideSheet >> renderCanvasOn: html [
-
-	self component ifNil: [ ^ self ].
-
-	html render: self component
-
-]
-
-{ #category : #rendering }
 MCWSideSheet >> renderContentOn: html [
 
 	self isHidden ifTrue: [ ^ self ].
+	self component ifNil: [ ^ self ].
 
-	self renderCanvasOn: html
+	html render: self component
 
 ]

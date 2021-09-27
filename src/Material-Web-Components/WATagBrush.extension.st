@@ -77,6 +77,12 @@ WATagBrush >> mdcList_dense_if: aBoolean [
 ]
 
 { #category : #'*Material-Web-Components' }
+WATagBrush >> mdcPerform: mdcSelector if: aBoolean [
+
+	aBoolean ifTrue: [ self perform: mdcSelector ]
+]
+
+{ #category : #'*Material-Web-Components' }
 WATagBrush >> mdcRole: aRole [
 
 	self attributeAt: 'role' put: aRole

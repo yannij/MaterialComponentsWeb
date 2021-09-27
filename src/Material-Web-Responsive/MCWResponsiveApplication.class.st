@@ -151,7 +151,7 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 		listItemAdd: (MCWListItemIcon new iconName: 'monitor'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'view_sidebar'; itemText: 'Side Sheet'; callback: [ self toggleSideSheet ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'waves'; itemText: 'Responsive'; callback: [ self toggleAutoResponsive ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse App Bar'; callback: [ self toggleAppBarCollapse ]; yourself);
+		listItemAdd: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse'; callback: [ self toggleAppBarCollapse ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'all_out'; itemText: 'Dense'; callback: [ self toggleDenseView ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Style'; callback: [ self configureStyle ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'login'; itemText: 'Login'; callback: [ self login ]; yourself);
@@ -619,8 +619,7 @@ MCWResponsiveApplication >> updateRoot: anHtmlRoot [
 		attributeAt: 'name' put: 'viewport';
 		attributeAt: 'content' put: 'width=device-width, initial-scale=1'.
 
-	"anHtmlRoot addScript: '
-window.addEventListener(""resize"", function(){alert( window.innerWidth.toString())})'."
+	"anHtmlRoot bodyAttributes at: 'dir' append: 'rtl'."
 
 	self bodyCssClasses do: [ :each | anHtmlRoot bodyAttributes addClass: each ]
 ]

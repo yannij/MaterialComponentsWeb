@@ -61,6 +61,6 @@ MCWListItemIcon >> renderContentOn: html [
 					mdcListItem__graphic;
 					attributeAt: 'aria-hidden' put: 'true';
 					with: [ html text: self iconName ] ].
-			html text: self itemText ]
+			html "text:" span mdcTypography_subtitle2; with: self itemText ]
 
 ]

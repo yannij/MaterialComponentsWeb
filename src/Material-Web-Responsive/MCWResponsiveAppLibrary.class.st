@@ -27,6 +27,37 @@ html {
   height: 100%;
 }
 
+.mdc-list--dense .mdc-list {
+  padding: 0;
+}
+
+.mdc-list-item {
+  padding: 0 16px;
+  height: 48px;
+  /*position: relative;*/
+  align-items: center;
+}
+
+.mdc-list--dense .mdc-list-item {
+  padding: 0 8px;
+  margin: 2px 8px;
+  height: 40px;
+}
+
+.mdc-list-item__graphic {
+  margin-left: 0;
+  margin-right: 32px;
+  width: 24px;
+  height: 24px;
+}
+
+.mdc-list--dense .mdc-list-item__graphic {
+  margin-left: 0;
+  margin-right: 16px;
+  width: 20px;
+  height: 20px;
+}
+
 .mcw-body {
   display: flex;
   flex-flow: row nowrap;
