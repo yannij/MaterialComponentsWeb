@@ -30,7 +30,7 @@ MCWSelectListComponent >> renderEditorOn: html [
 							dataValue: item; tabIndex: -1; ariaSelected: isSelected;
 							with: [
 								html span mdcListItem__ripple.
-								html span mdcListItem__text; with: (self labelForOption: item) ].
+								html span mdcDeprecatedListItem__text; with: (self labelForOption: item) ].
 						isSelected ifTrue: [ listItem mdcListItem_selected ] ] ] ]
 		]
 

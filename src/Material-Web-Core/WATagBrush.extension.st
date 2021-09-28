@@ -775,9 +775,39 @@ WATagBrush >> mdcDataTable_stickyHeader [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListItem__graphic [
+
+	self class: 'mdc-deprecated-list-item__graphic'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListItem__meta [
+
+	self class: 'mdc-deprecated-list-item__meta'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListItem__text [
+
+	self class: 'mdc-deprecated-list-item__text'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDeprecatedList_dense [
 
 	self class: 'mdc-deprecated-list--dense'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedList_imageList [
+
+	self class: 'mdc-deprecated-list--image-list'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedList_twoLine [
+
+	self class: 'mdc-deprecated-list--two-line'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2102,18 +2132,6 @@ WATagBrush >> mdcListItem__end [
 ]
 
 { #category : #'*Material-Web-Core' }
-WATagBrush >> mdcListItem__graphic [
-
-	self class: 'mdc-list-item__graphic'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcListItem__meta [
-
-	self class: 'mdc-list-item__meta'
-]
-
-{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcListItem__overlineText [
 
 	self class: 'mdc-list-item__overline-text'
@@ -2141,12 +2159,6 @@ WATagBrush >> mdcListItem__secondaryText [
 WATagBrush >> mdcListItem__start [
 
 	self class: 'mdc-list-item__start'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcListItem__text [
-
-	self class: 'mdc-list-item__text'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2273,30 +2285,6 @@ WATagBrush >> mdcListItem_withTrailingSwitch [
 WATagBrush >> mdcListItem_withTwoLines [
 
 	self class: 'mdc-list-item--with-two-lines'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcList_dense [
-
-	self mdcDeprecatedList_dense
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcList_imageList [
-
-	self class: 'mdc-list--image-list'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcList_twoLine [
-
-	self class: 'mdc-list--two-line'
-]
-
-{ #category : #'*Material-Web-Core-extra' }
-WATagBrush >> mdcMaterialIcons [
-
-	self class: 'material-icons'
 ]
 
 { #category : #'*Material-Web-Core' }

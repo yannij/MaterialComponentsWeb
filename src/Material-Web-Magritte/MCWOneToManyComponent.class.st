@@ -159,8 +159,8 @@ MCWOneToManyComponent >> renderListAjaxOn: html [
 
 	html unorderedList
 		mdcList;
-		mdcList_dense;
-		mdcList_twoLine;
+		mdcDeprecatedList_dense;
+		mdcDeprecatedList_twoLine;
 		"style: 'border: 1px solid rgba(0, 0, 0, 0.1);';"
 		with: [
 			self value do: [ :eachItem |
@@ -168,7 +168,7 @@ MCWOneToManyComponent >> renderListAjaxOn: html [
 					mdcListItem;
 					with: [
 						html span
-							mdcListItem__text;
+							mdcDeprecatedListItem__text;
 							onClick: ((html jQuery ajax)
 								callback: [ self mcwApplicationGet navTo: eachItem aspect: nil ];
 								onComplete: html javascript refresh);

@@ -73,7 +73,13 @@ WATagBrush >> mdcLayoutGrid__cell_span: aSpanNumber [
 { #category : #'*Material-Web-Components' }
 WATagBrush >> mdcList_dense_if: aBoolean [
 
-	aBoolean ifTrue: [ self mdcList_dense ]
+	aBoolean ifTrue: [ self mdcDeprecatedList_dense ]
+]
+
+{ #category : #'*Material-Web-Components' }
+WATagBrush >> mdcMaterialIcons [
+
+	self class: 'material-icons'
 ]
 
 { #category : #'*Material-Web-Components' }

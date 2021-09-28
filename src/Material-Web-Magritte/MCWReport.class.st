@@ -210,7 +210,7 @@ MCWReport >> renderRowsPerPageSelectOn: html [
 					self batchSize = each ifTrue: [
 						listItem mdcListItem_selected ].
 					listItem mdcListItem; mdcRole: 'option'; attributeAt: 'data-value' put: each; with: [
-						html span mdcListItem__text; with: each ] ] ] ] ].
+						html span mdcDeprecatedListItem__text; with: each ] ] ] ] ].
 	"html script: (self mutationObserverScript: inputId)"
 ]
 

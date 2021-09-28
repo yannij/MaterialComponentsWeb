@@ -58,7 +58,7 @@ MCWListItemIcon >> renderContentOn: html [
 				html span
 					mdcMaterialIcons;
 					style: 'font-family: Material Icons Outlined';
-					mdcListItem__graphic;
+					mdcDeprecatedListItem__graphic;
 					attributeAt: 'aria-hidden' put: 'true';
 					with: [ html text: self iconName ] ].
 			html "text:" span mdcTypography_subtitle2; with: self itemText ]

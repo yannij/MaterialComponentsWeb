@@ -10,7 +10,7 @@ MCWListTwoLine >> listTagOn: html [
 	^ html navigation
 		mdcList;
 		mdcList_dense_if: self mcwDenseView;
-		mdcList_twoLine;
+		mdcDeprecatedList_twoLine;
 		mdcRole: 'list';
 		yourself
 

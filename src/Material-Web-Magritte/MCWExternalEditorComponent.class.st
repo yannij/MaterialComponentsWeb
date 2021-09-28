@@ -60,7 +60,7 @@ MCWExternalEditorComponent >> renderMagritteViewerOn: html [
 { #category : #rendering }
 MCWExternalEditorComponent >> renderOneItemListOn: html [
 
-	html unorderedList mdcList; mdcList_twoLine; mdcList_dense;
+	html unorderedList mdcList; mdcDeprecatedList_twoLine; mdcDeprecatedList_dense;
 		with: [
 			html listItem
 				mdcListItem;
@@ -68,7 +68,7 @@ MCWExternalEditorComponent >> renderOneItemListOn: html [
 					callback: [ self mcwApplicationGet navTo: self value aspect: nil ];
 					onComplete: html javascript refresh);
 				with: [
-					html span mdcListItem__text; with: [
+					html span mdcDeprecatedListItem__text; with: [
 						html text: self value mdPrimaryString.
 						html span
 							mdcListItem__secondaryText;

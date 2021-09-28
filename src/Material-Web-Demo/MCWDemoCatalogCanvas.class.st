@@ -354,7 +354,7 @@ MCWDemoCatalogCanvas >> renderCatalogSelectDemosOn: html [
 							dataValue: item key;
 							with: [
 								html span mdcListItem__ripple.
-								html span mdcListItem__text; with: item value ].
+								html span mdcDeprecatedListItem__text; with: item value ].
 						index = 1 ifTrue: [ listItem disabled ].
 						listItem tabIndex: (index = 1 ifTrue: [ 0 ] ifFalse: [ -1 ]).
 						isSelected ifTrue: [ listItem mdcListItem_selected ]  ] ]
@@ -546,7 +546,7 @@ MCWDemoCatalogCanvas >> renderDialogConfirmationOn: html [
 					html unorderedList mdcList; mdcList_avatarList; style: 'list-style-typ: none'; with: [
 						data do: [ :eachItem |
 						html listItem mdcListItem; tabIndex: 0; with: [
-							html span mdcListItem__graphic; with: [
+							html span mdcDeprecatedListItem__graphic; with: [
 								html div mdcRadio with: [
 									html radioButton mdcRadio__nativeControl
 										id: eachItem second;
@@ -647,13 +647,13 @@ MCWDemoCatalogCanvas >> renderDialogSimpleOn: html [
 				html section mdcDialog__content; with: [
 					html unorderedList mdcList; mdcList_avatarList; style: 'list-style-typ: none'; with: [
 						html listItem mdcListItem; tabIndex: 0; attributeAt: 'data-mdc-dialog-action' put: 'user1@example.com'; with: [
-							html span mdcMaterialIcons; mdcListItem__graphic; with: 'person'.
+							html span mdcMaterialIcons; mdcDeprecatedListItem__graphic; with: 'person'.
 							html span: 'user1@example.com' ].
 						html listItem mdcListItem; attributeAt: 'data-mdc-dialog-action' put: 'user2@example.com'; with: [
-							html span mdcMaterialIcons; mdcListItem__graphic; with: 'person'.
+							html span mdcMaterialIcons; mdcDeprecatedListItem__graphic; with: 'person'.
 							html span: 'user2@example.com' ].
 						html listItem mdcListItem; tabIndex: -1; attributeAt: 'data-mdc-dialog-action' put: 'add'; with: [
-							html span mdcMaterialIcons; mdcListItem__graphic; with: 'add'.
+							html span mdcMaterialIcons; mdcDeprecatedListItem__graphic; with: 'add'.
 							html span: 'Add account' ] ] ] ] ] ].
 
 	^ dialogId
@@ -675,7 +675,7 @@ MCWDemoCatalogCanvas >> renderResources: resources on: html [
 		url: resources first;
 		mdcRole: 'listitem'; mdcListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
-			html span mdcListItem__graphic; with: [
+			html span mdcDeprecatedListItem__graphic; with: [
 				html image
 					class: 'resources-icon';
 					altText: 'Material Design Guidelines icon';
@@ -685,7 +685,7 @@ MCWDemoCatalogCanvas >> renderResources: resources on: html [
 		url: resources second;
 		mdcRole: 'listitem'; mdcListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
-			html span mdcListItem__graphic; with: [
+			html span mdcDeprecatedListItem__graphic; with: [
 				html image
 					class: 'resources-icon';
 					altText: 'Documentation icon';
@@ -695,7 +695,7 @@ MCWDemoCatalogCanvas >> renderResources: resources on: html [
 		url: resources third;
 		mdcRole: 'listitem'; mdcListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
-			html span mdcListItem__graphic; with: [
+			html span mdcDeprecatedListItem__graphic; with: [
 				html image
 					class: 'resources-icon';
 					altText: 'Source Code icon';

@@ -193,13 +193,13 @@ StripeShoppingCart >> renderCartItemImagesOn: html [
 { #category : #rendering }
 StripeShoppingCart >> renderCartItemsOn: html [
 
-	html unorderedList mdcList; mdcTheme_surface; mdcList_twoLine; mdcList_imageList; with: [
+	html unorderedList mdcList; mdcTheme_surface; mdcDeprecatedList_twoLine; mdcDeprecatedList_imageList; with: [
 		self cartItems do: [ :eachItem |			
 			html listItem mdcListItem; with: [
-				html span mdcListItem__graphic; with: [
+				html span mdcDeprecatedListItem__graphic; with: [
 					html image mdcImageList__image; "style: 'width: 64px; height: 64px';"
 						url: (eachItem at: 'images') first ].
-				html span mdcListItem__text; with: [
+				html span mdcDeprecatedListItem__text; with: [
 					html span mdcListItem__primaryText; with: (eachItem at: 'id').
 					html span mdcListItem__secondaryText; with: (eachItem at: 'name') ] ] ] ]
 ]

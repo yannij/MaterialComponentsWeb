@@ -50,7 +50,7 @@ MCWObjectListComponent >> renderListSingleLineAjaxOn: html [
 
 	html unorderedList
 		mdcList;
-		mdcList_dense;
+		mdcDeprecatedList_dense;
 		style: 'min-width: 200px';
 		with: [
 			self value do: [ :eachItem |
@@ -58,7 +58,7 @@ MCWObjectListComponent >> renderListSingleLineAjaxOn: html [
 					mdcListItem;
 					with: [
 						html span
-							mdcListItem__text;
+							mdcDeprecatedListItem__text;
 							onClick: ((html jQuery ajax)
 								callback: [ self onClickBlock value: eachItem ];
 								onComplete: html javascript refresh);
@@ -71,8 +71,8 @@ MCWObjectListComponent >> renderListTwoLineAjaxOn: html [
 
 	html unorderedList
 		mdcList;
-		mdcList_dense;
-		mdcList_twoLine;
+		mdcDeprecatedList_dense;
+		mdcDeprecatedList_twoLine;
 		"style: 'border: 1px solid rgba(0, 0, 0, 0.1);';"
 		with: [
 			self value do: [ :eachItem |
@@ -80,7 +80,7 @@ MCWObjectListComponent >> renderListTwoLineAjaxOn: html [
 					mdcListItem;
 					with: [
 						html span
-							mdcListItem__text;
+							mdcDeprecatedListItem__text;
 							onClick: ((html jQuery ajax)
 								callback: [ self onClickBlock value: eachItem ];
 								onComplete: html javascript refresh);

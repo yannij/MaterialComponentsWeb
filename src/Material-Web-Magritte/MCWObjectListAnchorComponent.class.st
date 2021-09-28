@@ -9,7 +9,7 @@ MCWObjectListAnchorComponent >> renderListAnchorOn: html [
 
 	html unorderedList
 		mdcList;
-		mdcList_dense;
+		mdcDeprecatedList_dense;
 		style: 'min-width: 200px';
 		with: [
 			self value do: [ :eachItem |
