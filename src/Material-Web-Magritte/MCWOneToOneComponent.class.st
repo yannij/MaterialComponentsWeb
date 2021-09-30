@@ -84,14 +84,14 @@ MCWOneToOneComponent >> renderEditorOn: html [
 MCWOneToOneComponent >> renderOneItemListOn: html [
 
 	self value ifNil: [
-		html unorderedList mdcList; mdcDeprecatedList_twoLine; mdcDeprecatedList_dense; with: [
-			html listItem mdcListItem; with: [
+		html unorderedList mdcDeprecatedList; mdcDeprecatedList_twoLine; mdcDeprecatedList_dense; with: [
+			html listItem mdcDeprecatedListItem; with: [
 				html span mdcDeprecatedListItem__text; with: '** NONE **' ] ].
 		^ self ].
 
-	html unorderedList mdcList; mdcDeprecatedList_twoLine; mdcDeprecatedList_dense; with: [
+	html unorderedList mdcDeprecatedList; mdcDeprecatedList_twoLine; mdcDeprecatedList_dense; with: [
 		html listItem
-			mdcListItem;
+			mdcDeprecatedListItem;
 			onClick: ((html jQuery ajax)
 				callback: [ self mcwApplicationGet navTo: self value aspect: nil ];
 				onComplete: html javascript refresh);

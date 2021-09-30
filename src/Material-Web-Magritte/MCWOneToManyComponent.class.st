@@ -158,14 +158,14 @@ MCWOneToManyComponent >> renderListAjaxOn: html [
 		ifFalse: [ ^ self ].
 
 	html unorderedList
-		mdcList;
+		mdcDeprecatedList;
 		mdcDeprecatedList_dense;
 		mdcDeprecatedList_twoLine;
 		"style: 'border: 1px solid rgba(0, 0, 0, 0.1);';"
 		with: [
 			self value do: [ :eachItem |
 				html listItem
-					mdcListItem;
+					mdcDeprecatedListItem;
 					with: [
 						html span
 							mdcDeprecatedListItem__text;

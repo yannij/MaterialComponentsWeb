@@ -8,7 +8,7 @@ Class {
 MCWListBasic >> listTagOn: html [
 
 	^ html navigation
-		mdcList;
+		mdcDeprecatedList;
 		mdcList_dense_if: self mcwDenseView;
 		mdcRole: 'list';
 		"class: self cssClass if: self cssClass notNil;"

@@ -35,7 +35,7 @@ MCWListMenuItems >> renderContentOn: html [
 MCWListMenuItems >> renderMenuItemsOn: html [
 
 	html unorderedList
-		mdcList;
+		mdcDeprecatedList;
 		mdcList_dense_if: self mcwDenseView;
 		mdcRole: 'menu';
 		attributeAt: 'aria-hidden' put: 'true';

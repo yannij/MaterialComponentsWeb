@@ -8,7 +8,7 @@ Class {
 MCWListAvatar >> listTagOn: html [
 
 	^ html navigation
-		mdcList;
+		mdcDeprecatedList;
 		mdcList_dense_if: self mcwDenseView;
 		mdcList_avatarList;
 		yourself

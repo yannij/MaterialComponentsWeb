@@ -52,7 +52,7 @@ MCWListItemIcon >> renderContentOn: html [
 
 	tag
 		callback: self callback if: self hasCallback;
-		mdcListItem;
+		mdcDeprecatedListItem;
 		with: [
 			(self iconName notNil and: [ self iconName notEmpty ]) ifTrue: [
 				html span

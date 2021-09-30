@@ -20,13 +20,13 @@ MCWSelectListComponent >> renderEditorOn: html [
 						with: [ html span mdcSelect__selectedText; tabIndex: 0 ].
 					html span mdcLineRipple ].
 			html div mdcSelect__menu; mdcMenu; mdcMenuSurface; mdcAutoInit: 'MDCMenu'; with: [
-				html unorderedList mdcList; with: [
+				html unorderedList mdcDeprecatedList; with: [
 					| selectedValue |
 					selectedValue := self value.
 					self options keysAndValuesDo: [ :index :item |
 						| listItem isSelected |
 						isSelected := item = selectedValue.
-						listItem := html listItem mdcListItem; mdcRole: 'option';
+						listItem := html listItem mdcDeprecatedListItem; mdcRole: 'option';
 							dataValue: item; tabIndex: -1; ariaSelected: isSelected;
 							with: [
 								html span mdcListItem__ripple.

@@ -56,7 +56,7 @@ MCWListItemTwoLine >> renderContentOn: html [
 	tag := html anchor.
 	self selected ifTrue: [ tag mdcListItem_selected ].
 	tag
-		mdcListItem;
+		mdcDeprecatedListItem;
 		mdcRole: 'listitem';
 		callback: self callback;
 		with: [

@@ -775,6 +775,18 @@ WATagBrush >> mdcDataTable_stickyHeader [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedList [
+
+	self class: 'mdc-deprecated-list'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListItem [
+
+	self class: 'mdc-deprecated-list-item'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDeprecatedListItem__graphic [
 
 	self class: 'mdc-deprecated-list-item__graphic'

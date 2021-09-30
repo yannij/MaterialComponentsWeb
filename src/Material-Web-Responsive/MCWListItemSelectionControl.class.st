@@ -8,7 +8,7 @@ Class {
 MCWListItemSelectionControl >> renderContentOn: html [
 
 	html listItem
-		mdcListItem;
+		mdcDeprecatedListItem;
 		mdcRole: 'menuitem';
 		tabIndex: 0;
 		with: [

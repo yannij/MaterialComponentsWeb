@@ -4149,7 +4149,7 @@ svg.mdc-button__icon {
   vertical-align: 0;
 }
 .mdc-select--filled.mdc-select--no-label .mdc-select__anchor .mdc-select__selected-text::before {
-  content: "â€‹";
+  content: "";
 }
 .mdc-select--filled.mdc-select--no-label .mdc-select__anchor .mdc-select__selected-text-container {
   height: 100%;
@@ -4563,7 +4563,7 @@ svg.mdc-button__icon {
   padding-top: 1px;
 }
 .mdc-select--outlined .mdc-select__anchor .mdc-select__selected-text::before {
-  content: "â€‹";
+  content: "";
 }
 .mdc-select--outlined .mdc-select__anchor .mdc-select__selected-text-container {
   height: 100%;

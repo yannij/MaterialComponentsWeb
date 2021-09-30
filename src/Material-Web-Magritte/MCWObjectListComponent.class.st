@@ -49,13 +49,13 @@ MCWObjectListComponent >> renderListOn: html [
 MCWObjectListComponent >> renderListSingleLineAjaxOn: html [
 
 	html unorderedList
-		mdcList;
+		mdcDeprecatedList;
 		mdcDeprecatedList_dense;
 		style: 'min-width: 200px';
 		with: [
 			self value do: [ :eachItem |
 				html listItem
-					mdcListItem;
+					mdcDeprecatedListItem;
 					with: [
 						html span
 							mdcDeprecatedListItem__text;
@@ -70,14 +70,14 @@ MCWObjectListComponent >> renderListSingleLineAjaxOn: html [
 MCWObjectListComponent >> renderListTwoLineAjaxOn: html [
 
 	html unorderedList
-		mdcList;
+		mdcDeprecatedList;
 		mdcDeprecatedList_dense;
 		mdcDeprecatedList_twoLine;
 		"style: 'border: 1px solid rgba(0, 0, 0, 0.1);';"
 		with: [
 			self value do: [ :eachItem |
 				html listItem
-					mdcListItem;
+					mdcDeprecatedListItem;
 					with: [
 						html span
 							mdcDeprecatedListItem__text;

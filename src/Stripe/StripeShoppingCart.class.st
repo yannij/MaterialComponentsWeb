@@ -193,9 +193,9 @@ StripeShoppingCart >> renderCartItemImagesOn: html [
 { #category : #rendering }
 StripeShoppingCart >> renderCartItemsOn: html [
 
-	html unorderedList mdcList; mdcTheme_surface; mdcDeprecatedList_twoLine; mdcDeprecatedList_imageList; with: [
+	html unorderedList mdcDeprecatedList; mdcTheme_surface; mdcDeprecatedList_twoLine; mdcDeprecatedList_imageList; with: [
 		self cartItems do: [ :eachItem |			
-			html listItem mdcListItem; with: [
+			html listItem mdcDeprecatedListItem; with: [
 				html span mdcDeprecatedListItem__graphic; with: [
 					html image mdcImageList__image; "style: 'width: 64px; height: 64px';"
 						url: (eachItem at: 'images') first ].

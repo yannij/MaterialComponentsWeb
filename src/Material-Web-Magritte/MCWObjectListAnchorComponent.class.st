@@ -8,7 +8,7 @@ Class {
 MCWObjectListAnchorComponent >> renderListAnchorOn: html [
 
 	html unorderedList
-		mdcList;
+		mdcDeprecatedList;
 		mdcDeprecatedList_dense;
 		style: 'min-width: 200px';
 		with: [
@@ -16,7 +16,7 @@ MCWObjectListAnchorComponent >> renderListAnchorOn: html [
 				html listItem
 					with: [
 						html anchor
-							mdcListItem;
+							mdcDeprecatedListItem;
 							callback: [ self onClickBlock value: eachItem ];
 							with: [
 								html text: eachItem mdPrimaryString ] ] ] ]

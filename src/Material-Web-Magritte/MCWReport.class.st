@@ -39,22 +39,6 @@ MCWReport >> initialize [
 	self tableEmpty: '** NONE **'
 ]
 
-{ #category : #'rendering-table' }
-MCWReport >> mutationObserverScript: anHtmlId [
-"
-callback = function(mutationsList, observer) {
-	for(const mutation of mutationsList) {
-		if (mutation.type === 'attributes') { document.getElementById('id13').onchange(); }
-	}
-};
-new MutationObserver(callback).observe(document.getElementById('id13'), { attributes: true })
-"
-	| idString |
-	"Not being used for now, because it causes a change/reload infinite cycle"
-	idString := anHtmlId printString.
-	^ 'new MutationObserver(callback = function(mutationsList, observer){for(const mutation of mutationsList){if (mutation.type === ''attributes''){ document.getElementById(', idString, ').onchange();}}}).observe(document.getElementById(', idString, '),{attributes: true})'
-]
-
 { #category : #'rendering-batch' }
 MCWReport >> renderBatchFirstOn: html [
 	| button |
@@ -177,9 +161,7 @@ MCWReport >> renderRowsPerPageOn: html [
 
 	html div mdcDataTable__paginationRowsPerPage; with: [
 		html div mdcDataTable__paginationRowsPerPageLabel with: 'Rows per page'.
-		html form: [
-			self renderRowsPerPageSelectOn: html.
-			html submitButton "with: 'Rows per page'" ] ]
+		self renderRowsPerPageSelectOn: html ]
 ]
 
 { #category : #'rendering-table' }
@@ -188,30 +170,25 @@ MCWReport >> renderRowsPerPageSelectOn: html [
 
 	inputId := html nextId.
 	html div mdcSelect; mdcSelect_outlined; mdcSelect_noLabel; mdcDataTable__paginationRowsPerPageSelect; mdcAutoInit: 'MDCSelect'; with: [
-		"This hidden input is updated by MDC"
-		html hiddenInput callback: [ :value | self batchSize: (value asInteger ifNil: [ self defaultBatchSize ] ifNotNil: [ :size | size ]) ].
-		"html hiddenInput
-			id: inputId;
-			onChange: ((html jQuery ajax)
-				callback: [ :value | self batchSize: value asInteger ] value: html jQuery this value;
-				onComplete: html javascript refresh)."
 		html div mdcSelect__anchor; mdcRole: 'button'; with: [
 			html span mdcSelect__selectedTextContainer; with: [
-				html span id: html nextId; mdcSelect__selectedText ].
-			html html: self dropdownIconHtml ].
+				html span mdcSelect__selectedText with: self batchSize ].
+			html html: self dropdownIconHtml.
 			html span mdcNotchedOutline; mdcNotchedOutline_notched; with: [
-					html span mdcNotchedOutline__leading.
-				html span mdcNotchedOutline__trailing ].
+				html span mdcNotchedOutline__leading.
+				html span mdcNotchedOutline__trailing ] ].
 		html div mdcSelect__menu; mdcMenu; mdcMenuSurface; mdcMenuSurface_fullwidth; mdcRole: 'listbox'; with: [
-			html unorderedList mdcList; with: [
-				"#(10 25 100)" #(2 5 10 25) do: [ :each |
+			html unorderedList mdcDeprecatedList; with: [
+				"#(10 25 100)" #(2 5 10 25 50) do: [ :each |
 					| listItem |
 					listItem := html listItem.
+					listItem onClick: ((html jQuery ajax)
+						callback: [ self batchSize: each ];
+						onComplete: html javascript refresh).
 					self batchSize = each ifTrue: [
 						listItem mdcListItem_selected ].
-					listItem mdcListItem; mdcRole: 'option'; attributeAt: 'data-value' put: each; with: [
-						html span mdcDeprecatedListItem__text; with: each ] ] ] ] ].
-	"html script: (self mutationObserverScript: inputId)"
+					listItem mdcDeprecatedListItem; mdcRole: 'option'; attributeAt: 'data-value' put: each; with: [
+						html span mdcDeprecatedListItem__text; with: each ] ] ] ] ]
 ]
 
 { #category : #'rendering-table' }

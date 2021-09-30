@@ -60,10 +60,10 @@ MCWExternalEditorComponent >> renderMagritteViewerOn: html [
 { #category : #rendering }
 MCWExternalEditorComponent >> renderOneItemListOn: html [
 
-	html unorderedList mdcList; mdcDeprecatedList_twoLine; mdcDeprecatedList_dense;
+	html unorderedList mdcDeprecatedList; mdcDeprecatedList_twoLine; mdcDeprecatedList_dense;
 		with: [
 			html listItem
-				mdcListItem;
+				mdcDeprecatedListItem;
 				onClick: ((html jQuery ajax)
 					callback: [ self mcwApplicationGet navTo: self value aspect: nil ];
 					onComplete: html javascript refresh);

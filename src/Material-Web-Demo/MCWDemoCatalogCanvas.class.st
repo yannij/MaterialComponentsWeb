@@ -343,12 +343,12 @@ MCWDemoCatalogCanvas >> renderCatalogSelectDemosOn: html [
 					html span mdcSelect__selectedTextContainer with: [ html span mdcSelect__selectedText; tabIndex: 0 ].
 					html span mdcLineRipple ].
 			html div mdcSelect__menu; mdcMenu; mdcMenuSurface; mdcAutoInit: 'MDCMenu'; with: [
-				html unorderedList mdcList; with: [
+				html unorderedList mdcDeprecatedList; with: [
 					{ ''->''. 'apple'->'Apple'. 'orange'->'Orange'. 'banana'->'Banana' } keysAndValuesDo: [ :index :item |
 						| listItem isSelected |
 						isSelected := index = selectedIndex.
 						listItem := html listItem
-							mdcListItem;
+							mdcDeprecatedListItem;
 							ariaSelected: isSelected;
 							mdcRole: 'option';
 							dataValue: item key;
@@ -543,9 +543,9 @@ MCWDemoCatalogCanvas >> renderDialogConfirmationOn: html [
 			html div mdcDialog__surface; with: [
 				html heading level2; mdcDialog__title; with: 'Phone ringtone'.
 				html section mdcDialog__content; with: [
-					html unorderedList mdcList; mdcList_avatarList; style: 'list-style-typ: none'; with: [
+					html unorderedList mdcDeprecatedList; mdcList_avatarList; style: 'list-style-typ: none'; with: [
 						data do: [ :eachItem |
-						html listItem mdcListItem; tabIndex: 0; with: [
+						html listItem mdcDeprecatedListItem; tabIndex: 0; with: [
 							html span mdcDeprecatedListItem__graphic; with: [
 								html div mdcRadio with: [
 									html radioButton mdcRadio__nativeControl
@@ -645,14 +645,14 @@ MCWDemoCatalogCanvas >> renderDialogSimpleOn: html [
 			html div mdcDialog__surface; with: [
 				html heading level2; mdcDialog__title; with: 'Select an account'.
 				html section mdcDialog__content; with: [
-					html unorderedList mdcList; mdcList_avatarList; style: 'list-style-typ: none'; with: [
-						html listItem mdcListItem; tabIndex: 0; attributeAt: 'data-mdc-dialog-action' put: 'user1@example.com'; with: [
+					html unorderedList mdcDeprecatedList; mdcList_avatarList; style: 'list-style-typ: none'; with: [
+						html listItem mdcDeprecatedListItem; tabIndex: 0; attributeAt: 'data-mdc-dialog-action' put: 'user1@example.com'; with: [
 							html span mdcMaterialIcons; mdcDeprecatedListItem__graphic; with: 'person'.
 							html span: 'user1@example.com' ].
-						html listItem mdcListItem; attributeAt: 'data-mdc-dialog-action' put: 'user2@example.com'; with: [
+						html listItem mdcDeprecatedListItem; attributeAt: 'data-mdc-dialog-action' put: 'user2@example.com'; with: [
 							html span mdcMaterialIcons; mdcDeprecatedListItem__graphic; with: 'person'.
 							html span: 'user2@example.com' ].
-						html listItem mdcListItem; tabIndex: -1; attributeAt: 'data-mdc-dialog-action' put: 'add'; with: [
+						html listItem mdcDeprecatedListItem; tabIndex: -1; attributeAt: 'data-mdc-dialog-action' put: 'add'; with: [
 							html span mdcMaterialIcons; mdcDeprecatedListItem__graphic; with: 'add'.
 							html span: 'Add account' ] ] ] ] ] ].
 
@@ -673,7 +673,7 @@ MCWDemoCatalogCanvas >> renderResources: resources on: html [
 	html heading level6; class: 'demo-title'; mdcTypography_headline6; with: 'Resources'.
 	html anchor
 		url: resources first;
-		mdcRole: 'listitem'; mdcListItem; mdcRippleUpgraded; "target=""_blank"""
+		mdcRole: 'listitem'; mdcDeprecatedListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
 			html span mdcDeprecatedListItem__graphic; with: [
 				html image
@@ -683,7 +683,7 @@ MCWDemoCatalogCanvas >> renderResources: resources on: html [
 			html text: 'Material Design Guidelines' ].
 	html anchor
 		url: resources second;
-		mdcRole: 'listitem'; mdcListItem; mdcRippleUpgraded; "target=""_blank"""
+		mdcRole: 'listitem'; mdcDeprecatedListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
 			html span mdcDeprecatedListItem__graphic; with: [
 				html image
@@ -693,7 +693,7 @@ MCWDemoCatalogCanvas >> renderResources: resources on: html [
 			html text: 'Documentation' ].
 	html anchor
 		url: resources third;
-		mdcRole: 'listitem'; mdcListItem; mdcRippleUpgraded; "target=""_blank"""
+		mdcRole: 'listitem'; mdcDeprecatedListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
 			html span mdcDeprecatedListItem__graphic; with: [
 				html image
