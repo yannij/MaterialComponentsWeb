@@ -43,7 +43,7 @@ BaselineOfMaterialComponentsWeb >> seaside: spec [
 
 	spec
 		baseline: 'Seaside3'
-		with: [ spec repository: 'github://SeasideSt/Seaside:v3.4.4/repository';
+		with: [ spec repository: 'github://SeasideSt/Seaside:v3.4.5/repository';
 			loads: #('Core' 'JSON' 'Email' 'Javascript' 'JQuery' 'Zinc' 'Seaside-Welcome') ].
 
 ]

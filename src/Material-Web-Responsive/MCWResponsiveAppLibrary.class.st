@@ -27,6 +27,14 @@ html {
   height: 100%;
 }
 
+.mdc-drawer .mdc-deprecated-list-item, .mdc-drawer .mdc-deprecated-list-item__graphic {
+	color: var(--mdc-theme-on-background)
+}
+
+.mdc-menu .mdc-deprecated-list-item, .mdc-menu .mdc-deprecated-list-item__graphic {
+	color: var(--mdc-theme-on-background)
+}
+
 .mdc-list--dense .mdc-list {
   padding: 0;
 }
