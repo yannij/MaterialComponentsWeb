@@ -69,7 +69,7 @@ MCWList >> renderContentOn: html [
 
 	(self listTagOn: html) with: [
 		self subheader notNil
-			ifTrue: [ html heading level3; mdcListGroup__subheader; with: self subheader ].
+			ifTrue: [ html heading level3; mdcDeprecatedListGroup__subheader; with: self subheader ].
 		self listItems keysAndValuesDo: [ :index :each |
 			each selected: (index = self selectedIndex).
 			html render: each ] ]

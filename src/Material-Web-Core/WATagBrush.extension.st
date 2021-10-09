@@ -781,6 +781,18 @@ WATagBrush >> mdcDeprecatedList [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListGroup [
+
+	self class: 'mdc-deprecated-list-group'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListGroup__subheader [
+
+	self class: 'mdc-deprecated-list-group__subheader'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDeprecatedListItem [
 
 	self class: 'mdc-deprecated-list-item'
@@ -796,6 +808,12 @@ WATagBrush >> mdcDeprecatedListItem__graphic [
 WATagBrush >> mdcDeprecatedListItem__meta [
 
 	self class: 'mdc-deprecated-list-item__meta'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListItem__ripple [
+
+	self class: 'mdc-deprecated-list-item__ripple'
 ]
 
 { #category : #'*Material-Web-Core' }

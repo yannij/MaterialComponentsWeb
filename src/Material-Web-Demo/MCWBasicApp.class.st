@@ -29,7 +29,7 @@ MCWBasicApp >> applicationTitle [
 { #category : #rendering }
 MCWBasicApp >> renderContentOn: html [
 
-	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'mdc.autoInit()'); yourself).
+	html document addLoadScript: (JSStream on: 'mdc.autoInit()').
 
 	html script with:
 		'var bodyStyle = document.querySelector("body").style;'

@@ -78,13 +78,6 @@ MCWResponsiveApplication >> beLayoutStructureTablet [
 		self layout beTabletStyle ]
 ]
 
-{ #category : #updating }
-MCWResponsiveApplication >> bodyCssClasses [
-	"Subclasses may override"
-
-	^ #("'mdc-typography'" 'mcw-body')
-]
-
 { #category : #initialization }
 MCWResponsiveApplication >> buildApplicationSettings [
 
@@ -386,7 +379,7 @@ MCWResponsiveApplication >> redirectToLogin [
 { #category : #rendering }
 MCWResponsiveApplication >> renderContentOn: html [
 
-	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'mdc.autoInit()'); yourself).
+	html document addLoadScript: (JSStream on: 'mdc.autoInit()').
 	self renderResizeScriptOn: html.
 	self renderResizeOnloadScriptOn: html.
 
@@ -440,7 +433,7 @@ MCWResponsiveApplication >> renderResizeOnloadScriptOn: html [
 
 	sizeTestString ifNil: [
 		^ self ].
-	html document addLoadScript: (JSScript new add: (JSStream new nextPutAll: 'if (', sizeTestString, ') window.dispatchEvent(new Event(''resize''))'); yourself).
+	html document addLoadScript: (JSStream on: 'if (', sizeTestString, ') window.dispatchEvent(new Event(''resize''))').
 ]
 
 { #category : #rendering }
@@ -460,8 +453,8 @@ window.addEventListener("resize", '
 , '</script>'.
 
 	false ifTrue: [
-	html document addLoadScript: (JSStream new nextPutAll: 'window.addEventListener("resize", function(){alert("hhh")})').
-	html document addLoadScript: (JSStream new nextPutAll: 'document.querySelector("body").onresize=function(){alert("ggg")}').
+	html document addLoadScript: (JSStream on: 'window.addEventListener("resize", function(){alert("hhh")})').
+	html document addLoadScript: (JSStream on: 'document.querySelector("body").onresize=function(){alert("ggg")}').
 	]
 ]
 
@@ -557,12 +550,6 @@ MCWResponsiveApplication >> snackbarText: anObject [
 	snackbarText := anObject
 ]
 
-{ #category : #hooks }
-MCWResponsiveApplication >> style [
-
-	^ self layout headStyle
-]
-
 { #category : #testing }
 MCWResponsiveApplication >> todoScreenWidth [
 "
@@ -629,7 +616,7 @@ MCWResponsiveApplication >> updateRoot: anHtmlRoot [
 
 	"anHtmlRoot bodyAttributes at: 'dir' append: 'rtl'."
 
-	self bodyCssClasses do: [ :each | anHtmlRoot bodyAttributes addClass: each ]
+	anHtmlRoot bodyAttributes addClass: 'mcw-body'
 ]
 
 { #category : #updating }

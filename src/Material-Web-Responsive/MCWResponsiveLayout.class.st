@@ -164,32 +164,6 @@ MCWResponsiveLayout >> cssStyle: anObject [
 	cssStyle := anObject
 ]
 
-{ #category : #accessing }
-MCWResponsiveLayout >> headStyle [
-
-	self isPhoneStyle ifTrue: [ ^ self headStylePhone ].
-	self isTabletStyle ifTrue: [ ^ self headStyleTablet ].
-	^ self headStyleDesktop
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout >> headStyleDesktop [
-
-	^ ''
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout >> headStylePhone [
-
-	^ ''
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout >> headStyleTablet [
-
-	^ ''
-]
-
 { #category : #initialization }
 MCWResponsiveLayout >> initialize [
 
