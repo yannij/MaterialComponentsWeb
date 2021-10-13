@@ -543,7 +543,7 @@ MCWDemoCatalogCanvas >> renderDialogConfirmationOn: html [
 			html div mdcDialog__surface; with: [
 				html heading level2; mdcDialog__title; with: 'Phone ringtone'.
 				html section mdcDialog__content; with: [
-					html unorderedList mdcDeprecatedList; mdcList_avatarList; style: 'list-style-typ: none'; with: [
+					html unorderedList mdcDeprecatedList; mdcDeprecatedList_avatarList; style: 'list-style-typ: none'; with: [
 						data do: [ :eachItem |
 						html listItem mdcDeprecatedListItem; tabIndex: 0; with: [
 							html span mdcDeprecatedListItem__graphic; with: [
@@ -645,7 +645,7 @@ MCWDemoCatalogCanvas >> renderDialogSimpleOn: html [
 			html div mdcDialog__surface; with: [
 				html heading level2; mdcDialog__title; with: 'Select an account'.
 				html section mdcDialog__content; with: [
-					html unorderedList mdcDeprecatedList; mdcList_avatarList; style: 'list-style-typ: none'; with: [
+					html unorderedList mdcDeprecatedList; mdcDeprecatedList_avatarList; style: 'list-style-typ: none'; with: [
 						html listItem mdcDeprecatedListItem; tabIndex: 0; attributeAt: 'data-mdc-dialog-action' put: 'user1@example.com'; with: [
 							html span mdcMaterialIcons; mdcDeprecatedListItem__graphic; with: 'person'.
 							html span: 'user1@example.com' ].

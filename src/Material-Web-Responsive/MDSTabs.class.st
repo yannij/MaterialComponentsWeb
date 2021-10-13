@@ -38,6 +38,42 @@ MDSTabs >> renderTabsOn: html [
 ]
 
 { #category : #accessing }
+MDSTabs >> showIconInline [
+
+	self tabs do: [ :eachTab | eachTab showStacked: false ]
+]
+
+{ #category : #accessing }
+MDSTabs >> showIconOff [
+
+	self tabs do: [ :eachTab | eachTab showIcon: false ]
+]
+
+{ #category : #accessing }
+MDSTabs >> showIconOn [
+
+	self tabs do: [ :eachTab | eachTab showIcon: true ]
+]
+
+{ #category : #accessing }
+MDSTabs >> showIconStacked [
+
+	self tabs do: [ :eachTab | eachTab showStacked: true ]
+]
+
+{ #category : #accessing }
+MDSTabs >> showLabelOff [
+
+	self tabs do: [ :eachTab | eachTab showLabel: false ]
+]
+
+{ #category : #accessing }
+MDSTabs >> showLabelOn [
+
+	self tabs do: [ :eachTab | eachTab showLabel: true ]
+]
+
+{ #category : #accessing }
 MDSTabs >> tabs [
 
 	^ tabs

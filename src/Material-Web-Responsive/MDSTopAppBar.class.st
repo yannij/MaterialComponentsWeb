@@ -48,7 +48,6 @@ MDSTopAppBar >> renderContentOn: html [
 
 	tag := html header mdcTopAppBar.
 
-	tag mdcTopAppBar_dense_if: self mcwDenseView.
 	"self isShort ifTrue: [ tag mdcTopAppBar_short ].
 	self isShortCollapsed ifTrue: [ tag mdcTopAppBar_shortCollapsed ].
 	self needsPaddingRight ifTrue: [ tag style: 'padding-right: 256px' ]."

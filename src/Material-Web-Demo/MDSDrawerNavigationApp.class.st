@@ -3,8 +3,7 @@ Class {
 	#superclass : #MDSLayoutExampleApp,
 	#instVars : [
 		'drawer',
-		'list',
-		'tabs'
+		'list'
 	],
 	#category : #'Material-Web-Demo'
 }

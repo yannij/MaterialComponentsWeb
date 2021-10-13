@@ -60,7 +60,12 @@ MDSTabNavigationApp >> initialize [
 	super initialize.
 
 	"self tabs: self buildTabs"
-	self tabs: (self buildTabs: 6)
+	self tabs: (self buildTabs: 6).
+	self tabs showIconOn.
+	"self tabs showIconOff."
+	self tabs showLabelOn.
+	"self tabs showLabelOff."
+	self tabs showIconStacked
 ]
 
 { #category : #rendering }

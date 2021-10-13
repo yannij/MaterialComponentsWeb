@@ -7,7 +7,8 @@ Class {
 		'header',
 		'content',
 		'modal',
-		'dismissible'
+		'dismissible',
+		'fixedAdjust'
 	],
 	#category : #'Material-Web-Responsive'
 }
@@ -21,6 +22,12 @@ MDSDrawer class >> content: aComponent [
 ]
 
 { #category : #'instance creation' }
+MDSDrawer class >> content: aComponent title: aTitleString [
+
+	^ self content: aComponent title: aTitleString subtitle: nil
+]
+
+{ #category : #'instance creation' }
 MDSDrawer class >> content: aComponent title: aTitleString subtitle: aSubtitleString [
 
 	^ self new
@@ -28,6 +35,12 @@ MDSDrawer class >> content: aComponent title: aTitleString subtitle: aSubtitleSt
 		title: aTitleString;
 		subtitle: aSubtitleString
 		yourself
+]
+
+{ #category : #rendering }
+MDSDrawer >> addFixedAdjust: anHtmlTag [
+
+	self fixedAdjust notNil ifTrue: [ anHtmlTag mdcTopAppBar_fixedAdjust ]
 ]
 
 { #category : #accessing }
@@ -52,6 +65,30 @@ MDSDrawer >> dismissible [
 MDSDrawer >> dismissible: anObject [
 
 	dismissible := anObject
+]
+
+{ #category : #accessing }
+MDSDrawer >> fixedAdjust [
+
+	^ fixedAdjust
+]
+
+{ #category : #accessing }
+MDSDrawer >> fixedAdjust: anObject [
+
+	fixedAdjust := anObject
+]
+
+{ #category : #accessing }
+MDSDrawer >> fixedAdjustDense [
+
+	self fixedAdjust: #dense
+]
+
+{ #category : #accessing }
+MDSDrawer >> fixedAdjustRegular [
+
+	self fixedAdjust: #regular
 ]
 
 { #category : #accessing }
@@ -116,8 +153,11 @@ MDSDrawer >> renderDrawerHeaderOn: html [
 
 { #category : #rendering }
 MDSDrawer >> renderDrawerOn: html [
+	| tag |
 
-	html aside mdcDrawer with: [
+	tag := html aside mdcDrawer.
+	self addFixedAdjust: tag.
+	tag with: [
 		self renderDrawerHeaderOn: html.
 		self renderDrawerContentOn: html ]
 ]

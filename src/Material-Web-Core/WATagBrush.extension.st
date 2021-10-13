@@ -823,6 +823,12 @@ WATagBrush >> mdcDeprecatedListItem__text [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedList_avatarList [
+
+	self class: 'mdc-deprecated-list--avatar-list'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDeprecatedList_dense [
 
 	self class: 'mdc-deprecated-list--dense'

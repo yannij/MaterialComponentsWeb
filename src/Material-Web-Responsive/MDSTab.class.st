@@ -5,7 +5,10 @@ Class {
 		'label',
 		'icon',
 		'callbackBlock',
-		'active'
+		'active',
+		'showLabel',
+		'showIcon',
+		'showStacked'
 	],
 	#category : #'Material-Web-Responsive'
 }
@@ -73,6 +76,9 @@ MDSTab >> initialize [
 
 	super initialize.
 
+	self showLabel: true.
+	self showIcon: true.
+	self showStacked: false.
 	self active: false
 ]
 
@@ -98,14 +104,17 @@ MDSTab >> renderContentOn: html [
 MDSTab >> renderTabOn: html [
 	| tagTab tagTabIndicator |
 
-	(tagTab := html anchor) mdcTab; "mdcAutoInit: 'MDCTab';"
+	tagTab := html anchor mdcTab. "mdcAutoInit: 'MDCTab';"
+	self showStacked ifTrue: [ tagTab mdcTab_stacked ].
+	tagTab
 		id: html nextId;
 		callback: self callbackBlock if: self callbackBlock notNil;
 		with: [
 			html span mdcTab__content; with: [
-				self icon ifNotNil: [ :value |
-					html span mdcTab__icon; mdcMaterialIcons; with: value ].
-				html span mdcTab__textLabel; with: self label ].
+				self showIcon ifTrue: [
+					html span mdcTab__icon; mdcMaterialIcons; with: self icon ].
+				self showLabel ifTrue: [
+					html span mdcTab__textLabel; with: self label ] ].
 			(tagTabIndicator := html span)
 				mdcTabIndicator;
 				id: html nextId;
@@ -117,4 +126,40 @@ MDSTab >> renderTabOn: html [
 		html script: (html jQuery script: [ :s | s
 			<< ((s jQuery id: tagTab id) call: 'focus');
 			<< ((s jQuery id: tagTabIndicator id) call: 'addClass' with: 'mdc-tab-indicator--active') ]) ]
+]
+
+{ #category : #accessing }
+MDSTab >> showIcon [
+
+	^ showIcon
+]
+
+{ #category : #accessing }
+MDSTab >> showIcon: anObject [
+
+	showIcon := anObject
+]
+
+{ #category : #accessing }
+MDSTab >> showLabel [
+
+	^ showLabel
+]
+
+{ #category : #accessing }
+MDSTab >> showLabel: anObject [
+
+	showLabel := anObject
+]
+
+{ #category : #accessing }
+MDSTab >> showStacked [
+
+	^ showStacked
+]
+
+{ #category : #accessing }
+MDSTab >> showStacked: anObject [
+
+	showStacked := anObject
 ]
