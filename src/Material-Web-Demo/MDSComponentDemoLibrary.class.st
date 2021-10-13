@@ -1,11 +1,11 @@
 Class {
-	#name : #MCWDemoCatalogLibrary,
+	#name : #MDSComponentDemoLibrary,
 	#superclass : #WAFileLibrary,
 	#category : #'Material-Web-Demo'
 }
 
 { #category : #uploaded }
-MCWDemoCatalogLibrary >> appCss [
+MDSComponentDemoLibrary >> appCss [
 
 	^ '
 body {
@@ -195,7 +195,7 @@ a.catalog-image-link {
 ]
 
 { #category : #uploaded }
-MCWDemoCatalogLibrary >> buttonCatalogCss [
+MDSComponentDemoLibrary >> buttonCatalogCss [
 
 	^ '
 .demo-button {

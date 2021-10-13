@@ -5,9 +5,15 @@ Class {
 }
 
 { #category : #rendering }
-MDSDemoButtonPage >> renderContentOn: html [
+MDSDemoButtonPage >> pageInfo [
 
-	self renderPageOn: html
+	^ #(
+	'Button'
+	'Buttons communicate an action a user can take. They are typically placed throughout your UI, in places like dialogs, forms, cards, and toolbars.'
+	'https://material.io/go/design-buttons'
+	'https://material.io/components/web/catalog/buttons/'
+	'https://github.com/material-components/material-components-web/tree/master/packages/mdc-button'
+	)
 ]
 
 { #category : #rendering }
@@ -57,31 +63,8 @@ MDSDemoButtonPage >> renderDemosOn: html [
 { #category : #rendering }
 MDSDemoButtonPage >> renderHeroOn: html [
 
-	html div class: 'hero'; with: [
-		html div with: [
-			html button type: ''; class: 'hero-button'; mdcButton; mdcRippleUpgraded; with: 'Text'.
-			html button type: ''; class: 'hero-button'; mdcButton; mdcButton_raised; mdcRippleUpgraded; with: 'Raised'.
-			html button type: ''; class: 'hero-button'; mdcButton; mdcButton_unelevated; mdcRippleUpgraded; with: 'Unelevated'.
-			html button type: ''; class: 'hero-button'; mdcButton; mdcButton_outlined; mdcRippleUpgraded; with: 'Outlined'.
-		]
-	]
-
-]
-
-{ #category : #rendering }
-MDSDemoButtonPage >> renderPageOn: html [
-	| headlineString summaryString resources |
-
-	resources := #(
-		'https://material.io/go/design-buttons'
-		'https://material.io/components/web/catalog/buttons/'
-		'https://github.com/material-components/material-components-web/tree/master/packages/mdc-button'
-	).
-	headlineString := 'Button'.
-	summaryString := 'Buttons communicate an action a user can take. They are typically placed throughout your UI, in places like dialogs, forms, cards, and toolbars.'.
-
-	self renderHeadline: headlineString summary: summaryString on: html.
-	self renderHeroOn: html.
-	self renderResources: resources on: html.
-	self renderDemos: [ :value | self renderDemosOn: value ] on: html
+	html button type: ''; class: 'hero-button'; mdcButton; mdcRippleUpgraded; with: 'Text'.
+	html button type: ''; class: 'hero-button'; mdcButton; mdcButton_raised; mdcRippleUpgraded; with: 'Raised'.
+	html button type: ''; class: 'hero-button'; mdcButton; mdcButton_unelevated; mdcRippleUpgraded; with: 'Unelevated'.
+	html button type: ''; class: 'hero-button'; mdcButton; mdcButton_outlined; mdcRippleUpgraded; with: 'Outlined'
 ]

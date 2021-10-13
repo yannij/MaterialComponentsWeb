@@ -4,13 +4,25 @@ Class {
 	#category : #'Material-Web-Demo'
 }
 
-{ #category : #'page - dialog' }
+{ #category : #rendering }
 MDSDemoDialogPage >> dialogOpenScript: anHtmlId [
 
 	^ 'document.getElementById(''', anHtmlId, ''').MDCDialog.open()'
 ]
 
-{ #category : #'page - dialog' }
+{ #category : #rendering }
+MDSDemoDialogPage >> pageInfo [
+
+	^ #(
+	'Dialog'
+	'Dialogs inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.'
+	'https://material.io/go/design-dialogs'
+	'https://material.io/components/web/catalog/dialogs/'
+	'https://github.com/material-components/material-components-web/tree/master/packages/mdc-dialog'
+	)
+]
+
+{ #category : #rendering }
 MDSDemoDialogPage >> renderDemosOn: html [
 	| alertId simpleId confirmationId scrollableId |
 
@@ -26,7 +38,7 @@ MDSDemoDialogPage >> renderDemosOn: html [
 	html break; break; break; break
 ]
 
-{ #category : #'page - dialog' }
+{ #category : #rendering }
 MDSDemoDialogPage >> renderDialogAlertOn: html [
 	| dialogId |
 
@@ -48,7 +60,7 @@ MDSDemoDialogPage >> renderDialogAlertOn: html [
 	^ dialogId
 ]
 
-{ #category : #'page - dialog' }
+{ #category : #rendering }
 MDSDemoDialogPage >> renderDialogConfirmationOn: html [
 	| dialogId data |
 
@@ -89,7 +101,7 @@ MDSDemoDialogPage >> renderDialogConfirmationOn: html [
 	^ dialogId
 ]
 
-{ #category : #'page - dialog' }
+{ #category : #rendering }
 MDSDemoDialogPage >> renderDialogScrollableOn: html [
 	| dialogId |
 
@@ -111,7 +123,7 @@ MDSDemoDialogPage >> renderDialogScrollableOn: html [
 	^ dialogId
 ]
 
-{ #category : #'page - dialog' }
+{ #category : #rendering }
 MDSDemoDialogPage >> renderDialogScrollableSectionOn: html [
 	| paragraphs |
 
@@ -131,7 +143,7 @@ MDSDemoDialogPage >> renderDialogScrollableSectionOn: html [
 		paragraphs do: [ :eachParagraph | html paragraph: eachParagraph ] ]
 ]
 
-{ #category : #'page - dialog' }
+{ #category : #rendering }
 MDSDemoDialogPage >> renderDialogSimpleOn: html [
 	| dialogId |
 
@@ -156,29 +168,10 @@ MDSDemoDialogPage >> renderDialogSimpleOn: html [
 	^ dialogId
 ]
 
-{ #category : #'page - dialog' }
+{ #category : #rendering }
 MDSDemoDialogPage >> renderHeroOn: html [
+	| confirmationId |
 
-	html div class: 'hero'; with: [
-		html div with: [
-			html html: '<div id="my-mdc-dialog" class="mdc-dialog hero-demo" role="alertdialog" aria-labelledby="my-mdc-dialog-label" aria-describedby="my-mdc-dialog-description"><div class="mdc-dialog__container"><div class="mdc-dialog__surface"><h2 id="my-mdc-dialog-label" class="mdc-dialog__title">Get this party started?</h2><section id="my-mdc-dialog-description" class="mdc-dialog__content">Turn up the jams and have a good time.</section><footer class="mdc-dialog__actions"><button type="button" class="mdc-button mdc-dialog__button mdc-ripple-upgraded">Decline</button><button type="button" class="mdc-button mdc-dialog__button mdc-ripple-upgraded">Accept</button></footer></div></div></div>'
-		] ]
-]
-
-{ #category : #'page - dialog' }
-MDSDemoDialogPage >> renderPageOn: html [
-	| headlineString summaryString resources |
-
-	resources := #(
-		'https://material.io/go/design-dialogs'
-		'https://material.io/components/web/catalog/dialogs/'
-		'https://github.com/material-components/material-components-web/tree/master/packages/mdc-dialog'
-	).
-	headlineString := 'Dialog'.
-	summaryString := 'Dialogs inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.'.
-
-	self renderHeadline: headlineString summary: summaryString on: html.
-	self renderHeroOn: html.
-	self renderResources: resources on: html.
-	self renderDemos: [ :value | self renderDemosOn: value ] on: html
+	confirmationId := self renderDialogConfirmationOn: html.
+	html button mdcButton; onClick: (self dialogOpenScript: confirmationId); with: 'Confirmation'
 ]

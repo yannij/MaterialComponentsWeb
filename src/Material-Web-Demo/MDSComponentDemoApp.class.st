@@ -44,7 +44,7 @@ MDSComponentDemoApp class >> demoList [
 ('switch' 'Switch' 'switch_180px.svg' MDSDemoSwitchPage)
 ('tabs' 'Tab Bar' 'tabs_180px.svg' MDSDemoTabBarPage)
 ('text-field' 'Text Field' 'form_field_180px.svg' MDSDemoTextFieldPage)
-('theme' 'Theme' 'ic_theme_24px.svg' MDSDemoThemePage)
+"('theme' 'Theme' 'ic_theme_24px.svg' MDSDemoThemePage)"
 ('top-app-bar' 'Top App Bar' 'top_app_bar_180px.svg' MDSDemoTopAppBarPage)
 ('typography' 'Typography' 'fonts_180px.svg' MDSDemoTypographyPage)
 )
@@ -287,8 +287,8 @@ MDSComponentDemoApp >> updateRoot: anHtmlRoot [
 	anHtmlRoot stylesheet url: 'https://fonts.googleapis.com/css2?family=Material+Icons+Outlined'.
 	anHtmlRoot stylesheet url: MCWResponsiveAppLibrary / #responsiveAppCss.
 
-	anHtmlRoot stylesheet url: (MCWDemoCatalogLibrary urlOf: #appCss).
-	anHtmlRoot stylesheet url: (MCWDemoCatalogLibrary urlOf: #buttonCatalogCss).
+	anHtmlRoot stylesheet url: (MDSComponentDemoLibrary urlOf: #appCss).
+	anHtmlRoot stylesheet url: (MDSComponentDemoLibrary urlOf: #buttonCatalogCss).
 
 	anHtmlRoot title: self applicationTitle.
 	anHtmlRoot meta

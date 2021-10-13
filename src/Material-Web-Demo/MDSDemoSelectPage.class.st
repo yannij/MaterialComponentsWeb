@@ -4,7 +4,19 @@ Class {
 	#category : #'Material-Web-Demo'
 }
 
-{ #category : #'page - select' }
+{ #category : #rendering }
+MDSDemoSelectPage >> pageInfo [
+
+	^ #(
+	'Select'
+	'Selects allow users to select from a single-option menu. It functions as a wrapper around the browser''s native <select> element.'
+	'https://material.io/go/design-text-fields'
+	'https://material.io/components/web/catalog/input-controls/select-menus/'
+	'https://github.com/material-components/material-components-web/tree/master/packages/mdc-slider'
+	)
+]
+
+{ #category : #rendering }
 MDSDemoSelectPage >> renderDemosOn: html [
 	| selectedIndex |
 
@@ -44,31 +56,8 @@ MDSDemoSelectPage >> renderDemosOn: html [
 		
 ]
 
-{ #category : #'page - select' }
+{ #category : #rendering }
 MDSDemoSelectPage >> renderHeroOn: html [
 
-	html div class: 'hero'; with: [
-		html div with: [
-			html space
-		]
-	]
-
-]
-
-{ #category : #'page - select' }
-MDSDemoSelectPage >> renderPageOn: html [
-	| headlineString summaryString resources |
-
-	resources := #(
-		'https://material.io/go/design-text-fields'
-		'https://material.io/components/web/catalog/input-controls/select-menus/'
-		'https://github.com/material-components/material-components-web/tree/master/packages/mdc-slider'
-	).
-	headlineString := 'Select'.
-	summaryString := 'Selects allow users to select from a single-option menu. It functions as a wrapper around the browser''s native <select> element.'.
-
-	self renderHeadline: headlineString summary: summaryString on: html.
-	self renderHeroOn: html.
-	self renderResources: resources on: html.
-	self renderDemos: [ :value | self renderDemosOn: value ] on: html
+	self renderDemosOn: html
 ]

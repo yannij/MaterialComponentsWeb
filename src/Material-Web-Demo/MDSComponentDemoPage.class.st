@@ -5,16 +5,34 @@ Class {
 }
 
 { #category : #rendering }
-MDSComponentDemoPage >> renderContentOn: html [
+MDSComponentDemoPage >> pageInfo [
 
-	self renderPageOn: html
+	self subclassResponsibility
 ]
 
 { #category : #rendering }
-MDSComponentDemoPage >> renderDemos: aBlock on: html [
+MDSComponentDemoPage >> renderContentOn: html [
+	| pageInfo |
+
+	pageInfo := self pageInfo.
+
+	self renderHeadline: pageInfo first summary: pageInfo second on: html.
+	self renderHeroSectionOn: html.
+	self renderResources: pageInfo on: html.
+	self renderDemoSectionOn: html
+]
+
+{ #category : #rendering }
+MDSComponentDemoPage >> renderDemoSectionOn: html [
 
 	html heading level2; class: 'demo-title'; mdcTypography_headline6; with: 'Demos'.
-	html div with: [ aBlock value: html ]
+	html div with: [ self renderDemosOn: html ]
+]
+
+{ #category : #rendering }
+MDSComponentDemoPage >> renderDemosOn: html [
+
+	self subclassResponsibility
 ]
 
 { #category : #rendering }
@@ -25,9 +43,16 @@ MDSComponentDemoPage >> renderHeadline: aHeadline summary: aSummary on: html [
 ]
 
 { #category : #rendering }
-MDSComponentDemoPage >> renderPageOn: html [
+MDSComponentDemoPage >> renderHeroOn: html [
 
-	html text: 'No demo yet'
+	self subclassResponsibility
+]
+
+{ #category : #rendering }
+MDSComponentDemoPage >> renderHeroSectionOn: html [
+
+	html div class: 'hero'; with: [
+		html div with: [ self renderHeroOn: html ] ]
 ]
 
 { #category : #rendering }
@@ -35,7 +60,7 @@ MDSComponentDemoPage >> renderResources: resources on: html [
 
 	html heading level6; class: 'demo-title'; mdcTypography_headline6; with: 'Resources'.
 	html anchor
-		url: resources first;
+		url: resources third;
 		mdcRole: 'listitem'; mdcDeprecatedListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
 			html span mdcDeprecatedListItem__graphic; with: [
@@ -45,7 +70,7 @@ MDSComponentDemoPage >> renderResources: resources on: html [
 					url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_material_design_24px.svg' ].
 			html text: 'Material Design Guidelines' ].
 	html anchor
-		url: resources second;
+		url: resources fourth;
 		mdcRole: 'listitem'; mdcDeprecatedListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
 			html span mdcDeprecatedListItem__graphic; with: [
@@ -55,7 +80,7 @@ MDSComponentDemoPage >> renderResources: resources on: html [
 					url: 'https://material-components.github.io/material-components-web-catalog/static/media/ic_drive_document_24px.svg' ].
 			html text: 'Documentation' ].
 	html anchor
-		url: resources third;
+		url: resources fifth;
 		mdcRole: 'listitem'; mdcDeprecatedListItem; mdcRippleUpgraded; "target=""_blank"""
 		with: [
 			html span mdcDeprecatedListItem__graphic; with: [
