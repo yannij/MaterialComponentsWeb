@@ -81,7 +81,7 @@ MCWResponsiveApplication >> beLayoutStructureTablet [
 { #category : #initialization }
 MCWResponsiveApplication >> buildApplicationSettings [
 
-	^ MCWApplicationSettings new
+	^ MDMApplicationSettings new
 ]
 
 { #category : #initialization }
@@ -159,7 +159,7 @@ MCWResponsiveApplication >> buildSideNav [
 { #category : #initialization }
 MCWResponsiveApplication >> buildSideNavList [
 
-	^ MCWList new
+	^ MDSDeprecatedList new
 		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [ self sideNav menuItemCallback ]);
 		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [ self sideNav menuItemCallback ]);
 		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [ self sideNav menuItemCallback ]);

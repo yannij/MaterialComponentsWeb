@@ -1,6 +1,6 @@
 Class {
 	#name : #ShrineLogin,
-	#superclass : #MCWLogin,
+	#superclass : #MDSLogin,
 	#category : #'Material-Study-Shrine'
 }
 

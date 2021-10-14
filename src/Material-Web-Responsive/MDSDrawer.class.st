@@ -86,6 +86,12 @@ MDSDrawer >> fixedAdjustDense [
 ]
 
 { #category : #accessing }
+MDSDrawer >> fixedAdjustNone [
+
+	self fixedAdjust: nil
+]
+
+{ #category : #accessing }
 MDSDrawer >> fixedAdjustRegular [
 
 	self fixedAdjust: #regular

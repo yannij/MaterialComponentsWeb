@@ -68,7 +68,7 @@ ShrineApp >> buildSideNav [
 { #category : #initialization }
 ShrineApp >> buildSideNavList [
 
-	^ MCWList new
+	^ MDSDeprecatedList new
 		listItemAdd: (ShrineBranding new);
 		listItemAdd: (MCWListItemIcon itemText: 'Featured' iconName: '' callback: [ ]);
 		"Divider Line"

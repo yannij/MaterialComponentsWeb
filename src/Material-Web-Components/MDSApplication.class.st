@@ -22,7 +22,7 @@ MDSApplication class >> mcwRegisterDeployment: aName [
 	app := WAAdmin register: self asApplicationAt: aName.
 	app
 		addLibrary: JQDevelopmentLibrary;
-		addLibrary: MCWDevelopmentLibrary;
+		addLibrary: MDSDevelopmentLibrary;
 		yourself.
 	^ app
 ]
@@ -37,7 +37,7 @@ MDSApplication class >> mcwRegisterDevelopment: aName [
 	app := WAAdmin register: self asApplicationAt: aName.
 	app
 		addLibrary: JQDevelopmentLibrary;
-		addLibrary: MCWDevelopmentLibrary;
+		addLibrary: MDSDevelopmentLibrary;
 		yourself.
 	^ app
 ]
@@ -82,7 +82,7 @@ MDSApplication >> logString: aString [
 MDSApplication >> materialComponentsWebCssUrl [
 
 	^ self materialVersion
-		ifNil: [ MCWDevelopmentLibrary / #materialcomponentswebCss ]
+		ifNil: [ MDSDevelopmentLibrary / #materialcomponentswebCss ]
 		ifNotNil: [ :arg | self materialComponentsWebUrlFragment , '.min.css' ]
 ]
 
@@ -90,7 +90,7 @@ MDSApplication >> materialComponentsWebCssUrl [
 MDSApplication >> materialComponentsWebJsUrl [
 
 	^ self materialVersion
-		ifNil: [ MCWDevelopmentLibrary / #materialcomponentswebJs ]
+		ifNil: [ MDSDevelopmentLibrary / #materialcomponentswebJs ]
 		ifNotNil: [ :arg | self materialComponentsWebUrlFragment , '.min.js' ]
 ]
 

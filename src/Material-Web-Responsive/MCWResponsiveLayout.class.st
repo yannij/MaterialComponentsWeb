@@ -168,7 +168,7 @@ MCWResponsiveLayout >> initialize [
 
 	super initialize.
 
-	self settingsView: MCWApplicationSettingsView new.
+	self settingsView: MDMApplicationSettingsView new.
 	self screenStyle: self class layoutDesktop
 ]
 
