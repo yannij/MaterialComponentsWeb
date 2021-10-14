@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWResponsiveLayout,
-	#superclass : #MCWComponent,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'app',
 		'maxWidth',

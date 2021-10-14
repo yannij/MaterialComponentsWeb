@@ -1,6 +1,6 @@
 Class {
 	#name : #MDSTabs,
-	#superclass : #MCWComponent,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'tabs'
 	],

@@ -1,24 +1,24 @@
 Class {
-	#name : #MCWListMenuItems,
-	#superclass : #MCWList,
+	#name : #MDSMenuList,
+	#superclass : #MDSAbstractList,
 	#category : #'Material-Web-Responsive'
 }
 
 { #category : #hack }
-MCWListMenuItems >> iconName [
+MDSMenuList >> iconName [
 
 	^ nil
 ]
 
 { #category : #rendering }
-MCWListMenuItems >> listTagOn: html [
+MDSMenuList >> listTagOn: html [
 
 	self error: 'Not used'
 
 ]
 
 { #category : #rendering }
-MCWListMenuItems >> renderContentOn: html [
+MDSMenuList >> renderContentOn: html [
 
 	html div
 		mdcMenuSurface_anchor;
@@ -32,7 +32,7 @@ MCWListMenuItems >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-MCWListMenuItems >> renderMenuItemsOn: html [
+MDSMenuList >> renderMenuItemsOn: html [
 
 	html unorderedList
 		mdcDeprecatedList;

@@ -1,6 +1,6 @@
 Class {
-	#name : #MCWSideSheet,
-	#superclass : #MCWUserInterfaceRegion,
+	#name : #MDSSideSheet,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'component'
 	],
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #accessing }
-MCWSideSheet >> component [
+MDSSideSheet >> component [
 	^ component
 ]
 
 { #category : #accessing }
-MCWSideSheet >> component: anObject [
+MDSSideSheet >> component: anObject [
 	component := anObject
 ]
 
 { #category : #rendering }
-MCWSideSheet >> renderContentOn: html [
+MDSSideSheet >> renderContentOn: html [
 
 	self isHidden ifTrue: [ ^ self ].
 	self component ifNil: [ ^ self ].

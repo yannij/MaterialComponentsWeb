@@ -1,5 +1,5 @@
 Class {
-	#name : #MCWApplication,
+	#name : #MDSApplication,
 	#superclass : #MDSComponent,
 	#instVars : [
 		'materialVersion'
@@ -8,12 +8,12 @@ Class {
 }
 
 { #category : #testing }
-MCWApplication class >> canBeRoot [
+MDSApplication class >> canBeRoot [
 	^ true
 ]
 
 { #category : #'instance creation' }
-MCWApplication class >> mcwRegisterDeployment: aName [
+MDSApplication class >> mcwRegisterDeployment: aName [
 	| app |
 
 	self environment at: #WADevelopmentConfiguration ifPresent: [ :class |
@@ -28,7 +28,7 @@ MCWApplication class >> mcwRegisterDeployment: aName [
 ]
 
 { #category : #'instance creation' }
-MCWApplication class >> mcwRegisterDevelopment: aName [
+MDSApplication class >> mcwRegisterDevelopment: aName [
 	| app |
 
 	self environment at: #WADevelopmentConfiguration ifPresent: [ :class |
@@ -43,7 +43,7 @@ MCWApplication class >> mcwRegisterDevelopment: aName [
 ]
 
 { #category : #accessing }
-MCWApplication >> materialComponentsWebCssUrl [
+MDSApplication >> materialComponentsWebCssUrl [
 
 	^ self materialVersion
 		ifNil: [ MCWDevelopmentLibrary / #materialcomponentswebCss ]
@@ -51,7 +51,7 @@ MCWApplication >> materialComponentsWebCssUrl [
 ]
 
 { #category : #accessing }
-MCWApplication >> materialComponentsWebJsUrl [
+MDSApplication >> materialComponentsWebJsUrl [
 
 	^ self materialVersion
 		ifNil: [ MCWDevelopmentLibrary / #materialcomponentswebJs ]
@@ -59,7 +59,7 @@ MCWApplication >> materialComponentsWebJsUrl [
 ]
 
 { #category : #accessing }
-MCWApplication >> materialComponentsWebUrlFragment [
+MDSApplication >> materialComponentsWebUrlFragment [
 	| versionStirng |
 
 	versionStirng := self materialVersion isEmpty
@@ -70,17 +70,17 @@ MCWApplication >> materialComponentsWebUrlFragment [
 ]
 
 { #category : #accessing }
-MCWApplication >> materialVersion [
+MDSApplication >> materialVersion [
 	^ materialVersion
 ]
 
 { #category : #accessing }
-MCWApplication >> materialVersion: anObject [
+MDSApplication >> materialVersion: anObject [
 	materialVersion := anObject
 ]
 
 { #category : #actions }
-MCWApplication >> redirect [
+MDSApplication >> redirect [
 	"we need to build the url we redirect to because we just expired the session in this test"
 	| url |
 	url := self application url.
@@ -91,13 +91,13 @@ MCWApplication >> redirect [
 ]
 
 { #category : #rendering }
-MCWApplication >> renderMaterialComponentsWebJsOn: html [
+MDSApplication >> renderMaterialComponentsWebJsOn: html [
 
 	html script async; url: self materialComponentsWebJsUrl
 ]
 
 { #category : #updating }
-MCWApplication >> updateRoot: anHtmlRoot [
+MDSApplication >> updateRoot: anHtmlRoot [
 
 	super updateRoot: anHtmlRoot.
 
@@ -107,7 +107,7 @@ MCWApplication >> updateRoot: anHtmlRoot [
 ]
 
 { #category : #updating }
-MCWApplication >> updateRootFonts: anHtmlRoot [
+MDSApplication >> updateRootFonts: anHtmlRoot [
 
 	anHtmlRoot stylesheet url: 'https://fonts.googleapis.com/css2?family=Material+Icons'.
 	anHtmlRoot stylesheet url: 'https://fonts.googleapis.com/css2?family=Material+Icons+Outlined'.
@@ -115,7 +115,7 @@ MCWApplication >> updateRootFonts: anHtmlRoot [
 ]
 
 { #category : #updating }
-MCWApplication >> updateRootMaterialComponentsWebCss: anHtmlRoot [
+MDSApplication >> updateRootMaterialComponentsWebCss: anHtmlRoot [
 
 	anHtmlRoot stylesheet url: self materialComponentsWebCssUrl
 ]

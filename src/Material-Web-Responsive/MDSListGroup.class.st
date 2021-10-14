@@ -1,6 +1,6 @@
 Class {
-	#name : #MCWListGroup,
-	#superclass : #MCWLayoutComponent,
+	#name : #MDSListGroup,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'groupedLists'
 	],
@@ -8,24 +8,24 @@ Class {
 }
 
 { #category : #accessing }
-MCWListGroup >> addGroupedList: aList [
+MDSListGroup >> addGroupedList: aList [
 
 	self groupedLists add: aList
 
 ]
 
 { #category : #accessing }
-MCWListGroup >> groupedLists [
+MDSListGroup >> groupedLists [
 	^ groupedLists
 ]
 
 { #category : #accessing }
-MCWListGroup >> groupedLists: anObject [
+MDSListGroup >> groupedLists: anObject [
 	groupedLists := anObject
 ]
 
 { #category : #initialization }
-MCWListGroup >> initialize [
+MDSListGroup >> initialize [
 
 	super initialize.
 
@@ -34,7 +34,7 @@ MCWListGroup >> initialize [
 ]
 
 { #category : #rendering }
-MCWListGroup >> renderContentOn: html [
+MDSListGroup >> renderContentOn: html [
 
 	html div mdcDeprecatedListGroup; with: [
 		self groupedLists do: [ :eachList | html render: eachList ] ]

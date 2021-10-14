@@ -1,17 +1,17 @@
 Class {
-	#name : #MCWBasicApp,
-	#superclass : #MCWApplication,
+	#name : #MDSHelloWorldApp,
+	#superclass : #MDSApplication,
 	#category : #'Material-Web-Demo'
 }
 
 { #category : #initialization }
-MCWBasicApp class >> applicationPath [
+MDSHelloWorldApp class >> applicationPath [
 
-	^ 'material/basic'
+	^ 'material/hello-world'
 ]
 
 { #category : #initialization }
-MCWBasicApp class >> initialize [
+MDSHelloWorldApp class >> initialize [
 	"Register path with Seaside.
 	WAAdmin unregister: self applicationPath.
 	"
@@ -21,13 +21,13 @@ MCWBasicApp class >> initialize [
 ]
 
 { #category : #accessing }
-MCWBasicApp >> applicationTitle [
+MDSHelloWorldApp >> applicationTitle [
 
-	^ 'Basic Example'
+	^ 'Hello World Example'
 ]
 
 { #category : #rendering }
-MCWBasicApp >> renderContentOn: html [
+MDSHelloWorldApp >> renderContentOn: html [
 
 	html document addLoadScript: (JSStream on: 'mdc.autoInit()').
 
@@ -43,7 +43,7 @@ MCWBasicApp >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-MCWBasicApp >> renderLayoutOn: html [
+MDSHelloWorldApp >> renderLayoutOn: html [
 
 	html div mdcTopAppBar_fixedAdjust; with: [
 		html div
@@ -55,7 +55,7 @@ MCWBasicApp >> renderLayoutOn: html [
 ]
 
 { #category : #rendering }
-MCWBasicApp >> renderTopAppBarOn: html [
+MDSHelloWorldApp >> renderTopAppBarOn: html [
 	| tag |
 
 	tag := html header mdcTopAppBar.
@@ -71,12 +71,12 @@ MCWBasicApp >> renderTopAppBarOn: html [
 ]
 
 { #category : #updating }
-MCWBasicApp >> updateRoot: anHtmlRoot [
+MDSHelloWorldApp >> updateRoot: anHtmlRoot [
 
 	super updateRoot: anHtmlRoot.
 
 	anHtmlRoot link relationship: 'dns-prefetch'; url: '//fonts.googleapis.com'.
-	anHtmlRoot stylesheet url: (MCWBasicLibrary urlOf: #appCss).
+	anHtmlRoot stylesheet url: (MDSHelloWorldLibrary urlOf: #appCss).
 
 	anHtmlRoot title: self applicationTitle.
 	anHtmlRoot meta

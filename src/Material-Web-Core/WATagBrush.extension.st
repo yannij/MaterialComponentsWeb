@@ -781,6 +781,12 @@ WATagBrush >> mdcDeprecatedList [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListDivider [
+
+	self class: 'mdc-deprecated-list-divider'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDeprecatedListGroup [
 
 	self class: 'mdc-deprecated-list-group'

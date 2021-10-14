@@ -26,7 +26,7 @@ MDSDemoSliderPage >> renderDemosOn: html [
 			attributeAt: 'min' put: '0';
 			attributeAt: 'max' put: '100';
 			attributeAt: 'step' put: '10';
-			ariaLabel: 'Discrete slider demo';
+			"ariaLabel: 'Discrete slider demo';"
 			value: '50'.
 		html div mdcSlider__track; with: [
 			html div mdcSlider__track_inactive.
@@ -47,7 +47,7 @@ MDSDemoSliderPage >> renderHeroOn: html [
 			attributeAt: 'min' put: '0';
 			attributeAt: 'max' put: '100';
 			attributeAt: 'step' put: '10';
-			ariaLabel: 'Discrete slider demo';
+			"ariaLabel: 'Discrete slider demo';"
 			value: '50'.
 		html div mdcSlider__track; with: [
 			html div mdcSlider__track_inactive.

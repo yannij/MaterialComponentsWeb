@@ -1,6 +1,6 @@
 Class {
 	#name : #MDSComponentDemoApp,
-	#superclass : #MCWApplication,
+	#superclass : #MDSApplication,
 	#instVars : [
 		'topAppBar',
 		'drawer',

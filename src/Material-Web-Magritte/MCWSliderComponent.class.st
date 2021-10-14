@@ -32,7 +32,7 @@ MCWSliderComponent >> renderSliderOn: html readonly: aReadonlyFlag [
 			attributeAt: 'max' put: (self magritteDescription max ifNil: [ 100 ] ifNotNil: [ :value | value ]);
 			attributeAt: 'step' put: self magritteDescription mcwSliderStep;
 			tabIndex: 0;
-			ariaLabel: 'Select Value';
+			"ariaLabel: 'Select Value';"
 			readonly: aReadonlyFlag;
 			on: self inputAspect of: self;
 			yourself.

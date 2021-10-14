@@ -1,6 +1,6 @@
 Class {
 	#name : #MDSLayout,
-	#superclass : #MCWComponent,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'app',
 		'contentArea',

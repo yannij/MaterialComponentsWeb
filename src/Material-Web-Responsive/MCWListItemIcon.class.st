@@ -1,11 +1,30 @@
 Class {
 	#name : #MCWListItemIcon,
-	#superclass : #MCWListItemComponent,
+	#superclass : #MCWActionComponent,
 	#instVars : [
+		'list',
+		'itemText',
+		'selected',
 		'iconName'
 	],
 	#category : #'Material-Web-Responsive'
 }
+
+{ #category : #'instance creation' }
+MCWListItemIcon class >> itemText: aString [
+
+	^ self new
+		itemText: aString;
+		yourself
+]
+
+{ #category : #'instance creation' }
+MCWListItemIcon class >> itemText: aString callback: aBlock [
+
+	^ (self itemText: aString)
+		callback: aBlock;
+		yourself
+]
 
 { #category : #'instance creation' }
 MCWListItemIcon class >> itemText: aString callback: aBlock iconName: aMaterialIconName [
@@ -36,7 +55,35 @@ MCWListItemIcon >> initialize [
 
 	super initialize.
 
-	self iconName: ''.
+	self itemText: ''.
+	self selected: false.
+	self iconName: ''
+]
+
+{ #category : #accessing }
+MCWListItemIcon >> isSelected [
+
+	^ self selected
+]
+
+{ #category : #accessing }
+MCWListItemIcon >> itemText [
+	^ itemText
+]
+
+{ #category : #accessing }
+MCWListItemIcon >> itemText: anObject [
+	itemText := anObject
+]
+
+{ #category : #accessing }
+MCWListItemIcon >> list [
+	^ list
+]
+
+{ #category : #accessing }
+MCWListItemIcon >> list: anObject [
+	list := anObject
 ]
 
 { #category : #rendering }
@@ -63,4 +110,14 @@ MCWListItemIcon >> renderContentOn: html [
 					with: [ html text: self iconName ] ].
 			html "text:" span mdcTypography_subtitle2; with: self itemText ]
 
+]
+
+{ #category : #accessing }
+MCWListItemIcon >> selected [
+	^ selected
+]
+
+{ #category : #accessing }
+MCWListItemIcon >> selected: anObject [
+	selected := anObject
 ]

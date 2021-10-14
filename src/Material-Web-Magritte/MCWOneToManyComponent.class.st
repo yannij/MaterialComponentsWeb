@@ -104,7 +104,7 @@ MCWOneToManyComponent >> renderExpandIconOnListId: listId on: html [
 		tabIndex: 0;
 		attributeAt: 'data-toggle-on' put: toggleOnValue;
 		attributeAt: 'data-toggle-off' put: toggleOffValue;
-		ariaLabel: 'Expand'; 
+		"ariaLabel: 'Expand'; "
 		onClick: ((html jQuery ajax)
 			callback: [ self expanded: self expanded not ];
 			onComplete: ((html jQuery id: listId) load html: [ :renderer | self renderListAjaxOn: renderer ]));

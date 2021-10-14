@@ -1,6 +1,6 @@
 Class {
 	#name : #MDSListItem,
-	#superclass : #MCWComponent,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'label',
 		'icon',

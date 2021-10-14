@@ -32,20 +32,20 @@ MCWBasicResponsiveApp >> applicationTitle [
 { #category : #initialization }
 MCWBasicResponsiveApp >> buildSideNavList [
 
-	^ MCWListGroup new
-		addGroupedList: (MCWListBasic new
+	^ MDSListGroup new
+		addGroupedList: (MCWList new
 			"subheader: 'List 1';"
 			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [ self sideNav menuItemCallback ]);
 			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [ self sideNav menuItemCallback ]);
 			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [ self sideNav menuItemCallback ]);
 			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 4' iconName: 'delete' callback: [ self sideNav menuItemCallback ]);
 			yourself);
-		addGroupedList: (MCWListBasic new
+		addGroupedList: (MCWList new
 			subheader: 'List 2';
 			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 5' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
 			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 6' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
 			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 7' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
-			listItemAdd: (MCWListItemSeparator new);
+			listItemAdd: (MDSListItemSeparator new);
 			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 8' iconName: 'star' callback: [ self sideNav menuItemCallback ]);
 			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 9' iconName: 'star' callback: [ self sideNav menuItemCallback ]);
 			yourself);
@@ -56,7 +56,7 @@ MCWBasicResponsiveApp >> buildSideNavList [
 { #category : #initialization }
 MCWBasicResponsiveApp >> buildSideSheet [
 
-	^ MCWSideSheet new
+	^ MDSSideSheet new
 		component: self buildSideSheetList;
 		yourself
 ]
@@ -64,23 +64,20 @@ MCWBasicResponsiveApp >> buildSideSheet [
 { #category : #initialization }
 MCWBasicResponsiveApp >> buildSideSheetList [
 
-	^ MCWListGroup new
-		addGroupedList: (MCWListBasic new
+	^ MDSListGroup new
+		addGroupedList: (MCWList new
 			subheader: 'Categories';
-			listItemAdd: (MCWListItemSelectionControl itemText: 'Category' callback: [ ]);
-			listItemAdd: (MCWListItemSeparatorInset new);
-			listItemAdd: (MCWListItemSelectionControl itemText: 'Category' callback: [ ]);
-			listItemAdd: (MCWListItemSeparatorInset new);
-			listItemAdd: (MCWListItemSelectionControl itemText: 'Category' callback: [ ]);
-			listItemAdd: (MCWListItemSeparatorInset new);
-			listItemAdd: (MCWListItemSelectionControl itemText: 'Category' callback: [ ]);
+			listItemAdd: (MCWListItemIcon  itemText: 'Item A1' iconName: nil callback: [  ]);
+			listItemAdd: (MDSListItemSeparator new);
+			listItemAdd: (MCWListItemIcon  itemText: 'Item A2' iconName: nil callback: [  ]);
+			listItemAdd: (MDSListItemSeparator new);
+			listItemAdd: (MCWListItemIcon  itemText: 'Item A3' iconName: nil callback: [  ]);
 			yourself);
-		addGroupedList: (MCWListBasic new
+		addGroupedList: (MCWList new
 			subheader: 'Category';
-			listItemAdd: (MCWListItemSelectionControl itemText: 'Category' callback: [ ]);
+			listItemAdd: (MCWListItemIcon  itemText: 'Item B1' iconName: nil callback: [  ]);
 			yourself);
 		yourself
-
 ]
 
 { #category : #initialization }

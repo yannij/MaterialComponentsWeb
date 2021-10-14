@@ -1,8 +1,24 @@
 Class {
 	#name : #ShrineBranding,
-	#superclass : #MCWListItemComponent,
+	#superclass : #MCWActionComponent,
 	#category : #'Material-Study-Shrine'
 }
+
+{ #category : #accessing }
+ShrineBranding >> isSelected [
+
+	^ self selected
+]
+
+{ #category : #accessing }
+ShrineBranding >> list [
+
+	^ false
+]
+
+{ #category : #accessing }
+ShrineBranding >> list: ignored [
+]
 
 { #category : #rendering }
 ShrineBranding >> renderContentOn: html [
@@ -26,6 +42,12 @@ ShrineBranding >> renderTitleOn: html [
 		class: 'shrine-title';
 		mdcTypography_headline6;
 		with: 'SHRINE'
+]
+
+{ #category : #accessing }
+ShrineBranding >> selected [
+
+	^ false
 ]
 
 { #category : #accessing }

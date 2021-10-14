@@ -1,6 +1,6 @@
 Class {
 	#name : #MDSTab,
-	#superclass : #MCWComponent,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'label',
 		'icon',

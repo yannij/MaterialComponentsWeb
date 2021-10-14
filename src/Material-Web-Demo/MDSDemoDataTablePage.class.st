@@ -30,7 +30,7 @@ MDSDemoDataTablePage >> renderDemosOn: html [
 	html break; break; break.
 	html div mdcDataTable with: [
 		html div mdcDataTable__tableContainer; with: [ 
-			html table mdcDataTable__table; ariaLabel: 'Dessert calories'; with: [
+			html table mdcDataTable__table; "ariaLabel: 'Dessert calories';" with: [
 				html tableHead with: [
 					html tableRow "mdcDataTable__headerRow" with: [
 						dataHeadings do: [ :each | | tag |

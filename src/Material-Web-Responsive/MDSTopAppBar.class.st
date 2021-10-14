@@ -1,6 +1,6 @@
 Class {
 	#name : #MDSTopAppBar,
-	#superclass : #MCWComponent,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'title',
 		'startSection',

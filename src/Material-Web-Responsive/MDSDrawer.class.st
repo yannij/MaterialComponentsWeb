@@ -1,6 +1,6 @@
 Class {
 	#name : #MDSDrawer,
-	#superclass : #MCWComponent,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'title',
 		'subtitle',

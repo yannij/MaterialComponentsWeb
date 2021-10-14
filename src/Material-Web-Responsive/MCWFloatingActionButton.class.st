@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWFloatingActionButton,
-	#superclass : #MCWButton,
+	#superclass : #MCWActionComponent,
 	#instVars : [
 		'rippledFab',
 		'miniFab'

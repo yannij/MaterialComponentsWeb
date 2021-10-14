@@ -1,14 +1,11 @@
 Class {
-	#name : #MCWBasicLibrary,
+	#name : #MDSHelloWorldLibrary,
 	#superclass : #WAFileLibrary,
-	#instVars : [
-		'colorThemeCss'
-	],
 	#category : #'Material-Web-Demo'
 }
 
 { #category : #uploaded }
-MCWBasicLibrary >> appCss [
+MDSHelloWorldLibrary >> appCss [
 
 	^ '
 body {
@@ -18,7 +15,7 @@ body {
 ]
 
 { #category : #accessing }
-MCWBasicLibrary >> selectorsToInclude [
+MDSHelloWorldLibrary >> selectorsToInclude [
 
 	^ #(appCss)
 ]

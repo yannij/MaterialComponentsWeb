@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWContentArea,
-	#superclass : #MCWUserInterfaceRegion,
+	#superclass : #MCWLayoutComponent,
 	#instVars : [
 		'component'
 	],

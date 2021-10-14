@@ -1,6 +1,6 @@
 Class {
 	#name : #MDSList,
-	#superclass : #MCWComponent,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'items'
 	],

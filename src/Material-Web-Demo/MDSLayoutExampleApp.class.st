@@ -1,6 +1,6 @@
 Class {
 	#name : #MDSLayoutExampleApp,
-	#superclass : #MCWApplication,
+	#superclass : #MDSApplication,
 	#instVars : [
 		'pages',
 		'currentPage'

@@ -28,7 +28,7 @@ MCWResponsiveApplication >> appBarEndSection [
 	data := OrderedCollection new.
 	data
 		"add: ((MCWAppBarMenuIcon materialIcon: 'more_horiz') ariaLabel: 'Side Sheet'; callback: [ self toggleSideSheet ]; yourself);"
-		add: ((MCWAppBarMenuIcon materialIcon: 'settings') ariaLabel: 'Settings'; onClickScript: settingsPopup openScript; yourself);
+		add: ((MCWAppBarMenuIcon materialIcon: 'settings') "ariaLabel: 'Settings';" onClickScript: settingsPopup openScript; yourself);
 		add: settingsPopup;
 		yourself.
 
@@ -122,14 +122,14 @@ MCWResponsiveApplication >> buildMainFab [
 { #category : #initialization }
 MCWResponsiveApplication >> buildMenuIconPersistent [
 
-	^ (MCWAppBarMenuIcon materialIcon: 'menu') ariaLabel: 'Menu'; callback: [ self toggleDismissibleDrawer ]; yourself
+	^ (MCWAppBarMenuIcon materialIcon: 'menu') "ariaLabel: 'Menu';" callback: [ self toggleDismissibleDrawer ]; yourself
 
 ]
 
 { #category : #initialization }
 MCWResponsiveApplication >> buildMenuIconTemporary [
 
-	^ (MCWAppBarMenuIcon materialIcon: 'menu') ariaLabel: 'Menu'; onClickScript: self openSideNavScript; yourself
+	^ (MCWAppBarMenuIcon materialIcon: 'menu') "ariaLabel: 'Menu'; "onClickScript: self openSideNavScript; yourself
 
 ]
 
@@ -137,7 +137,7 @@ MCWResponsiveApplication >> buildMenuIconTemporary [
 MCWResponsiveApplication >> buildPopupMenuSettings [
 	| list |
 
-	list := (MCWListMenuItems id: 'settingsPopup')
+	list := (MDSMenuList id: 'settingsPopup')
 		listItemAdd: (MCWListItemIcon new iconName: 'smartphone'; itemText: 'Phone'; callback: [ self beLayoutStructurePhone ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'tablet'; itemText: 'Tablet'; callback: [ self beLayoutStructureTablet ]; yourself);
 		listItemAdd: (MCWListItemIcon new iconName: 'laptop'; itemText: 'Laptop'; callback: [ self beLayoutStructureLaptop ]; yourself);
@@ -170,7 +170,7 @@ MCWResponsiveApplication >> buildSideNav [
 { #category : #initialization }
 MCWResponsiveApplication >> buildSideNavList [
 
-	^ MCWListBasic new
+	^ MCWList new
 		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [ self sideNav menuItemCallback ]);
 		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [ self sideNav menuItemCallback ]);
 		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [ self sideNav menuItemCallback ]);

@@ -51,7 +51,7 @@ MCWAppBarMenuIcon >> renderAnchorOn: html [
 		mdcMaterialIcons;
 		mdcTopAppBar__navigationIcon;
 		mdcTopAppBar__actionItem;
-		attributeAt: 'aria-label' put: self ariaLabel;
+		"attributeAt: 'aria-label' put: self ariaLabel;"
 		style: 'text-decoration: none';
 		callback: self callback if: self hasCallback;
 		onClickScript: self onClickScript if: self hasOnClickScript;
@@ -81,7 +81,7 @@ MCWAppBarMenuIcon >> renderImageOn: html [
 	html span
 		mdcTopAppBar__actionItem;
 		mdcTopAppBar__navigationIcon;
-		attributeAt: 'aria-label' put: self ariaLabel;
+		"attributeAt: 'aria-label' put: self ariaLabel;"
 		onClick: imageScript;
 		with: [
 			html image url: self imagePath ]
