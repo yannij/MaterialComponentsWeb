@@ -1,13 +1,13 @@
 Class {
 	#name : #ShrineCanvas,
-	#superclass : #MCWLayoutComponent,
+	#superclass : #MDSComponent,
 	#category : #'Material-Study-Shrine'
 }
 
 { #category : #rendering }
 ShrineCanvas >> addToShoppingCart: aProduct [
 	| app |
-	app := self layout app.
+	app := self mcwApplicationGet.
 	app stripeInterface
 		shoppingCart: app shoppingCart
 		addProduct: aProduct

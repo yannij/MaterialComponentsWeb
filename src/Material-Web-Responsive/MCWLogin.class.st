@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWLogin,
-	#superclass : #MCWLayoutComponent,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'loginState',
 		'loginTitle',

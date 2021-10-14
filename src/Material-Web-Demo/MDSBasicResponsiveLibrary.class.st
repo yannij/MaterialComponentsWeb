@@ -1,14 +1,11 @@
 Class {
-	#name : #MCWBasicResponsiveLibrary,
+	#name : #MDSBasicResponsiveLibrary,
 	#superclass : #WAFileLibrary,
-	#instVars : [
-		'colorThemeCss'
-	],
 	#category : #'Material-Web-Demo'
 }
 
 { #category : #uploaded }
-MCWBasicResponsiveLibrary >> appCss [
+MDSBasicResponsiveLibrary >> appCss [
 
 	^ '
 body {
@@ -18,7 +15,7 @@ body {
 ]
 
 { #category : #accessing }
-MCWBasicResponsiveLibrary >> selectorsToInclude [
+MDSBasicResponsiveLibrary >> selectorsToInclude [
 
 	^ #(appCss)
 ]

@@ -1,6 +1,6 @@
 Class {
 	#name : #ShrineBranding,
-	#superclass : #MCWActionComponent,
+	#superclass : #MDSComponent,
 	#category : #'Material-Study-Shrine'
 }
 

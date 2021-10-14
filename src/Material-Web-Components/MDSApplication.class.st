@@ -1,6 +1,6 @@
 Class {
 	#name : #MDSApplication,
-	#superclass : #MDSComponent,
+	#superclass : #WAComponent,
 	#instVars : [
 		'materialVersion'
 	],
@@ -42,6 +42,42 @@ MDSApplication class >> mcwRegisterDevelopment: aName [
 	^ app
 ]
 
+{ #category : #logging }
+MDSApplication >> logFormat: aFormatString with: aValue [
+
+	self logString: (aFormatString format: (Array with: aValue))
+]
+
+{ #category : #logging }
+MDSApplication >> logFormat: aFormatString with: aValue1 with: aValue2 [
+
+	self logString: (aFormatString format: (Array with: aValue1 with: aValue2))
+]
+
+{ #category : #logging }
+MDSApplication >> logFormat: aFormatString with: aValue1 with: aValue2 with: aValue3 [
+
+	self logString: (aFormatString format: (Array with: aValue1 with: aValue2 with: aValue3))
+]
+
+{ #category : #logging }
+MDSApplication >> logFormat: aFormatString with: aValue1 with: aValue2 with: aValue3 with: aValue4 [
+
+	self logString: (aFormatString format: (Array with: aValue1 with: aValue2 with: aValue3 with: aValue4))
+]
+
+{ #category : #logging }
+MDSApplication >> logFormat: aFormatString with: aValue1 with: aValue2 with: aValue3 with: aValue4 with: aValue5 [
+
+	self logString: (aFormatString format: (Array with: aValue1 with: aValue2 with: aValue3 with: aValue4 with: aValue5))
+]
+
+{ #category : #logging }
+MDSApplication >> logString: aString [
+
+	Transcript crShow: aString
+]
+
 { #category : #accessing }
 MDSApplication >> materialComponentsWebCssUrl [
 
@@ -74,9 +110,44 @@ MDSApplication >> materialVersion [
 	^ materialVersion
 ]
 
+{ #category : #initialization }
+MDSApplication >> materialVersion10dot [
+	"Use 10.0.0 unpkg.com"
+
+	self materialVersion: '10.0.0'
+]
+
+{ #category : #initialization }
+MDSApplication >> materialVersion13dot [
+	"Use 13.0.0 unpkg.com"
+
+	self materialVersion: '13.0.0'
+]
+
 { #category : #accessing }
 MDSApplication >> materialVersion: anObject [
 	materialVersion := anObject
+]
+
+{ #category : #initialization }
+MDSApplication >> materialVersionDefault [
+
+	self materialVersionLocalServer
+	"self materialVersion13dot"
+]
+
+{ #category : #initialization }
+MDSApplication >> materialVersionLatest [
+	"Use latest version from unpkg.com"
+
+	self materialVersion: ''
+]
+
+{ #category : #initialization }
+MDSApplication >> materialVersionLocalServer [
+	"Use version served by Seaside"
+
+	self materialVersion: nil
 ]
 
 { #category : #actions }

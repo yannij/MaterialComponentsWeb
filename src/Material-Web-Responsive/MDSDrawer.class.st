@@ -108,6 +108,7 @@ MDSDrawer >> initialize [
 
 	super initialize.
 
+	self fixedAdjustRegular.
 	self modal: false.
 	self dismissible: false
 ]

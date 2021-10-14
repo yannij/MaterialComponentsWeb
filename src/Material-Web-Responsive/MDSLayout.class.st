@@ -1,19 +1,11 @@
 Class {
 	#name : #MDSLayout,
-	#superclass : #MDSComponent,
+	#superclass : #WAComponent,
 	#instVars : [
-		'app',
-		'contentArea',
-		'sideNav'
+		'app'
 	],
 	#category : #'Material-Web-Responsive'
 }
-
-{ #category : #accessing }
-MDSLayout class >> defaultMaxWidth [
-
-	^ 1920 "- 80" "decrease for scrollbar"
-]
 
 { #category : #accessing }
 MDSLayout class >> layoutDesktop [
@@ -40,10 +32,10 @@ MDSLayout class >> layoutTablet [
 ]
 
 { #category : #'instance creation' }
-MDSLayout class >> on: aResponsiveApplication [
+MDSLayout class >> on: aResponsiveApp [
 
 	^ self new
-		app: aResponsiveApplication;
+		app: aResponsiveApp;
 		yourself
 ]
 
@@ -59,46 +51,30 @@ MDSLayout >> app: anObject [
 
 { #category : #accessing }
 MDSLayout >> contentArea [
-	^ contentArea
-]
 
-{ #category : #accessing }
-MDSLayout >> contentArea: anObject [
-	contentArea := anObject
-]
-
-{ #category : #initialization }
-MDSLayout >> initialize [
-
-	super initialize.
-
-	"self maxWidth: self class defaultMaxWidth.
-	self settingsView: (MCWApplicationSettingsView on: self).
-	self screenStyle: self class layoutDesktop"
+	^ self app contentArea
 ]
 
 { #category : #rendering }
 MDSLayout >> renderContentOn: html [
 
-	self renderLayoutOn: html
-]
-
-{ #category : #rendering }
-MDSLayout >> renderLayoutOn: html [
-
-	html div style: 'height: 100vh'; with: self sideNav.
-
-	html div
-		mdcDrawerAppContent;
-		with: [ self contentArea ]
+	self subclassResponsibility
 ]
 
 { #category : #accessing }
 MDSLayout >> sideNav [
-	^ sideNav
+
+	^ self app sideNav
 ]
 
 { #category : #accessing }
-MDSLayout >> sideNav: anObject [
-	sideNav := anObject
+MDSLayout >> sideSheet [
+
+	^ self app sideSheet
+]
+
+{ #category : #accessing }
+MDSLayout >> topAppBar [
+
+	^ self app topAppBar
 ]

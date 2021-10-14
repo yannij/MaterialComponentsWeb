@@ -285,7 +285,7 @@ MDSComponentDemoApp >> updateRoot: anHtmlRoot [
 	anHtmlRoot link relationship: 'dns-prefetch'; url: '//fonts.googleapis.com'.
 	anHtmlRoot stylesheet url: 'https://fonts.googleapis.com/css2?family=Material+Icons'.
 	anHtmlRoot stylesheet url: 'https://fonts.googleapis.com/css2?family=Material+Icons+Outlined'.
-	anHtmlRoot stylesheet url: MCWResponsiveAppLibrary / #responsiveAppCss.
+	anHtmlRoot stylesheet url: MDSResponsiveAppLibrary / #responsiveAppCss.
 
 	anHtmlRoot stylesheet url: (MDSComponentDemoLibrary urlOf: #appCss).
 	anHtmlRoot stylesheet url: (MDSComponentDemoLibrary urlOf: #buttonCatalogCss).

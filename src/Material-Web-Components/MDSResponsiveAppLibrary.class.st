@@ -1,11 +1,11 @@
 Class {
-	#name : #MCWResponsiveAppLibrary,
+	#name : #MDSResponsiveAppLibrary,
 	#superclass : #WAFileLibrary,
-	#category : #'Material-Web-Responsive'
+	#category : #'Material-Web-Components'
 }
 
 { #category : #uploaded }
-MCWResponsiveAppLibrary >> responsiveAppCss [
+MDSResponsiveAppLibrary >> responsiveAppCss [
 "
 
 .mdc-menu .mdc-list {

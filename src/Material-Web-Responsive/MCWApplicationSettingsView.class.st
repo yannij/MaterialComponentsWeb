@@ -1,6 +1,6 @@
 Class {
 	#name : #MCWApplicationSettingsView,
-	#superclass : #MCWLayoutComponent,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'mdcDensityComponent',
 		'mdcTypographyComponent',

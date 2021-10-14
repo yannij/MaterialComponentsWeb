@@ -3,7 +3,7 @@ Subclasses may specialize to implement a ResponsiveUI as described at: https://m
 "
 Class {
 	#name : #MCWResponsiveApplication,
-	#superclass : #MCWApplication,
+	#superclass : #MDSApplication,
 	#instVars : [
 		'layout',
 		'settings',
@@ -91,12 +91,11 @@ MCWResponsiveApplication >> buildLayout [
 	newLayout := MCWResponsiveLayout on: self.
 	newSideNav := self buildSideNav layout: newLayout; yourself.
 	newTopAppBar := self buildTopAppBar layout: newLayout; yourself.
-	newContentArea := MCWContentArea on: newLayout.
+	newContentArea := MDSContentArea new.
 	newLayout
 		contentArea: newContentArea;
 		sideNav: newSideNav;
 		sideSheet: self buildSideSheet;
-		mainFab: self buildMainFab;
 		topAppBar: newTopAppBar;
 		yourself.
 	^ newLayout
@@ -106,16 +105,6 @@ MCWResponsiveApplication >> buildLayout [
 MCWResponsiveApplication >> buildLoginComponent [
 
 	^ nil
-
-]
-
-{ #category : #initialization }
-MCWResponsiveApplication >> buildMainFab [
-
-	^ MCWFloatingActionButton new
-		beMiniFab;
-		beRippledFab;
-		yourself.
 
 ]
 
@@ -307,41 +296,6 @@ MCWResponsiveApplication >> logout [
 		ifNil: [
 			self session ifNotNil: [ :value | value unregister ].
 			self redirect ]
-]
-
-{ #category : #initialization }
-MCWResponsiveApplication >> materialVersion10dot [
-	"Use 10.0.0 unpkg.com"
-
-	self materialVersion: '10.0.0'
-]
-
-{ #category : #initialization }
-MCWResponsiveApplication >> materialVersion13dot [
-	"Use 13.0.0 unpkg.com"
-
-	self materialVersion: '13.0.0'
-]
-
-{ #category : #initialization }
-MCWResponsiveApplication >> materialVersionDefault [
-
-	self materialVersionLocalServer
-	"self materialVersion13dot"
-]
-
-{ #category : #initialization }
-MCWResponsiveApplication >> materialVersionLatest [
-	"Use latest version from unpkg.com"
-
-	self materialVersion: ''
-]
-
-{ #category : #initialization }
-MCWResponsiveApplication >> materialVersionLocalServer [
-	"Use version served by Seaside"
-
-	self materialVersion: nil
 ]
 
 { #category : #testing }
@@ -550,18 +504,6 @@ MCWResponsiveApplication >> snackbarText: anObject [
 	snackbarText := anObject
 ]
 
-{ #category : #testing }
-MCWResponsiveApplication >> todoScreenWidth [
-"
-Media Queries work in js too:
-
-if (window.matchMedia('screen and (max-width: 768px)').matches) {}
-Another way would be:
-
-var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-"
-]
-
 { #category : #actions }
 MCWResponsiveApplication >> toggleAppBarCollapse [
 
@@ -607,7 +549,7 @@ MCWResponsiveApplication >> updateRoot: anHtmlRoot [
 
 	self updateRootFonts: anHtmlRoot.
 
-	anHtmlRoot stylesheet url: MCWResponsiveAppLibrary / #responsiveAppCss.
+	anHtmlRoot stylesheet url: MDSResponsiveAppLibrary / #responsiveAppCss.
 
 	anHtmlRoot title: self applicationTitle.
 	anHtmlRoot meta

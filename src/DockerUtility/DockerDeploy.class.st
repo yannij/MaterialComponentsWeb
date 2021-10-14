@@ -178,7 +178,7 @@ DockerDeploy >> mongoPortDefault [
 DockerDeploy >> runAppMethodsWithPragmaNamed: aPragmaName [
 	| appRootClass |
 
-	appRootClass := #MCWApplication asClassInEnvironment: Smalltalk globals ifAbsent: [ nil ].
+	appRootClass := #MDSApplication asClassInEnvironment: Smalltalk globals ifAbsent: [ nil ].
 	appRootClass ifNil: [ ^ self ].
 
 	appRootClass allSubclasses do: [ :eachClass | | pragmas appMetaClass |

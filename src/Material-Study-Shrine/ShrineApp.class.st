@@ -58,12 +58,6 @@ ShrineApp >> buildLoginComponent [
 ]
 
 { #category : #initialization }
-ShrineApp >> buildMainFab [
-
-	^ nil
-]
-
-{ #category : #initialization }
 ShrineApp >> buildSideNav [
 
 	^ (super buildSideNav)
@@ -113,10 +107,10 @@ ShrineApp >> initializeLayout [
 	self layout cssStyle: 'shrine'.
 	self layout beDesktopStyle.
 
-	self layout contentArea component: (ShrineCanvas on: self layout).
+	self layout contentArea component: ShrineCanvas new.
 	self loginComponent: self buildLoginComponent.
 	self shoppingCart: self stripeInterface shoppingCartNew.
-	self shoppingCart layout: self layout.
+	"self shoppingCart layout: self layout."
 
 	self settings mdcTypography fontFamily: 'Rubik'.
 	self settings mdcTheme themeItemsSet: self themeSetting.

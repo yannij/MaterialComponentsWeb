@@ -1,60 +1,16 @@
 Class {
-	#name : #MCWResponsiveLayout,
-	#superclass : #WAComponent,
+	#name : #MDSDesktopLayout,
+	#superclass : #MDSLayout,
 	#instVars : [
-		'app',
 		'screenStyle',
-		'contentArea',
-		'topAppBar',
-		'sideNav',
-		'sideSheet',
-		'mainFab',
 		'settingsView',
 		'cssStyle'
 	],
 	#category : #'Material-Web-Responsive'
 }
 
-{ #category : #accessing }
-MCWResponsiveLayout class >> defaultMaxWidth [
-
-	^ 1920 "- 80" "decrease for scrollbar"
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout class >> layoutDesktop [
-
-	^ #large
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout class >> layoutLaptop [
-
-	^ #medium
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout class >> layoutPhone [
-
-	^ #'extra-small'
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout class >> layoutTablet [
-
-	^ #small
-]
-
-{ #category : #'instance creation' }
-MCWResponsiveLayout class >> on: aResponsiveApplication [
-
-	^ self new
-		app: aResponsiveApplication;
-		yourself
-]
-
 { #category : #actions }
-MCWResponsiveLayout >> adjustToolbarsDesktop [
+MDSDesktopLayout >> adjustToolbarsDesktop [
 
 	"self topAppBar dense: false."
 	"self topAppBar startSection: self rootComponent appBarStartSection."
@@ -64,7 +20,7 @@ MCWResponsiveLayout >> adjustToolbarsDesktop [
 ]
 
 { #category : #actions }
-MCWResponsiveLayout >> adjustToolbarsPhone [
+MDSDesktopLayout >> adjustToolbarsPhone [
 
 	"self topAppBar dense: false."
 	"self topAppBar startSection: self rootComponent appBarStartSection."
@@ -73,7 +29,7 @@ MCWResponsiveLayout >> adjustToolbarsPhone [
 ]
 
 { #category : #actions }
-MCWResponsiveLayout >> adjustToolbarsTablet [
+MDSDesktopLayout >> adjustToolbarsTablet [
 
 	"self topAppBar dense: false."
 	"self topAppBar startSection: self rootComponent appBarStartSection."
@@ -82,17 +38,17 @@ MCWResponsiveLayout >> adjustToolbarsTablet [
 ]
 
 { #category : #accessing }
-MCWResponsiveLayout >> app [
+MDSDesktopLayout >> app [
 	^ app
 ]
 
 { #category : #accessing }
-MCWResponsiveLayout >> app: anObject [
+MDSDesktopLayout >> app: anObject [
 	app := anObject
 ]
 
 { #category : #actions }
-MCWResponsiveLayout >> beDesktopStyle [
+MDSDesktopLayout >> beDesktopStyle [
 
 	self screenStyle: self class layoutDesktop.
 	self sideNav bePersistentDrawer; beDismissed.
@@ -101,7 +57,7 @@ MCWResponsiveLayout >> beDesktopStyle [
 ]
 
 { #category : #actions }
-MCWResponsiveLayout >> beLaptopStyle [
+MDSDesktopLayout >> beLaptopStyle [
 
 	self screenStyle: self class layoutLaptop.
 	self sideNav bePersistentDrawer; beDismissed.
@@ -110,7 +66,7 @@ MCWResponsiveLayout >> beLaptopStyle [
 ]
 
 { #category : #actions }
-MCWResponsiveLayout >> bePhoneStyle [
+MDSDesktopLayout >> bePhoneStyle [
 
 	self screenStyle: self class layoutPhone.
 	self sideNav beModalDrawer; beDismissed.
@@ -119,7 +75,7 @@ MCWResponsiveLayout >> bePhoneStyle [
 ]
 
 { #category : #actions }
-MCWResponsiveLayout >> beTabletStyle [
+MDSDesktopLayout >> beTabletStyle [
 
 	self screenStyle: self class layoutTablet.
 	self sideNav beDismissibleDrawer; beDismissed.
@@ -128,25 +84,15 @@ MCWResponsiveLayout >> beTabletStyle [
 ]
 
 { #category : #accessing }
-MCWResponsiveLayout >> cellSpan [
+MDSDesktopLayout >> cellSpan [
 
 	self isPhoneStyle ifTrue: [ ^ 6 ].
 	self isTabletStyle ifTrue: [ ^ 6 ].
 	^ 6
 ]
 
-{ #category : #accessing }
-MCWResponsiveLayout >> contentArea [
-	^ contentArea
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout >> contentArea: anObject [
-	contentArea := anObject
-]
-
 { #category : #rendering }
-MCWResponsiveLayout >> contentToShow [
+MDSDesktopLayout >> contentToShow [
 
 	^ self settingsView isHidden
 		ifTrue: [ self contentArea ]
@@ -154,17 +100,17 @@ MCWResponsiveLayout >> contentToShow [
 ]
 
 { #category : #accessing }
-MCWResponsiveLayout >> cssStyle [
+MDSDesktopLayout >> cssStyle [
 	^ cssStyle
 ]
 
 { #category : #accessing }
-MCWResponsiveLayout >> cssStyle: anObject [
+MDSDesktopLayout >> cssStyle: anObject [
 	cssStyle := anObject
 ]
 
 { #category : #initialization }
-MCWResponsiveLayout >> initialize [
+MDSDesktopLayout >> initialize [
 
 	super initialize.
 
@@ -173,41 +119,31 @@ MCWResponsiveLayout >> initialize [
 ]
 
 { #category : #testing }
-MCWResponsiveLayout >> isDesktopStyle [
+MDSDesktopLayout >> isDesktopStyle [
 
 	^ self screenStyle = self class layoutDesktop
 ]
 
 { #category : #testing }
-MCWResponsiveLayout >> isLaptopStyle [
+MDSDesktopLayout >> isLaptopStyle [
 
 	^ self screenStyle = self class layoutLaptop
 ]
 
 { #category : #testing }
-MCWResponsiveLayout >> isPhoneStyle [
+MDSDesktopLayout >> isPhoneStyle [
 
 	^ self screenStyle = self class layoutPhone
 ]
 
 { #category : #testing }
-MCWResponsiveLayout >> isTabletStyle [
+MDSDesktopLayout >> isTabletStyle [
 
 	^ self screenStyle = self class layoutTablet
 ]
 
-{ #category : #accessing }
-MCWResponsiveLayout >> mainFab [
-	^ mainFab
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout >> mainFab: anObject [
-	mainFab := anObject
-]
-
 { #category : #rendering }
-MCWResponsiveLayout >> renderContentOn: html [
+MDSDesktopLayout >> renderContentOn: html [
 
 	self isPhoneStyle ifTrue: [ ^ self renderLayoutPhoneOn: html ].
 	self isTabletStyle ifTrue: [ ^ self renderLayoutTabletOn: html ].
@@ -216,7 +152,7 @@ MCWResponsiveLayout >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-MCWResponsiveLayout >> renderContentToShowOn: html [
+MDSDesktopLayout >> renderContentToShowOn: html [
 
 	self renderSnackbarOn: html.
 
@@ -247,7 +183,7 @@ MCWResponsiveLayout >> renderContentToShowOn: html [
 ]
 
 { #category : #rendering }
-MCWResponsiveLayout >> renderLayoutDesktopOn: html [
+MDSDesktopLayout >> renderLayoutDesktopOn: html [
 
 	html div class: self cssStyle if: (self cssStyle notNil); style: 'height: 100vh'; with: self sideNav.
 	html render: self topAppBar.
@@ -271,7 +207,7 @@ MCWResponsiveLayout >> renderLayoutDesktopOn: html [
 ]
 
 { #category : #rendering }
-MCWResponsiveLayout >> renderLayoutLaptopOn: html [
+MDSDesktopLayout >> renderLayoutLaptopOn: html [
 
 	html div class: self cssStyle if: (self cssStyle notNil); style: 'height: 100vh'; with: self sideNav.
 	html render: self topAppBar.
@@ -294,7 +230,7 @@ MCWResponsiveLayout >> renderLayoutLaptopOn: html [
 ]
 
 { #category : #rendering }
-MCWResponsiveLayout >> renderLayoutPhoneOn: html [
+MDSDesktopLayout >> renderLayoutPhoneOn: html [
 	| div |
 
 	html render: self sideNav.
@@ -315,7 +251,7 @@ MCWResponsiveLayout >> renderLayoutPhoneOn: html [
 ]
 
 { #category : #rendering }
-MCWResponsiveLayout >> renderLayoutTabletOn: html [
+MDSDesktopLayout >> renderLayoutTabletOn: html [
 
 	html render: self sideNav.
 
@@ -337,7 +273,7 @@ MCWResponsiveLayout >> renderLayoutTabletOn: html [
 ]
 
 { #category : #rendering }
-MCWResponsiveLayout >> renderSnackbarOn: html [
+MDSDesktopLayout >> renderSnackbarOn: html [
 	| snackbarId |
 
 	self snackbarText ifNil: [ ^ self ].
@@ -358,37 +294,27 @@ MCWResponsiveLayout >> renderSnackbarOn: html [
 ]
 
 { #category : #accessing }
-MCWResponsiveLayout >> screenStyle [
+MDSDesktopLayout >> screenStyle [
 	^ screenStyle
 ]
 
 { #category : #accessing }
-MCWResponsiveLayout >> screenStyle: anObject [
+MDSDesktopLayout >> screenStyle: anObject [
 	screenStyle := anObject
 ]
 
 { #category : #accessing }
-MCWResponsiveLayout >> settingsView [
+MDSDesktopLayout >> settingsView [
 	^ settingsView
 ]
 
 { #category : #accessing }
-MCWResponsiveLayout >> settingsView: anObject [
+MDSDesktopLayout >> settingsView: anObject [
 	settingsView := anObject
 ]
 
-{ #category : #accessing }
-MCWResponsiveLayout >> sideNav [
-	^ sideNav
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout >> sideNav: anObject [
-	sideNav := anObject
-]
-
 { #category : #testing }
-MCWResponsiveLayout >> sideNavVisible [
+MDSDesktopLayout >> sideNavVisible [
 
 	^ self sideNav
 		ifNil: [ false ]
@@ -396,18 +322,8 @@ MCWResponsiveLayout >> sideNavVisible [
 			self isDesktopStyle or: [ self isTabletStyle and: [ value isDrawerOpen ] ] ]
 ]
 
-{ #category : #accessing }
-MCWResponsiveLayout >> sideSheet [
-	^ sideSheet
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout >> sideSheet: anObject [
-	sideSheet := anObject
-]
-
 { #category : #testing }
-MCWResponsiveLayout >> sideSheetVisible [
+MDSDesktopLayout >> sideSheetVisible [
 
 	^ self sideSheet
 		ifNil: [ false ]
@@ -415,23 +331,13 @@ MCWResponsiveLayout >> sideSheetVisible [
 ]
 
 { #category : #actions }
-MCWResponsiveLayout >> snackbarText [
+MDSDesktopLayout >> snackbarText [
 
 	^ self app snackbarText
 ]
 
 { #category : #actions }
-MCWResponsiveLayout >> snackbarText: anObject [
+MDSDesktopLayout >> snackbarText: anObject [
 
 	self app snackbarText: anObject
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout >> topAppBar [
-	^ topAppBar
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout >> topAppBar: anObject [
-	topAppBar := anObject
 ]

@@ -3,7 +3,7 @@ I am a shopping cart that uses Stripe to process the transaction
 "
 Class {
 	#name : #StripeShoppingCart,
-	#superclass : #MCWLayoutComponent,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'cartVisible',
 		'cartState',
@@ -150,7 +150,7 @@ self mcwApplicationGet logString: cancelUrl printString.
 	responseJsonString := client post.
 	responseJson := WAJsonParser parse: responseJsonString.
 	(responseJson includesKey: 'id')
-		ifFalse: [ self layout app logString: 'Stripe error response: ', responseJsonString ].
+		ifFalse: [ self mcwApplicationGet logString: 'Stripe error response: ', responseJsonString ].
 
 	^ json string: responseJsonString
 ]

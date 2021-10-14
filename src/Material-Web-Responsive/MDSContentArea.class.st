@@ -1,6 +1,6 @@
 Class {
-	#name : #MCWContentArea,
-	#superclass : #MCWLayoutComponent,
+	#name : #MDSContentArea,
+	#superclass : #MDSComponent,
 	#instVars : [
 		'component'
 	],
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #accessing }
-MCWContentArea >> component [
+MDSContentArea >> component [
 	^ component
 ]
 
 { #category : #accessing }
-MCWContentArea >> component: anObject [
+MDSContentArea >> component: anObject [
 	component := anObject
 ]
 
 { #category : #rendering }
-MCWContentArea >> renderContentOn: html [
+MDSContentArea >> renderContentOn: html [
 
 	self component ifNil: [ ^ self ].
 

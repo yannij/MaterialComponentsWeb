@@ -75,42 +75,6 @@ MDSComponent >> isHidden [
 	^ self hidden
 ]
 
-{ #category : #logging }
-MDSComponent >> logFormat: aFormatString with: aValue [
-
-	self logString: (aFormatString format: (Array with: aValue))
-]
-
-{ #category : #logging }
-MDSComponent >> logFormat: aFormatString with: aValue1 with: aValue2 [
-
-	self logString: (aFormatString format: (Array with: aValue1 with: aValue2))
-]
-
-{ #category : #logging }
-MDSComponent >> logFormat: aFormatString with: aValue1 with: aValue2 with: aValue3 [
-
-	self logString: (aFormatString format: (Array with: aValue1 with: aValue2 with: aValue3))
-]
-
-{ #category : #logging }
-MDSComponent >> logFormat: aFormatString with: aValue1 with: aValue2 with: aValue3 with: aValue4 [
-
-	self logString: (aFormatString format: (Array with: aValue1 with: aValue2 with: aValue3 with: aValue4))
-]
-
-{ #category : #logging }
-MDSComponent >> logFormat: aFormatString with: aValue1 with: aValue2 with: aValue3 with: aValue4 with: aValue5 [
-
-	self logString: (aFormatString format: (Array with: aValue1 with: aValue2 with: aValue3 with: aValue4 with: aValue5))
-]
-
-{ #category : #logging }
-MDSComponent >> logString: aString [
-
-	Transcript crShow: aString
-]
-
 { #category : #actions }
 MDSComponent >> toggleHiddenValue [
 

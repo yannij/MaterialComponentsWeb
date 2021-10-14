@@ -3,6 +3,7 @@ Class {
 	#superclass : #MDSComponent,
 	#instVars : [
 		'title',
+		'collapsed',
 		'startSection',
 		'middleSection',
 		'endSection'
@@ -19,6 +20,18 @@ MDSTopAppBar class >> title: aString [
 ]
 
 { #category : #accessing }
+MDSTopAppBar >> collapsed [
+
+	^ collapsed
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> collapsed: anObject [
+
+	collapsed := anObject
+]
+
+{ #category : #accessing }
 MDSTopAppBar >> endSection [
 
 	^ endSection
@@ -28,6 +41,14 @@ MDSTopAppBar >> endSection [
 MDSTopAppBar >> endSection: anObject [
 
 	endSection := anObject
+]
+
+{ #category : #initialization }
+MDSTopAppBar >> initialize [
+
+	super initialize.
+
+	self collapsed: false
 ]
 
 { #category : #accessing }
@@ -67,6 +88,13 @@ MDSTopAppBar >> renderContentOn: html [
 				ifNotNil: [ :value |
 					html section mdcTopAppBar__section; mdcTopAppBar__section_alignEnd; with: [
 						html render: value ] ] ] ]
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> shortCollapsed [
+	"TODO: added to be compatible with MCW layout class"
+
+	^ false
 ]
 
 { #category : #accessing }
