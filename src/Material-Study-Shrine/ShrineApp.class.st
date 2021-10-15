@@ -68,17 +68,17 @@ ShrineApp >> buildSideNav [
 { #category : #initialization }
 ShrineApp >> buildSideNavList [
 
-	^ MDSDeprecatedList new
-		listItemAdd: (ShrineBranding new);
-		listItemAdd: (MCWListItemIcon itemText: 'Featured' iconName: '' callback: [ ]);
+	^ MDSList new
+		itemsAdd: (ShrineBranding new);
+		itemsAdd: (MDSListItem itemText: 'Featured' iconName: '' callback: [ ]);
 		"Divider Line"
-		listItemAdd: (MCWListItemIcon itemText: 'Apartment' iconName: '' callback: [ ]);
-		listItemAdd: (MCWListItemIcon itemText: 'Accessories' iconName: '' callback: [ ]);
-		listItemAdd: (MCWListItemIcon itemText: 'Shoes' iconName: '' callback: [ ]);
-		listItemAdd: (MCWListItemIcon itemText: 'Tops' iconName: '' callback: [ ]);
-		listItemAdd: (MCWListItemIcon itemText: 'Bottoms' iconName: '' callback: [ ]);
-		listItemAdd: (MCWListItemIcon itemText: 'Dresses' iconName: '' callback: [ ]);
-		listItemAdd: (MCWListItemIcon itemText: 'My Account' iconName: '' callback: [ ]);
+		itemsAdd: (MDSListItem itemText: 'Apartment' iconName: '' callback: [ ]);
+		itemsAdd: (MDSListItem itemText: 'Accessories' iconName: '' callback: [ ]);
+		itemsAdd: (MDSListItem itemText: 'Shoes' iconName: '' callback: [ ]);
+		itemsAdd: (MDSListItem itemText: 'Tops' iconName: '' callback: [ ]);
+		itemsAdd: (MDSListItem itemText: 'Bottoms' iconName: '' callback: [ ]);
+		itemsAdd: (MDSListItem itemText: 'Dresses' iconName: '' callback: [ ]);
+		itemsAdd: (MDSListItem itemText: 'My Account' iconName: '' callback: [ ]);
 		yourself.
 
 ]

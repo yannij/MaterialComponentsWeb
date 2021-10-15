@@ -4,13 +4,6 @@ A realization of the Material Design  layout structures described at: https://ma
 Class {
 	#name : #MDSBasicResponsiveApp,
 	#superclass : #MDSResponsiveApp,
-	#instVars : [
-		'layout',
-		'contentArea',
-		'topAppBar',
-		'sideNav',
-		'sideSheet'
-	],
 	#category : #'Material-Demo-Web'
 }
 
@@ -35,21 +28,21 @@ MDSBasicResponsiveApp >> applicationTitle [
 	^ 'Basic Responsive'
 ]
 
-{ #category : #building }
-MDSBasicResponsiveApp >> buildLayout [
-	| newLayout |
+{ #category : #initialization }
+MDSBasicResponsiveApp >> buildBodyRegion [
 
-	newLayout := MDSDesktopLayout on: self.
-
-	self sideNav: (MDSDrawer content: self buildList title: self applicationTitle).
-	self topAppBar: (MDSTopAppBar title: self applicationTitle).
-	self contentArea: MDSContentArea new.
-	self sideSheet: self buildSideSheet.
-
-	^ newLayout
+	^ MDSContentArea new
+		component: (String loremIpsum: 5000);
+		yourself
 ]
 
-{ #category : #building }
+{ #category : #initialization }
+MDSBasicResponsiveApp >> buildLayout [
+
+	^ MDSDesktopLayout on: self
+]
+
+{ #category : #initialization }
 MDSBasicResponsiveApp >> buildList [
 	| newObject |
 
@@ -62,24 +55,33 @@ MDSBasicResponsiveApp >> buildList [
 ]
 
 { #category : #initialization }
+MDSBasicResponsiveApp >> buildSideNav [
+
+	^ (MDSDrawer content: self buildList title: self applicationTitle)
+		title: 'Example';
+		subtitle: 'Sub-example';
+		yourself
+]
+
+{ #category : #initialization }
 MDSBasicResponsiveApp >> buildSideNavList [
 
 	^ MDSListGroup new
-		addGroupedList: (MDSDeprecatedList new
+		addGroupedList: (MDSList new
 			"subheader: 'List 1';"
-			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [ self sideNav menuItemCallback ]);
-			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [ self sideNav menuItemCallback ]);
-			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [ self sideNav menuItemCallback ]);
-			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 4' iconName: 'delete' callback: [ self sideNav menuItemCallback ]);
+			itemsAdd: (MDSListItem itemText: 'Nav Item 1' iconName: 'assignment' callback: [ self sideNav menuItemCallback ]);
+			itemsAdd: (MDSListItem itemText: 'Nav Item 2' iconName: 'bug_report' callback: [ self sideNav menuItemCallback ]);
+			itemsAdd: (MDSListItem itemText: 'Nav Item 3' iconName: 'build' callback: [ self sideNav menuItemCallback ]);
+			itemsAdd: (MDSListItem itemText: 'Nav Item 4' iconName: 'delete' callback: [ self sideNav menuItemCallback ]);
 			yourself);
-		addGroupedList: (MDSDeprecatedList new
+		addGroupedList: (MDSList new
 			subheader: 'List 2';
-			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 5' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
-			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 6' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
-			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 7' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
-			listItemAdd: (MDSListItemSeparator new);
-			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 8' iconName: 'star' callback: [ self sideNav menuItemCallback ]);
-			listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 9' iconName: 'star' callback: [ self sideNav menuItemCallback ]);
+			itemsAdd: (MDSListItem itemText: 'Nav Item 5' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
+			itemsAdd: (MDSListItem itemText: 'Nav Item 6' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
+			itemsAdd: (MDSListItem itemText: 'Nav Item 7' iconName: 'face' callback: [ self sideNav menuItemCallback ]);
+			itemsAdd: (MDSListItemSeparator new);
+			itemsAdd: (MDSListItem itemText: 'Nav Item 8' iconName: 'star' callback: [ self sideNav menuItemCallback ]);
+			itemsAdd: (MDSListItem itemText: 'Nav Item 9' iconName: 'star' callback: [ self sideNav menuItemCallback ]);
 			yourself);
 		yourself
 
@@ -97,31 +99,27 @@ MDSBasicResponsiveApp >> buildSideSheet [
 MDSBasicResponsiveApp >> buildSideSheetList [
 
 	^ MDSListGroup new
-		addGroupedList: (MDSDeprecatedList new
+		addGroupedList: (MDSList new
 			subheader: 'Categories';
-			listItemAdd: (MCWListItemIcon  itemText: 'Item A1' iconName: nil callback: [  ]);
-			listItemAdd: (MDSListItemSeparator new);
-			listItemAdd: (MCWListItemIcon  itemText: 'Item A2' iconName: nil callback: [  ]);
-			listItemAdd: (MDSListItemSeparator new);
-			listItemAdd: (MCWListItemIcon  itemText: 'Item A3' iconName: nil callback: [  ]);
+			itemsAdd: (MDSListItem itemText: 'Item A1' iconName: nil callback: [  ]);
+			itemsAdd: (MDSListItemSeparator new);
+			itemsAdd: (MDSListItem itemText: 'Item A2' iconName: nil callback: [  ]);
+			itemsAdd: (MDSListItemSeparator new);
+			itemsAdd: (MDSListItem itemText: 'Item A3' iconName: nil callback: [  ]);
 			yourself);
-		addGroupedList: (MDSDeprecatedList new
+		addGroupedList: (MDSList new
 			subheader: 'Category';
-			listItemAdd: (MCWListItemIcon  itemText: 'Item B1' iconName: nil callback: [  ]);
+			itemsAdd: (MDSListItem itemText: 'Item B1' iconName: nil callback: [  ]);
 			yourself);
 		yourself
 ]
 
-{ #category : #accessing }
-MDSBasicResponsiveApp >> contentArea [
+{ #category : #initialization }
+MDSBasicResponsiveApp >> buildTopAppBar [
 
-	^ contentArea
-]
-
-{ #category : #accessing }
-MDSBasicResponsiveApp >> contentArea: anObject [
-
-	contentArea := anObject
+	^ (MDSTopAppBar title: self applicationTitle)
+		startSectionAdd: self buildNavigationIcon;
+		yourself
 ]
 
 { #category : #initialization }
@@ -138,93 +136,21 @@ MDSBasicResponsiveApp >> initializeLayout [
 	self materialVersionDefault.
 
 	"self settings: self buildApplicationSettings."
+	self topAppBar: self buildTopAppBar .
+	self sideNav: self buildSideNav.
+	self bodyRegion: self buildBodyRegion.
+	self sideSheet: self buildSideSheet.
 	self layout: self buildLayout.
-	self sideNavTitlesSet.
-	self contentArea component: (String loremIpsum: 5000).
-]
-
-{ #category : #accessing }
-MDSBasicResponsiveApp >> layout [
-
-	^ layout
-]
-
-{ #category : #accessing }
-MDSBasicResponsiveApp >> layout: anObject [
-
-	layout := anObject
-]
-
-{ #category : #rendering }
-MDSBasicResponsiveApp >> renderContentOn: html [
-
-	html document addLoadScript: (JSStream on: 'mdc.autoInit()').
-
-	html script with:
-		'var bodyStyle = document.querySelector("body").style;'
-		, 'bodyStyle.setProperty("--mdc-theme-primary", "#0088F0");'.
-
-	self renderLayoutOn: html.
-
-	self renderMaterialComponentsWebJsOn: html
 ]
 
 { #category : #rendering }
 MDSBasicResponsiveApp >> renderLayoutOn: html [
 
+	html script with:
+		'var bodyStyle = document.querySelector("body").style;'
+		, 'bodyStyle.setProperty("--mdc-theme-primary", "#0088F0");'.
+
 	html render: self layout
-]
-
-{ #category : #accessing }
-MDSBasicResponsiveApp >> sideNav [
-
-	^ sideNav
-]
-
-{ #category : #accessing }
-MDSBasicResponsiveApp >> sideNav: anObject [
-
-	sideNav := anObject
-]
-
-{ #category : #initialization }
-MDSBasicResponsiveApp >> sideNavTitlesSet [
-
-	self sideNav
-		title: 'Example';
-		subtitle: 'Sub-example';
-		yourself
-]
-
-{ #category : #accessing }
-MDSBasicResponsiveApp >> sideSheet [
-
-	^ sideSheet
-]
-
-{ #category : #accessing }
-MDSBasicResponsiveApp >> sideSheet: anObject [
-
-	sideSheet := anObject
-]
-
-{ #category : #accessing }
-MDSBasicResponsiveApp >> snackbarText [
-	"TODO: added to be compatible with MCW layout class"
-
-	^ nil
-]
-
-{ #category : #accessing }
-MDSBasicResponsiveApp >> topAppBar [
-
-	^ topAppBar
-]
-
-{ #category : #accessing }
-MDSBasicResponsiveApp >> topAppBar: anObject [
-
-	topAppBar := anObject
 ]
 
 { #category : #updating }
@@ -232,8 +158,5 @@ MDSBasicResponsiveApp >> updateRoot: anHtmlRoot [
 
 	super updateRoot: anHtmlRoot.
 
-	anHtmlRoot stylesheet url: (MDSBasicResponsiveLibrary urlOf: #appCss).
-
-	anHtmlRoot bodyAttributes addClass: 'mdc-typography'.
-
+	anHtmlRoot stylesheet url: (MDSBasicResponsiveLibrary urlOf: #appCss)
 ]

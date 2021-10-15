@@ -43,6 +43,14 @@ MDSTopAppBar >> endSection: anObject [
 	endSection := anObject
 ]
 
+{ #category : #accessing }
+MDSTopAppBar >> endSectionAdd: anItem [
+
+	self endSection
+		ifNil: [ self endSection: (OrderedCollection with: anItem) ]
+		ifNotNil: [ :value | value add: anItem ]
+]
+
 { #category : #initialization }
 MDSTopAppBar >> initialize [
 
@@ -73,12 +81,12 @@ MDSTopAppBar >> renderContentOn: html [
 	self isShortCollapsed ifTrue: [ tag mdcTopAppBar_shortCollapsed ].
 	self needsPaddingRight ifTrue: [ tag style: 'padding-right: 256px' ]."
 
-	"For multiple rows or sections in the top appbar, use custom code"
+	"For multiple rows or sections in the top appbar, use custom subclass"
 	tag mdcAutoInit: 'MDCTopAppBar'; with: [
 		html div mdcTopAppBar__row; with: [
 			html section mdcTopAppBar__section; mdcTopAppBar__section_alignStart; with: [
-				html span mdcTopAppBar__title; with: self title.
-				self startSection ifNotNil: [ :value | html render: value ] ].
+				self startSection ifNotNil: [ :value | html render: value ].
+				html span mdcTopAppBar__title; with: self title ].
 			self middleSection ifNotNil: [ :value |
 				html section mdcTopAppBar__section; with: [ html render: value ] ].
 			self endSection
@@ -107,6 +115,14 @@ MDSTopAppBar >> startSection [
 MDSTopAppBar >> startSection: anObject [
 
 	startSection := anObject
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> startSectionAdd: anItem [
+
+	self startSection
+		ifNil: [ self startSection: (OrderedCollection with: anItem) ]
+		ifNotNil: [ :value | value add: anItem ]
 ]
 
 { #category : #accessing }

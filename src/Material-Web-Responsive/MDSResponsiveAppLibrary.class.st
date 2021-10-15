@@ -1,7 +1,7 @@
 Class {
 	#name : #MDSResponsiveAppLibrary,
 	#superclass : #WAFileLibrary,
-	#category : #'Material-Web-Components'
+	#category : #'Material-Web-Responsive'
 }
 
 { #category : #uploaded }

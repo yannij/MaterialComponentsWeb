@@ -11,6 +11,30 @@ Class {
 }
 
 { #category : #'instance creation' }
+MDSListItem class >> iconName: aMaterialIconName itemText: aString callback: aBlock [
+
+	^ self label: aString icon: nil callback: aBlock
+]
+
+{ #category : #'instance creation' }
+MDSListItem class >> itemText: aString [
+
+	^ self label: aString icon: nil callback: nil
+]
+
+{ #category : #'instance creation' }
+MDSListItem class >> itemText: aString callback: aBlock [
+
+	^ self label: aString icon: nil callback: aBlock
+]
+
+{ #category : #'instance creation' }
+MDSListItem class >> itemText: aString iconName: aMaterialIconName callback: aBlock [
+
+	^ self label: aString icon: nil callback: aBlock
+]
+
+{ #category : #'instance creation' }
 MDSListItem class >> label: aString [
 
 	^ self label: aString icon: nil callback: nil

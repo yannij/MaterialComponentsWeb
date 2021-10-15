@@ -6,25 +6,10 @@ Class {
 		'drawerTitle',
 		'drawerSubtitle',
 		'list',
-		'dir',
-		'menuIconPersistent',
-		'menuIconTemporary',
 		'isDismissed'
 	],
 	#category : #'Material-Web-Responsive'
 }
-
-{ #category : #actions }
-MCWDrawer >> beDirectionLeftToRight [
-
-	self dir: 'ltr'
-]
-
-{ #category : #actions }
-MCWDrawer >> beDirectionToRightToLeft [
-
-	self dir: 'rtl'
-]
 
 { #category : #actions }
 MCWDrawer >> beDismissed [
@@ -48,16 +33,6 @@ MCWDrawer >> beModalDrawer [
 MCWDrawer >> bePersistentDrawer [
 
 	self drawerType: #persistent
-]
-
-{ #category : #accessing }
-MCWDrawer >> dir [
-	^ dir
-]
-
-{ #category : #accessing }
-MCWDrawer >> dir: anObject [
-	dir := anObject
 ]
 
 { #category : #actions }
@@ -96,21 +71,10 @@ MCWDrawer >> drawerType: anObject [
 	drawerType := anObject
 ]
 
-{ #category : #actions }
-MCWDrawer >> getMenuIcon [
-
-	self isPersistentDrawer
-		ifTrue: [ ^ self menuIconPersistent ].
-
-	self isModalDrawer
-		ifTrue: [ ^ self menuIconTemporary ].
-
-	^ self menuIconPersistent
-
-]
-
 { #category : #initialization }
 MCWDrawer >> initialize [
+
+	self error: 'Do not use. Replaced by MDSDrawer'.
 
 	super initialize.
 
@@ -164,17 +128,6 @@ MCWDrawer >> isPersistentDrawer [
 ]
 
 { #category : #accessing }
-MCWDrawer >> jsDrawerType [
-
-	self isModalDrawer ifTrue: [ ^ 'mdc.drawer.MDCTemporaryDrawer' ].
-	self isPersistentDrawer ifTrue: [ ^ 'mdc.drawer.MDCPersistentDrawer' ].
-	"self isPermanentAboveToolbarDrawer ifTrue: [^'mdc.drawer.MDCPermanentDrawer'].
-	self isPermanentBelowToolbarDrawer ifTrue: [^'mdc.drawer.MDCPermanentDrawer']."
-	^ ''
-
-]
-
-{ #category : #accessing }
 MCWDrawer >> list [
 	^ list
 ]
@@ -182,26 +135,6 @@ MCWDrawer >> list [
 { #category : #accessing }
 MCWDrawer >> list: anObject [
 	list := anObject
-]
-
-{ #category : #accessing }
-MCWDrawer >> menuIconPersistent [
-	^ menuIconPersistent
-]
-
-{ #category : #accessing }
-MCWDrawer >> menuIconPersistent: anObject [
-	menuIconPersistent := anObject
-]
-
-{ #category : #accessing }
-MCWDrawer >> menuIconTemporary [
-	^ menuIconTemporary
-]
-
-{ #category : #accessing }
-MCWDrawer >> menuIconTemporary: anObject [
-	menuIconTemporary := anObject
 ]
 
 { #category : #actions }
@@ -241,7 +174,7 @@ MCWDrawer >> renderDrawerContentOn: html [
 		with: [
 		html navigation
 			class: self cssClass;
-			attributeAt: 'dir' put: self dir;
+			"attributeAt: 'dir' put: self dir;"
 			"style: 'background-color: #EC4E8C';"
 			onClick: (JSScript new add: (JSStream new
 				nextPutAll: '

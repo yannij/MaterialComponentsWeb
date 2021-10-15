@@ -70,6 +70,7 @@ MDSComponentDemoApp >> buildDrawer [
 
 	^ (MDSDrawer content: self list)
 		fixedAdjustRegular;
+		bePersistentDrawer;
 		yourself
 ]
 

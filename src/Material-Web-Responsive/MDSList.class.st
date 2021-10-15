@@ -2,7 +2,8 @@ Class {
 	#name : #MDSList,
 	#superclass : #MDSComponent,
 	#instVars : [
-		'items'
+		'items',
+		'subheader'
 	],
 	#category : #'Material-Web-Responsive'
 }
@@ -39,6 +40,12 @@ MDSList >> itemsAdd: aTab [
 	self items add: aTab
 ]
 
+{ #category : #accessing }
+MDSList >> itemsAddAll: aCollection [
+
+	aCollection do: [ :eachItem | self itemsAdd: eachItem ]
+]
+
 { #category : #rendering }
 MDSList >> renderContentOn: html [
 
@@ -48,6 +55,25 @@ MDSList >> renderContentOn: html [
 { #category : #rendering }
 MDSList >> renderListOn: html [
 
-	html div mdcDeprecatedList; "mdcAutoInit: 'MDCList';" with: [
-		self items do: [ :eachItem | html render: eachItem ] ]
+	self subheader notNil ifTrue: [
+		html heading level3; mdcDeprecatedListGroup__subheader; with: self subheader ].
+
+	html navigation
+		mdcDeprecatedList;
+		mdcList_dense_if: self mcwDenseView;
+		mdcRole: 'list';
+		with: [
+			self items do: [ :eachItem | html render: eachItem ] ]
+]
+
+{ #category : #accessing }
+MDSList >> subheader [
+
+	^ subheader
+]
+
+{ #category : #accessing }
+MDSList >> subheader: anObject [
+
+	subheader := anObject
 ]

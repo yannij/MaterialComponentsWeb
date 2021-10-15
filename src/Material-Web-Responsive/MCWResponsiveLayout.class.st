@@ -8,7 +8,6 @@ Class {
 		'topAppBar',
 		'sideNav',
 		'sideSheet',
-		'mainFab',
 		'settingsView',
 		'cssStyle'
 	],
@@ -196,16 +195,6 @@ MCWResponsiveLayout >> isTabletStyle [
 	^ self screenStyle = self class layoutTablet
 ]
 
-{ #category : #accessing }
-MCWResponsiveLayout >> mainFab [
-	^ mainFab
-]
-
-{ #category : #accessing }
-MCWResponsiveLayout >> mainFab: anObject [
-	mainFab := anObject
-]
-
 { #category : #rendering }
 MCWResponsiveLayout >> renderContentOn: html [
 
@@ -385,15 +374,6 @@ MCWResponsiveLayout >> sideNav [
 { #category : #accessing }
 MCWResponsiveLayout >> sideNav: anObject [
 	sideNav := anObject
-]
-
-{ #category : #testing }
-MCWResponsiveLayout >> sideNavVisible [
-
-	^ self sideNav
-		ifNil: [ false ]
-		ifNotNil: [ :value |
-			self isDesktopStyle or: [ self isTabletStyle and: [ value isDrawerOpen ] ] ]
 ]
 
 { #category : #accessing }

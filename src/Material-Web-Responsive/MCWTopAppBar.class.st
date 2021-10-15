@@ -41,6 +41,8 @@ MCWTopAppBar >> height [
 { #category : #initialization }
 MCWTopAppBar >> initialize [
 
+	self error: 'Do not use. Replaced by MDSTopAppBar'.
+
 	super initialize.
 
 	self appBarTitle: ''.
@@ -69,12 +71,6 @@ MCWTopAppBar >> marginHeight [
 	^ self isShortCollapsed ifTrue: [ 0 ] ifFalse: [ self height ]
 ]
 
-{ #category : #testing }
-MCWTopAppBar >> needsPaddingRight [
-
-	^ self layout sideNav isDrawerOpen and: [ self isShortCollapsed not ]
-]
-
 { #category : #accessing }
 MCWTopAppBar >> paddingHeight [
 
@@ -92,8 +88,6 @@ MCWTopAppBar >> renderContentOn: html [
 	tag mdcTopAppBar_dense_if: self mcwDenseView.
 	self isShort ifTrue: [ tag mdcTopAppBar_short ].
 	self isShortCollapsed ifTrue: [ tag mdcTopAppBar_shortCollapsed ].
-
-	self needsPaddingRight ifTrue: [ tag style: 'padding-right: 256px' ].
 
 	tag
 		mdcAutoInit: 'MDCTopAppBar';

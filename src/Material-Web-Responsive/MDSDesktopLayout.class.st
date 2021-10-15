@@ -115,7 +115,7 @@ MDSDesktopLayout >> initialize [
 	super initialize.
 
 	self settingsView: MDMApplicationSettingsView new.
-	self screenStyle: self class layoutDesktop
+	self screenStyle: self class layoutTablet
 ]
 
 { #category : #testing }
@@ -311,15 +311,6 @@ MDSDesktopLayout >> settingsView [
 { #category : #accessing }
 MDSDesktopLayout >> settingsView: anObject [
 	settingsView := anObject
-]
-
-{ #category : #testing }
-MDSDesktopLayout >> sideNavVisible [
-
-	^ self sideNav
-		ifNil: [ false ]
-		ifNotNil: [ :value |
-			self isDesktopStyle or: [ self isTabletStyle and: [ value isDrawerOpen ] ] ]
 ]
 
 { #category : #testing }

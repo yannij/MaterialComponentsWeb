@@ -10,6 +10,9 @@ Class {
 		'loginComponent',
 		'snackbarText'
 	],
+	#classInstVars : [
+		'buildPopupMenuSettings'
+	],
 	#category : #'Material-Web-Responsive'
 }
 
@@ -27,13 +30,11 @@ MCWResponsiveApplication >> appBarEndSection [
 
 	data := OrderedCollection new.
 	data
-		"add: ((MCWAppBarMenuIcon materialIcon: 'more_horiz') ariaLabel: 'Side Sheet'; callback: [ self toggleSideSheet ]; yourself);"
-		add: ((MCWAppBarMenuIcon materialIcon: 'settings') "ariaLabel: 'Settings';" onClickScript: settingsPopup openScript; yourself);
+		add: (MDSTopAppBarActionItem materialIcon: 'settings' onClickScript: settingsPopup openScript);
 		add: settingsPopup;
 		yourself.
 
 	^ data
-
 ]
 
 { #category : #initialization }
@@ -90,7 +91,7 @@ MCWResponsiveApplication >> buildLayout [
 
 	newLayout := MCWResponsiveLayout on: self.
 	newSideNav := self buildSideNav layout: newLayout; yourself.
-	newTopAppBar := self buildTopAppBar layout: newLayout; yourself.
+	newTopAppBar := self buildTopAppBar "layout: newLayout;" yourself.
 	newContentArea := MDSContentArea new.
 	newLayout
 		contentArea: newContentArea;
@@ -111,14 +112,7 @@ MCWResponsiveApplication >> buildLoginComponent [
 { #category : #initialization }
 MCWResponsiveApplication >> buildMenuIconPersistent [
 
-	^ (MCWAppBarMenuIcon materialIcon: 'menu') "ariaLabel: 'Menu';" callback: [ self toggleDismissibleDrawer ]; yourself
-
-]
-
-{ #category : #initialization }
-MCWResponsiveApplication >> buildMenuIconTemporary [
-
-	^ (MCWAppBarMenuIcon materialIcon: 'menu') "ariaLabel: 'Menu'; "onClickScript: self openSideNavScript; yourself
+	^ (MDSTopAppBarNavigationIcon materialIcon: 'menu') "ariaLabel: 'Menu';" callback: [ self toggleDismissibleDrawer ]; yourself
 
 ]
 
@@ -127,17 +121,17 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 	| list |
 
 	list := (MDSMenuList id: 'settingsPopup')
-		listItemAdd: (MCWListItemIcon new iconName: 'smartphone'; itemText: 'Phone'; callback: [ self beLayoutStructurePhone ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'tablet'; itemText: 'Tablet'; callback: [ self beLayoutStructureTablet ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'laptop'; itemText: 'Laptop'; callback: [ self beLayoutStructureLaptop ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'monitor'; itemText: 'Desktop'; callback: [ self beLayoutStructureDesktop ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'view_sidebar'; itemText: 'Side Sheet'; callback: [ self toggleSideSheet ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'waves'; itemText: 'Responsive'; callback: [ self toggleAutoResponsive ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'minimize'; itemText: 'Collapse'; callback: [ self toggleAppBarCollapse ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'all_out'; itemText: 'Dense'; callback: [ self toggleDenseView ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'color_lens'; itemText: 'Style'; callback: [ self configureStyle ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'login'; itemText: 'Login'; callback: [ self login ]; yourself);
-		listItemAdd: (MCWListItemIcon new iconName: 'logout'; itemText: 'Logout'; callback: [ self logout ]; yourself);
+		itemsAdd: (MDSListItem iconName: 'smartphone' itemText: 'Phone' callback: [ self beLayoutStructurePhone ]);
+		itemsAdd: (MDSListItem iconName: 'tablet' itemText: 'Tablet' callback: [ self beLayoutStructureTablet ]);
+		itemsAdd: (MDSListItem iconName: 'laptop' itemText: 'Laptop' callback: [ self beLayoutStructureLaptop ]);
+		itemsAdd: (MDSListItem iconName: 'monitor' itemText: 'Desktop' callback: [ self beLayoutStructureDesktop ]);
+		itemsAdd: (MDSListItem iconName: 'view_sidebar' itemText: 'Side Sheet' callback: [ self toggleSideSheet ]);
+		itemsAdd: (MDSListItem iconName: 'waves' itemText: 'Responsive' callback: [ self toggleAutoResponsive ]);
+		itemsAdd: (MDSListItem iconName: 'minimize' itemText: 'Collapse' callback: [ self toggleAppBarCollapse ]);
+		itemsAdd: (MDSListItem iconName: 'all_out' itemText: 'Dense' callback: [ self toggleDenseView ]);
+		itemsAdd: (MDSListItem iconName: 'color_lens' itemText: 'Style' callback: [ self configureStyle ]);
+		itemsAdd: (MDSListItem iconName: 'login' itemText: 'Login' callback: [ self login ]);
+		itemsAdd: (MDSListItem iconName: 'logout' itemText: 'Logout' callback: [ self logout ]);
 		yourself.
 
 	^ list
@@ -146,12 +140,9 @@ MCWResponsiveApplication >> buildPopupMenuSettings [
 { #category : #initialization }
 MCWResponsiveApplication >> buildSideNav [
 
-	^ MCWDrawer new
+	^ MDSDrawer new
 		id: self sideNavDrawerId;
-		list: self buildSideNavList;
-		menuIconPersistent: self buildMenuIconPersistent;
-		"menuIconTemporary: self buildMenuIconTemporary;"
-		menuIconTemporary: self buildMenuIconPersistent;
+		content: self buildSideNavList;
 		yourself.
 
 ]
@@ -159,11 +150,11 @@ MCWResponsiveApplication >> buildSideNav [
 { #category : #initialization }
 MCWResponsiveApplication >> buildSideNavList [
 
-	^ MDSDeprecatedList new
-		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 1' iconName: 'assignment' callback: [ self sideNav menuItemCallback ]);
-		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 2' iconName: 'bug_report' callback: [ self sideNav menuItemCallback ]);
-		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 3' iconName: 'build' callback: [ self sideNav menuItemCallback ]);
-		listItemAdd: (MCWListItemIcon  itemText: 'Nav Item 4' iconName: 'delete' callback: [ self sideNav menuItemCallback ]);
+	^ MDSList new
+		itemsAdd: (MDSListItem itemText: 'Nav Item 1' iconName: 'assignment' callback: [ self sideNav menuItemCallback ]);
+		itemsAdd: (MDSListItem itemText: 'Nav Item 2' iconName: 'bug_report' callback: [ self sideNav menuItemCallback ]);
+		itemsAdd: (MDSListItem itemText: 'Nav Item 3' iconName: 'build' callback: [ self sideNav menuItemCallback ]);
+		itemsAdd: (MDSListItem itemText: 'Nav Item 4' iconName: 'delete' callback: [ self sideNav menuItemCallback ]);
 		yourself.
 
 ]
@@ -178,12 +169,11 @@ MCWResponsiveApplication >> buildSideSheet [
 { #category : #initialization }
 MCWResponsiveApplication >> buildTopAppBar [
 
-	^ MCWTopAppBar new
-		appBarTitle: self applicationTitle;
-		startSection: self appBarStartSection;
+	^ MDSTopAppBar new
+		title: self applicationTitle;
+		"startSection: self appBarStartSection;"
 		endSection: self appBarEndSection;
 		yourself
-
 ]
 
 { #category : #accessing }
