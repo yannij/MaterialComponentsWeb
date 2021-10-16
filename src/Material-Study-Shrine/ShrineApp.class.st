@@ -1,6 +1,6 @@
 Class {
 	#name : #ShrineApp,
-	#superclass : #MCWResponsiveApplication,
+	#superclass : #MDSResponsiveApp,
 	#instVars : [
 		'shoppingCart',
 		'stripeInterface'
@@ -46,6 +46,23 @@ ShrineApp >> applicationTitle [
 ]
 
 { #category : #initialization }
+ShrineApp >> buildBodyRegion [
+
+	^ MDSBodyRegion new
+		component: ShrineCanvas new;
+		yourself
+]
+
+{ #category : #initialization }
+ShrineApp >> buildLayout [
+
+	^ (MDSLayoutAutoResponsive on: self)
+		cssClass: 'shrine';
+		initializeComplete;
+		yourself
+]
+
+{ #category : #initialization }
 ShrineApp >> buildLoginComponent [
 
 	^ ShrineLogin new
@@ -58,9 +75,26 @@ ShrineApp >> buildLoginComponent [
 ]
 
 { #category : #initialization }
+ShrineApp >> buildPopupMenuSettings [
+	| list |
+
+	list := (MDSMenuList id: 'settingsPopup')
+		"itemsAdd: (MDSListItem iconName: 'view_sidebar' itemText: 'Side Sheet' callback: [ self toggleSideSheet ]);
+		itemsAdd: (MDSListItem iconName: 'waves' itemText: 'Responsive' callback: [ self toggleAutoResponsive ]);"
+		itemsAdd: (MDSListItem iconName: 'minimize' itemText: 'Collapse' callback: [ self layout topAappBarCollapsedToggle ]);
+		itemsAdd: (MDSListItem iconName: 'all_out' itemText: 'Dense' callback: [ self layout denseViewToggle ]);
+		"itemsAdd: (MDSListItem iconName: 'color_lens' itemText: 'Style' callback: [ self configureStyle ]);
+		itemsAdd: (MDSListItem iconName: 'login' itemText: 'Login' callback: [ self login ]);
+		itemsAdd: (MDSListItem iconName: 'logout' itemText: 'Logout' callback: [ self logout ]);"
+		yourself.
+
+	^ list
+]
+
+{ #category : #initialization }
 ShrineApp >> buildSideNav [
 
-	^ (super buildSideNav)
+	^ (MDSDrawer content: self buildSideNavList)
 		cssClass: 'shrine-drawer';
 		yourself
 ]
@@ -70,15 +104,15 @@ ShrineApp >> buildSideNavList [
 
 	^ MDSList new
 		itemsAdd: (ShrineBranding new);
-		itemsAdd: (MDSListItem itemText: 'Featured' iconName: '' callback: [ ]);
+		itemsAdd: (MDSListItem itemText: 'Featured' iconName: '' callback: [ self sideNav menuItemCallback ]);
 		"Divider Line"
-		itemsAdd: (MDSListItem itemText: 'Apartment' iconName: '' callback: [ ]);
-		itemsAdd: (MDSListItem itemText: 'Accessories' iconName: '' callback: [ ]);
-		itemsAdd: (MDSListItem itemText: 'Shoes' iconName: '' callback: [ ]);
-		itemsAdd: (MDSListItem itemText: 'Tops' iconName: '' callback: [ ]);
-		itemsAdd: (MDSListItem itemText: 'Bottoms' iconName: '' callback: [ ]);
-		itemsAdd: (MDSListItem itemText: 'Dresses' iconName: '' callback: [ ]);
-		itemsAdd: (MDSListItem itemText: 'My Account' iconName: '' callback: [ ]);
+		itemsAdd: (MDSListItem itemText: 'Apartment' iconName: '' callback: [ self sideNav menuItemCallback ]);
+		itemsAdd: (MDSListItem itemText: 'Accessories' iconName: '' callback: [ self sideNav menuItemCallback ]);
+		itemsAdd: (MDSListItem itemText: 'Shoes' iconName: '' callback: [ self sideNav menuItemCallback ]);
+		itemsAdd: (MDSListItem itemText: 'Tops' iconName: '' callback: [ self sideNav menuItemCallback ]);
+		itemsAdd: (MDSListItem itemText: 'Bottoms' iconName: '' callback: [ self sideNav menuItemCallback ]);
+		itemsAdd: (MDSListItem itemText: 'Dresses' iconName: '' callback: [ self sideNav menuItemCallback ]);
+		itemsAdd: (MDSListItem itemText: 'My Account' iconName: '' callback: [ self sideNav menuItemCallback ]);
 		yourself.
 
 ]
@@ -90,15 +124,61 @@ ShrineApp >> buildSideSheet [
 ]
 
 { #category : #initialization }
+ShrineApp >> buildTopAppBar [
+	| settingsPopup |
+
+	settingsPopup := self buildPopupMenuSettings.
+
+	^ (MDSTopAppBar title: self applicationTitle)
+		startSectionAdd: self buildNavigationIcon;
+		endSectionAdd: (MDSTopAppBarActionItem materialIcon: 'settings' onClickScript: settingsPopup openScript);
+		endSectionAdd: settingsPopup;
+		yourself
+]
+
+{ #category : #accessing }
+ShrineApp >> colorTheme [
+
+	^ {
+#'primary' -> 'FEDBD0'.
+#'on-primary' -> '442C2E'.
+#'secondary' -> 'FEEAE6'.
+#'on-secondary' -> '442C2E'.
+#'surface' -> 'FFFBFA'.
+#'on-surface' -> '442C2E'.
+#'background' -> 'FFFFFF'
+} asOrderedDictionary
+]
+
+{ #category : #initialization }
 ShrineApp >> initialize [
 
 	self stripeInterface: StripeInterfaceBasic new.
 
 	super initialize.
+
+	self initializeLayout
 ]
 
 { #category : #initialization }
 ShrineApp >> initializeLayout [
+
+	self materialVersionDefault.
+
+	"self settings: self buildApplicationSettings."
+	self topAppBar: self buildTopAppBar .
+	self sideNav: self buildSideNav.
+	self bodyRegion: self buildBodyRegion.
+	self sideSheet: self buildSideSheet.
+
+	self shoppingCart: self stripeInterface shoppingCartNew.
+	self sideSheet component: self shoppingCart.
+
+	self layout: self buildLayout
+]
+
+{ #category : #initialization }
+ShrineApp >> initializeLayoutOLD [
 
 	self materialVersionDefault.
 
@@ -116,6 +196,15 @@ ShrineApp >> initializeLayout [
 	self settings mdcTheme themeItemsSet: self themeSetting.
 
 	self layout sideSheet component: self shoppingCart.
+]
+
+{ #category : #rendering }
+ShrineApp >> renderLayoutOn: html [
+
+	self renderSetColorTheme: self colorTheme on: html.
+	self renderSetTypographyFont: 'Rubik' on: html.
+
+	html render: self layout
 ]
 
 { #category : #accessing }

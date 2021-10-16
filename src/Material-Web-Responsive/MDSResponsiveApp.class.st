@@ -81,6 +81,28 @@ MDSResponsiveApp >> renderLayoutOn: html [
 	self subclassResponsibility
 ]
 
+{ #category : #rendering }
+MDSResponsiveApp >> renderSetColorTheme: aColorTheme on: html [
+	| stream |
+
+	stream := WriteStream on: String new.
+
+	stream nextPutAll: 'var bodyStyle = document.querySelector(":root").style;'.
+	aColorTheme keysAndValuesDo: [ :eachKey :eachValue |
+		stream
+			nextPutAll: 'bodyStyle.setProperty("--mdc-theme-', eachKey, '", "#', eachValue "asHexString", '");';
+			yourself ].
+
+	html script: stream contents
+]
+
+{ #category : #rendering }
+MDSResponsiveApp >> renderSetTypographyFont: aFontFamily on: html [
+
+	html script:
+		'document.querySelector("body").style.setProperty("--mdc-typography-font-family", "', aFontFamily, '")'
+]
+
 { #category : #accessing }
 MDSResponsiveApp >> sideNav [
 
