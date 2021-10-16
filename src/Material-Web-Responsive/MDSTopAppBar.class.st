@@ -3,7 +3,10 @@ Class {
 	#superclass : #MDSComponent,
 	#instVars : [
 		'title',
-		'collapsed',
+		'dense',
+		'short',
+		'shortCollapsed',
+		'allotDrawerWidth',
 		'startSection',
 		'middleSection',
 		'endSection'
@@ -20,15 +23,39 @@ MDSTopAppBar class >> title: aString [
 ]
 
 { #category : #accessing }
-MDSTopAppBar >> collapsed [
+MDSTopAppBar >> allotDrawerWidth [
 
-	^ collapsed
+	^ allotDrawerWidth
 ]
 
 { #category : #accessing }
-MDSTopAppBar >> collapsed: anObject [
+MDSTopAppBar >> allotDrawerWidth: anObject [
 
-	collapsed := anObject
+	allotDrawerWidth := anObject
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> dense [
+
+	^ dense
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> dense: anObject [
+
+	dense := anObject
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> denseOff [
+
+	self dense: false
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> denseOn [
+
+	self dense: true
 ]
 
 { #category : #accessing }
@@ -56,7 +83,28 @@ MDSTopAppBar >> initialize [
 
 	super initialize.
 
-	self collapsed: false
+	self allotDrawerWidth: false.
+	self dense: false.
+	self short: false.
+	self shortCollapsed: false
+]
+
+{ #category : #testing }
+MDSTopAppBar >> isDense [
+
+	^ self dense
+]
+
+{ #category : #testing }
+MDSTopAppBar >> isShort [
+
+	^ self short
+]
+
+{ #category : #testing }
+MDSTopAppBar >> isShortCollapsed [
+
+	^ self shortCollapsed
 ]
 
 { #category : #accessing }
@@ -71,15 +119,26 @@ MDSTopAppBar >> middleSection: anObject [
 	middleSection := anObject
 ]
 
+{ #category : #testing }
+MDSTopAppBar >> needsPaddingRight [
+
+	self shortCollapsed ifTrue: [ ^ false ].
+
+	"layoutDrawer := self mcwApplicationGet layout sideNav.
+	^ layoutDrawer isDismissibleDrawer and: [ layoutDrawer isDrawerOpen ]"
+	^ allotDrawerWidth
+]
+
 { #category : #rendering }
 MDSTopAppBar >> renderContentOn: html [
 	| tag |
 
 	tag := html header mdcTopAppBar.
 
-	"self isShort ifTrue: [ tag mdcTopAppBar_short ].
+	tag mdcTopAppBar_dense_if: self isDense.
+	self isShort ifTrue: [ tag mdcTopAppBar_short ].
 	self isShortCollapsed ifTrue: [ tag mdcTopAppBar_shortCollapsed ].
-	self needsPaddingRight ifTrue: [ tag style: 'padding-right: 256px' ]."
+	self needsPaddingRight ifTrue: [ tag style: 'padding-right: 256px' ].
 
 	"For multiple rows or sections in the top appbar, use custom subclass"
 	tag mdcAutoInit: 'MDCTopAppBar'; with: [
@@ -99,10 +158,57 @@ MDSTopAppBar >> renderContentOn: html [
 ]
 
 { #category : #accessing }
-MDSTopAppBar >> shortCollapsed [
-	"TODO: added to be compatible with MCW layout class"
+MDSTopAppBar >> short [
 
-	^ false
+	^ short
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> short: anObject [
+
+	short := anObject
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> shortCollapsed [
+
+	^ shortCollapsed
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> shortCollapsed: anObject [
+
+	shortCollapsed := anObject
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> shortCollapsedOff [
+
+	self shortCollapsed: false
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> shortCollapsedOn [
+
+	self shortCollapsed: true
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> shortCollapsedToggle [
+
+	self shortCollapsed: self shortCollapsed not
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> shortOff [
+
+	self short: false
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> shortOn [
+
+	self short: true
 ]
 
 { #category : #accessing }

@@ -42,6 +42,12 @@ MDSResponsiveApp >> contentArea [
 ]
 
 { #category : #accessing }
+MDSResponsiveApp >> denseView [
+
+	^ self layout denseView
+]
+
+{ #category : #accessing }
 MDSResponsiveApp >> layout [
 
 	^ layout
@@ -51,6 +57,12 @@ MDSResponsiveApp >> layout [
 MDSResponsiveApp >> layout: anObject [
 
 	layout := anObject
+]
+
+{ #category : #testing }
+MDSResponsiveApp >> mcwIsResponsiveApplication [
+
+	^ true
 ]
 
 { #category : #rendering }

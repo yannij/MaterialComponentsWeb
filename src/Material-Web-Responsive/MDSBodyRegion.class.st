@@ -1,5 +1,5 @@
 Class {
-	#name : #MDSContentArea,
+	#name : #MDSBodyRegion,
 	#superclass : #MDSComponent,
 	#instVars : [
 		'component'
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #accessing }
-MDSContentArea >> component [
+MDSBodyRegion >> component [
 	^ component
 ]
 
 { #category : #accessing }
-MDSContentArea >> component: anObject [
+MDSBodyRegion >> component: anObject [
 	component := anObject
 ]
 
 { #category : #rendering }
-MDSContentArea >> renderContentOn: html [
+MDSBodyRegion >> renderContentOn: html [
 
 	self component ifNil: [ ^ self ].
 

@@ -92,7 +92,7 @@ MCWResponsiveApplication >> buildLayout [
 	newLayout := MCWResponsiveLayout on: self.
 	newSideNav := self buildSideNav layout: newLayout; yourself.
 	newTopAppBar := self buildTopAppBar "layout: newLayout;" yourself.
-	newContentArea := MDSContentArea new.
+	newContentArea := MDSBodyRegion new.
 	newLayout
 		contentArea: newContentArea;
 		sideNav: newSideNav;
@@ -294,20 +294,6 @@ MCWResponsiveApplication >> mcwIsResponsiveApplication [
 	^ true
 ]
 
-{ #category : #initialization }
-MCWResponsiveApplication >> openRidghtNavScript [
-
-	^ 'element = document.getElementById(''', self rightNavDrawerId, ''');
-element.mdcDrawer.open = !element.mdcDrawer.open'
-]
-
-{ #category : #initialization }
-MCWResponsiveApplication >> openSideNavScript [
-
-	^ 'element = document.getElementById(''', self sideNavDrawerId, ''');
-element.mdcDrawer.open = !element.mdcDrawer.open'
-]
-
 { #category : #actions }
 MCWResponsiveApplication >> redirectToLogin [
 
@@ -450,13 +436,6 @@ MCWResponsiveApplication >> resizeString: aString [
 		^ self beLayoutStructureLaptop ].
 
 	self beLayoutStructureDesktop
-]
-
-{ #category : #initialization }
-MCWResponsiveApplication >> rightNavDrawerId [
-
-	^ 'rightNavDrawer'
-
 ]
 
 { #category : #accessing }

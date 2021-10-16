@@ -1,20 +1,17 @@
-"
-A realization of the Material Design  layout structures described at: https://material.io/guidelines/layout/structure.html
-"
 Class {
-	#name : #MDSBasicResponsiveApp,
+	#name : #MDSAutoResponsiveApp,
 	#superclass : #MDSResponsiveApp,
 	#category : #'Material-Demo-Web'
 }
 
 { #category : #initialization }
-MDSBasicResponsiveApp class >> applicationPath [
+MDSAutoResponsiveApp class >> applicationPath [
 
-	^ 'material/basic-responsive'
+	^ 'material/auto-responsive'
 ]
 
 { #category : #'class initialization' }
-MDSBasicResponsiveApp class >> initialize [
+MDSAutoResponsiveApp class >> initialize [
 	"Register path with Seaside.
 	WAAdmin unregister: self applicationPath.
 	"
@@ -23,13 +20,13 @@ MDSBasicResponsiveApp class >> initialize [
 ]
 
 { #category : #accessing }
-MDSBasicResponsiveApp >> applicationTitle [
+MDSAutoResponsiveApp >> applicationTitle [
 
-	^ 'Basic Responsive'
+	^ 'Auto Responsive'
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> buildBodyRegion [
+MDSAutoResponsiveApp >> buildBodyRegion [
 
 	^ MDSBodyRegion new
 		component: (String loremIpsum: 5000);
@@ -37,15 +34,15 @@ MDSBasicResponsiveApp >> buildBodyRegion [
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> buildLayout [
+MDSAutoResponsiveApp >> buildLayout [
 
-	^ (MDSLayoutMedium on: self)
+	^ (MDSLayoutAutoResponsive on: self)
 		initializeComplete;
 		yourself
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> buildList [
+MDSAutoResponsiveApp >> buildList [
 	| newObject |
 
 	newObject := MDSList new.
@@ -57,16 +54,12 @@ MDSBasicResponsiveApp >> buildList [
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> buildPopupMenuSettings [
+MDSAutoResponsiveApp >> buildPopupMenuSettings [
 	| list |
 
 	list := (MDSMenuList id: 'settingsPopup')
-		itemsAdd: (MDSListItem iconName: 'smartphone' itemText: 'Phone' callback: [ self layoutChange: MDSLayoutExtraSmall ]);
-		itemsAdd: (MDSListItem iconName: 'tablet' itemText: 'Tablet' callback: [ self layoutChange: MDSLayoutSmall ]);
-		itemsAdd: (MDSListItem iconName: 'laptop' itemText: 'Laptop' callback: [ self layoutChange: MDSLayoutMedium ]);
-		itemsAdd: (MDSListItem iconName: 'monitor' itemText: 'Desktop' callback: [ self layoutChange: MDSLayoutLarge ]);
-		"itemsAdd: (MDSListItem iconName: 'view_sidebar' itemText: 'Side Sheet' callback: [ self toggleSideSheet ]);
-		itemsAdd: (MDSListItem iconName: 'waves' itemText: 'Responsive' callback: [ self toggleAutoResponsive ]);"
+		"itemsAdd: (MDSListItem iconName: 'waves' itemText: 'Responsive' callback: [ self toggleAutoResponsive ]);"
+		"itemsAdd: (MDSListItem iconName: 'view_sidebar' itemText: 'Side Sheet' callback: [ self toggleSideSheet ]);"
 		itemsAdd: (MDSListItem iconName: 'minimize' itemText: 'Collapse' callback: [ self layout topAappBarCollapsedToggle ]);
 		itemsAdd: (MDSListItem iconName: 'all_out' itemText: 'Dense' callback: [ self layout denseViewToggle ]);
 		"itemsAdd: (MDSListItem iconName: 'color_lens' itemText: 'Style' callback: [ self configureStyle ]);
@@ -78,7 +71,7 @@ MDSBasicResponsiveApp >> buildPopupMenuSettings [
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> buildSideNav [
+MDSAutoResponsiveApp >> buildSideNav [
 
 	^ (MDSDrawer content: self buildList title: self applicationTitle)
 		title: 'Example';
@@ -87,7 +80,7 @@ MDSBasicResponsiveApp >> buildSideNav [
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> buildSideSheet [
+MDSAutoResponsiveApp >> buildSideSheet [
 
 	^ MDSSideSheet new
 		component: self buildSideSheetList;
@@ -95,7 +88,7 @@ MDSBasicResponsiveApp >> buildSideSheet [
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> buildSideSheetList [
+MDSAutoResponsiveApp >> buildSideSheetList [
 
 	^ MDSListGroup new
 		addGroupedList: (MDSList new
@@ -114,7 +107,7 @@ MDSBasicResponsiveApp >> buildSideSheetList [
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> buildTopAppBar [
+MDSAutoResponsiveApp >> buildTopAppBar [
 	| settingsPopup |
 
 	settingsPopup := self buildPopupMenuSettings.
@@ -127,7 +120,7 @@ MDSBasicResponsiveApp >> buildTopAppBar [
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> initialize [
+MDSAutoResponsiveApp >> initialize [
 
 	super initialize.
 
@@ -135,7 +128,7 @@ MDSBasicResponsiveApp >> initialize [
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> initializeLayout [
+MDSAutoResponsiveApp >> initializeLayout [
 
 	self materialVersionDefault.
 
@@ -148,7 +141,7 @@ MDSBasicResponsiveApp >> initializeLayout [
 ]
 
 { #category : #rendering }
-MDSBasicResponsiveApp >> layoutChange: anMDSLayoutClass [
+MDSAutoResponsiveApp >> layoutChange: anMDSLayoutClass [
 	| newLayout |
 
 	newLayout := (anMDSLayoutClass on: self)
@@ -158,7 +151,7 @@ MDSBasicResponsiveApp >> layoutChange: anMDSLayoutClass [
 ]
 
 { #category : #rendering }
-MDSBasicResponsiveApp >> renderLayoutOn: html [
+MDSAutoResponsiveApp >> renderLayoutOn: html [
 
 	html script with:
 		'var bodyStyle = document.querySelector("body").style;'
@@ -168,7 +161,7 @@ MDSBasicResponsiveApp >> renderLayoutOn: html [
 ]
 
 { #category : #updating }
-MDSBasicResponsiveApp >> updateRoot: anHtmlRoot [
+MDSAutoResponsiveApp >> updateRoot: anHtmlRoot [
 
 	super updateRoot: anHtmlRoot.
 

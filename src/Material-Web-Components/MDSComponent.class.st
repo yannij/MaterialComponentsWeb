@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'cssClass',
 		'id',
-		'hidden'
+		'hidden',
+		'density'
 	],
 	#category : #'Material-Web-Components'
 }
@@ -42,6 +43,44 @@ MDSComponent >> cssClass: anObject [
 ]
 
 { #category : #accessing }
+MDSComponent >> denseOff [
+
+	self densitySet: 0
+]
+
+{ #category : #accessing }
+MDSComponent >> denseOn [
+
+	self densitySet: -1
+]
+
+{ #category : #accessing }
+MDSComponent >> denseView [
+
+	^ self density < 0
+]
+
+{ #category : #accessing }
+MDSComponent >> denseViewToggle [
+
+	self denseView
+		ifTrue: [ self denseOff ]
+		ifFalse: [ self denseOn ]
+]
+
+{ #category : #accessing }
+MDSComponent >> density [
+
+	^ density
+]
+
+{ #category : #accessing }
+MDSComponent >> density: anObject [
+
+	density := anObject
+]
+
+{ #category : #accessing }
 MDSComponent >> hidden [
 	^ hidden
 ]
@@ -66,6 +105,7 @@ MDSComponent >> initialize [
 
 	super initialize.
 
+	self density: 0.
 	self hidden: false
 ]
 

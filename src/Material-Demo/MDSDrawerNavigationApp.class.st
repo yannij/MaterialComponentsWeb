@@ -34,6 +34,7 @@ MDSDrawerNavigationApp >> buildDrawer [
 
 	^ (MDSDrawer content: self list title: self applicationTitle subtitle: 'Subtitle')
 		fixedAdjustNone;
+		beDrawerOpen;
 		yourself
 ]
 

@@ -37,13 +37,7 @@ MDSDrawer class >> content: aComponent title: aTitleString subtitle: aSubtitleSt
 		yourself
 ]
 
-{ #category : #rendering }
-MDSDrawer >> addFixedAdjust: anHtmlTag [
-
-	self fixedAdjust notNil ifTrue: [ anHtmlTag mdcTopAppBar_fixedAdjust ]
-]
-
-{ #category : #initialization }
+{ #category : #accessing }
 MDSDrawer >> beDismissed [
 
 	self drawerOpen: false
@@ -53,6 +47,12 @@ MDSDrawer >> beDismissed [
 MDSDrawer >> beDismissibleDrawer [
 
 	self drawerType: #dismissible
+]
+
+{ #category : #accessing }
+MDSDrawer >> beDrawerOpen [
+
+	self drawerOpen: true
 ]
 
 { #category : #'drawer type' }
@@ -79,7 +79,7 @@ MDSDrawer >> content: anObject [
 	content := anObject
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 MDSDrawer >> dismissedToggle [
 
 	self drawerOpenToggle
@@ -167,7 +167,7 @@ MDSDrawer >> initialize [
 	self drawerOpen: false
 ]
 
-{ #category : #accessing }
+{ #category : #'drawer type' }
 MDSDrawer >> isDismissibleDrawer [
 
 	^ self drawerType = #dismissible
@@ -176,7 +176,7 @@ MDSDrawer >> isDismissibleDrawer [
 { #category : #'drawer type' }
 MDSDrawer >> isDrawerOpen [
 
-	^ (self isDismissibleDrawer or: [ self isModalDrawer ]) and: [ self drawerOpen not ]
+	^ (self isDismissibleDrawer or: [ self isModalDrawer ]) and: [ self drawerOpen ]
 ]
 
 { #category : #'drawer type' }
@@ -204,7 +204,7 @@ MDSDrawer >> list: anObject [
 { #category : #'drawer type' }
 MDSDrawer >> menuItemCallback [
 
-	self isModalDrawer ifTrue: [ self drawerOpen: false ]
+	self isModalDrawer ifTrue: [ self beDismissed ]
 ]
 
 { #category : #rendering }
@@ -217,9 +217,13 @@ MDSDrawer >> renderContentOn: html [
 MDSDrawer >> renderDrawerContentOn: html [
 
 	html div mdcDrawer__content with: [
-		html navigation with: [
-			html div mdcListGroup; with: [
-				html render: self content ] ] ]
+		html navigation
+			"class: self cssClass;"
+			"attributeAt: 'dir' put: self dir;"
+			"style: 'background-color: #EC4E8C';"
+			with: [
+				html div mdcListGroup; with: [
+					html render: self content ] ] ]
 ]
 
 { #category : #rendering }
@@ -239,17 +243,11 @@ MDSDrawer >> renderDrawerOn: html [
 	| tag |
 
 	tag := html aside mdcDrawer.
-
-	"self isDismissibleDrawer
-		ifTrue: [ drawerTag mdcDrawer_dismissible ]
-		ifFalse: [
-			self mcwDenseView
-				ifTrue: [ drawerTag mdcTopAppBar_denseFixedAdjust_if: self mcwApplicationGet layout topAppBar shortCollapsed not ]
-				ifFalse:  [ drawerTag mdcTopAppBar_fixedAdjust_if: self mcwApplicationGet layout topAppBar shortCollapsed not ] ]."
-	self addFixedAdjust: tag.	
-	tag mdcPerform: #mdcDrawer_modal if: self isModalDrawer.
-	tag mdcPerform: #mdcDrawer_dismissible if: self isDismissibleDrawer.
-	tag mdcPerform: #mdcDrawer_open if: self isDrawerOpen.
+	self fixedAdjust = #regular ifTrue: [ tag mdcTopAppBar_fixedAdjust ].
+	self fixedAdjust = #dense ifTrue: [ tag mdcTopAppBar_denseFixedAdjust ].
+	self isModalDrawer ifTrue: [ tag mdcDrawer_modal ].
+	self isDismissibleDrawer ifTrue: [ tag mdcDrawer_dismissible ].
+	self isDrawerOpen ifTrue: [ tag mdcDrawer_open ].
 	tag with: [
 		self renderDrawerHeaderOn: html.
 		self renderDrawerContentOn: html ].
