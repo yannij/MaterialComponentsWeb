@@ -1,3 +1,6 @@
+"
+I am a layout for an small sized screen (i.e. tablet). A dismissible Drawer is used, and the Side Sheet appears beside the Body.
+"
 Class {
 	#name : #MDSLayoutSmall,
 	#superclass : #MDSLayout,

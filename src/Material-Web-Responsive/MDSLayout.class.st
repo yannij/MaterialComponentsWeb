@@ -1,3 +1,6 @@
+"
+I am an abstract class for layout of Top App Bar, Drawer, and Body components from Material Design
+"
 Class {
 	#name : #MDSLayout,
 	#superclass : #MDSComponent,
@@ -51,7 +54,7 @@ MDSLayout >> app: anObject [
 { #category : #accessing }
 MDSLayout >> contentArea [
 
-	^ self app contentArea
+	^ self app bodyRegion
 ]
 
 { #category : #rendering }
@@ -179,6 +182,12 @@ MDSLayout >> sideNav [
 MDSLayout >> sideSheet [
 
 	^ self app sideSheet
+]
+
+{ #category : #accessing }
+MDSLayout >> sideSheetHiddenToggle [
+
+	self sideSheet ifNotNil: [ :value | value toggleHiddenValue ]
 ]
 
 { #category : #testing }

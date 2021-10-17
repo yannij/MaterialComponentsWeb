@@ -1,3 +1,6 @@
+"
+I am a layout for an extra-small sized screen (i.e. phone). A modal Drawer is used, and the Side Sheet appears below the Body.
+"
 Class {
 	#name : #MDSLayoutExtraSmall,
 	#superclass : #MDSLayout,

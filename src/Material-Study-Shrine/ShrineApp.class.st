@@ -2,6 +2,7 @@ Class {
 	#name : #ShrineApp,
 	#superclass : #MDSResponsiveApp,
 	#instVars : [
+		'loginComponent',
 		'shoppingCart',
 		'stripeInterface'
 	],
@@ -79,13 +80,13 @@ ShrineApp >> buildPopupMenuSettings [
 	| list |
 
 	list := (MDSMenuList id: 'settingsPopup')
-		"itemsAdd: (MDSListItem iconName: 'view_sidebar' itemText: 'Side Sheet' callback: [ self toggleSideSheet ]);
-		itemsAdd: (MDSListItem iconName: 'waves' itemText: 'Responsive' callback: [ self toggleAutoResponsive ]);"
+		itemsAdd: (MDSListItem iconName: 'view_sidebar' itemText: 'Side Sheet' callback: [ self layout sideSheetHiddenToggle ]);
+		"itemsAdd: (MDSListItem iconName: 'waves' itemText: 'Responsive' callback: [ self toggleAutoResponsive ]);"
 		itemsAdd: (MDSListItem iconName: 'minimize' itemText: 'Collapse' callback: [ self layout topAappBarCollapsedToggle ]);
 		itemsAdd: (MDSListItem iconName: 'all_out' itemText: 'Dense' callback: [ self layout denseViewToggle ]);
-		"itemsAdd: (MDSListItem iconName: 'color_lens' itemText: 'Style' callback: [ self configureStyle ]);
+		"itemsAdd: (MDSListItem iconName: 'color_lens' itemText: 'Style' callback: [ self configureStyle ]);"
 		itemsAdd: (MDSListItem iconName: 'login' itemText: 'Login' callback: [ self login ]);
-		itemsAdd: (MDSListItem iconName: 'logout' itemText: 'Logout' callback: [ self logout ]);"
+		itemsAdd: (MDSListItem iconName: 'logout' itemText: 'Logout' callback: [ self logout ]);
 		yourself.
 
 	^ list
@@ -198,13 +199,35 @@ ShrineApp >> initializeLayoutOLD [
 	self layout sideSheet component: self shoppingCart.
 ]
 
+{ #category : #accessing }
+ShrineApp >> loginComponent [
+
+	^ loginComponent
+]
+
+{ #category : #accessing }
+ShrineApp >> loginComponent: anObject [
+
+	loginComponent := anObject
+]
+
 { #category : #rendering }
 ShrineApp >> renderLayoutOn: html [
 
 	self renderSetColorTheme: self colorTheme on: html.
 	self renderSetTypographyFont: 'Rubik' on: html.
 
-	html render: self layout
+	self isLoggedIn
+		ifTrue: [ html render: self layout ]
+		ifFalse: [
+			self loginComponent
+				ifNotNil: [ :value | html render: value  ]
+				ifNil: [
+					"self anonymousLoginAllowed" false
+						ifTrue: [ html render: self layout ]
+						ifFalse: [
+							self loginComponent ifNil: [ self loginComponent: self buildLoginComponent ].
+							html render: self loginComponent ] ] ]
 ]
 
 { #category : #accessing }

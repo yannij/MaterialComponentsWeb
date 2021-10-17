@@ -29,6 +29,11 @@ MDSResponsiveApp >> bodyRegion: anObject [
 	bodyRegion := anObject
 ]
 
+{ #category : #login }
+MDSResponsiveApp >> buildLoginComponent [
+	"Subclasses may override"
+]
+
 { #category : #initialization }
 MDSResponsiveApp >> buildNavigationIcon [
 
@@ -47,6 +52,18 @@ MDSResponsiveApp >> denseView [
 	^ self layout denseView
 ]
 
+{ #category : #actions }
+MDSResponsiveApp >> dismissMenuIfModalDrawer [
+
+	self sideNav menuItemCallback
+]
+
+{ #category : #login }
+MDSResponsiveApp >> isLoggedIn [
+
+	^ self loginComponent notNil and: [ self loginComponent isLoggedIn ]
+]
+
 { #category : #accessing }
 MDSResponsiveApp >> layout [
 
@@ -59,10 +76,54 @@ MDSResponsiveApp >> layout: anObject [
 	layout := anObject
 ]
 
+{ #category : #login }
+MDSResponsiveApp >> login [
+
+	self loginComponent
+		ifNil: [
+			self loginComponent: self buildLoginComponent.
+			self redirectToLogin ]
+]
+
+{ #category : #login }
+MDSResponsiveApp >> loginComponent [
+	"Subclasses may override"
+
+	^ nil
+]
+
+{ #category : #login }
+MDSResponsiveApp >> loginComponent: ignore [
+	"Subclasses may override"
+]
+
+{ #category : #login }
+MDSResponsiveApp >> logout [
+
+	self loginComponent
+		ifNotNil: [ :component |
+			component loggedOut ]
+		ifNil: [
+			self session ifNotNil: [ :value | value unregister ].
+			self redirect ]
+]
+
 { #category : #testing }
 MDSResponsiveApp >> mcwIsResponsiveApplication [
 
 	^ true
+]
+
+{ #category : #login }
+MDSResponsiveApp >> redirectToLogin [
+
+	| url |
+	url := self application url.
+	url addAllToPath: self requestContext consumer upToEnd.
+	url addToPath: 'login'.
+	^ self requestContext responseGenerator
+		redirectTo: url;
+		respond
 ]
 
 { #category : #rendering }

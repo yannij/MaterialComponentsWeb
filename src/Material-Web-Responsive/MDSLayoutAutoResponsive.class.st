@@ -1,3 +1,6 @@
+"
+I am a layout that switches between the extra-small, small, medium, and large layouts, depending on the display width passed by the browser when the window size changes.
+"
 Class {
 	#name : #MDSLayoutAutoResponsive,
 	#superclass : #MDSLayout,
@@ -7,6 +10,12 @@ Class {
 	],
 	#category : #'Material-Web-Responsive'
 }
+
+{ #category : #accessing }
+MDSLayoutAutoResponsive >> cellSpan [
+
+	self currentLayout cellSpan
+]
 
 { #category : #accessing }
 MDSLayoutAutoResponsive >> currentLayout [

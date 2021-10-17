@@ -1,3 +1,6 @@
+"
+I am a layout for an medium sized screen (i.e. laptop). A persistent Drawer is used, and the Side Sheet appears beside the Body.
+"
 Class {
 	#name : #MDSLayoutMedium,
 	#superclass : #MDSLayout,

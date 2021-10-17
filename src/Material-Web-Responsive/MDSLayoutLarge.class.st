@@ -1,3 +1,6 @@
+"
+I am a layout for an large sized screen (i.e. desktop). A persistent Drawer is used, and the Side Sheet appears beside the Body.
+"
 Class {
 	#name : #MDSLayoutLarge,
 	#superclass : #MDSLayout,

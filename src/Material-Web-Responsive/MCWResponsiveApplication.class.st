@@ -176,22 +176,6 @@ MCWResponsiveApplication >> buildTopAppBar [
 		yourself
 ]
 
-{ #category : #accessing }
-MCWResponsiveApplication >> colorThemeCss [
-	| aStream |
-
-	aStream := WriteStream on: String new.
-	aStream nextPutAll: ':root {'.
-	aStream nextPutAll: '--mdc-typography-font-family: Rubik, sans-serif;'.
-	self settings mdcTheme keysAndValuesDo: [ :eachKey :eachValue |
-		aStream
-			nextPutAll: '--mdc-theme-'; nextPutAll: eachKey;
-			nextPutAll: ': '; nextPutAll: eachValue; nextPut: $;;
-			yourself ].
-	aStream nextPutAll: '}'.
-	^ aStream contents
-]
-
 { #category : #actions }
 MCWResponsiveApplication >> configureStyle [
 
