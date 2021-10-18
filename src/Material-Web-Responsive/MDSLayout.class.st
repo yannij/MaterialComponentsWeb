@@ -52,17 +52,9 @@ MDSLayout >> app: anObject [
 ]
 
 { #category : #accessing }
-MDSLayout >> contentArea [
+MDSLayout >> bodyRegion [
 
 	^ self app bodyRegion
-]
-
-{ #category : #rendering }
-MDSLayout >> contentToShow [
-
-	^ self settingsView isHidden
-		ifTrue: [ self contentArea ]
-		ifFalse: [ self settingsView ]
 ]
 
 { #category : #accessing }
@@ -90,7 +82,7 @@ MDSLayout >> initialize [
 
 	super initialize.
 
-	self settingsView: MDMApplicationSettingsView new.
+	"self settingsView: MDMApplicationSettingsView new."
 ]
 
 { #category : #initialization }
@@ -117,7 +109,7 @@ MDSLayout >> renderContentToShowOn: html [
 
 	self sideSheetVisible ifFalse: [
 		"self renderBannerDesktopOn: html."
-		html render: self contentToShow.
+		html render: self bodyRegion.
 		^ self ].
 
 	html div mdcLayoutGrid; style: 'padding: 0px'; with: [
@@ -128,14 +120,14 @@ MDSLayout >> renderContentToShowOn: html [
 					self renderBannerDesktopOn: html ]"
 			html div
 				mdcLayoutGrid__cell;
-				mdcLayoutGrid__cell_span9Desktop;
+				mdcLayoutGrid__cell_span10Desktop;
 				mdcLayoutGrid__cell_span6Tablet;
 				mdcLayoutGrid__cell_span4Phone;
 				with: [
-					html render: self contentToShow ].
+					html render: self bodyRegion ].
 			html div
 				mdcLayoutGrid__cell;
-				mdcLayoutGrid__cell_span3Desktop;
+				mdcLayoutGrid__cell_span2Desktop;
 				mdcLayoutGrid__cell_span2Tablet;
 				mdcLayoutGrid__cell_span4Phone;
 				with: [ html render: self sideSheet ] ] ]

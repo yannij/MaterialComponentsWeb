@@ -178,27 +178,6 @@ ShrineApp >> initializeLayout [
 	self layout: self buildLayout
 ]
 
-{ #category : #initialization }
-ShrineApp >> initializeLayoutOLD [
-
-	self materialVersionDefault.
-
-	self settings: self buildApplicationSettings.
-	self layout: self buildLayout.
-	self layout cssStyle: 'shrine'.
-	self layout beDesktopStyle.
-
-	self layout contentArea component: ShrineCanvas new.
-	self loginComponent: self buildLoginComponent.
-	self shoppingCart: self stripeInterface shoppingCartNew.
-	"self shoppingCart layout: self layout."
-
-	self settings mdcTypography fontFamily: 'Rubik'.
-	self settings mdcTheme themeItemsSet: self themeSetting.
-
-	self layout sideSheet component: self shoppingCart.
-]
-
 { #category : #accessing }
 ShrineApp >> loginComponent [
 

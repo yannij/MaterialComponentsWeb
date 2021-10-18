@@ -31,7 +31,7 @@ MDMApplicationSettingsView >> mdcDensityComponent: anObject [
 MDMApplicationSettingsView >> mdcDensityComponentLazy [
 
 	self mdcDensityComponent ifNil: [
-		self mdcDensityComponent: self mcwApplicationGet settings mdcDensity asComponent addValidatedForm ].
+		self mdcDensityComponent: self mcwApplicationGet appSettings mdcDensity asComponent addValidatedForm ].
 
 	^ self mdcDensityComponent
 ]
@@ -50,7 +50,7 @@ MDMApplicationSettingsView >> mdcThemeComponent: anObject [
 MDMApplicationSettingsView >> mdcThemeComponentLazy [
 
 	self mdcThemeComponent ifNil: [
-		self mdcThemeComponent: self mcwApplicationGet settings mdcTheme asComponent addValidatedForm ].
+		self mdcThemeComponent: self mcwApplicationGet appSettings mdcTheme asComponent addValidatedForm ].
 
 	^ self mdcThemeComponent
 ]
@@ -69,7 +69,7 @@ MDMApplicationSettingsView >> mdcTypographyComponent: anObject [
 MDMApplicationSettingsView >> mdcTypographyComponentLazy [
 
 	self mdcTypographyComponent ifNil: [
-		self mdcTypographyComponent: self mcwApplicationGet settings mdcTypography asComponent addValidatedForm ].
+		self mdcTypographyComponent: self mcwApplicationGet appSettings mdcTypography asComponent addValidatedForm ].
 
 	^ self mdcTypographyComponent
 ]
