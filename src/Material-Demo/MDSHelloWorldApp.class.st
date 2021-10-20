@@ -1,3 +1,6 @@
+"
+I am a demo application that directly uses the Material Design CSS/JS. No other widget abstraction objects are used.
+"
 Class {
 	#name : #MDSHelloWorldApp,
 	#superclass : #MDSApplication,
@@ -18,6 +21,12 @@ MDSHelloWorldApp class >> initialize [
 
 	^ self mcwRegisterDeployment: self applicationPath
 
+]
+
+{ #category : #initialization }
+MDSHelloWorldApp class >> snapshotUrl [
+
+	^ 'https://material-components.github.io/material-components-web-catalog/static/media/cards_180px.svg'
 ]
 
 { #category : #accessing }

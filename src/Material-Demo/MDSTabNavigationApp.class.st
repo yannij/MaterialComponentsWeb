@@ -1,3 +1,6 @@
+"
+I am a demo application that uses the Material Design Seaside widgets to present a custom Tab-based navigation flow.
+"
 Class {
 	#name : #MDSTabNavigationApp,
 	#superclass : #MDSLayoutExampleApp,

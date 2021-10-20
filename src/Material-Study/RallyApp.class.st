@@ -1,10 +1,14 @@
+"
+I am a demo application inspired by the Rally Material Design Study (https://material.io/design/material-studies/rally.html). The data model uses Magritte meta-model (https://github.com/magritte-metamodel/magritte).
+"
 Class {
 	#name : #RallyApp,
 	#superclass : #MDSResponsiveApp,
 	#instVars : [
-		'loginComponent',
-		'shoppingCart',
-		'stripeInterface'
+		'loginComponent'
+	],
+	#classVars : [
+		'RallyData'
 	],
 	#category : #'Material-Study-Rally'
 }
@@ -24,18 +28,39 @@ RallyApp class >> initialize [
 	^ self mcwRegisterDeployment: self applicationPath
 ]
 
-{ #category : #accessing }
-RallyApp class >> shrineSvg: aCssClass [
+{ #category : #actions }
+RallyApp >> actionAccounts [
 
-	^ '<svg class="', aCssClass, '" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" fill="#000000">
-      <g id="XMLID_2_">
-        <g id="XMLID_4_">
-          <path id="XMLID_5_" d="M17,2H7L2,6.62L12,22L22,6.62L17,2z M16.5,3.58l3.16,2.92H16.5V3.58z M7.59,3.5H15v3H4.34L7.59,3.5z     M11.25,18.1L7.94,13h3.31V18.1z M11.25,11.5H6.96L4.69,8h6.56V11.5z M16.5,12.32 M12.75,18.09V8h6.56L12.75,18.09z"/>
-        </g>
-        <rect id="XMLID_1_" fill="none" width="24" height="24"/>
-      </g>
-    </svg>
-'
+	self sideNav menuItemCallback.
+	self bodyRegion component: RallyAccountView new
+]
+
+{ #category : #actions }
+RallyApp >> actionAlerts [
+
+	self sideNav menuItemCallback.
+	self bodyRegion component: RallyAlertView new
+]
+
+{ #category : #actions }
+RallyApp >> actionBills [
+
+	self sideNav menuItemCallback.
+	self bodyRegion component: RallyBillView new
+]
+
+{ #category : #actions }
+RallyApp >> actionBudgetItems [
+
+	self sideNav menuItemCallback.
+	self bodyRegion component: RallyBudgetItemView new
+]
+
+{ #category : #actions }
+RallyApp >> actionOverview [
+
+	self sideNav menuItemCallback.
+	self bodyRegion component: RallyOverview new
 ]
 
 { #category : #accessing }
@@ -101,11 +126,11 @@ RallyApp >> buildSideNav [
 RallyApp >> buildSideNavList [
 
 	^ MDSList new
-		itemsAdd: (MDSListItem itemText: 'Overview' iconName: '' callback: [ self sideNav menuItemCallback ]);
-		itemsAdd: (MDSListItem itemText: 'Account''s' iconName: '' callback: [ self sideNav menuItemCallback ]);
-		itemsAdd: (MDSListItem itemText: 'Bill''s' iconName: '' callback: [ self sideNav menuItemCallback ]);
-		itemsAdd: (MDSListItem itemText: 'BudgetItem''s' iconName: '' callback: [ self sideNav menuItemCallback ]);
-		itemsAdd: (MDSListItem itemText: 'Alert''s' iconName: '' callback: [ self sideNav menuItemCallback ]);
+		itemsAdd: (MDSListItem itemText: 'Overview' iconName: '' callback: [ self actionOverview ]);
+		itemsAdd: (MDSListItem itemText: 'Account''s' iconName: '' callback: [ self actionAccounts ]);
+		itemsAdd: (MDSListItem itemText: 'Bill''s' iconName: '' callback: [ self actionBills ]);
+		itemsAdd: (MDSListItem itemText: 'BudgetItem''s' iconName: '' callback: [ self actionBudgetItems ]);
+		itemsAdd: (MDSListItem itemText: 'Alert''s' iconName: '' callback: [ self actionAlerts ]);
 		yourself
 ]
 
@@ -132,8 +157,8 @@ RallyApp >> buildTopAppBar [
 RallyApp >> colorTheme [
 
 	^ {
-"#'primary' -> '1EB980'.
-#'on-primary' -> '000000'.
+#'primary' -> '1EB980'.
+"#'on-primary' -> '000000'.
 #'secondary' -> 'FF6859'.
 #'on-secondary' -> '000000'.
 #'surface' -> '121212'.

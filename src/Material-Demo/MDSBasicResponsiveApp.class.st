@@ -1,5 +1,5 @@
 "
-A realization of the Material Design  layout structures described at: https://material.io/guidelines/layout/structure.html
+I am a demo application that presents a realization of the Material Design layout structures described at: https://material.io/design/layout/understanding-layout.html#layout-anatomy. Menu popup actions provide for manually switching the layout amongst Phone, Tablet, Laptop, and Desktop layouts. Additionally, (1) the Top App Bar can be collapsed, (2) the component Density can be toggled from dense/normal, and (3) a Side Sheet can be toggled from hidden/visible.
 "
 Class {
 	#name : #MDSBasicResponsiveApp,

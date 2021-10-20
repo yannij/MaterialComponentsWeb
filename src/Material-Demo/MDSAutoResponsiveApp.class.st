@@ -1,3 +1,6 @@
+"
+I am a demo application that shows an auto-responsive layout (i.e. the layout changes as its window is resized).
+"
 Class {
 	#name : #MDSAutoResponsiveApp,
 	#superclass : #MDSResponsiveApp,

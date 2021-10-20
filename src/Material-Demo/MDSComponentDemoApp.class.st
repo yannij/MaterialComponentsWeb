@@ -1,3 +1,6 @@
+"
+I am a demo application that emulates the Material Design component catalog demo (https://material-components.github.io/material-components-web-catalog/)
+"
 Class {
 	#name : #MDSComponentDemoApp,
 	#superclass : #MDSApplication,

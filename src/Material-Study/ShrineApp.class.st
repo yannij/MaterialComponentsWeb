@@ -1,3 +1,6 @@
+"
+I am a demo application inspired by the Shrine Material Design Study (https://material.io/design/material-studies/shrine.html)
+"
 Class {
 	#name : #ShrineApp,
 	#superclass : #MDSResponsiveApp,
