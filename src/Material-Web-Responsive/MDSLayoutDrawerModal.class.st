@@ -2,38 +2,38 @@
 I am a layout for an extra-small sized screen (i.e. phone). A modal Drawer is used, and the Side Sheet appears below the Body.
 "
 Class {
-	#name : #MDSLayoutExtraSmall,
+	#name : #MDSLayoutDrawerModal,
 	#superclass : #MDSLayout,
 	#category : #'Material-Web-Responsive'
 }
 
 { #category : #actions }
-MDSLayoutExtraSmall >> adjustTopAppBar [
+MDSLayoutDrawerModal >> adjustTopAppBar [
 
 	self topAppBar startSection do: [ :each | each beUnHidden ]
 ]
 
 { #category : #accessing }
-MDSLayoutExtraSmall >> cellSpan [
+MDSLayoutDrawerModal >> cellSpan [
 
 	^ 6
 ]
 
 { #category : #initialization }
-MDSLayoutExtraSmall >> initializeComplete [
+MDSLayoutDrawerModal >> initializeComplete [
 
 	self sideNav beModalDrawer; beDismissed.
 	self adjustTopAppBar
 ]
 
 { #category : #rendering }
-MDSLayoutExtraSmall >> renderContentOn: html [
+MDSLayoutDrawerModal >> renderContentOn: html [
 
-	self renderLayoutPhoneOn: html
+	self renderLayoutDrawerModalOn: html
 ]
 
 { #category : #rendering }
-MDSLayoutExtraSmall >> renderLayoutPhoneOn: html [
+MDSLayoutDrawerModal >> renderLayoutDrawerModalOn: html [
 	| div |
 
 	html render: self sideNav.

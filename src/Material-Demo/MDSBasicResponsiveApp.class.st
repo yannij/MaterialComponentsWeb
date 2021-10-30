@@ -45,13 +45,13 @@ MDSBasicResponsiveApp >> buildPopupMenuSettings [
 	| list |
 
 	list := (MDSMenuList id: 'settingsPopup')
-		itemsAdd: (MDSListItem iconName: 'smartphone' itemText: 'Phone' callback: [ self layoutChange: MDSLayoutExtraSmall ]);
-		itemsAdd: (MDSListItem iconName: 'tablet' itemText: 'Tablet' callback: [ self layoutChange: MDSLayoutSmall ]);
-		itemsAdd: (MDSListItem iconName: 'laptop' itemText: 'Laptop' callback: [ self layoutChange: MDSLayoutMedium ]);
-		itemsAdd: (MDSListItem iconName: 'monitor' itemText: 'Desktop' callback: [ self layoutChange: MDSLayoutLarge ]);
+		itemsAdd: (MDSListItem iconName: 'smartphone' itemText: 'Phone' callback: [ self layoutChange: MDSLayoutDrawerModal ]);
+		itemsAdd: (MDSListItem iconName: 'tablet' itemText: 'Tablet' callback: [ self layoutChange: MDSLayoutDrawerDismissible ]);
+		itemsAdd: (MDSListItem iconName: 'laptop' itemText: 'Laptop' callback: [ self layoutChange: MDSLayoutDrawerPermanent ]);
+		itemsAdd: (MDSListItem iconName: 'monitor' itemText: 'Desktop' callback: [ self layoutChange: MDSLayoutDrawerPermanent ]);
 		itemsAdd: (MDSListItem iconName: 'view_sidebar' itemText: 'Side Sheet' callback: [ self layout sideSheetHiddenToggle ]);
 		"itemsAdd: (MDSListItem iconName: 'waves' itemText: 'Responsive' callback: [ self toggleAutoResponsive ]);"
-		itemsAdd: (MDSListItem iconName: 'minimize' itemText: 'Collapse' callback: [ self layout topAappBarCollapsedToggle ]);
+		itemsAdd: (MDSListItem iconName: 'minimize' itemText: 'Collapse' callback: [ self layout topAppBarCollapsedToggle ]);
 		itemsAdd: (MDSListItem iconName: 'all_out' itemText: 'Dense' callback: [ self layout denseViewToggle ]);
 		"itemsAdd: (MDSListItem iconName: 'color_lens' itemText: 'Style' callback: [ self configureStyle ]);
 		itemsAdd: (MDSListItem iconName: 'login' itemText: 'Login' callback: [ self login ]);
@@ -87,7 +87,7 @@ MDSBasicResponsiveApp >> initialize [
 
 	self materialVersionDefault.
 
-	self layout: (MDSLayoutMedium on: self).
+	self layout: (MDSLayoutDrawerPermanent on: self).
 	self setupLayout
 ]
 

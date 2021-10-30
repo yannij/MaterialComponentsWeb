@@ -1,32 +1,32 @@
 "
-I am a layout for an large sized screen (i.e. desktop). A persistent Drawer is used, and the Side Sheet appears beside the Body.
+I am a layout for an medium sized screen (i.e. laptop). A persistent Drawer is used, and the Side Sheet appears beside the Body.
 "
 Class {
-	#name : #MDSLayoutLarge,
+	#name : #MDSLayoutDrawerPermanent,
 	#superclass : #MDSLayout,
 	#category : #'Material-Web-Responsive'
 }
 
 { #category : #accessing }
-MDSLayoutLarge >> cellSpan [
+MDSLayoutDrawerPermanent >> cellSpan [
 
 	^ 6
 ]
 
 { #category : #initialization }
-MDSLayoutLarge >> initializeComplete [
+MDSLayoutDrawerPermanent >> initializeComplete [
 
 	self sideNav bePersistentDrawer; beDismissed
 ]
 
 { #category : #rendering }
-MDSLayoutLarge >> renderContentOn: html [
+MDSLayoutDrawerPermanent >> renderContentOn: html [
 
-	self renderLayoutDesktopOn: html
+	self renderLayoutDrawerPermanentOn: html
 ]
 
 { #category : #rendering }
-MDSLayoutLarge >> renderLayoutDesktopOn: html [
+MDSLayoutDrawerPermanent >> renderLayoutDrawerPermanentOn: html [
 
 	html div class: self cssClass if: (self cssClass notNil); style: 'height: 100vh'; with: self sideNav.
 	html render: self topAppBar.
@@ -45,6 +45,5 @@ MDSLayoutLarge >> renderLayoutDesktopOn: html [
 				style: 'overflow-x: auto';
 				"mdcStyle: self contentAreaWidthCalc if: self sideSheetVisible;"
 				class: 'mcw-layout-desktop';
-				with: [
-					self renderContentToShowOn: html ] ]
+				with: [ self renderContentToShowOn: html ] ]
 ]

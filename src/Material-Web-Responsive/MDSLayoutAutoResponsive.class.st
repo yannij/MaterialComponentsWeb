@@ -69,10 +69,10 @@ MDSLayoutAutoResponsive >> initializeOn: anApplication [
 	super initializeOn: anApplication.
 
 	self layouts: (OrderedDictionary new
-		at: self class layoutExtraSmall put: (MDSLayoutExtraSmall on: anApplication);
-		at: self class layoutSmall put: (MDSLayoutSmall on: anApplication);
-		at: self class layoutMedium put: (MDSLayoutMedium on: anApplication);
-		at: self class layoutLarge put: (MDSLayoutLarge on: anApplication);
+		at: self class layoutExtraSmall put: (MDSLayoutDrawerModal on: anApplication);
+		at: self class layoutSmall put: (MDSLayoutDrawerDismissible on: anApplication);
+		at: self class layoutMedium put: (MDSLayoutDrawerPermanent on: anApplication);
+		at: self class layoutLarge put: (MDSLayoutDrawerPermanent on: anApplication);
 		yourself).
 
 	self currentLayout: (self layouts at: self class layoutMedium).
@@ -220,10 +220,10 @@ MDSLayoutAutoResponsive >> sideSheetUnhide [
 ]
 
 { #category : #actions }
-MDSLayoutAutoResponsive >> topAappBarCollapsedToggle [
+MDSLayoutAutoResponsive >> topAppBarCollapsedToggle [
 
-	super topAappBarCollapsedToggle.
-	self layouts do: [ :eachLayout | eachLayout topAappBarCollapsedToggle ]
+	super topAppBarCollapsedToggle.
+	self layouts do: [ :eachLayout | eachLayout topAppBarCollapsedToggle ]
 ]
 
 { #category : #actions }

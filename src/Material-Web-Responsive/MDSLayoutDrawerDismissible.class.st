@@ -2,38 +2,38 @@
 I am a layout for an small sized screen (i.e. tablet). A dismissible Drawer is used, and the Side Sheet appears beside the Body.
 "
 Class {
-	#name : #MDSLayoutSmall,
+	#name : #MDSLayoutDrawerDismissible,
 	#superclass : #MDSLayout,
 	#category : #'Material-Web-Responsive'
 }
 
 { #category : #actions }
-MDSLayoutSmall >> adjustTopAppBar [
+MDSLayoutDrawerDismissible >> adjustTopAppBar [
 
 	self topAppBar startSection do: [ :each | each beUnHidden ]
 ]
 
 { #category : #accessing }
-MDSLayoutSmall >> cellSpan [
+MDSLayoutDrawerDismissible >> cellSpan [
 
 	^ 6
 ]
 
 { #category : #initialization }
-MDSLayoutSmall >> initializeComplete [
+MDSLayoutDrawerDismissible >> initializeComplete [
 
 	self sideNav beDismissibleDrawer; beDismissed.
 	self adjustTopAppBar
 ]
 
 { #category : #rendering }
-MDSLayoutSmall >> renderContentOn: html [
+MDSLayoutDrawerDismissible >> renderContentOn: html [
 
-	self renderLayoutTabletOn: html
+	self renderLayoutDrawerDismissibleOn: html
 ]
 
 { #category : #rendering }
-MDSLayoutSmall >> renderLayoutTabletOn: html [
+MDSLayoutDrawerDismissible >> renderLayoutDrawerDismissibleOn: html [
 
 	html render: self sideNav.
 

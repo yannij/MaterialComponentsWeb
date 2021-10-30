@@ -306,12 +306,6 @@ MDSLayout >> snackbarText: anObject [
 	self app snackbarText: anObject
 ]
 
-{ #category : #actions }
-MDSLayout >> topAappBarCollapsedToggle [
-
-	self sideSheet ifNotNil: [ :value | value shortCollapsedToggle ]
-]
-
 { #category : #accessing }
 MDSLayout >> topAppBar [
 
@@ -322,6 +316,12 @@ MDSLayout >> topAppBar [
 MDSLayout >> topAppBar: anObject [
 
 	topAppBar := anObject
+]
+
+{ #category : #actions }
+MDSLayout >> topAppBarCollapsedToggle [
+
+	self topAppBar ifNotNil: [ :value | value shortCollapsedToggle ]
 ]
 
 { #category : #actions }
