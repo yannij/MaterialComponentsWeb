@@ -6,6 +6,10 @@ Class {
 	#superclass : #MDSComponent,
 	#instVars : [
 		'app',
+		'topAppBar',
+		'sideSheet',
+		'bodyRegion',
+		'sideNav',
 		'settingsView'
 	],
 	#category : #'Material-Web-Responsive'
@@ -54,7 +58,55 @@ MDSLayout >> app: anObject [
 { #category : #accessing }
 MDSLayout >> bodyRegion [
 
-	^ self app bodyRegion
+	^ bodyRegion
+]
+
+{ #category : #accessing }
+MDSLayout >> bodyRegion: anObject [
+
+	bodyRegion := anObject
+]
+
+{ #category : #actions }
+MDSLayout >> bodyRegionContent: aComponent [
+
+	self bodyRegion component: aComponent
+]
+
+{ #category : #initialization }
+MDSLayout >> buildBodyRegion [
+
+	^ MDSBodyRegion new
+		"component: (String loremIpsum: 5000);"
+		yourself
+]
+
+{ #category : #initialization }
+MDSLayout >> buildSideNav [
+
+	^ (MDSDrawer content: nil "self buildList title: self applicationTitle")
+		"title: 'Example';
+		subtitle: 'Sub-example';"
+		yourself
+]
+
+{ #category : #initialization }
+MDSLayout >> buildSideSheet [
+
+	^ MDSSideSheet new
+]
+
+{ #category : #initialization }
+MDSLayout >> buildTopAppBar [
+	"| settingsPopup |
+
+	settingsPopup := self buildPopupMenuSettings."
+
+	^ (MDSTopAppBar new "title: self applicationTitle")
+		"startSectionAdd: self buildNavigationIcon;
+		endSectionAdd: (MDSTopAppBarActionItem materialIcon: 'settings' onClickScript: settingsPopup openScript);
+		endSectionAdd: settingsPopup;"
+		yourself
 ]
 
 { #category : #accessing }
@@ -83,6 +135,10 @@ MDSLayout >> initialize [
 	super initialize.
 
 	"self settingsView: MDMApplicationSettingsView new."
+	self topAppBar: self buildTopAppBar.
+	self sideNav: self buildSideNav.
+	self bodyRegion: self buildBodyRegion.
+	self sideSheet: self buildSideSheet
 ]
 
 { #category : #initialization }
@@ -167,19 +223,67 @@ MDSLayout >> settingsView: anObject [
 { #category : #accessing }
 MDSLayout >> sideNav [
 
-	^ self app sideNav
+	^ sideNav
+]
+
+{ #category : #accessing }
+MDSLayout >> sideNav: anObject [
+
+	sideNav := anObject
+]
+
+{ #category : #actions }
+MDSLayout >> sideNavContent: aComponent [
+
+	self sideNav content: aComponent
+]
+
+{ #category : #actions }
+MDSLayout >> sideNavDismissIfModal [
+
+	self sideNav ifNotNil: [ :value | value dismissIfModel ]
+]
+
+{ #category : #actions }
+MDSLayout >> sideNavOpenToggle [
+
+	self sideNav ifNotNil: [ :value | value drawerOpenToggle ]
 ]
 
 { #category : #accessing }
 MDSLayout >> sideSheet [
 
-	^ self app sideSheet
+	^ sideSheet
 ]
 
 { #category : #accessing }
+MDSLayout >> sideSheet: anObject [
+
+	sideSheet := anObject
+]
+
+{ #category : #actions }
+MDSLayout >> sideSheetContent: aComponent [
+
+	self sideSheet component: aComponent
+]
+
+{ #category : #actions }
 MDSLayout >> sideSheetHiddenToggle [
 
 	self sideSheet ifNotNil: [ :value | value toggleHiddenValue ]
+]
+
+{ #category : #actions }
+MDSLayout >> sideSheetHide [
+
+	self sideSheet ifNotNil: [ :value | value beHidden ]
+]
+
+{ #category : #actions }
+MDSLayout >> sideSheetUnhide [
+
+	self sideSheet ifNotNil: [ :value | value beUnHidden ]
 ]
 
 { #category : #testing }
@@ -202,14 +306,26 @@ MDSLayout >> snackbarText: anObject [
 	self app snackbarText: anObject
 ]
 
-{ #category : #accessing }
+{ #category : #actions }
 MDSLayout >> topAappBarCollapsedToggle [
 
-	self topAppBar shortCollapsedToggle
+	self sideSheet ifNotNil: [ :value | value shortCollapsedToggle ]
 ]
 
 { #category : #accessing }
 MDSLayout >> topAppBar [
 
-	^ self app topAppBar
+	^ topAppBar
+]
+
+{ #category : #accessing }
+MDSLayout >> topAppBar: anObject [
+
+	topAppBar := anObject
+]
+
+{ #category : #actions }
+MDSLayout >> topAppBarTitle: aString [
+
+	self topAppBar title: aString
 ]

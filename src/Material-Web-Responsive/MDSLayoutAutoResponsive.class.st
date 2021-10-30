@@ -11,6 +11,13 @@ Class {
 	#category : #'Material-Web-Responsive'
 }
 
+{ #category : #actions }
+MDSLayoutAutoResponsive >> bodyRegionContent: aComponent [
+
+	super bodyRegionContent: aComponent.
+	self layouts do: [ :eachLayout | eachLayout bodyRegionContent: aComponent ]
+]
+
 { #category : #accessing }
 MDSLayoutAutoResponsive >> cellSpan [
 
@@ -36,19 +43,40 @@ MDSLayoutAutoResponsive >> currentLayoutSet: aLayoutSymbol [
 	self currentLayout initializeComplete
 ]
 
+{ #category : #actions }
+MDSLayoutAutoResponsive >> denseViewToggle [
+
+	super denseViewToggle.
+	self layouts do: [ :eachLayout | eachLayout denseViewToggle ]
+]
+
+{ #category : #initialization }
+MDSLayoutAutoResponsive >> initializeComplete [
+
+	self layouts do: [ :eachLayout |
+		eachLayout topAppBar
+			title: self topAppBar title;
+			startSection: self topAppBar startSection;
+			endSection: self topAppBar endSection.
+		eachLayout sideNav content: self sideNav content.
+		eachLayout bodyRegion component: self bodyRegion component.
+		eachLayout sideSheet component: self sideSheet component ]
+]
+
 { #category : #initialization }
 MDSLayoutAutoResponsive >> initializeOn: anApplication [
 
 	super initializeOn: anApplication.
 
 	self layouts: (OrderedDictionary new
-		at: self class layoutExtraSmall put: ((MDSLayoutExtraSmall on: anApplication) initializeComplete; yourself);
-		at: self class layoutSmall put: ((MDSLayoutSmall on: anApplication) initializeComplete; yourself);
-		at: self class layoutMedium put: ((MDSLayoutMedium on: anApplication) initializeComplete; yourself);
-		at: self class layoutLarge put: ((MDSLayoutLarge on: anApplication) initializeComplete; yourself);
+		at: self class layoutExtraSmall put: (MDSLayoutExtraSmall on: anApplication);
+		at: self class layoutSmall put: (MDSLayoutSmall on: anApplication);
+		at: self class layoutMedium put: (MDSLayoutMedium on: anApplication);
+		at: self class layoutLarge put: (MDSLayoutLarge on: anApplication);
 		yourself).
 
-	self currentLayout: (self layouts at: self class layoutMedium)
+	self currentLayout: (self layouts at: self class layoutMedium).
+	self currentLayout initializeComplete
 ]
 
 { #category : #accessing }
@@ -140,4 +168,67 @@ MDSLayoutAutoResponsive >> resizeString: aString [
 		^ self ].
 
 	self currentLayoutSet: self class layoutLarge
+]
+
+{ #category : #actions }
+MDSLayoutAutoResponsive >> sideNavContent: aComponent [
+
+	super sideNavContent: aComponent.
+	self layouts do: [ :eachLayout | eachLayout sideNavContent: aComponent ]
+]
+
+{ #category : #actions }
+MDSLayoutAutoResponsive >> sideNavDismissIfModal [
+
+	super sideNavDismissIfModal.
+	self layouts do: [ :eachLayout | eachLayout sideNavDismissIfModal ]
+]
+
+{ #category : #actions }
+MDSLayoutAutoResponsive >> sideNavOpenToggle [
+
+	super sideNavOpenToggle.
+	self layouts do: [ :eachLayout | eachLayout sideNavOpenToggle ]
+]
+
+{ #category : #actions }
+MDSLayoutAutoResponsive >> sideSheetContent: aComponent [
+
+	super sideSheetContent: aComponent.
+	self layouts do: [ :eachLayout | eachLayout sideSheetContent: aComponent ]
+]
+
+{ #category : #actions }
+MDSLayoutAutoResponsive >> sideSheetHiddenToggle [
+
+	super sideSheetHiddenToggle.
+	self layouts do: [ :eachLayout | eachLayout sideSheetHiddenToggle ]
+]
+
+{ #category : #actions }
+MDSLayoutAutoResponsive >> sideSheetHide [
+
+	super sideSheetHide.
+	self layouts do: [ :eachLayout | eachLayout sideSheetHide ]
+]
+
+{ #category : #actions }
+MDSLayoutAutoResponsive >> sideSheetUnhide [
+
+	super sideSheetUnhide.
+	self layouts do: [ :eachLayout | eachLayout sideSheetUnhide ]
+]
+
+{ #category : #actions }
+MDSLayoutAutoResponsive >> topAappBarCollapsedToggle [
+
+	super topAappBarCollapsedToggle.
+	self layouts do: [ :eachLayout | eachLayout topAappBarCollapsedToggle ]
+]
+
+{ #category : #actions }
+MDSLayoutAutoResponsive >> topAppBarTitle: aString [
+
+	super topAppBarTitle: aString.
+	self layouts do: [ :eachLayout | eachLayout topAppBarTitle: aString ]
 ]

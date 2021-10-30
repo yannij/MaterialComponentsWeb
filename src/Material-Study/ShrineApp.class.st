@@ -48,19 +48,10 @@ ShrineApp >> applicationTitle [
 ]
 
 { #category : #initialization }
-ShrineApp >> buildBodyRegion [
-
-	^ MDSBodyRegion new
-		component: ShrineCanvas new;
-		yourself
-]
-
-{ #category : #initialization }
 ShrineApp >> buildLayout [
 
 	^ (MDSLayoutAutoResponsive on: self)
 		cssClass: 'shrine';
-		initializeComplete;
 		yourself
 ]
 
@@ -94,46 +85,19 @@ ShrineApp >> buildPopupMenuSettings [
 ]
 
 { #category : #initialization }
-ShrineApp >> buildSideNav [
-
-	^ (MDSDrawer content: self buildSideNavList)
-		cssClass: 'shrine-drawer';
-		yourself
-]
-
-{ #category : #initialization }
 ShrineApp >> buildSideNavList [
 
 	^ MDSList new
 		itemsAdd: (ShrineBranding new);
-		itemsAdd: (MDSListItem itemText: 'Featured' iconName: '' callback: [ self sideNav menuItemCallback ]);
+		itemsAdd: (MDSListItem itemText: 'Featured' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
 		"Divider Line"
-		itemsAdd: (MDSListItem itemText: 'Apartment' iconName: '' callback: [ self sideNav menuItemCallback ]);
-		itemsAdd: (MDSListItem itemText: 'Accessories' iconName: '' callback: [ self sideNav menuItemCallback ]);
-		itemsAdd: (MDSListItem itemText: 'Shoes' iconName: '' callback: [ self sideNav menuItemCallback ]);
-		itemsAdd: (MDSListItem itemText: 'Tops' iconName: '' callback: [ self sideNav menuItemCallback ]);
-		itemsAdd: (MDSListItem itemText: 'Bottoms' iconName: '' callback: [ self sideNav menuItemCallback ]);
-		itemsAdd: (MDSListItem itemText: 'Dresses' iconName: '' callback: [ self sideNav menuItemCallback ]);
-		itemsAdd: (MDSListItem itemText: 'My Account' iconName: '' callback: [ self sideNav menuItemCallback ]);
-		yourself
-]
-
-{ #category : #initialization }
-ShrineApp >> buildSideSheet [
-
-	^ MDSSideSheet new
-]
-
-{ #category : #initialization }
-ShrineApp >> buildTopAppBar [
-	| settingsPopup |
-
-	settingsPopup := self buildPopupMenuSettings.
-
-	^ (MDSTopAppBar title: self applicationTitle)
-		startSectionAdd: self buildNavigationIcon;
-		endSectionAdd: (MDSTopAppBarActionItem materialIcon: 'settings' onClickScript: settingsPopup openScript);
-		endSectionAdd: settingsPopup;
+		itemsAdd: (MDSListItem itemText: 'Apartment' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
+		itemsAdd: (MDSListItem itemText: 'Accessories' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
+		itemsAdd: (MDSListItem itemText: 'Shoes' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
+		itemsAdd: (MDSListItem itemText: 'Tops' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
+		itemsAdd: (MDSListItem itemText: 'Bottoms' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
+		itemsAdd: (MDSListItem itemText: 'Dresses' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
+		itemsAdd: (MDSListItem itemText: 'My Account' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
 		yourself
 ]
 
@@ -158,24 +122,10 @@ ShrineApp >> initialize [
 
 	super initialize.
 
-	self initializeLayout
-]
-
-{ #category : #initialization }
-ShrineApp >> initializeLayout [
-
 	self materialVersionDefault.
 
-	"self settings: self buildApplicationSettings."
-	self topAppBar: self buildTopAppBar .
-	self sideNav: self buildSideNav.
-	self bodyRegion: self buildBodyRegion.
-	self sideSheet: self buildSideSheet.
-
-	self shoppingCart: self stripeInterface shoppingCartNew.
-	self sideSheet component: self shoppingCart.
-
-	self layout: self buildLayout
+	self layout: self buildLayout.
+	self setupLayout
 ]
 
 { #category : #accessing }
@@ -207,6 +157,32 @@ ShrineApp >> renderLayoutOn: html [
 						ifFalse: [
 							self loginComponent ifNil: [ self loginComponent: self buildLoginComponent ].
 							html render: self loginComponent ] ] ]
+]
+
+{ #category : #initialization }
+ShrineApp >> setupLayout [
+
+	self shoppingCart: self stripeInterface shoppingCartNew.
+
+	self setupTopAppBar.
+	self layout sideNav content: self buildSideNavList; cssClass: 'shrine-drawer'.
+	self layout bodyRegion component: ShrineCanvas new.
+	self layout sideSheet component: self shoppingCart.
+
+	self layout initializeComplete
+]
+
+{ #category : #initialization }
+ShrineApp >> setupTopAppBar [
+	| settingsPopup |
+
+	settingsPopup := self buildPopupMenuSettings.
+
+	self layout topAppBar
+		title: self applicationTitle;
+		startSectionAdd: self buildNavigationIcon;
+		endSectionAdd: (MDSTopAppBarActionItem materialIcon: 'settings' onClickScript: settingsPopup openScript);
+		endSectionAdd: settingsPopup
 ]
 
 { #category : #accessing }

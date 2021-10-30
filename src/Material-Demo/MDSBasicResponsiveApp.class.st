@@ -29,29 +29,13 @@ MDSBasicResponsiveApp >> applicationTitle [
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> buildBodyRegion [
-
-	^ MDSBodyRegion new
-		component: (String loremIpsum: 5000);
-		yourself
-]
-
-{ #category : #initialization }
-MDSBasicResponsiveApp >> buildLayout [
-
-	^ (MDSLayoutMedium on: self)
-		initializeComplete;
-		yourself
-]
-
-{ #category : #initialization }
 MDSBasicResponsiveApp >> buildList [
 	| newObject |
 
 	newObject := MDSList new.
-	newObject itemsAdd: (MDSListItem label: 'Label 1' icon: 'waves' callback: [ self sideNav menuItemCallback ]).
-	newObject itemsAdd: (MDSListItem label: 'Label 2' icon: 'shield' callback: [ self sideNav menuItemCallback ]).
-	newObject itemsAdd: (MDSListItem label: 'Label 3' icon: 'face' callback: [ self sideNav menuItemCallback ]).
+	newObject itemsAdd: (MDSListItem label: 'Label 1' icon: 'waves' callback: [ self sideNav dismissIfModel ]).
+	newObject itemsAdd: (MDSListItem label: 'Label 2' icon: 'shield' callback: [ self sideNav dismissIfModel ]).
+	newObject itemsAdd: (MDSListItem label: 'Label 3' icon: 'face' callback: [ self sideNav dismissIfModel ]).
 	
 	^ newObject
 ]
@@ -78,23 +62,6 @@ MDSBasicResponsiveApp >> buildPopupMenuSettings [
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> buildSideNav [
-
-	^ (MDSDrawer content: self buildList title: self applicationTitle)
-		title: 'Example';
-		subtitle: 'Sub-example';
-		yourself
-]
-
-{ #category : #initialization }
-MDSBasicResponsiveApp >> buildSideSheet [
-
-	^ MDSSideSheet new
-		component: self buildSideSheetList;
-		yourself
-]
-
-{ #category : #initialization }
 MDSBasicResponsiveApp >> buildSideSheetList [
 
 	^ MDSListGroup new
@@ -114,47 +81,21 @@ MDSBasicResponsiveApp >> buildSideSheetList [
 ]
 
 { #category : #initialization }
-MDSBasicResponsiveApp >> buildTopAppBar [
-	| settingsPopup |
-
-	settingsPopup := self buildPopupMenuSettings.
-
-	^ (MDSTopAppBar title: self applicationTitle)
-		startSectionAdd: self buildNavigationIcon;
-		endSectionAdd: (MDSTopAppBarActionItem materialIcon: 'settings' onClickScript: settingsPopup openScript);
-		endSectionAdd: settingsPopup;
-		yourself
-]
-
-{ #category : #initialization }
 MDSBasicResponsiveApp >> initialize [
 
 	super initialize.
 
-	self initializeLayout
-]
-
-{ #category : #initialization }
-MDSBasicResponsiveApp >> initializeLayout [
-
 	self materialVersionDefault.
 
-	"self settings: self buildApplicationSettings."
-	self topAppBar: self buildTopAppBar .
-	self sideNav: self buildSideNav.
-	self bodyRegion: self buildBodyRegion.
-	self sideSheet: self buildSideSheet.
-	self layout: self buildLayout
+	self layout: (MDSLayoutMedium on: self).
+	self setupLayout
 ]
 
 { #category : #rendering }
 MDSBasicResponsiveApp >> layoutChange: anMDSLayoutClass [
-	| newLayout |
 
-	newLayout := (anMDSLayoutClass on: self)
-		initializeComplete;
-		yourself.
-	self layout: newLayout
+	self layout: (anMDSLayoutClass on: self).
+	self setupLayout
 ]
 
 { #category : #rendering }
@@ -165,6 +106,29 @@ MDSBasicResponsiveApp >> renderLayoutOn: html [
 		, 'bodyStyle.setProperty("--mdc-theme-primary", "#0088F0");'.
 
 	html render: self layout
+]
+
+{ #category : #initialization }
+MDSBasicResponsiveApp >> setupLayout [
+
+	self setupTopAppBar.
+	self layout sideNav content: self buildList; title: 'Example'; subtitle: 'Sub-example'.
+	self layout bodyRegion component: (String loremIpsum: 5000).
+	self layout sideSheet component: self buildSideSheetList.
+	self layout initializeComplete
+]
+
+{ #category : #initialization }
+MDSBasicResponsiveApp >> setupTopAppBar [
+	| settingsPopup |
+
+	settingsPopup := self buildPopupMenuSettings.
+
+	self layout topAppBar
+		title: self applicationTitle;
+		startSectionAdd: self buildNavigationIcon;
+		endSectionAdd: (MDSTopAppBarActionItem materialIcon: 'settings' onClickScript: settingsPopup openScript);
+		endSectionAdd: settingsPopup
 ]
 
 { #category : #updating }

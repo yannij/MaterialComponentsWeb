@@ -79,6 +79,12 @@ MDSDrawer >> content: anObject [
 	content := anObject
 ]
 
+{ #category : #'drawer type' }
+MDSDrawer >> dismissIfModel [
+
+	self isModalDrawer ifTrue: [ self beDismissed ]
+]
+
 { #category : #accessing }
 MDSDrawer >> dismissedToggle [
 
@@ -193,18 +199,6 @@ MDSDrawer >> isPersistentDrawer [
 
 { #category : #initialization }
 MDSDrawer >> layout: ignore [
-]
-
-{ #category : #initialization }
-MDSDrawer >> list: anObject [
-
-	self content: anObject
-]
-
-{ #category : #'drawer type' }
-MDSDrawer >> menuItemCallback [
-
-	self isModalDrawer ifTrue: [ self beDismissed ]
 ]
 
 { #category : #rendering }

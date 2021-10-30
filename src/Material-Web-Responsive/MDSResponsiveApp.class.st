@@ -2,11 +2,7 @@ Class {
 	#name : #MDSResponsiveApp,
 	#superclass : #MDSApplication,
 	#instVars : [
-		'topAppBar',
-		'sideSheet',
-		'bodyRegion',
-		'layout',
-		'sideNav'
+		'layout'
 	],
 	#category : #'Material-Web-Responsive'
 }
@@ -20,13 +16,7 @@ MDSResponsiveApp >> applicationTitle [
 { #category : #accessing }
 MDSResponsiveApp >> bodyRegion [
 
-	^ bodyRegion
-]
-
-{ #category : #accessing }
-MDSResponsiveApp >> bodyRegion: anObject [
-
-	bodyRegion := anObject
+	^ self layout bodyRegion
 ]
 
 { #category : #login }
@@ -37,25 +27,13 @@ MDSResponsiveApp >> buildLoginComponent [
 { #category : #initialization }
 MDSResponsiveApp >> buildNavigationIcon [
 
-	^ MDSTopAppBarNavigationIcon materialIcon: 'menu' callback: [ self sideNav drawerOpenToggle ]
-]
-
-{ #category : #accessing }
-MDSResponsiveApp >> contentArea [
-
-	^ bodyRegion
+	^ MDSTopAppBarNavigationIcon materialIcon: 'menu' callback: [ self layout sideNavOpenToggle ]
 ]
 
 { #category : #accessing }
 MDSResponsiveApp >> denseView [
 
 	^ self layout denseView
-]
-
-{ #category : #actions }
-MDSResponsiveApp >> dismissMenuIfModalDrawer [
-
-	self sideNav menuItemCallback
 ]
 
 { #category : #login }
@@ -167,25 +145,13 @@ MDSResponsiveApp >> renderSetTypographyFont: aFontFamily on: html [
 { #category : #accessing }
 MDSResponsiveApp >> sideNav [
 
-	^ sideNav
-]
-
-{ #category : #accessing }
-MDSResponsiveApp >> sideNav: anObject [
-
-	sideNav := anObject
+	^ self layout sideNav
 ]
 
 { #category : #accessing }
 MDSResponsiveApp >> sideSheet [
 
-	^ sideSheet
-]
-
-{ #category : #accessing }
-MDSResponsiveApp >> sideSheet: anObject [
-
-	sideSheet := anObject
+	^ self layout sideSheet
 ]
 
 { #category : #accessing }
@@ -198,13 +164,7 @@ MDSResponsiveApp >> snackbarText [
 { #category : #accessing }
 MDSResponsiveApp >> topAppBar [
 
-	^ topAppBar
-]
-
-{ #category : #accessing }
-MDSResponsiveApp >> topAppBar: anObject [
-
-	topAppBar := anObject
+	^ self layout topAppBar
 ]
 
 { #category : #updating }

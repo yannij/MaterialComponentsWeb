@@ -31,7 +31,7 @@ MDSListItem class >> itemText: aString callback: aBlock [
 { #category : #'instance creation' }
 MDSListItem class >> itemText: aString iconName: aMaterialIconName callback: aBlock [
 
-	^ self label: aString icon: nil callback: aBlock
+	^ self label: aString icon: aMaterialIconName callback: aBlock
 ]
 
 { #category : #'instance creation' }

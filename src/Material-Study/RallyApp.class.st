@@ -31,36 +31,36 @@ RallyApp class >> initialize [
 { #category : #actions }
 RallyApp >> actionAccounts [
 
-	self sideNav menuItemCallback.
-	self bodyRegion component: RallyAccountView new
+	self layout sideNavDismissIfModal.
+	self layout bodyRegionContent: RallyAccountView new
 ]
 
 { #category : #actions }
 RallyApp >> actionAlerts [
 
-	self sideNav menuItemCallback.
-	self bodyRegion component: RallyAlertView new
+	self layout sideNavDismissIfModal.
+	self layout bodyRegionContent: RallyAlertView new
 ]
 
 { #category : #actions }
 RallyApp >> actionBills [
 
-	self sideNav menuItemCallback.
-	self bodyRegion component: RallyBillView new
+	self layout sideNavDismissIfModal.
+	self layout bodyRegionContent: RallyBillView new
 ]
 
 { #category : #actions }
 RallyApp >> actionBudgetItems [
 
-	self sideNav menuItemCallback.
-	self bodyRegion component: RallyBudgetItemView new
+	self layout sideNavDismissIfModal.
+	self layout bodyRegionContent: RallyBudgetItemView new
 ]
 
 { #category : #actions }
 RallyApp >> actionOverview [
 
-	self sideNav menuItemCallback.
-	self bodyRegion component: RallyOverview new
+	self layout sideNavDismissIfModal.
+	self layout bodyRegionContent: RallyOverview new
 ]
 
 { #category : #accessing }
@@ -70,19 +70,9 @@ RallyApp >> applicationTitle [
 ]
 
 { #category : #initialization }
-RallyApp >> buildBodyRegion [
-
-	^ MDSBodyRegion new
-		"component: ShrineCanvas new;"
-		yourself
-]
-
-{ #category : #initialization }
 RallyApp >> buildLayout [
 
-	^ (MDSLayoutAutoResponsive on: self)
-		initializeComplete;
-		yourself
+	^ MDSLayoutAutoResponsive on: self
 ]
 
 { #category : #initialization }
@@ -115,14 +105,6 @@ RallyApp >> buildPopupMenuSettings [
 ]
 
 { #category : #initialization }
-RallyApp >> buildSideNav [
-
-	^ (MDSDrawer content: self buildSideNavList)
-		"cssClass: 'shrine-drawer';"
-		yourself
-]
-
-{ #category : #initialization }
 RallyApp >> buildSideNavList [
 
 	^ MDSList new
@@ -131,25 +113,6 @@ RallyApp >> buildSideNavList [
 		itemsAdd: (MDSListItem itemText: 'Bill''s' iconName: '' callback: [ self actionBills ]);
 		itemsAdd: (MDSListItem itemText: 'BudgetItem''s' iconName: '' callback: [ self actionBudgetItems ]);
 		itemsAdd: (MDSListItem itemText: 'Alert''s' iconName: '' callback: [ self actionAlerts ]);
-		yourself
-]
-
-{ #category : #initialization }
-RallyApp >> buildSideSheet [
-
-	^ MDSSideSheet new
-]
-
-{ #category : #initialization }
-RallyApp >> buildTopAppBar [
-	| settingsPopup |
-
-	settingsPopup := self buildPopupMenuSettings.
-
-	^ (MDSTopAppBar title: self applicationTitle)
-		startSectionAdd: self buildNavigationIcon;
-		endSectionAdd: (MDSTopAppBarActionItem materialIcon: 'settings' onClickScript: settingsPopup openScript);
-		endSectionAdd: settingsPopup;
 		yourself
 ]
 
@@ -169,22 +132,13 @@ RallyApp >> colorTheme [
 
 { #category : #initialization }
 RallyApp >> initialize [
+
 	super initialize.
-
-	self initializeLayout
-]
-
-{ #category : #initialization }
-RallyApp >> initializeLayout [
 
 	self materialVersionDefault.
 
-	self topAppBar: self buildTopAppBar .
-	self sideNav: self buildSideNav.
-	self bodyRegion: self buildBodyRegion.
-	self sideSheet: self buildSideSheet.
-
-	self layout: self buildLayout
+	self layout: self buildLayout.
+	self setupLayout
 ]
 
 { #category : #accessing }
@@ -216,6 +170,28 @@ RallyApp >> renderLayoutOn: html [
 						ifFalse: [
 							self loginComponent ifNil: [ self loginComponent: self buildLoginComponent ].
 							html render: self loginComponent ] ] ]
+]
+
+{ #category : #initialization }
+RallyApp >> setupLayout [
+
+	self setupTopAppBar.
+	self layout sideNav content: self buildSideNavList.
+
+	self layout initializeComplete
+]
+
+{ #category : #initialization }
+RallyApp >> setupTopAppBar [
+	| settingsPopup |
+
+	settingsPopup := self buildPopupMenuSettings.
+
+	self layout topAppBar
+		title: self applicationTitle;
+		startSectionAdd: self buildNavigationIcon;
+		endSectionAdd: (MDSTopAppBarActionItem materialIcon: 'settings' onClickScript: settingsPopup openScript);
+		endSectionAdd: settingsPopup
 ]
 
 { #category : #updating }
