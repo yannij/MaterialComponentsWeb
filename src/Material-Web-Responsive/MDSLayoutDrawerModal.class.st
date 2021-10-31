@@ -10,7 +10,7 @@ Class {
 { #category : #actions }
 MDSLayoutDrawerModal >> adjustTopAppBar [
 
-	self topAppBar startSection do: [ :each | each beUnHidden ]
+	self topAppBar startSection ifNotNil: [ :value | value do: [ :each | each beUnHidden ] ]
 ]
 
 { #category : #accessing }

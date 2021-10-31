@@ -7,7 +7,9 @@ Class {
 	#instVars : [
 		'loginComponent',
 		'shoppingCart',
-		'stripeInterface'
+		'stripeInterface',
+		'tabs',
+		'currentTab'
 	],
 	#category : #'Material-Study-Shrine'
 }
@@ -49,10 +51,13 @@ ShrineApp >> applicationTitle [
 
 { #category : #initialization }
 ShrineApp >> buildLayout [
+	| newLayout |
 
-	^ (MDSLayoutAutoResponsive on: self)
+	newLayout := (MDSLayoutAutoResponsive on: self)
 		cssClass: 'shrine';
-		yourself
+		yourself.
+
+	^ newLayout
 ]
 
 { #category : #initialization }
@@ -86,19 +91,46 @@ ShrineApp >> buildPopupMenuSettings [
 
 { #category : #initialization }
 ShrineApp >> buildSideNavList [
+	| newList |
 
-	^ MDSList new
-		itemsAdd: (ShrineBranding new);
-		itemsAdd: (MDSListItem itemText: 'Featured' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
-		"Divider Line"
-		itemsAdd: (MDSListItem itemText: 'Apartment' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
-		itemsAdd: (MDSListItem itemText: 'Accessories' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
-		itemsAdd: (MDSListItem itemText: 'Shoes' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
-		itemsAdd: (MDSListItem itemText: 'Tops' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
-		itemsAdd: (MDSListItem itemText: 'Bottoms' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
-		itemsAdd: (MDSListItem itemText: 'Dresses' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
-		itemsAdd: (MDSListItem itemText: 'My Account' iconName: '' callback: [ self layout sideNavDismissIfModal ]);
-		yourself
+	newList := MDSList new.
+	newList itemsAdd: (ShrineBranding new).
+	self categoryList do: [ :eachCategory |
+		newList itemsAdd:
+			(MDSListItem
+				itemText: eachCategory
+				iconName: ''
+				callback: [ self layout sideNavDismissIfModal. self tabSet: eachCategory ]) ].
+
+	^ newList
+]
+
+{ #category : #initialization }
+ShrineApp >> buildTabs: aNumber [
+	| newObject |
+
+	newObject := MDSTabs new.
+	self categoryList do: [ :tabLabel | | newTab |
+		newTab := MDSTab label: tabLabel callback: [ self tabSet: tabLabel ].
+		newTab showIcon: false.
+		newObject tabsAdd: newTab ].
+	
+	^ newObject
+]
+
+{ #category : #initialization }
+ShrineApp >> categoryList [
+
+	^ #(
+'Featured'
+'Apartment'
+'Accessories'
+'Shoes'
+'Tops'
+'Bottoms'
+'Dresses'
+'My Account'
+	)
 ]
 
 { #category : #accessing }
@@ -115,6 +147,18 @@ ShrineApp >> colorTheme [
 } asOrderedDictionary
 ]
 
+{ #category : #accessing }
+ShrineApp >> currentTab [
+
+	^ currentTab
+]
+
+{ #category : #accessing }
+ShrineApp >> currentTab: anObject [
+
+	currentTab := anObject
+]
+
 { #category : #initialization }
 ShrineApp >> initialize [
 
@@ -124,6 +168,7 @@ ShrineApp >> initialize [
 
 	self materialVersionDefault.
 
+	self tabs: (self buildTabs: 6).
 	self layout: self buildLayout.
 	self setupLayout
 ]
@@ -168,8 +213,19 @@ ShrineApp >> setupLayout [
 	self layout sideNav content: self buildSideNavList; cssClass: 'shrine-drawer'.
 	self layout bodyRegion component: ShrineCanvas new.
 	self layout sideSheet component: self shoppingCart.
+	self setupLayoutSmall.
 
-	self layout initializeComplete
+	self layout initializeComplete.
+	(self layout layouts at: MDSLayoutAutoResponsive layoutSmall) topAppBar startSection: nil
+]
+
+{ #category : #initialization }
+ShrineApp >> setupLayoutSmall [
+	| tabletLayout |
+
+	tabletLayout := MDSLayoutTopAppBarTabs on: self.
+	tabletLayout topAppBar middleSection: self tabs.
+	self layout layouts at: MDSLayoutAutoResponsive layoutSmall put: tabletLayout
 ]
 
 { #category : #initialization }
@@ -209,6 +265,26 @@ ShrineApp >> stripeInterface [
 { #category : #accessing }
 ShrineApp >> stripeInterface: anObject [
 	stripeInterface := anObject
+]
+
+{ #category : #initialization }
+ShrineApp >> tabSet: anObject [
+
+	self currentTab: anObject.
+
+	self tabs do: [ :eachTab | eachTab active: (eachTab label = anObject) ]
+]
+
+{ #category : #accessing }
+ShrineApp >> tabs [
+
+	^ tabs
+]
+
+{ #category : #accessing }
+ShrineApp >> tabs: anObject [
+
+	tabs := anObject
 ]
 
 { #category : #updating }

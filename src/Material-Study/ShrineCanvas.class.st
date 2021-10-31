@@ -15,8 +15,55 @@ ShrineCanvas >> addToShoppingCart: aProduct [
 
 { #category : #rendering }
 ShrineCanvas >> products [
+	| categoryValue |
 
-	true ifTrue: [ ^ WAJsonParser parse: self productsJson ].
+	categoryValue := self mcwApplicationGet currentTab.
+
+	^ (WAJsonParser parse: self productsJson) select: [ :eachProduct |
+		(eachProduct at: 'tags') includes: categoryValue ]
+]
+
+{ #category : #rendering }
+ShrineCanvas >> productsJson [
+
+	^ '[
+{"id": "prod_1", "description": null, "tags":["Accessories"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/ginger-scarf.jpg", "name": "Ginger scarf"},
+{"id": "prod_1", "description": null, "tags":["Apartment", "Featured"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/blue-stone-mug.jpg", "name": "Blue stone mug"},
+{"id": "prod_1", "description": null, "tags":["Tops"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/cerise-scallop.jpg", "name": "Cerise scallop tee"},
+{"id": "prod_1", "description": null, "tags":["Apartment", "Featured"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/chambray-napkins.jpg", "name": "Chambray napkins"},
+{"id": "prod_1", "description": null, "tags":["Tops"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/fine-lines.jpg", "name": "Fine lines tee"},
+{"id": "prod_1", "description": null, "tags":["Accessories", "Featured"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/garden-strand.jpg", "name": "Garden strand"},
+{"id": "prod_1", "description": null, "tags":["Accessories"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/gatsby-hat.jpg", "name": "Gatsby hat"},
+{"id": "prod_1", "description": null, "tags":["Apartment"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/gilt-desk-trio.jpg", "name": "Gilt desk trio"},
+{"id": "prod_1", "description": null, "tags":["Apartment"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/kitchen-quattro.jpg", "name": "Kitchen quattro"},
+{"id": "prod_1", "description": null, "tags":["Tops"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/seabreeze-sweater.jpg", "name": "Seabreeze sweater"},
+{"id": "prod_1", "description": null, "tags":["Accessories"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/shrug-bag.jpg", "name": "Shrug bag"},
+{"id": "prod_1", "description": null, "tags":["Accessories"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/stella-sunglasses.jpg", "name": "Stella sunglasses"},
+{"id": "prod_1", "description": null, "tags":["Tops"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/surf-and-perf.jpg", "name": "Surf and perf shirt"},
+{"id": "prod_1", "description": null, "tags":["Accessories"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/vagabond-sack.jpg", "name": "Vagabond sack"},
+{"id": "prod_1", "description": null, "tags":["Tops"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/walter-henley.jpg", "name": "Walter henley (white)"},
+{"id": "prod_1", "description": null, "tags":["Accessories"],
+ "images": "https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/weave-keyring.jpg", "name": "Weave keyring"}
+]'
+]
+
+{ #category : #rendering }
+ShrineCanvas >> productsOLD [
 
 	^ #(
 ('assets/ginger-scarf.jpg' 'Ginger scarf')
@@ -39,29 +86,6 @@ ShrineCanvas >> products [
 ]
 
 { #category : #rendering }
-ShrineCanvas >> productsJson [
-
-	^ '[
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/ginger-scarf.jpg"], "name": "Ginger scarf"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/blue-stone-mug.jpg"], "name": "Blue stone mug"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/cerise-scallop.jpg"], "name": "Cerise scallop tee"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/chambray-napkins.jpg"], "name": "Chambray napkins"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/fine-lines.jpg"], "name": "Fine lines tee"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/garden-strand.jpg"], "name": "Garden strand"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/gatsby-hat.jpg"], "name": "Gatsby hat"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/gilt-desk-trio.jpg"], "name": "Gilt desk trio"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/kitchen-quattro.jpg"], "name": "Kitchen quattro"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/seabreeze-sweater.jpg"], "name": "Seabreeze sweater"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/shrug-bag.jpg"], "name": "Shrug bag"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/stella-sunglasses.jpg"], "name": "Stella sunglasses"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/surf-and-perf.jpg"], "name": "Surf and perf shirt"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/vagabond-sack.jpg"], "name": "Vagabond sack"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/walter-henley.jpg"], "name": "Walter henley (white)"},
-{"id": "prod_1", "description": null, "images": ["https://raw.githubusercontent.com/material-components/material-components-web-codelabs/master/mdc-101/complete/assets/weave-keyring.jpg"], "name": "Weave keyring"}
-]'
-]
-
-{ #category : #rendering }
 ShrineCanvas >> renderContentOn: html [
 
 	self renderProductsOn: html
@@ -72,7 +96,7 @@ ShrineCanvas >> renderContentOn: html [
 ShrineCanvas >> renderProduct: aProduct on: html [
 	| imageUrl productName |
 
-	imageUrl := (aProduct at: 'images') first.
+	imageUrl := aProduct at: 'images'.
 	productName := aProduct at: 'name'.
 	html image mdcImageList__image; url: imageUrl.
 	html div mdcImageList__supporting; with: [
