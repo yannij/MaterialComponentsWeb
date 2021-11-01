@@ -53,6 +53,8 @@ MDSTabNavigationApp >> buildTopAppBar [
 
 	widget := MDSTopAppBar title: self applicationTitle.
 	widget middleSection: self tabs.
+	widget prominentOn.
+	widget cssClass: 'topAppBarColor'.
 
 	^ widget
 ]
@@ -72,9 +74,16 @@ MDSTabNavigationApp >> initialize [
 ]
 
 { #category : #rendering }
+MDSTabNavigationApp >> primaryColor [
+
+	^ 'red'
+	"^ super primaryColor"
+]
+
+{ #category : #rendering }
 MDSTabNavigationApp >> renderContentAreaOn: html [
 
-	html div mdcTopAppBar_fixedAdjust.
+	html div mdcTopAppBar_prominentFixedAdjust.
 	html div style: 'width: 600px; margin: 24px auto; overflow-x: auto'; with: [
 		html render: self tabs ].
 	self renderCurrentDisplayOn: html
@@ -112,4 +121,12 @@ MDSTabNavigationApp >> tabs [
 MDSTabNavigationApp >> tabs: anObject [
 
 	tabs := anObject
+]
+
+{ #category : #updating }
+MDSTabNavigationApp >> updateRoot: anHtmlRoot [
+
+	super updateRoot: anHtmlRoot.
+
+	anHtmlRoot stylesheet add: '.topAppBarColor{background-color: orange}'
 ]

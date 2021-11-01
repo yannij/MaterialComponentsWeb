@@ -6,6 +6,7 @@ Class {
 		'dense',
 		'short',
 		'shortCollapsed',
+		'prominent',
 		'allotDrawerWidth',
 		'startSection',
 		'middleSection',
@@ -86,6 +87,7 @@ MDSTopAppBar >> initialize [
 	self allotDrawerWidth: false.
 	self dense: false.
 	self short: false.
+	self prominent: false.
 	self shortCollapsed: false
 ]
 
@@ -93,6 +95,12 @@ MDSTopAppBar >> initialize [
 MDSTopAppBar >> isDense [
 
 	^ self dense
+]
+
+{ #category : #testing }
+MDSTopAppBar >> isProminent [
+
+	^ self prominent
 ]
 
 { #category : #testing }
@@ -129,15 +137,41 @@ MDSTopAppBar >> needsPaddingRight [
 	^ allotDrawerWidth
 ]
 
+{ #category : #accessing }
+MDSTopAppBar >> prominent [
+
+	^ prominent
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> prominent: anObject [
+
+	prominent := anObject
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> prominentOff [
+
+	self prominent: false
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> prominentOn [
+
+	self prominent: true
+]
+
 { #category : #rendering }
 MDSTopAppBar >> renderContentOn: html [
 	| tag |
 
 	tag := html header mdcTopAppBar.
+	self cssClass ifNotNil: [ :value | tag class: value ].
 
 	tag mdcTopAppBar_dense_if: self isDense.
 	self isShort ifTrue: [ tag mdcTopAppBar_short ].
 	self isShortCollapsed ifTrue: [ tag mdcTopAppBar_shortCollapsed ].
+	self isProminent ifTrue: [ tag mdcTopAppBar_prominent ].
 	self needsPaddingRight ifTrue: [ tag style: 'padding-right: 256px' ].
 
 	"For multiple rows or sections in the top appbar, use custom subclass"

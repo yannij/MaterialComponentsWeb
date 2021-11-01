@@ -122,13 +122,19 @@ MDSLayoutExampleApp >> pages: anObject [
 ]
 
 { #category : #rendering }
+MDSLayoutExampleApp >> primaryColor [
+
+	^ '#0088F0'
+]
+
+{ #category : #rendering }
 MDSLayoutExampleApp >> renderContentOn: html [
 
 	html document addLoadScript: (JSStream on: 'mdc.autoInit()').
 
 	html script with:
 		'var bodyStyle = document.querySelector("body").style;'
-		, 'bodyStyle.setProperty("--mdc-theme-primary", "#0088F0");'.
+		, 'bodyStyle.setProperty("--mdc-theme-primary", "', self primaryColor, '");'.
 
 	self renderLayoutOn: html.
 

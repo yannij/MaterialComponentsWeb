@@ -46,3 +46,8 @@ MDSLayoutTopAppBarTabs >> renderLayoutTopAppBarTabsOn: html [
 		with: [
 			self renderContentToShowOn: html ]
 ]
+
+{ #category : #actions }
+MDSLayoutTopAppBarTabs >> topAppBarCollapsedToggle [
+	"Do nothing. Ignore the collapse request, in the the layout"
+]
