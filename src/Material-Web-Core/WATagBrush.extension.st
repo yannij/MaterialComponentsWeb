@@ -841,15 +841,39 @@ WATagBrush >> mdcDeprecatedList_dense [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedList_iconList [
+
+	self class: 'mdc-deprecated-list--icon-list'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDeprecatedList_imageList [
 
 	self class: 'mdc-deprecated-list--image-list'
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedList_textualList [
+
+	self class: 'mdc-deprecated-list--textual-list'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedList_thumbnailList [
+
+	self class: 'mdc-deprecated-list--thumbnail-list'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDeprecatedList_twoLine [
 
 	self class: 'mdc-deprecated-list--two-line'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedList_videoList [
+
+	self class: 'mdc-deprecated-list--video-list'
 ]
 
 { #category : #'*Material-Web-Core' }

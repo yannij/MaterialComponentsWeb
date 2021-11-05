@@ -185,8 +185,10 @@ StripeShoppingCart >> renderCartHeaderOn: html [
 StripeShoppingCart >> renderCartItemImagesOn: html [
 
 	self cartItems do: [ :eachItem |			
-		html image "mdcImageList__image;"
-			style: 'width: 48px; height: 48px';
+		html image
+			style: 'padding-right: 4px';
+			"style: 'max-height: 56px; max-width: 100px';"
+			style: 'max-height: 56px; max-width: 56px';
 			url: (eachItem at: 'images') first ]
 ]
 
@@ -197,7 +199,8 @@ StripeShoppingCart >> renderCartItemsOn: html [
 		self cartItems do: [ :eachItem |			
 			html listItem mdcDeprecatedListItem; with: [
 				html span mdcDeprecatedListItem__graphic; with: [
-					html image mdcImageList__image; "style: 'width: 64px; height: 64px';"
+					html image
+						style: 'max-height: 56px; max-width: 56px';
 						url: (eachItem at: 'images') first ].
 				html span mdcDeprecatedListItem__text; with: [
 					html span mdcListItem__primaryText; with: (eachItem at: 'id').
