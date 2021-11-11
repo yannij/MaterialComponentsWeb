@@ -25,5 +25,8 @@ MDSDemoLayoutGridPage >> renderDemosOn: html [
 { #category : #rendering }
 MDSDemoLayoutGridPage >> renderHeroOn: html [
 
-	html html: '<div class="mdc-layout-grid demo-grid"><div class="mdc-layout-grid__inner"><div class="mdc-layout-grid__cell demo-cell"></div><div class="mdc-layout-grid__cell demo-cell"></div><div class="mdc-layout-grid__cell demo-cell"></div></div></div>'
+	html div mdcLayoutGrid; style: 'background: rgba(0,0,0,.2);min-width: 360px'; with: [
+		html div mdcLayoutGrid__inner; with: [
+			1 to: 3 do: [ :i |
+				html div mdcLayoutGrid__cell; style: 'background: rgba(0,0,0,.2);height: 100px' ] ] ]
 ]

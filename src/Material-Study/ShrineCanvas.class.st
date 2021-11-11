@@ -1,6 +1,9 @@
 Class {
 	#name : #ShrineCanvas,
 	#superclass : #MDSComponent,
+	#instVars : [
+		'products'
+	],
 	#category : #'Material-Study-Shrine'
 }
 
@@ -13,13 +16,34 @@ ShrineCanvas >> addToShoppingCart: aProduct [
 		addProduct: aProduct
 ]
 
-{ #category : #rendering }
+{ #category : #accessing }
 ShrineCanvas >> products [
+
+	products ifNil: [
+		products := self productsBuild ].
+
+	^ products
+]
+
+{ #category : #accessing }
+ShrineCanvas >> products: anObject [
+
+	products := anObject
+]
+
+{ #category : #rendering }
+ShrineCanvas >> productsBuild [
+
+	^ (WAJsonParser parse: self productsJson)
+]
+
+{ #category : #rendering }
+ShrineCanvas >> productsFiltered [
 	| categoryValue |
 
 	categoryValue := self mcwApplicationGet currentTab.
 
-	^ (WAJsonParser parse: self productsJson) select: [ :eachProduct |
+	^ self products select: [ :eachProduct |
 		(eachProduct at: 'tags') includes: categoryValue ]
 ]
 
@@ -108,7 +132,7 @@ ShrineCanvas >> renderProductsOn: html [
 
 	html div class: 'shrine-body'; mdcElevation_z4; with: [
 		html unorderedList mdcImageList; mdcImageList_masonry; class: 'product-list'; with: [
-			self products do: [ :eachProduct |
+			self productsFiltered do: [ :eachProduct |
 				html listItem mdcImageList__item; with: [
 					html div: [
 						html anchor mdcMaterialIcons; mdcIconButton;

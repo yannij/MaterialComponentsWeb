@@ -98,6 +98,17 @@ StripeShoppingCart >> cartStateShopping [
 
 { #category : #accessing }
 StripeShoppingCart >> cartValues [
+	| total |
+
+	total := self cartItems inject: 0.0 into: [ :sum :each |  sum + (((each at: #priceAmount) \\ 10000) / 100.0) ].
+	
+	^ IdentityDictionary new
+		at: #total put: total;
+		yourself
+]
+
+{ #category : #accessing }
+StripeShoppingCart >> cartValuesOLD [
 	| subtotal shipping tax |
 
 	subtotal := self cartItems inject: 0.0 into: [ :sum :each |  sum + ((each hash \\ 10000) / 100.0) ].
@@ -124,35 +135,59 @@ StripeShoppingCart >> cartVisible: anObject [
 
 { #category : #stripe }
 StripeShoppingCart >> createCheckoutSessionRequest: html json: json [
-	| publicServerUrl successUrl cancelUrl client responseJsonString responseJson |
+	| endpoint redirectUrls apiValues responseJsonString responseJson |
 
-	publicServerUrl := WAUrl absolute: (DockerDeploy current configsAt: DockerDeploy defaultConfigName atKey: 'publicServerUrl').
-	successUrl := html urlForAction: [ self actionSuccess ] absolute: publicServerUrl.
-	cancelUrl := html urlForAction: [ self actionCancel ] absolute: publicServerUrl.
-"
-self mcwApplicationGet logString: successUrl printString.
-self mcwApplicationGet logString: cancelUrl printString.
-"
+	endpoint := (Array with: 'v1' with: 'checkout' with: 'sessions').
+	redirectUrls := self getRedirectUrls: html.
 
-	(client := ZnClient new)
-		https;
-		host: 'api.stripe.com';
-		addPath: (Array with: 'v1' with: 'checkout' with: 'sessions');
-		username: StripeAPI current stripeSecretKey password: '';
-		formAt: 'success_url' put: successUrl printString;
-		formAt: 'cancel_url' put: cancelUrl printString;
-		formAt: 'payment_method_types[0]' put: 'card';
-		formAt: 'line_items[0][price]' put: 'price_0IlPNK6QgJXWI9aTI0CX40eD';
-		formAt: 'line_items[0][quantity]' put: '2';
-		formAt: 'mode' put: 'payment';
+	apiValues := Dictionary new
+		at: 'success_url' put: redirectUrls first printString;
+		at: 'cancel_url' put: redirectUrls second printString;
+		at: 'payment_method_types[0]' put: 'card';
+		at: 'mode' put: 'payment';
+		"at: 'automatic_tax[enabled]' put: 'true';"
 		yourself.
 
-	responseJsonString := client post.
+	self cartItems withIndexDo: [ :eachItem :index |
+		| indexString |
+		indexString := (index - 1) printString.
+		apiValues
+			"at: 'line_items[0][price]' put: 'price_0IlPNK6QgJXWI9aTI0CX40eD';"
+			at: 'line_items[', indexString, '][name]' put: (eachItem at: 'id');
+			at: 'line_items[', indexString, '][amount]' put: (eachItem at: 'priceAmount') printString;
+			at: 'line_items[', indexString, '][currency]' put: (eachItem at: 'priceCurrency');
+			at: 'line_items[', indexString, '][quantity]' put: '1';
+			yourself ].
+
+	responseJsonString := StripeAPI current path: endpoint request: apiValues postAs: nil.
+	self mcwApplicationGet logString: responseJsonString.
 	responseJson := WAJsonParser parse: responseJsonString.
 	(responseJson includesKey: 'id')
 		ifFalse: [ self mcwApplicationGet logString: 'Stripe error response: ', responseJsonString ].
 
 	^ json string: responseJsonString
+]
+
+{ #category : #stripe }
+StripeShoppingCart >> getRedirectUrls: html [
+	| tokenFilter newToken serverString publicServerUrl successUrl cancelUrl |
+
+	tokenFilter := self session tokenFallbackProtectionFilter.
+	newToken := tokenFilter newToken.
+	serverString := DockerDeploy current configsAt: DockerDeploy defaultConfigName atKey: 'publicServerUrl'.
+	serverString ifNil: [
+		serverString := 'http://localhost:8080/'
+		"self error: 'publicServerUrl not defned'" ].
+	publicServerUrl := WAUrl absolute: serverString.
+	successUrl := html urlForAction: [ self actionSuccess ] absolute: (WAUrl absolute: 'http://localhost:8080/').
+	successUrl addField: WATokenFallbackProtectionFilter tokenQueryFieldName value: newToken.
+	cancelUrl := html urlForAction: [ self actionCancel ] absolute: (WAUrl absolute: 'http://localhost:8080/').
+	cancelUrl addField: WATokenFallbackProtectionFilter tokenQueryFieldName value: newToken.
+
+self mcwApplicationGet logString: successUrl printString.
+self mcwApplicationGet logString: cancelUrl printString.
+
+	^ Array with: successUrl with: cancelUrl
 ]
 
 { #category : #initialization }
@@ -204,7 +239,7 @@ StripeShoppingCart >> renderCartItemsOn: html [
 						url: (eachItem at: 'images') first ].
 				html span mdcDeprecatedListItem__text; with: [
 					html span mdcListItem__primaryText; with: (eachItem at: 'id').
-					html span mdcListItem__secondaryText; with: (eachItem at: 'name') ] ] ] ]
+					html span mdcListItem__secondaryText; with: (eachItem at: 'price') ] ] ] ]
 ]
 
 { #category : #rendering }
@@ -263,9 +298,9 @@ StripeShoppingCart >> renderCartTotalsOn: html [
 	cartValues := self cartValues.
 
 	self renderCartLine: 'TOTAL' total: (self printAsMoney: (cartValues at: #total)) on: html.
-	self renderCartLine: 'Subtotal' total: (self printAsMoney: (cartValues at: #subtotal)) on: html.
+	"self renderCartLine: 'Subtotal' total: (self printAsMoney: (cartValues at: #subtotal)) on: html.
 	self renderCartLine: 'Shipping' total: (self printAsMoney: (cartValues at: #shipping)) on: html.
-	self renderCartLine: 'Tax' total: (self printAsMoney: (cartValues at: #tax)) on: html.
+	self renderCartLine: 'Tax' total: (self printAsMoney: (cartValues at: #tax)) on: html."
 ]
 
 { #category : #rendering }

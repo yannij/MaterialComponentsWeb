@@ -55,6 +55,23 @@ StripeAPI class >> stripeSecretKey [
 ]
 
 { #category : #accessing }
+StripeAPI >> path: anArray request: aDictionary postAs: aSecretKey [
+	| client |
+
+	client := ZnClient new
+		https;
+		host: 'api.stripe.com';
+		addPath: (Array with: 'v1' with: 'checkout' with: 'sessions');
+		username: self stripeSecretKey password: '';
+		yourself.
+
+	aDictionary keysAndValuesDo: [ :key :value |
+		client formAt: key put: value ].
+
+	^ client post
+]
+
+{ #category : #accessing }
 StripeAPI >> stripePublishableKey [
 
 	^ self class stripePublishableKey

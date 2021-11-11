@@ -17,7 +17,7 @@ MDSDemoImageListPage >> pageInfo [
 ]
 
 { #category : #rendering }
-MDSDemoImageListPage >> renderDemoMasonaryOn: html [
+MDSDemoImageListPage >> renderDemoMasonryOn: html [
 	| urlPart data |
 
 	html heading level3; mdcTypography_subtitle1; with: 'Masonry Image List'.
@@ -78,7 +78,7 @@ MDSDemoImageListPage >> renderDemoStandardOn: html [
 MDSDemoImageListPage >> renderDemosOn: html [
 
 	self renderDemoStandardOn: html.
-	self renderDemoMasonaryOn: html
+	self renderDemoMasonryOn: html
 ]
 
 { #category : #rendering }
