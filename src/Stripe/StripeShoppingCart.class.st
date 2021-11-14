@@ -134,7 +134,8 @@ StripeShoppingCart >> cartVisible: anObject [
 ]
 
 { #category : #stripe }
-StripeShoppingCart >> createCheckoutSessionRequest: html json: json [
+StripeShoppingCart >> deprecatedCreateCheckoutSessionRequest: html json: json [
+	"This API usage is deprecated because usage of amount/currency is deprecated"
 	| endpoint redirectUrls apiValues responseJsonString responseJson |
 
 	endpoint := (Array with: 'v1' with: 'checkout' with: 'sessions').
@@ -145,7 +146,7 @@ StripeShoppingCart >> createCheckoutSessionRequest: html json: json [
 		at: 'cancel_url' put: redirectUrls second printString;
 		at: 'payment_method_types[0]' put: 'card';
 		at: 'mode' put: 'payment';
-		"at: 'automatic_tax[enabled]' put: 'true';"
+		"at: 'automatic_tax[enabled]' put: true;"
 		yourself.
 
 	self cartItems withIndexDo: [ :eachItem :index |
@@ -154,8 +155,9 @@ StripeShoppingCart >> createCheckoutSessionRequest: html json: json [
 		apiValues
 			"at: 'line_items[0][price]' put: 'price_0IlPNK6QgJXWI9aTI0CX40eD';"
 			at: 'line_items[', indexString, '][name]' put: (eachItem at: 'id');
-			at: 'line_items[', indexString, '][amount]' put: (eachItem at: 'priceAmount') printString;
-			at: 'line_items[', indexString, '][currency]' put: (eachItem at: 'priceCurrency');
+			at: 'line_items[', indexString, '][description]' put: (eachItem at: 'description');
+			at: 'line_items[', indexString, '][amount]' put: (eachItem at: 'priceAmount') asString;
+			at: 'line_items[', indexString, '][currency]' put: (eachItem at: 'priceCurrency') asString asLowercase;
 			at: 'line_items[', indexString, '][quantity]' put: '1';
 			yourself ].
 
@@ -170,19 +172,25 @@ StripeShoppingCart >> createCheckoutSessionRequest: html json: json [
 
 { #category : #stripe }
 StripeShoppingCart >> getRedirectUrls: html [
-	| tokenFilter newToken serverString publicServerUrl successUrl cancelUrl |
+	| newToken serverString publicServerUrl successUrl cancelUrl |
 
-	tokenFilter := self session tokenFallbackProtectionFilter.
-	newToken := tokenFilter newToken.
+	newToken := nil.
+	(self session properties includesKey: #tokenFilterKey) ifTrue: [
+		| tokenFilter |
+		tokenFilter := self session tokenFallbackProtectionFilter.
+		newToken := tokenFilter newToken ].
+
 	serverString := DockerDeploy current configsAt: DockerDeploy defaultConfigName atKey: 'publicServerUrl'.
 	serverString ifNil: [
 		serverString := 'http://localhost:8080/'
 		"self error: 'publicServerUrl not defned'" ].
 	publicServerUrl := WAUrl absolute: serverString.
 	successUrl := html urlForAction: [ self actionSuccess ] absolute: (WAUrl absolute: 'http://localhost:8080/').
-	successUrl addField: WATokenFallbackProtectionFilter tokenQueryFieldName value: newToken.
 	cancelUrl := html urlForAction: [ self actionCancel ] absolute: (WAUrl absolute: 'http://localhost:8080/').
-	cancelUrl addField: WATokenFallbackProtectionFilter tokenQueryFieldName value: newToken.
+
+	newToken ifNotNil: [
+		successUrl addField: WATokenFallbackProtectionFilter tokenQueryFieldName value: newToken.
+		cancelUrl addField: WATokenFallbackProtectionFilter tokenQueryFieldName value: newToken ].
 
 self mcwApplicationGet logString: successUrl printString.
 self mcwApplicationGet logString: cancelUrl printString.
@@ -369,7 +377,7 @@ StripeShoppingCart >> serverUrl [
 StripeShoppingCart >> stripeRedirectScriptOn: html [
 
 	^ html jQuery getJson 
-		json: [ :json | self createCheckoutSessionRequest: html json: json ];
+		json: [ :json | self deprecatedCreateCheckoutSessionRequest: html json: json ];
 		onSuccess: (html javascript << (JSStream new
 				nextPutAll: 'Stripe(''';
 				nextPutAll: StripeAPI current stripePublishableKey;
