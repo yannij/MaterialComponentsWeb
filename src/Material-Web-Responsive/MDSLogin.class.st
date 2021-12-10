@@ -11,7 +11,8 @@ Class {
 		'authenticationBlock',
 		'recoverBlock',
 		'registerBlock',
-		'sendTokenBlock'
+		'sendTokenBlock',
+		'responsePanel'
 	],
 	#category : #'Material-Web-Responsive'
 }
@@ -537,13 +538,13 @@ MDSLogin >> renderSingleSignOnOn: html [
 	html div style: 'margin: 0px auto; width: 300px; text-align: left'; with: [
 		html span mdcTypography_caption; with: 'Login with' ].
 	html div style: 'margin: 0px auto; width: 300px; text-align: center'; with: [
-		html button mdcButton; mdcAutoInit: 'MDCRipple';
+		html button mdcButton; mdcButton_outlined;
 			onClick: (self onClickNotYetImplementedScript: html);
 			with: 'Google'.
-		html button mdcButton; mdcAutoInit: 'MDCRipple';
+		html button mdcButton; mdcButton_outlined;
 			onClick: (self onClickNotYetImplementedScript: html);
 			with: 'Twitter'.
-		html button mdcButton; mdcAutoInit: 'MDCRipple';
+		html button mdcButton; mdcButton_outlined;
 			onClick: (self onClickNotYetImplementedScript: html);
 			with: 'Facebook' ]
 ]

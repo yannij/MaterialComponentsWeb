@@ -1,7 +1,7 @@
 Class {
 	#name : #MCWFileUploadComponent,
 	#superclass : #MAFileUploadComponent,
-	#category : 'Material-Web-Magritte'
+	#category : #'Material-Web-Magritte'
 }
 
 { #category : #rendering }
@@ -15,7 +15,6 @@ MCWFileUploadComponent >> renderFieldOn: html [
 
 	html label
 		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
-		mcwFormField;
 		with: [
 			html span mdcTextField__ripple.
 			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';

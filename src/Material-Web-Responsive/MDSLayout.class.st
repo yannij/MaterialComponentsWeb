@@ -68,6 +68,12 @@ MDSLayout >> bodyRegion: anObject [
 ]
 
 { #category : #actions }
+MDSLayout >> bodyRegionContent [
+
+	^ self bodyRegion component
+]
+
+{ #category : #actions }
 MDSLayout >> bodyRegionContent: aComponent [
 
 	self bodyRegion component: aComponent

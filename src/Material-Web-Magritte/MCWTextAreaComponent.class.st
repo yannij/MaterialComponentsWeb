@@ -30,8 +30,9 @@ MCWTextAreaComponent >> renderFieldOn: html readonly: aReadonlyFlage [
 	element := html label.
 	self magritteDescription currentCssClasses do: [ :eachCssClass | element class: eachCssClass ].
 	element
+		style: 'height: ', ((56 * 2) + 2) printString, 'px';
 		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
-		mcwFormField; mdcTextField_textarea;
+		mdcTextField_textarea;
 		with: [
 			html span mdcTextField__ripple.
 			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';

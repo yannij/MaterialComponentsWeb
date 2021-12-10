@@ -58,16 +58,42 @@ WATagBrush >> mdcFab_mini_if: aBoolean [
 
 { #category : #'*Material-Web-Components' }
 WATagBrush >> mdcLayoutGrid__cell_order: anOrderNumber [
-	"1 <= aSpanNumber <= 12"
+	"1 <= anOrderNumber <= 12"
 
-	self class: 'mdc-layout-grid__cell--order-', anOrderNumber printString
+	anOrderNumber ifNotNil: [ :value |
+		self class: 'mdc-layout-grid__cell--order-', value printString ]
 ]
 
 { #category : #'*Material-Web-Components' }
 WATagBrush >> mdcLayoutGrid__cell_span: aSpanNumber [
 	"1 <= aSpanNumber <= 12"
 
-	self class: 'mdc-layout-grid__cell--span-', aSpanNumber printString
+	aSpanNumber ifNotNil: [ :value |
+		self class: 'mdc-layout-grid__cell--span-', value printString ]
+]
+
+{ #category : #'*Material-Web-Components' }
+WATagBrush >> mdcLayoutGrid__cell_spanDesktop: aSpanNumber [
+	"1 <= aSpanNumber <= 12"
+
+	aSpanNumber ifNotNil: [ :value |
+		self class: 'mdc-layout-grid__cell--span-', value printString, '-desktop' ]
+]
+
+{ #category : #'*Material-Web-Components' }
+WATagBrush >> mdcLayoutGrid__cell_spanPhone: aSpanNumber [
+	"1 <= aSpanNumber <= 12"
+
+	aSpanNumber ifNotNil: [ :value |
+		self class: 'mdc-layout-grid__cell--span-', value printString, '-phone' ]
+]
+
+{ #category : #'*Material-Web-Components' }
+WATagBrush >> mdcLayoutGrid__cell_spanTablet: aSpanNumber [
+	"1 <= aSpanNumber <= 12"
+
+	aSpanNumber ifNotNil: [ :value |
+		self class: 'mdc-layout-grid__cell--span-', value printString, '-tablet' ]
 ]
 
 { #category : #'*Material-Web-Components' }

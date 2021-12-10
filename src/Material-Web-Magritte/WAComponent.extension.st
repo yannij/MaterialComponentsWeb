@@ -75,7 +75,7 @@ WAComponent class >> mcwPublicServerUrl: aUrlString [
 { #category : #'*Material-Web-Magritte' }
 WAComponent class >> mcwPublicServerUrlInstallDockerConfig [
 	"
-	DockerDeploy current loadConfigNamed: DockerDeploy configNameDefault.
+	DockerDeploy current loadConfigNamed: DockerDeploy defaultConfigName.
 	WAComponent mcwPublicServerUrlInstallDockerConfig
 	"
 	| publicServerUrl |

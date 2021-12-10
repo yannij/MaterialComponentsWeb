@@ -10,31 +10,27 @@ MCWCheckboxComponent >> renderCheckboxOn: html  readonly: readonlyFlag [
 
 	checkboxId := html nextId.
 
-	html div mdcFormField; mcwFormField; with: [
-	checkboxTag := html div mdcCheckbox.
-	readonlyFlag ifTrue: [ checkboxTag mdcCheckbox_disabled ].
-	checkboxTag with: [
-		html checkbox
-			id: checkboxId;
-			mdcCheckbox__nativeControl;
-			disabled: readonlyFlag;
-			on: #value of: self;
-			with: [
-				html div mdcCheckbox__background with: [
-					html svg mdcCheckbox__checkmark; attributeAt: 'viewBox' put: '0 0 24 24'; with: [
-					html path
-						mdcCheckbox__checkmarkPath;
-						attributeAt: 'fill' put: 'none';
-						attributeAt: 'stroke' put: 'white';
-						attributeAt: 'd' put: 'M1.73,12.91 8.1,19.28 22.79,4.59';
-						yourself.
-					html div mdcCheckbox__mixedmark ] ] ] ].
-		html label
-			for: checkboxId;
-			"mdcFloatingLabel;
-			mdcFloatingLabel_floatAbove;"
-			with: self magritteDescription checkboxLabel ].
-
+	html div mdcTouchTargetWrapper; with: [
+		checkboxTag := html div mdcCheckbox; mdcCheckbox_touch; yourself.
+		readonlyFlag ifTrue: [ checkboxTag mdcCheckbox_disabled ].
+		checkboxTag style: 'margin-top: 16px'; with: [
+			html checkbox
+				id: checkboxId;
+				mdcTextField__input; "to avoid error during: MDCTextField.initialize"
+				mdcCheckbox__nativeControl;
+				disabled: readonlyFlag;
+				on: #value of: self;
+				with: nil.
+			html div mdcCheckbox__background with: [
+				html svg mdcCheckbox__checkmark; attributeAt: 'viewBox' put: '0 0 24 24'; with: [
+				html path
+					mdcCheckbox__checkmarkPath;
+					attributeAt: 'fill' put: 'none';
+					attributeAt: 'stroke' put: 'white';
+					attributeAt: 'd' put: 'M1.73,12.91 8.1,19.28 22.79,4.59';
+					yourself.
+				html div mdcCheckbox__mixedmark ] ].
+			html div mdcCheckbox__ripple ] ]
 ]
 
 { #category : #rendering }
@@ -45,15 +41,18 @@ MCWCheckboxComponent >> renderEditorOn: html [
 
 { #category : #rendering }
 MCWCheckboxComponent >> renderFieldOn: html readonly: readonlyFlag [
+	| labelTag |
 
-	html div
-		mdcListGroup;
-		style: 'border-bottom: 1px solid rgba(0, 0, 0, 0.4);';
-		style: 'margin: 4px 4px 0 4px';
-		"style: 'background: var(--mdc-theme-background)';"
-		style: 'background-color: whitesmoke';
+	labelTag := html label.
+	self magritteDescription currentCssClasses do: [ :eachCssClass | labelTag class: eachCssClass ].
+	labelTag mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
 		with: [
-			self renderCheckboxOn: html readonly: readonlyFlag ]
+			html span mdcTextField__ripple.
+			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
+				id: self labelId;
+				with: self magritteDescription label.
+			self renderCheckboxOn: html readonly: readonlyFlag.
+			html span mdcLineRipple ]
 ]
 
 { #category : #rendering }

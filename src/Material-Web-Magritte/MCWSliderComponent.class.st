@@ -11,23 +11,30 @@ MCWSliderComponent >> renderEditorOn: html [
 ]
 
 { #category : #rendering }
-MCWSliderComponent >> renderFieldOn: html readonly: aReadOnlyFlag [
+MCWSliderComponent >> renderFieldOn: html readonly: readonlyFlag [
+	| labelTag |
 
-	html div
-		mdcListGroup;
-		style: 'border-bottom: 1px solid rgba(0, 0, 0, 0.4);';
-		style: 'margin: 4px 4px 0 4px';
-		style: 'background-color: whitesmoke';
+	labelTag := html label.
+	self magritteDescription currentCssClasses do: [ :eachCssClass | labelTag class: eachCssClass ].
+	labelTag mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
+		style: 'height: ', ((56 * 2) + 2) printString, 'px';
 		with: [
-			html heading level3; mdcListGroup__subheader; with: self magritteDescription label.
-			self renderSliderOn: html readonly: aReadOnlyFlag ]
+			html span mdcTextField__ripple.
+			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
+				id: self labelId;
+				with: self magritteDescription label.
+			self renderSliderOn: html readonly: readonlyFlag.
+			html span mdcLineRipple ]
 ]
 
 { #category : #rendering }
 MCWSliderComponent >> renderSliderOn: html readonly: aReadonlyFlag [
 
-	html div mdcSlider; mdcSlider_discrete; mdcAutoInit: 'MDCSlider'; style: 'width: 150px'; with: [
-		html textInput mdcSlider__input; type: 'range';
+	html div mdcSlider; mdcSlider_discrete; mdcAutoInit: 'MDCSlider'; style: 'width: 80%'; with: [
+		html textInput
+			mdcSlider__input;
+			mdcTextField__input; "to avoid error during: MDCTextField.initialize"
+			type: 'range';
 			attributeAt: 'min' put: (self magritteDescription min ifNil: [ 0 ] ifNotNil: [ :value | value ]);
 			attributeAt: 'max' put: (self magritteDescription max ifNil: [ 100 ] ifNotNil: [ :value | value ]);
 			attributeAt: 'step' put: self magritteDescription mcwSliderStep;
