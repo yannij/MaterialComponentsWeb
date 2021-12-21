@@ -4,13 +4,17 @@ Class {
 	#instVars : [
 		'title',
 		'dense',
+		'fixed',
 		'short',
 		'shortCollapsed',
 		'prominent',
 		'allotDrawerWidth',
 		'startSection',
 		'middleSection',
-		'endSection'
+		'endSection',
+		'navigationIcon',
+		'navigationIconVisible',
+		'zIndex'
 	],
 	#category : #'Material-Web-Responsive'
 }
@@ -79,13 +83,35 @@ MDSTopAppBar >> endSectionAdd: anItem [
 		ifNotNil: [ :value | value add: anItem ]
 ]
 
+{ #category : #accessing }
+MDSTopAppBar >> fixed [
+
+	^ fixed
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> fixed: anObject [
+
+	fixed := anObject
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> fixedOn [
+
+	self fixed: true.
+	self short: false.
+	self prominent: false
+]
+
 { #category : #initialization }
 MDSTopAppBar >> initialize [
 
 	super initialize.
 
+	self navigationIconVisible: true.
 	self allotDrawerWidth: false.
 	self dense: false.
+	self fixed: true.
 	self short: false.
 	self prominent: false.
 	self shortCollapsed: false
@@ -95,6 +121,12 @@ MDSTopAppBar >> initialize [
 MDSTopAppBar >> isDense [
 
 	^ self dense
+]
+
+{ #category : #testing }
+MDSTopAppBar >> isFixed [
+
+	^ self fixed
 ]
 
 { #category : #testing }
@@ -127,6 +159,30 @@ MDSTopAppBar >> middleSection: anObject [
 	middleSection := anObject
 ]
 
+{ #category : #accessing }
+MDSTopAppBar >> navigationIcon [
+
+	^ navigationIcon
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> navigationIcon: anObject [
+
+	navigationIcon := anObject
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> navigationIconVisible [
+
+	^ navigationIconVisible
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> navigationIconVisible: anObject [
+
+	navigationIconVisible := anObject
+]
+
 { #category : #testing }
 MDSTopAppBar >> needsPaddingRight [
 
@@ -150,14 +206,10 @@ MDSTopAppBar >> prominent: anObject [
 ]
 
 { #category : #accessing }
-MDSTopAppBar >> prominentOff [
-
-	self prominent: false
-]
-
-{ #category : #accessing }
 MDSTopAppBar >> prominentOn [
 
+	self fixed: false.
+	self short: false.
 	self prominent: true
 ]
 
@@ -172,23 +224,44 @@ MDSTopAppBar >> renderContentOn: html [
 	self isShort ifTrue: [ tag mdcTopAppBar_short ].
 	self isShortCollapsed ifTrue: [ tag mdcTopAppBar_shortCollapsed ].
 	self isProminent ifTrue: [ tag mdcTopAppBar_prominent ].
+	self zIndex ifNotNil: [ :value | tag style: 'z-index: ', value printString ].
 	self needsPaddingRight ifTrue: [ tag style: 'padding-right: 256px' ].
 
 	"For multiple rows or sections in the top appbar, use custom subclass"
 	tag mdcAutoInit: 'MDCTopAppBar'; with: [
-		html div mdcTopAppBar__row; with: [
-			html section mdcTopAppBar__section; mdcTopAppBar__section_alignStart; with: [
-				self startSection ifNotNil: [ :value | html render: value ].
-				html span mdcTopAppBar__title; with: self title ].
-			self middleSection ifNotNil: [ :value |
-				html section mdcTopAppBar__section; with: [ html render: value ] ].
-			self endSection
-				ifNil: [
-					(self startSection notNil or: [ self title notNil ]) ifTrue: [
-						html section mdcTopAppBar__section; mdcTopAppBar__section_alignEnd; with: [ html div ] ] ]
-				ifNotNil: [ :value |
-					html section mdcTopAppBar__section; mdcTopAppBar__section_alignEnd; with: [
-						html render: value ] ] ] ]
+		self isShortCollapsed
+			ifTrue: [ self renderTopAppBarRowCollapsedOn: html ]
+			ifFalse: [ self renderTopAppBarRowOn: html ] ]
+]
+
+{ #category : #rendering }
+MDSTopAppBar >> renderTopAppBarRowCollapsedOn: html [
+
+	html div mdcTopAppBar__row; with: [
+		html section mdcTopAppBar__section; mdcTopAppBar__section_alignStart; with: [
+			self navigationIcon ifNotNil: [ :value |
+				self navigationIconVisible ifTrue: [html render: value ] ].
+			html render: (MDSTopAppBarActionItem materialIcon: 'arrow_circle_right' callback: [ self shortCollapsedOff ]) ] ]
+]
+
+{ #category : #rendering }
+MDSTopAppBar >> renderTopAppBarRowOn: html [
+
+	html div mdcTopAppBar__row; with: [
+		html section mdcTopAppBar__section; mdcTopAppBar__section_alignStart; with: [
+			self navigationIcon ifNotNil: [ :value |
+				self navigationIconVisible ifTrue: [html render: value ] ].
+			self startSection ifNotNil: [ :value | html render: value ].
+			html span mdcTopAppBar__title; with: self title ].
+		self middleSection ifNotNil: [ :value |
+			html section mdcTopAppBar__section; with: [ html render: value ] ].
+		self endSection
+			ifNil: [
+				(self startSection notNil or: [ self title notNil ]) ifTrue: [
+					html section mdcTopAppBar__section; mdcTopAppBar__section_alignEnd; with: [ html div ] ] ]
+			ifNotNil: [ :value |
+				html section mdcTopAppBar__section; mdcTopAppBar__section_alignEnd; with: [
+					html render: value ] ] ]
 ]
 
 { #category : #accessing }
@@ -218,31 +291,31 @@ MDSTopAppBar >> shortCollapsed: anObject [
 { #category : #accessing }
 MDSTopAppBar >> shortCollapsedOff [
 
+	self fixedOn.
 	self shortCollapsed: false
 ]
 
 { #category : #accessing }
 MDSTopAppBar >> shortCollapsedOn [
 
+	self shortOn.
 	self shortCollapsed: true
 ]
 
 { #category : #accessing }
 MDSTopAppBar >> shortCollapsedToggle [
 
-	self shortCollapsed: self shortCollapsed not
-]
-
-{ #category : #accessing }
-MDSTopAppBar >> shortOff [
-
-	self short: false
+	self isShortCollapsed
+		ifTrue: [ self shortCollapsedOff ]
+		ifFalse: [ self shortCollapsedOn ]
 ]
 
 { #category : #accessing }
 MDSTopAppBar >> shortOn [
 
-	self short: true
+	self fixed: false.
+	self short: true.
+	self prominent: false.
 ]
 
 { #category : #accessing }
@@ -275,4 +348,16 @@ MDSTopAppBar >> title [
 MDSTopAppBar >> title: anObject [
 
 	title := anObject
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> zIndex [
+
+	^ zIndex
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> zIndex: anObject [
+
+	zIndex := anObject
 ]

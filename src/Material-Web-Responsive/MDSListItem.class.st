@@ -13,7 +13,7 @@ Class {
 { #category : #'instance creation' }
 MDSListItem class >> iconName: aMaterialIconName itemText: aString callback: aBlock [
 
-	^ self label: aString icon: nil callback: aBlock
+	^ self label: aString icon: aMaterialIconName callback: aBlock
 ]
 
 { #category : #'instance creation' }

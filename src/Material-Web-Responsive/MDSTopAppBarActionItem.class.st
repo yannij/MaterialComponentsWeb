@@ -13,6 +13,7 @@ MDSTopAppBarActionItem >> renderContentOn: html [
 		mdcMaterialIcons;
 		mdcTopAppBar__actionItem;
 		style: 'text-decoration: none';
+		style: 'margin: 0 2px';
 		callback: self callback if: self hasCallback;
 		onClickScript: self onClickScript if: self hasOnClickScript;
 		with: self iconName
