@@ -89,10 +89,9 @@ html {
 	left: 0rem;
 }
 
-
 .mcw-textfield {
   display: block;
-  margin: 2px 4px 2px 4px;
+  margin: 12px;
 }
 
 @media (max-height: 840px) {

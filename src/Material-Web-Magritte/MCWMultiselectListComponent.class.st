@@ -12,25 +12,25 @@ MCWMultiselectListComponent >> renderEditorOn: html [
 
 { #category : #rendering }
 MCWMultiselectListComponent >> renderFieldOn: html readonly: readonlyFlag [
-	| element lines gap |
+	| element |
 
-	lines := 2.
-	element := html div yourself.
-	gap := 2.
+html div class: 'mcw-textfield'; with: [
+	element := html div.
 	element
 		style: 'background: whitesmoke';
-		style: 'height: ', ((56 * lines) + (gap * (lines - 1))) printString, 'px';
-		style: 'width: calc(100% - 8px)';
-		style: 'margin: 2px 4px';
+		style: 'height: ', (self mdsTextFieldHeightOf: 2) printString, 'px';
+		style: 'width: 100%';
+		"style: 'width: calc(100% - 8px)';"
+		"style: 'padding-bottom: 12px';"
 		with: [
-			html span mdcTextField__ripple.
+			"html span mdcTextField__ripple."
 			html span mdcTypography_subtitle1;
 				style: 'position: absolute; transform: scale(0.75); color: rgba(0, 0, 0, 0.6);';
 			"html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';"
 				id: self labelId;
 				with: self magritteDescription label.
 			self renderMultiselectListOn: html readonly: readonlyFlag.
-			html span mdcLineRipple ]
+			"html span mdcLineRipple" ] ]
 ]
 
 { #category : #rendering }
@@ -52,7 +52,8 @@ MCWMultiselectListComponent >> renderMultiselectListOn: html readonly: readonlyF
 	readonlyFlag ifFalse: [
 		multiselectTag callback: [ :value | self value: value ] ].
 
-	html textInput mdcTextField__input
+	"Unused field is here to get the label to align correctly"
+	html textInput mdcTextField__input; disabled: true
 ]
 
 { #category : #rendering }

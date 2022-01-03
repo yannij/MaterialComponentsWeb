@@ -11,20 +11,48 @@ MCWSliderComponent >> renderEditorOn: html [
 ]
 
 { #category : #rendering }
-MCWSliderComponent >> renderFieldOn: html readonly: readonlyFlag [
+MCWSliderComponent >> renderFieldFilledOn: html readonly: aReadonlyFlag [
 	| labelTag |
 
 	labelTag := html label.
 	self magritteDescription currentCssClasses do: [ :eachCssClass | labelTag class: eachCssClass ].
 	labelTag mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
-		style: 'height: ', ((56 * 2) + 2) printString, 'px';
+		style: 'height: ', (self mdsTextFieldHeightOf: 2) printString, 'px';
 		with: [
 			html span mdcTextField__ripple.
 			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
 				id: self labelId;
 				with: self magritteDescription label.
-			self renderSliderOn: html readonly: readonlyFlag.
+			self renderSliderOn: html readonly: aReadonlyFlag.
 			html span mdcLineRipple ]
+]
+
+{ #category : #rendering }
+MCWSliderComponent >> renderFieldOn: html readonly: aReadonlyFlag [
+
+	self mdsTextFieldStyleIsFilled
+		ifTrue: [ self renderFieldFilledOn: html readonly: aReadonlyFlag ]
+		ifFalse: [ self renderFieldOutlinedOn: html readonly: aReadonlyFlag ]
+]
+
+{ #category : #rendering }
+MCWSliderComponent >> renderFieldOutlinedOn: html readonly: aReadonlyFlag [
+	| labelTag |
+
+	labelTag := html label.
+	self magritteDescription currentCssClasses do: [ :eachCssClass | labelTag class: eachCssClass ].
+	labelTag mdcTextField; mdcTextField_outlined; mdcAutoInit: 'MDCTextField';
+		style: 'height: ', (self mdsTextFieldHeightOf: 2) printString, 'px';
+		style: 'padding-top: 48px';
+		with: [
+			html span mdcNotchedOutline with: [
+				html span mdcNotchedOutline__leading.
+				html span mdcNotchedOutline__notch; with: [
+					html span mdcFloatingLabel;
+						id: self labelId;
+						with: self magritteDescription label.
+				html span mdcNotchedOutline__trailing ] ].
+			self renderSliderOn: html readonly: aReadonlyFlag ]
 ]
 
 { #category : #rendering }

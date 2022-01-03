@@ -53,15 +53,13 @@ MCWTextAreaComponent >> renderEditorOn: html [
 ]
 
 { #category : #rendering }
-MCWTextAreaComponent >> renderFieldOn: html readonly: aReadonlyFlage [
-	| element fieldHeight gap |
+MCWTextAreaComponent >> renderFieldFilledOn: html readonly: aReadonlyFlage [
+	| element |
 
 	element := html label.
 	self magritteDescription currentCssClasses do: [ :eachCssClass | element class: eachCssClass ].
-	fieldHeight := self mdsFieldHeightGet.
-	gap := 2.
 	element
-		style: 'height: ', ((56 * fieldHeight) + (gap * (fieldHeight - 1))) printString, 'px';
+		style: 'height: ', (self mdsTextFieldHeightOf: self mdsFieldHeightGet) printString, 'px';
 		mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
 		mdcTextField_textarea;
 		with: [
@@ -75,6 +73,40 @@ MCWTextAreaComponent >> renderFieldOn: html readonly: aReadonlyFlage [
 				readonly: aReadonlyFlage;
 				on: self inputAspect of: self.
 			html span mdcLineRipple ]
+]
+
+{ #category : #rendering }
+MCWTextAreaComponent >> renderFieldOn: html readonly: aReadonlyFlag [
+
+	self mdsTextFieldStyleIsFilled
+		ifTrue: [ self renderFieldFilledOn: html readonly: aReadonlyFlag ]
+		ifFalse: [ self renderFieldOutlinedOn: html readonly: aReadonlyFlag ]
+]
+
+{ #category : #rendering }
+MCWTextAreaComponent >> renderFieldOutlinedOn: html readonly: aReadonlyFlage [
+	| element |
+
+	element := html label.
+	self magritteDescription currentCssClasses do: [ :eachCssClass | element class: eachCssClass ].
+	element
+		style: 'height: ', (self mdsTextFieldHeightOf: self mdsFieldHeightGet) printString, 'px';
+		mdcTextField; mdcTextField_outlined; mdcAutoInit: 'MDCTextField';
+		mdcTextField_textarea;
+		with: [
+			html span mdcNotchedOutline with: [
+				html span mdcNotchedOutline__leading.
+				html span mdcNotchedOutline__notch; with: [
+					html span mdcFloatingLabel;
+						id: self labelId;
+						with: self magritteDescription label.
+				html span mdcNotchedOutline__trailing ] ].
+			html textArea mdcTextField__input;
+				ariaDescribedBy: self labelId;
+				style: 'padding-top: 12px';
+				style: 'height: calc(100% - 24px)';
+				readonly: aReadonlyFlage;
+				on: self inputAspect of: self ]
 ]
 
 { #category : #rendering }

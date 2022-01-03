@@ -19,12 +19,11 @@ MCWTextInputComponent >> inputType [
 { #category : #rendering }
 MCWTextInputComponent >> renderEditorOn: html [
 
-	self renderFieldWith: false on: html
-
+	self renderFieldOn: html readonly: false
 ]
 
 { #category : #rendering }
-MCWTextInputComponent >> renderFieldWith: aReadonlyFlag on: html [
+MCWTextInputComponent >> renderFieldFilledOn: html readonly: aReadonlyFlag [
 	| labelTag inputTag |
 
 	labelTag := html label.
@@ -48,8 +47,40 @@ MCWTextInputComponent >> renderFieldWith: aReadonlyFlag on: html [
 ]
 
 { #category : #rendering }
+MCWTextInputComponent >> renderFieldOn: html readonly: aReadonlyFlag [
+
+	self mdsTextFieldStyleIsFilled
+		ifTrue: [ self renderFieldFilledOn: html readonly: aReadonlyFlag ]
+		ifFalse: [ self renderFieldOutlinedOn: html readonly: aReadonlyFlag ]
+]
+
+{ #category : #rendering }
+MCWTextInputComponent >> renderFieldOutlinedOn: html readonly: aReadonlyFlag [
+	| labelTag inputTag |
+
+	labelTag := html label.
+	self magritteDescription currentCssClasses do: [ :eachCssClass | labelTag class: eachCssClass ].
+	labelTag mdcTextField; mdcTextField_outlined; mdcAutoInit: 'MDCTextField';
+		with: [
+			html span mdcNotchedOutline with: [
+				html span mdcNotchedOutline__leading.
+				html span mdcNotchedOutline__notch; with: [
+					html span mdcFloatingLabel;
+						id: self labelId;
+						with: self magritteDescription label.
+				html span mdcNotchedOutline__trailing ] ].
+			inputTag := html textInput mdcTextField__input;
+				ariaDescribedBy: self labelId;
+				type: self inputType;
+				readonly: aReadonlyFlag;
+				yourself.
+			aReadonlyFlag
+				ifTrue: [ inputTag on: self inputAspect ofNoCallback: self ]
+				ifFalse: [ inputTag on: self inputAspect of: self ] ]
+]
+
+{ #category : #rendering }
 MCWTextInputComponent >> renderViewerOn: html [
 
-	self renderFieldWith: true on: html
-
+	self renderFieldOn: html readonly: true
 ]

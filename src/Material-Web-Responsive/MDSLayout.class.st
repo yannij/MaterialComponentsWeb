@@ -174,6 +174,7 @@ MDSLayout >> renderContentToShowOn: html [
 		html render: self bodyRegion.
 		^ self ].
 
+html div style: 'width: 100%'; with: [
 	html div mdcLayoutGrid; style: 'padding: 0px'; with: [
 		html div mdcLayoutGrid__inner; style: 'grid-gap: 0px'; with: [
 			"html div
@@ -192,7 +193,7 @@ MDSLayout >> renderContentToShowOn: html [
 				mdcLayoutGrid__cell_span2Desktop;
 				mdcLayoutGrid__cell_span2Tablet;
 				mdcLayoutGrid__cell_span4Phone;
-				with: [ html render: self sideSheet ] ] ]
+				with: [ html render: self sideSheet ] ] ] ]
 ]
 
 { #category : #rendering }

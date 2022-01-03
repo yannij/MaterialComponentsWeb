@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #rendering }
-MCWCheckboxComponent >> renderCheckboxOn: html  readonly: readonlyFlag [
+MCWCheckboxComponent >> renderCheckboxOn: html readonly: readonlyFlag margin: needExtraMargin [
 	| checkboxId checkboxTag |
 
 	checkboxId := html nextId.
@@ -13,7 +13,8 @@ MCWCheckboxComponent >> renderCheckboxOn: html  readonly: readonlyFlag [
 	html div mdcTouchTargetWrapper; with: [
 		checkboxTag := html div mdcCheckbox; mdcCheckbox_touch; yourself.
 		readonlyFlag ifTrue: [ checkboxTag mdcCheckbox_disabled ].
-		checkboxTag style: 'margin-top: 16px'; with: [
+		checkboxTag style: (needExtraMargin ifTrue: [ 'margin-top: 16px' ] ifFalse: [ 'margin-top: 8px' ]).
+		checkboxTag with: [
 			html checkbox
 				id: checkboxId;
 				mdcTextField__input; "to avoid error during: MDCTextField.initialize"
@@ -40,19 +41,60 @@ MCWCheckboxComponent >> renderEditorOn: html [
 ]
 
 { #category : #rendering }
-MCWCheckboxComponent >> renderFieldOn: html readonly: readonlyFlag [
-	| labelTag |
+MCWCheckboxComponent >> renderFieldFilledOn: html readonly: readonlyFlag [
 
+	| labelTag |
 	labelTag := html label.
-	self magritteDescription currentCssClasses do: [ :eachCssClass | labelTag class: eachCssClass ].
-	labelTag mdcTextField; mdcTextField_filled; mdcTextField_labelFloating; mdcAutoInit: 'MDCTextField';
-		with: [
+	self magritteDescription currentCssClasses do: [ :eachCssClass | 
+		labelTag class: eachCssClass ].
+	labelTag
+		mdcTextField;
+		mdcTextField_filled;
+		mdcTextField_labelFloating;
+		mdcAutoInit: 'MDCTextField';
+		with: [ 
 			html span mdcTextField__ripple.
-			html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';
+			html span
+				mdcFloatingLabel;
+				mdcFloatingLabel_floatAbove;
+				mdcAutoInit: 'MDCFloatingLabel';
 				id: self labelId;
 				with: self magritteDescription label.
-			self renderCheckboxOn: html readonly: readonlyFlag.
+			self renderCheckboxOn: html readonly: readonlyFlag margin: true.
 			html span mdcLineRipple ]
+]
+
+{ #category : #rendering }
+MCWCheckboxComponent >> renderFieldOn: html readonly: aReadonlyFlag [
+
+	self mdsTextFieldStyleIsFilled
+		ifTrue: [ self renderFieldFilledOn: html readonly: aReadonlyFlag ]
+		ifFalse: [ self renderFieldOutlinedOn: html readonly: aReadonlyFlag ]
+]
+
+{ #category : #rendering }
+MCWCheckboxComponent >> renderFieldOutlinedOn: html readonly: readonlyFlag [
+
+	| labelTag |
+	labelTag := html label.
+	self magritteDescription currentCssClasses do: [ :eachCssClass | 
+		labelTag class: eachCssClass ].
+	labelTag
+		mdcTextField;
+		mdcTextField_outlined;
+		mdcAutoInit: 'MDCTextField';
+		with: [ 
+			html span mdcNotchedOutline with: [ 
+					html span mdcNotchedOutline__leading.
+					html span
+						mdcNotchedOutline__notch;
+						with: [ 
+							html span
+								mdcFloatingLabel;
+								id: self labelId;
+								with: self magritteDescription label.
+							html span mdcNotchedOutline__trailing ] ].
+			self renderCheckboxOn: html readonly: readonlyFlag margin: false ]
 ]
 
 { #category : #rendering }
