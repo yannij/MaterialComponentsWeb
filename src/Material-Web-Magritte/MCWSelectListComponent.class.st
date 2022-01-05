@@ -13,8 +13,9 @@ MCWSelectListComponent >> renderEditorOn: html [
 { #category : #rendering }
 MCWSelectListComponent >> renderFieldOn: html readonly: readonlyFlag [
 
-	html div class: 'mcw-textfield';  with: [
-		self renderSelectOn: html readonly: readonlyFlag ]
+	html div class: 'mcw-textfield'; with: [
+		self renderSelectOn: html readonly: readonlyFlag.
+		self renderTextFieldHelpTextOn: html ]
 ]
 
 { #category : #rendering }
@@ -35,7 +36,7 @@ MCWSelectListComponent >> renderSelectFilledOn: html readonly: readonlyFlag [
 
 	element := html div mdcSelect; mdcAutoInit: 'MDCSelect'; yourself.
 	element
-		style: 'background: whitesmoke';
+		style: 'background: ', self mdsTextFieldBackground;
 		style: 'height: 56px';
 		style: 'width: 100%'.
 	readonlyFlag ifTrue: [ element mdcSelect_disabled ].
@@ -89,7 +90,7 @@ MCWSelectListComponent >> renderSelectOutlinedOn: html readonly: readonlyFlag [
 
 	element := html div mdcSelect; mdcSelect_outlined; mdcAutoInit: 'MDCSelect'; yourself.
 	element
-		style: 'background: whitesmoke';
+		style: 'background: ', self mdsTextFieldBackground;
 		style: 'height: 56px';
 		style: 'width: 100%'.
 	readonlyFlag ifTrue: [ element mdcSelect_disabled ].
@@ -100,16 +101,16 @@ MCWSelectListComponent >> renderSelectOutlinedOn: html readonly: readonlyFlag [
 				on: #string of: self.
 			html div mdcSelect__anchor;
 				with: [
-					"self renderSelectDrowdownIconOn: html."
-					html span mdcNotchedOutline with: [
+					"self renderSelectDrowdownIconOn: html.".
+					html span mdcNotchedOutline; style: 'width: 100%'; with: [
 						html span mdcNotchedOutline__leading.
-						html span mdcNotchedOutline__notch; with: [
+						html span mdcNotchedOutline__notch; style: 'width: 100%'; with: [
 							html span mdcFloatingLabel;
 								id: self labelId;
 								with: self magritteDescription label.
 						html span mdcNotchedOutline__trailing ] ].
-					html span mdcSelect__selectedTextContainer
-						with: [ html span mdcSelect__selectedText; tabIndex: 0 ] ].
+					html span mdcSelect__selectedTextContainer; style: 'width: 100%'; 
+						with: [ html span mdcSelect__selectedText; style: 'width: 100%'; tabIndex: 0 ] ].
 			html div mdcSelect__menu; mdcMenu; mdcMenuSurface; mdcAutoInit: 'MDCMenu';
 				style: 'width: 100%';
 				with: [

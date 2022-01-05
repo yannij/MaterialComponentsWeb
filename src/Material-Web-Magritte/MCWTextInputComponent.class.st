@@ -51,7 +51,9 @@ MCWTextInputComponent >> renderFieldOn: html readonly: aReadonlyFlag [
 
 	self mdsTextFieldStyleIsFilled
 		ifTrue: [ self renderFieldFilledOn: html readonly: aReadonlyFlag ]
-		ifFalse: [ self renderFieldOutlinedOn: html readonly: aReadonlyFlag ]
+		ifFalse: [ self renderFieldOutlinedOn: html readonly: aReadonlyFlag ].
+
+	self renderTextFieldHelpTextOn: html
 ]
 
 { #category : #rendering }
@@ -60,12 +62,14 @@ MCWTextInputComponent >> renderFieldOutlinedOn: html readonly: aReadonlyFlag [
 
 	labelTag := html label.
 	self magritteDescription currentCssClasses do: [ :eachCssClass | labelTag class: eachCssClass ].
+	labelTag style: 'background: ', self mdsTextFieldBackground.
 	labelTag mdcTextField; mdcTextField_outlined; mdcAutoInit: 'MDCTextField';
 		with: [
-			html span mdcNotchedOutline with: [
+			html span mdcNotchedOutline; with: [
 				html span mdcNotchedOutline__leading.
-				html span mdcNotchedOutline__notch; with: [
-					html span mdcFloatingLabel;
+				html span mdcNotchedOutline__notch; style: 'width: 100%'; with: [
+					html span mdcFloatingLabel; "mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';"
+						style: 'width: 100%';
 						id: self labelId;
 						with: self magritteDescription label.
 				html span mdcNotchedOutline__trailing ] ].

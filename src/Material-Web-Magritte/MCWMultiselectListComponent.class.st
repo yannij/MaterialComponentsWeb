@@ -12,25 +12,10 @@ MCWMultiselectListComponent >> renderEditorOn: html [
 
 { #category : #rendering }
 MCWMultiselectListComponent >> renderFieldOn: html readonly: readonlyFlag [
-	| element |
 
-html div class: 'mcw-textfield'; with: [
-	element := html div.
-	element
-		style: 'background: whitesmoke';
-		style: 'height: ', (self mdsTextFieldHeightOf: 2) printString, 'px';
-		style: 'width: 100%';
-		"style: 'width: calc(100% - 8px)';"
-		"style: 'padding-bottom: 12px';"
-		with: [
-			"html span mdcTextField__ripple."
-			html span mdcTypography_subtitle1;
-				style: 'position: absolute; transform: scale(0.75); color: rgba(0, 0, 0, 0.6);';
-			"html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';"
-				id: self labelId;
-				with: self magritteDescription label.
-			self renderMultiselectListOn: html readonly: readonlyFlag.
-			"html span mdcLineRipple" ] ]
+	html div class: 'mcw-textfield'; with: [
+		self renderMultiselectOn: html readonly: readonlyFlag.
+		self renderTextFieldHelpTextOn: html ]
 ]
 
 { #category : #rendering }
@@ -54,6 +39,28 @@ MCWMultiselectListComponent >> renderMultiselectListOn: html readonly: readonlyF
 
 	"Unused field is here to get the label to align correctly"
 	html textInput mdcTextField__input; disabled: true
+]
+
+{ #category : #rendering }
+MCWMultiselectListComponent >> renderMultiselectOn: html readonly: readonlyFlag [
+	| element |
+
+	element := html div.
+	element
+		style: 'background: ', self mdsTextFieldBackground;
+		style: 'height: ', (self mdsTextFieldHeightOf: 2) printString, 'px';
+		style: 'width: 100%';
+		"style: 'width: calc(100% - 8px)';"
+		"style: 'padding-bottom: 12px';"
+		with: [
+			"html span mdcTextField__ripple."
+			html span mdcTypography_subtitle1;
+				style: 'position: absolute; transform: scale(0.75); color: rgba(0, 0, 0, 0.6);';
+			"html span mdcFloatingLabel; mdcFloatingLabel_floatAbove; mdcAutoInit: 'MDCFloatingLabel';"
+				id: self labelId;
+				with: self magritteDescription label.
+			self renderMultiselectListOn: html readonly: readonlyFlag.
+			"html span mdcLineRipple" ]
 ]
 
 { #category : #rendering }

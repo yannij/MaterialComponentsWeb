@@ -80,7 +80,9 @@ MCWTextAreaComponent >> renderFieldOn: html readonly: aReadonlyFlag [
 
 	self mdsTextFieldStyleIsFilled
 		ifTrue: [ self renderFieldFilledOn: html readonly: aReadonlyFlag ]
-		ifFalse: [ self renderFieldOutlinedOn: html readonly: aReadonlyFlag ]
+		ifFalse: [ self renderFieldOutlinedOn: html readonly: aReadonlyFlag ].
+
+	self renderTextFieldHelpTextOn: html
 ]
 
 { #category : #rendering }
@@ -89,6 +91,7 @@ MCWTextAreaComponent >> renderFieldOutlinedOn: html readonly: aReadonlyFlage [
 
 	element := html label.
 	self magritteDescription currentCssClasses do: [ :eachCssClass | element class: eachCssClass ].
+	element style: 'background: ', self mdsTextFieldBackground.
 	element
 		style: 'height: ', (self mdsTextFieldHeightOf: self mdsFieldHeightGet) printString, 'px';
 		mdcTextField; mdcTextField_outlined; mdcAutoInit: 'MDCTextField';
@@ -96,8 +99,9 @@ MCWTextAreaComponent >> renderFieldOutlinedOn: html readonly: aReadonlyFlage [
 		with: [
 			html span mdcNotchedOutline with: [
 				html span mdcNotchedOutline__leading.
-				html span mdcNotchedOutline__notch; with: [
+				html span mdcNotchedOutline__notch; style: 'width: 100%'; with: [
 					html span mdcFloatingLabel;
+						style: 'width: 100%';
 						id: self labelId;
 						with: self magritteDescription label.
 				html span mdcNotchedOutline__trailing ] ].

@@ -199,7 +199,7 @@ MCWOneToManyComponent >> renderViewerOn: html [
 		mdcListGroup;
 		style: 'border-bottom: 1px solid rgba(0, 0, 0, 0.4);';
 		style: 'margin: 4px 4px 0 4px';
-		style: 'background-color: whitesmoke';
+		style: 'background: ', self mdsTextFieldBackground;
 		with: [
 			html heading level3; mdcListGroup__subheader; with: [
 				self renderLabelOn: html.

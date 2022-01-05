@@ -69,16 +69,18 @@ MCWCheckboxComponent >> renderFieldOn: html readonly: aReadonlyFlag [
 
 	self mdsTextFieldStyleIsFilled
 		ifTrue: [ self renderFieldFilledOn: html readonly: aReadonlyFlag ]
-		ifFalse: [ self renderFieldOutlinedOn: html readonly: aReadonlyFlag ]
+		ifFalse: [ self renderFieldOutlinedOn: html readonly: aReadonlyFlag ].
+
+	self renderTextFieldHelpTextOn: html
 ]
 
 { #category : #rendering }
 MCWCheckboxComponent >> renderFieldOutlinedOn: html readonly: readonlyFlag [
-
 	| labelTag |
+
 	labelTag := html label.
-	self magritteDescription currentCssClasses do: [ :eachCssClass | 
-		labelTag class: eachCssClass ].
+	self magritteDescription currentCssClasses do: [ :eachCssClass | labelTag class: eachCssClass ].
+	labelTag style: 'background: ', self mdsTextFieldBackground.
 	labelTag
 		mdcTextField;
 		mdcTextField_outlined;
