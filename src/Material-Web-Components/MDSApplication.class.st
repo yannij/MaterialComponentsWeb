@@ -21,7 +21,7 @@ MDSApplication class >> mcwRegisterDeployment: aName [
 
 	app := WAAdmin register: self asApplicationAt: aName.
 	app
-		addLibrary: JQDevelopmentLibrary;
+		addLibrary: JQGoogleLibrary;
 		addLibrary: MDSDevelopmentLibrary;
 		yourself.
 	^ app
@@ -36,7 +36,7 @@ MDSApplication class >> mcwRegisterDevelopment: aName [
 
 	app := WAAdmin register: self asApplicationAt: aName.
 	app
-		addLibrary: JQDevelopmentLibrary;
+		addLibrary: JQGoogleLibrary;
 		addLibrary: MDSDevelopmentLibrary;
 		yourself.
 	^ app

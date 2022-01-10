@@ -12,6 +12,7 @@ Class {
 		'startSection',
 		'middleSection',
 		'endSection',
+		'collapsedAction',
 		'navigationIcon',
 		'navigationIconVisible',
 		'zIndex'
@@ -37,6 +38,18 @@ MDSTopAppBar >> allotDrawerWidth [
 MDSTopAppBar >> allotDrawerWidth: anObject [
 
 	allotDrawerWidth := anObject
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> collapsedAction [
+
+	^ collapsedAction
+]
+
+{ #category : #accessing }
+MDSTopAppBar >> collapsedAction: anObject [
+
+	collapsedAction := anObject
 ]
 
 { #category : #accessing }
@@ -240,8 +253,10 @@ MDSTopAppBar >> renderTopAppBarRowCollapsedOn: html [
 	html div mdcTopAppBar__row; with: [
 		html section mdcTopAppBar__section; mdcTopAppBar__section_alignStart; with: [
 			self navigationIcon ifNotNil: [ :value |
-				self navigationIconVisible ifTrue: [html render: value ] ].
-			html render: (MDSTopAppBarActionItem materialIcon: 'arrow_circle_right' callback: [ self shortCollapsedOff ]) ] ]
+				self navigationIconVisible ifTrue: [
+					html div style: 'margin: 0 4px'; with: [ html render: value ] ] ].
+			html render: (MDSTopAppBarActionItem materialIcon: 'arrow_circle_right' callback: [ self shortCollapsedOff ]).
+			self collapsedAction ifNotNil: [ :value | html render: value ] ] ]
 ]
 
 { #category : #rendering }

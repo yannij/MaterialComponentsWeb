@@ -30,7 +30,7 @@ MCWOneToOneComponent >> renderAssociateButtonOn: html [
 	| button |
 
 	button := html button.
-	button mdcButton; mdcButton_unelevated;
+	button bePush; mdcButton; mdcButton_unelevated;
 		onClick: ((html jQuery ajax)
 			callback: [ self associateToOne ];
 			onComplete: html javascript refresh);

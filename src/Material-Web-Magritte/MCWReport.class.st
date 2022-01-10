@@ -54,6 +54,7 @@ MCWReport >> renderBatchFirstOn: html [
 					onComplete: html javascript refresh) ].
 
 	button
+		bePush;
 		mdcIconButton;
 		mdcMaterialIcons;
 		mdcDataTable__paginationButton;
@@ -89,6 +90,7 @@ MCWReport >> renderBatchLastOn: html [
 					onComplete: html javascript refresh) ].
 
 	button
+		bePush;
 		mdcIconButton;
 		mdcMaterialIcons;
 		mdcDataTable__paginationButton;
@@ -112,6 +114,7 @@ MCWReport >> renderBatchNextOn: html [
 					onComplete: html javascript refresh) ].
 
 	button
+		bePush;
 		mdcIconButton;
 		mdcMaterialIcons;
 		mdcDataTable__paginationButton;
@@ -135,6 +138,7 @@ MCWReport >> renderBatchPreviousOn: html [
 					onComplete: html javascript refresh) ].
 
 	button
+		bePush;
 		mdcIconButton;
 		mdcMaterialIcons;
 		mdcDataTable__paginationButton;
