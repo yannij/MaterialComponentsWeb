@@ -17,7 +17,7 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 				package: 'DockerUtility' with: [ spec requires: #('Seaside3') ];
 				package: 'Quasar-Components' with: [ spec requires: #('Seaside3') ];
 				package: 'Quasar-Magritte' with: [ spec requires: #('Quasar-Components' 'Magritte') ];
-				package: 'Quasar-Demo' with: [ spec requires: #('Quasar-Magritte') ];
+				package: 'Quasar-Demo' with: [ spec requires: #('Material-Demo' 'Quasar-Magritte') ];
 				package: 'Material-Web-Core' with: [ spec requires: #('Seaside3') ];
 				package: 'Material-Web-Components' with: [ spec requires: #('Material-Web-Core') ];
 				package: 'Material-Web-Magritte' with: [ spec requires: #('Material-Web-Components' 'Magritte') ];
