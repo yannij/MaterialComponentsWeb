@@ -10,6 +10,7 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 	spec
 		for: #common
 		do: [
+			self neoJSON: spec.
 			self seaside: spec.
 			self magritte: spec.
 
@@ -42,11 +43,18 @@ BaselineOfMaterialComponentsWeb >> magritte: spec [
 ]
 
 { #category : #dependencies }
+BaselineOfMaterialComponentsWeb >> neoJSON: spec [
+
+	spec
+		baseline: 'NeoJSON'
+		with: [ spec repository: 'github://svenvc/NeoJSON:v17/repository' ]
+]
+
+{ #category : #dependencies }
 BaselineOfMaterialComponentsWeb >> seaside: spec [
 
 	spec
 		baseline: 'Seaside3'
 		with: [ spec repository: 'github://SeasideSt/Seaside:v3.4.5/repository';
-			loads: #('Core' 'JSON' 'Email' 'Javascript' 'JQuery' 'Zinc' 'Seaside-Welcome') ].
-
+			loads: #('Core' 'JSON' 'Email' 'Javascript' 'JQuery' 'Zinc' 'Seaside-Welcome') ]
 ]
