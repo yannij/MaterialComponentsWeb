@@ -1,6 +1,6 @@
 Class {
 	#name : #QShrineCanvas,
-	#superclass : #MDSComponent,
+	#superclass : #QuasarComponent,
 	#instVars : [
 		'products'
 	],
