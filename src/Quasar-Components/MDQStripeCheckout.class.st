@@ -1,31 +1,28 @@
-"
-I am a shopping cart that uses Stripe to process the transaction
-"
 Class {
-	#name : #StripeShoppingCart,
-	#superclass : #MDSComponent,
+	#name : #MDQStripeCheckout,
+	#superclass : #QuasarComponent,
 	#instVars : [
 		'cartVisible',
 		'cartState',
 		'cartItems'
 	],
-	#category : #Stripe
+	#category : #'Quasar-Components'
 }
 
 { #category : #testing }
-StripeShoppingCart class >> isVoyageRoot [
+MDQStripeCheckout class >> isVoyageRoot [
 
 	^ true
 ]
 
 { #category : #stripe }
-StripeShoppingCart >> actionCancel [
+MDQStripeCheckout >> actionCancel [
 
 	self mcwApplicationGet logString: 'Cancel'
 ]
 
 { #category : #stripe }
-StripeShoppingCart >> actionSuccess [
+MDQStripeCheckout >> actionSuccess [
 
 	self mcwApplicationGet logString: 'Success'.
 
@@ -33,35 +30,35 @@ StripeShoppingCart >> actionSuccess [
 ]
 
 { #category : #rendering }
-StripeShoppingCart >> addValidatedForm [
+MDQStripeCheckout >> addValidatedForm [
 
 	^ self
 ]
 
 { #category : #rendering }
-StripeShoppingCart >> asComponent [
+MDQStripeCheckout >> asComponent [
 
 	^ self
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartItems [
+MDQStripeCheckout >> cartItems [
 	^ cartItems
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartItems: anObject [
+MDQStripeCheckout >> cartItems: anObject [
 	cartItems := anObject
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartItemsAdd: aProduct [
+MDQStripeCheckout >> cartItemsAdd: aProduct [
 
 	self cartItems add: aProduct
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartItemsClear [
+MDQStripeCheckout >> cartItemsClear [
 
 	self cartState: self cartStateShopping.
 
@@ -70,29 +67,35 @@ StripeShoppingCart >> cartItemsClear [
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartState [
+MDQStripeCheckout >> cartItemsRemove: aProduct [
+
+	self cartItems remove: aProduct ifAbsent: [ nil ]
+]
+
+{ #category : #accessing }
+MDQStripeCheckout >> cartState [
 	^ cartState
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartState: anObject [
+MDQStripeCheckout >> cartState: anObject [
 	cartState := anObject
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartStatePaid [
+MDQStripeCheckout >> cartStatePaid [
 
 	^ #Paid
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartStateShopping [
+MDQStripeCheckout >> cartStateShopping [
 
 	^ #Shopping
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartValues [
+MDQStripeCheckout >> cartValues [
 	| total |
 
 	total := self cartItems inject: 0.0 into: [ :sum :each |  sum + (((each at: #priceAmount) \\ 10000) / 100.0) ].
@@ -103,7 +106,7 @@ StripeShoppingCart >> cartValues [
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartValuesOLD [
+MDQStripeCheckout >> cartValuesOLD [
 	| subtotal shipping tax |
 
 	subtotal := self cartItems inject: 0.0 into: [ :sum :each |  sum + ((each hash \\ 10000) / 100.0) ].
@@ -119,17 +122,17 @@ StripeShoppingCart >> cartValuesOLD [
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartVisible [
+MDQStripeCheckout >> cartVisible [
 	^ cartVisible
 ]
 
 { #category : #accessing }
-StripeShoppingCart >> cartVisible: anObject [
+MDQStripeCheckout >> cartVisible: anObject [
 	cartVisible := anObject
 ]
 
 { #category : #stripe }
-StripeShoppingCart >> deprecatedCreateCheckoutSessionRequest: arg1 json: arg2 [
+MDQStripeCheckout >> deprecatedCreateCheckoutSessionRequest: arg1 json: arg2 [
 
 	| tmp1 tmp2 tmp3 tmp4 tmp5 tmp6 tmp7 |
 	tmp2 := Array with: 'v1' with: 'checkout' with: 'sessions'.
@@ -163,7 +166,7 @@ StripeShoppingCart >> deprecatedCreateCheckoutSessionRequest: arg1 json: arg2 [
 ]
 
 { #category : #stripe }
-StripeShoppingCart >> getRedirectUrls: html [
+MDQStripeCheckout >> getRedirectUrls: html [
 	| newToken serverString publicServerUrl successUrl cancelUrl |
 
 	newToken := nil.
@@ -191,7 +194,7 @@ self mcwApplicationGet logString: cancelUrl printString.
 ]
 
 { #category : #initialization }
-StripeShoppingCart >> initialize [
+MDQStripeCheckout >> initialize [
 
 	super initialize.
 
@@ -200,15 +203,15 @@ StripeShoppingCart >> initialize [
 ]
 
 { #category : #utility }
-StripeShoppingCart >> printAsMoney: aValue [
+MDQStripeCheckout >> printAsMoney: aValue [
 
 	^ aValue printString.
 
 	"^ '$', (aValue printShowingDecimalPlaces: 2)"
 ]
 
-{ #category : #rendering }
-StripeShoppingCart >> renderCartHeaderOn: html [
+{ #category : #'rendering - shopping' }
+MDQStripeCheckout >> renderCartHeaderOn: html [
 
 	html div: [
 		self renderDismissButtonOn: html.
@@ -216,8 +219,8 @@ StripeShoppingCart >> renderCartHeaderOn: html [
 		self renderCartSummaryOn: html ]
 ]
 
-{ #category : #rendering }
-StripeShoppingCart >> renderCartItemImagesOn: html [
+{ #category : #'rendering - collapsed' }
+MDQStripeCheckout >> renderCartItemImagesOn: html [
 
 	self cartItems do: [ :eachItem |			
 		html image
@@ -227,32 +230,31 @@ StripeShoppingCart >> renderCartItemImagesOn: html [
 			url: (eachItem at: 'images') first ]
 ]
 
-{ #category : #rendering }
-StripeShoppingCart >> renderCartItemsOn: html [
+{ #category : #'rendering - shopping' }
+MDQStripeCheckout >> renderCartItemsOn: html [
 
-	html unorderedList mdcDeprecatedList; mdcTheme_surface; mdcDeprecatedList_twoLine; mdcDeprecatedList_imageList; with: [
-		self cartItems do: [ :eachItem |			
-			html listItem mdcDeprecatedListItem; with: [
-				html span mdcDeprecatedListItem__graphic; with: [
+html qList separator; "bordered;" with: [
+	self cartItems
+		do: [ :eachItem |
+			html qItem class: 'q-py-md'; class: 'q-px-none'; "class: 'no-margon';" with: [
+				html qItemSection class: 'q-pr-xs'; side; with: [
+					html qBtn flat; class: 'q-pa-xs';
+						type: 'a';
+						icon: 'remove_circle_outline';
+						href: (html urlForAction: [ self cartItemsRemove: eachItem ]) ].
+				html qItemSection avatar; with: [
 					html image
 						style: 'max-height: 56px; max-width: 56px';
 						url: (eachItem at: 'images') first ].
-				html span mdcDeprecatedListItem__text; with: [
-					html span mdcListItem__primaryText; with: (eachItem at: 'id').
-					html span mdcListItem__secondaryText; with: (eachItem at: 'price') ] ] ] ]
+				html qItemSection top; with: [
+					html qItemLabel with: (eachItem at: 'id').
+					html qItemLabel caption with: (eachItem at: 'description') ].
+				html qItemSection side; top; with: [
+					html qItemLabel class: 'text-right'; with: (eachItem at: 'price') ] ] ] ]
 ]
 
-{ #category : #rendering }
-StripeShoppingCart >> renderCartLine: lineItemName total: lineItemValue on: html [
-
-	html span mdcTypography_body1; with: lineItemName.
-	html text: ' . . . '.
-	html span mdcTypography_body1; with: lineItemValue.
-	html break
-]
-
-{ #category : #rendering }
-StripeShoppingCart >> renderCartOn: html [
+{ #category : #'rendering - shopping' }
+MDQStripeCheckout >> renderCartOn: html [
 
 	self renderCartHeaderOn: html.
 	
@@ -265,100 +267,99 @@ StripeShoppingCart >> renderCartOn: html [
 	html text: 'Cart error'
 ]
 
-{ #category : #rendering }
-StripeShoppingCart >> renderCartPaidOn: html [
+{ #category : #'rendering - paid' }
+MDQStripeCheckout >> renderCartPaidOn: html [
 
 	self renderCartTotalsOn: html.
-	html span mdcTypography_headline6; with: 'Payment successful !'.
-	self renderClearCartButtonOn: html
+	html span class: 'text-h6'; with: 'Payment successful !'
 ]
 
-{ #category : #rendering }
-StripeShoppingCart >> renderCartShoppingOn: html [
+{ #category : #'rendering - shopping' }
+MDQStripeCheckout >> renderCartShoppingOn: html [
 
+	html qSeparator spaced: 'md'.
 	self renderCartItemsOn: html.
+	html qSeparator spaced: 'md'.
 	self renderCartTotalsOn: html.
-	self renderCheckoutButtonOn: html.
-	self renderClearCartButtonOn: html
+	self renderCheckoutButtonOn: html
 ]
 
-{ #category : #rendering }
-StripeShoppingCart >> renderCartSummaryOn: html [
+{ #category : #'rendering - shopping' }
+MDQStripeCheckout >> renderCartSummaryOn: html [
 
-	html span mdcTypography_subtitle1; with: [
-		html text: 'CART'; space; space; space.
+	html span class: 'text-subtitle1'; with: [
+		html text: 'CART'; space; space.
 		html text: self cartItems size printString.
 		html text: (self cartItems size = 1 ifTrue: [ ' ITEM' ] ifFalse: [ ' ITEMS' ]) ].
 ]
 
-{ #category : #rendering }
-StripeShoppingCart >> renderCartTotalsOn: html [
+{ #category : #'rendering - shopping' }
+MDQStripeCheckout >> renderCartTotalItem: lineItemName value: lineItemValue on: html [
+
+	html qItem class: 'no-padding'; class: 'no-margin'; with: [
+		html qItemSection with: [
+			html qItemLabel with: lineItemName ].
+		html qItemSection side; with: [
+			html qItemLabel class: 'text-right'; style: 'font-size: 2rem'; with: lineItemValue ] ]
+]
+
+{ #category : #'rendering - shopping' }
+MDQStripeCheckout >> renderCartTotalsOn: html [
 	| cartValues |
 
 	cartValues := self cartValues.
-
-	self renderCartLine: 'TOTAL' total: (self printAsMoney: (cartValues at: #total)) on: html.
-	"self renderCartLine: 'Subtotal' total: (self printAsMoney: (cartValues at: #subtotal)) on: html.
-	self renderCartLine: 'Shipping' total: (self printAsMoney: (cartValues at: #shipping)) on: html.
-	self renderCartLine: 'Tax' total: (self printAsMoney: (cartValues at: #tax)) on: html."
+	html qList dense; padding; with: [
+		self renderCartTotalItem: 'TOTAL' value: (self printAsMoney: (cartValues at: #total)) on: html.
+		"self renderCartTotalItem: 'Subtotal' value: (self printAsMoney: (cartValues at: #subtotal)) on: html.
+		self renderCartTotalItem: 'Shipping' value: (self printAsMoney: (cartValues at: #shipping)) on: html.
+		self renderCartTotalItem: 'Tax' value: (self printAsMoney: (cartValues at: #tax)) on: html"
+	]
 ]
 
-{ #category : #rendering }
-StripeShoppingCart >> renderCheckoutButtonOn: html [
+{ #category : #'rendering - shopping' }
+MDQStripeCheckout >> renderCheckoutButtonOn: html [
+	| button |
 
-	html button
-		mdcButton;
-		mdcButton_raised;
-		style: 'margin-bottom: 8px; width: 100%';
-		onClick: (self stripeRedirectScriptOn: html);
+	button := html qBtn.
+	self cartItems isEmpty
+		ifTrue: [ button disable ]
+		ifFalse: [ button onClick: (self stripeRedirectScriptOn: html) ].
+	button
+		style: 'background: var(--q-primary)';
 		with: 'Proceed to checkout'
 ]
 
-{ #category : #rendering }
-StripeShoppingCart >> renderClearCartButtonOn: html [
+{ #category : #'rendering - collapsed' }
+MDQStripeCheckout >> renderCollapsedCartOn: html [
 
-	html anchor
-		mdcButton;
-		mdcButton_raised;
-		style: 'width: 100%';
-		callback: [ self cartItemsClear ];
-		with: 'Clear cart'
-]
-
-{ #category : #rendering }
-StripeShoppingCart >> renderContentOn: html [
-
-	html div
-		style: 'padding: 8px';
-		style: 'background: var(--mdc-theme-secondary)';
-		with: [
-			self cartVisible
-				ifTrue: [ self renderCartOn: html ]
-				ifFalse: [ self renderShowCartButtonOn: html ] ]
-
-	
-]
-
-{ #category : #rendering }
-StripeShoppingCart >> renderDismissButtonOn: html [
-
-	html anchor mdcMaterialIcons; mdcIconButton; "mdcButton_raised;"
-		callback: [ self cartVisible: false ];
-		with: [ html div mdcButton__ripple; with:'expand_less' ]
-]
-
-{ #category : #rendering }
-StripeShoppingCart >> renderShowCartButtonOn: html [
-
-	html anchor mdcMaterialIcons; mdcIconButton; "mdcButton_unelevated;" "mdcButton_raised;"
-		callback: [ self cartVisible: true ];
-		with: [ html div mdcButton__ripple; with: 'shopping_cart' ].
+	html qBtn round; "class: 'q-pa-xs';"
+		type: 'a';
+		icon: 'shopping_cart';
+		href: (html urlForAction: [ self cartVisible: true ]).
 
 	self renderCartItemImagesOn: html
 ]
 
+{ #category : #rendering }
+MDQStripeCheckout >> renderContentOn: html [
+
+	html div with: [
+		self cartVisible
+			ifTrue: [ self renderCartOn: html ]
+			ifFalse: [ self renderCollapsedCartOn: html ] ]
+]
+
+{ #category : #'rendering - shopping' }
+MDQStripeCheckout >> renderDismissButtonOn: html [
+
+	html qBtn round; "class: 'q-pa-xs';"
+		type: 'a';
+		icon: 'keyboard_arrow_up';
+		href: (html urlForAction: [ self cartVisible: false ])
+]
+
 { #category : #stripe }
-StripeShoppingCart >> serverUrl [
+MDQStripeCheckout >> serverUrl [
 
 	^ self mcwPublicServerUrl
 		ifNotNil: [ :value | value ]
@@ -366,7 +367,7 @@ StripeShoppingCart >> serverUrl [
 ]
 
 { #category : #stripe }
-StripeShoppingCart >> stripeRedirectScriptOn: html [
+MDQStripeCheckout >> stripeRedirectScriptOn: html [
 
 	^ html jQuery getJson 
 		json: [ :json | self deprecatedCreateCheckoutSessionRequest: html json: json ];

@@ -1,23 +1,21 @@
 Class {
-	#name : #ShrineCanvas,
+	#name : #QShrineCanvas,
 	#superclass : #MDSComponent,
 	#instVars : [
 		'products'
 	],
-	#category : #'Material-Study-Shrine'
+	#category : #'Quasar-Demo'
 }
 
-{ #category : #rendering }
-ShrineCanvas >> addToShoppingCart: aProduct [
-	| app |
-	app := self mcwApplicationGet.
-	app stripeInterface
-		shoppingCart: app shoppingCart
-		addProduct: aProduct
+{ #category : #actions }
+QShrineCanvas >> addToShoppingCart: aProduct [
+
+	self mcwApplicationGet ifNotNil: [ :app |
+		app stripeInterface shoppingCart: app shoppingCart addProduct: aProduct ]
 ]
 
 { #category : #accessing }
-ShrineCanvas >> products [
+QShrineCanvas >> products [
 
 	products ifNil: [
 		products := self productsBuild ].
@@ -26,13 +24,13 @@ ShrineCanvas >> products [
 ]
 
 { #category : #accessing }
-ShrineCanvas >> products: anObject [
+QShrineCanvas >> products: anObject [
 
 	products := anObject
 ]
 
 { #category : #rendering }
-ShrineCanvas >> productsBuild [
+QShrineCanvas >> productsBuild [
 
 	^ (WAJsonParser parse: self productsJson) collect: [ :each |
 		| number |
@@ -44,17 +42,17 @@ ShrineCanvas >> productsBuild [
 ]
 
 { #category : #rendering }
-ShrineCanvas >> productsFiltered [
+QShrineCanvas >> productsFiltered [
 	| categoryValue |
 
-	categoryValue := self mcwApplicationGet currentTab.
+	categoryValue := self mcwApplicationGet category.
 
 	^ self products select: [ :eachProduct |
 		(eachProduct at: 'tags') includes: categoryValue ]
 ]
 
 { #category : #rendering }
-ShrineCanvas >> productsJson [
+QShrineCanvas >> productsJson [
 
 	^ '[
 {"id": "prod_1", "tags":["Accessories"], "description": "Ginger scarf",
@@ -93,57 +91,37 @@ ShrineCanvas >> productsJson [
 ]
 
 { #category : #rendering }
-ShrineCanvas >> productsOLD [
-
-	^ #(
-('assets/ginger-scarf.jpg' 'Ginger scarf')
-('assets/blue-stone-mug.jpg' 'Blue stone mug')
-('assets/cerise-scallop.jpg' 'Cerise scallop tee')
-('assets/chambray-napkins.jpg' 'Chambray napkins')
-('assets/fine-lines.jpg' 'Fine lines tee')
-('assets/garden-strand.jpg' 'Garden strand')
-('assets/gatsby-hat.jpg' 'Gatsby hat')
-('assets/gilt-desk-trio.jpg' 'Gilt desk trio')
-('assets/kitchen-quattro.jpg' 'Kitchen quattro')
-('assets/seabreeze-sweater.jpg' 'Seabreeze sweater')
-('assets/shrug-bag.jpg' 'Shrug bag')
-('assets/stella-sunglasses.jpg' 'Stella sunglasses')
-('assets/surf-and-perf.jpg' 'Surf and perf shirt')
-('assets/vagabond-sack.jpg' 'Vagabond sack')
-('assets/walter-henley.jpg' 'Walter henley (white)')
-('assets/weave-keyring.jpg' 'Weave keyring')
-	)
-]
-
-{ #category : #rendering }
-ShrineCanvas >> renderContentOn: html [
+QShrineCanvas >> renderContentOn: html [
 
 	self renderProductsOn: html
 
 ]
 
 { #category : #rendering }
-ShrineCanvas >> renderProduct: aProduct on: html [
-	| imageUrl productName |
+QShrineCanvas >> renderProduct: aProduct on: html [
+	| imageUrl productName productPrice |
 
 	imageUrl := (aProduct at: 'images') first.
 	productName := aProduct at: 'description'.
-	html image mdcImageList__image; url: imageUrl.
-	html div mdcImageList__supporting; with: [
-		html span mdcImageList__label; mdcTypography_subtitle2; with: productName ]
+	productPrice := aProduct at: 'price'.
+
+	html qCard flat; with: [
+		html qImg src: imageUrl; with: [
+			html div class: 'absolute-top-left'; class: 'no-padding'; with: [
+				html qBtn flat; class: 'q-pa-sm';
+					icon: 'add_shopping_cart';
+					type: 'a';
+					href: (html urlForAction: [ self addToShoppingCart: aProduct ]) ] ].
+		html qCardSection with: [
+			html div class: 'text-subtitle2 text-center'; with: productName.
+			html div class: 'text-subtitle2 text-center'; with: '$', productPrice greaseString ] ]
 ]
 
 { #category : #rendering }
-ShrineCanvas >> renderProductsOn: html [
+QShrineCanvas >> renderProductsOn: html [
 
-	html div class: 'shrine-body'; mdcElevation_z4; with: [
-		html unorderedList mdcImageList; mdcImageList_masonry; class: 'product-list'; with: [
-			self productsFiltered do: [ :eachProduct |
-				html listItem mdcImageList__item; with: [
-					html div: [
-						html anchor mdcMaterialIcons; mdcIconButton;
-							style: 'position: absolute; top: 10; left: 10';
-							callback: [ self addToShoppingCart: eachProduct ];
-							with: [ html div mdcButton__ripple; with: 'add_shopping_cart' ].
-						self renderProduct: eachProduct on: html ] ] ] ] ]
+	html div class: 'row'; class: 'q-pa-md'; class: 'q-col-gutter-md'; with: [
+		self productsFiltered do: [ :eachProduct |
+			html div class: 'col-xs-6 col-sm-4 col-md-3 col-lg-2 col-xl-2'; with: [
+				self renderProduct: eachProduct on: html ] ] ]
 ]

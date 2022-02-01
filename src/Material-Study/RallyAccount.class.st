@@ -96,5 +96,5 @@ RallyAccount >> listItemParameters [
 
 	amountString := '$ ', self balance displayString.
 
-	^ (Array with: self id with: self description with: amountString with: 'chevron_right')
+	^ (Array with: self description with: self id with: amountString with: 'chevron_right')
 ]

@@ -1,6 +1,9 @@
 Class {
 	#name : #RallyObject,
 	#superclass : #Object,
+	#classVars : [
+		'DescriptionContainerClass'
+	],
 	#classInstVars : [
 		'instanceList'
 	],
@@ -9,8 +12,19 @@ Class {
 
 { #category : #accessing }
 RallyObject class >> descriptionContainerClass [
+	"
+	self descriptionContainerClass: MCWPriorityContainer.
+	self descriptionContainerClass: MDQPriorityContainer.
+	self descriptionContainerClass: MAPriorityContainer.
+	"
 
-	^ MCWPriorityContainer
+	^ DescriptionContainerClass ifNil: [ DescriptionContainerClass := MCWPriorityContainer ]
+]
+
+{ #category : #accessing }
+RallyObject class >> descriptionContainerClass: anObject [
+
+	^ DescriptionContainerClass := anObject
 ]
 
 { #category : #accessing }
@@ -43,7 +57,7 @@ RallyObject >> descriptionContainer [
 	<magritteContainer>
 
 	^ self class descriptionContainerClass new
-		componentRenderer: MCWCssRenderer;
+		"componentRenderer: MCWCssRenderer;"
 		label: self class label;
 		propertyAt: #cardWidth ifAbsentPut: [ 600 ];
 		yourself

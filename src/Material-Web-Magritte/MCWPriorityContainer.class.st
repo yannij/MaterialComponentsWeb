@@ -15,3 +15,11 @@ MCWPriorityContainer class >> defaultComponentRenderer [
 
 	^ MCWCssRenderer
 ]
+
+{ #category : #initialization }
+MCWPriorityContainer >> initialize [
+
+	super initialize.
+
+	self componentRenderer: self class defaultComponentRenderer
+]
