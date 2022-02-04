@@ -1,6 +1,6 @@
 Class {
 	#name : #QuasarRadio,
-	#superclass : #QuasarTag,
+	#superclass : #QuasarFormComponent,
 	#category : #'Quasar-Components'
 }
 
@@ -35,21 +35,9 @@ QuasarRadio >> keepColor [
 ]
 
 { #category : #attributes }
-QuasarRadio >> label: anObject [
-	
-	self attributes at: 'label' put: anObject
-]
-
-{ #category : #attributes }
 QuasarRadio >> leftLabel [
 	
 	self attributes at: 'left-label' put: true
-]
-
-{ #category : #attributes }
-QuasarRadio >> modelValue: anObject [
-	
-	self attributes at: 'model-value' put: anObject
 ]
 
 { #category : #attributes }
@@ -74,12 +62,6 @@ QuasarRadio >> tabindex: anObject [
 QuasarRadio >> tag [
 
 	^ 'q-radio'
-]
-
-{ #category : #attributes }
-QuasarRadio >> vModel: anObject [
-	
-	self attributes at: 'v-model' put: anObject
 ]
 
 { #category : #attributes }

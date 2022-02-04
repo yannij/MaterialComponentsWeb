@@ -1,14 +1,8 @@
 Class {
 	#name : #QuasarInput,
-	#superclass : #QuasarTag,
+	#superclass : #QuasarFormComponent,
 	#category : #'Quasar-Components'
 }
-
-{ #category : #callbacks }
-QuasarInput >> callback: aBlock [
-
-	self name: (self storeCallback: (WAValueCallback on: aBlock))
-]
 
 { #category : #attributes }
 QuasarInput >> disable [
@@ -29,30 +23,15 @@ QuasarInput >> filled [
 ]
 
 { #category : #attributes }
-QuasarInput >> label: anObject [
+QuasarInput >> inputClass: anObject [
 	
-	self attributes at: 'label' put: anObject
+	self attributes at: 'input-class' put: anObject
 ]
 
 { #category : #attributes }
-QuasarInput >> modelValue: anObject [
+QuasarInput >> inputStyle: anObject [
 	
-	self attributes at: 'model-value' put: anObject
-]
-
-{ #category : #attributes }
-QuasarInput >> name: anObject [
-	
-	self attributes at: 'name' put: anObject
-]
-
-{ #category : #callbacks }
-QuasarInput >> on: aSelector of: anObject [
-
-	"self value: (anObject perform: aSelector)."
-	self callback: (GRDelayedSend 
-			receiver: anObject
-			selector: aSelector asMutator)
+	self attributes at: 'input-style' put: anObject
 ]
 
 { #category : #attributes }
@@ -77,10 +56,4 @@ QuasarInput >> tag [
 QuasarInput >> type: anObject [
 	
 	self attributes at: 'type' put: anObject
-]
-
-{ #category : #attributes }
-QuasarInput >> vModel: anObject [
-	
-	self attributes at: 'v-model' put: anObject
 ]

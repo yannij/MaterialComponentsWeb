@@ -37,9 +37,21 @@ WAHtmlCanvas >> qCardSection [
 ]
 
 { #category : #'*Quasar-Components' }
+WAHtmlCanvas >> qCheckbox [
+
+	^ self brush: QuasarCheckbox new
+]
+
+{ #category : #'*Quasar-Components' }
 WAHtmlCanvas >> qChip [
 
 	^ self brush: QuasarChip new
+]
+
+{ #category : #'*Quasar-Components' }
+WAHtmlCanvas >> qColor [
+
+	^ self brush: QuasarColor new
 ]
 
 { #category : #'*Quasar-Components' }
@@ -163,6 +175,12 @@ WAHtmlCanvas >> qPageSticky [
 ]
 
 { #category : #'*Quasar-Components' }
+WAHtmlCanvas >> qPopupProxy [
+
+	^ self brush: QuasarPopupProxy new
+]
+
+{ #category : #'*Quasar-Components' }
 WAHtmlCanvas >> qRadio [
 
 	^ self brush: QuasarRadio new
@@ -184,6 +202,12 @@ WAHtmlCanvas >> qRouterView [
 WAHtmlCanvas >> qScrollArea [
 
 	^ self brush: QuasarScrollArea new
+]
+
+{ #category : #'*Quasar-Components' }
+WAHtmlCanvas >> qSelect [
+
+	^ self brush: QuasarSelect new
 ]
 
 { #category : #'*Quasar-Components' }
@@ -220,6 +244,12 @@ WAHtmlCanvas >> qTable [
 WAHtmlCanvas >> qTabs [
 
 	^ self brush: QuasarTabs new
+]
+
+{ #category : #'*Quasar-Components' }
+WAHtmlCanvas >> qTemplate [
+
+	^ self brush: QuasarTemplate new
 ]
 
 { #category : #'*Quasar-Components' }
