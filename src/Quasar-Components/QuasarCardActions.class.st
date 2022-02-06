@@ -18,6 +18,6 @@ QuasarCardActions >> tag [
 
 { #category : #attributes }
 QuasarCardActions >> vertical [
-	
+
 	self attributes at: 'vertical' put: true
 ]

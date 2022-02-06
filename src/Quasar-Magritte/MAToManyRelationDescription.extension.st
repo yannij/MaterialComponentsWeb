@@ -1,7 +1,7 @@
 Extension { #name : #MAToManyRelationDescription }
 
 { #category : #'*Quasar-Magritte' }
-MAToManyRelationDescription class >> mdqComponentClassDefault [
+MAToManyRelationDescription class >> mdqDefaultComponentClasses [
 
-	^ MDQOneToManyComponent
+	^ Array with: MDQOneToManyComponent
 ]

@@ -1,7 +1,7 @@
 Extension { #name : #MASingleOptionDescription }
 
 { #category : #'*Quasar-Magritte' }
-MASingleOptionDescription class >> mdqComponentClassDefault [
+MASingleOptionDescription class >> mdqDefaultComponentClasses [
 
-	^ MDQSelectListComponent
+	^ Array with: MDQSelectListComponent
 ]

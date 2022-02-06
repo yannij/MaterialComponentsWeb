@@ -1,7 +1,7 @@
 Extension { #name : #MAFileDescription }
 
 { #category : #'*Quasar-Magritte' }
-MAFileDescription class >> mdqComponentClassDefault [
+MAFileDescription class >> mdqDefaultComponentClasses [
 
-	^ MDQFileUploadComponent
+	^ Array with: MDQFileUploadComponent
 ]

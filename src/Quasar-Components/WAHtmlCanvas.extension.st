@@ -55,6 +55,12 @@ WAHtmlCanvas >> qColor [
 ]
 
 { #category : #'*Quasar-Components' }
+WAHtmlCanvas >> qDate [
+
+	^ self brush: QuasarDate new
+]
+
+{ #category : #'*Quasar-Components' }
 WAHtmlCanvas >> qDialog [
 
 	^ self brush: QuasarDialog new
@@ -250,6 +256,12 @@ WAHtmlCanvas >> qTabs [
 WAHtmlCanvas >> qTemplate [
 
 	^ self brush: QuasarTemplate new
+]
+
+{ #category : #'*Quasar-Components' }
+WAHtmlCanvas >> qTime [
+
+	^ self brush: QuasarTime new
 ]
 
 { #category : #'*Quasar-Components' }

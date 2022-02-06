@@ -1,9 +1,9 @@
 Extension { #name : #MANumberDescription }
 
 { #category : #'*Quasar-Magritte' }
-MANumberDescription class >> mdqComponentClassDefault [
+MANumberDescription class >> mdqDefaultComponentClasses [
 
-	^ MDQTextInputComponent
+	^ Array with: MDQTextInputComponent
 ]
 
 { #category : #'*Quasar-Magritte' }

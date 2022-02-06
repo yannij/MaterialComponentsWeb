@@ -1,7 +1,7 @@
 Extension { #name : #MATimeDescription }
 
 { #category : #'*Quasar-Magritte' }
-MATimeDescription class >> mdqComponentClassDefault [
+MATimeDescription class >> mdqDefaultComponentClasses [
 
-	^ MDQTimeComponent
+	^ Array with: MDQTimeComponent
 ]

@@ -1,8 +1,8 @@
 Extension { #name : #MABooleanDescription }
 
 { #category : #'*Quasar-Magritte' }
-MABooleanDescription class >> mdqComponentClassDefault [
+MABooleanDescription class >> mdqDefaultComponentClasses [
 
-	^ MDQBooleanRadioComponent
+	^ Array with: MDQBooleanRadioComponent
 
 ]

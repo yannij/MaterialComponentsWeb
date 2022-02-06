@@ -3,7 +3,7 @@ Extension { #name : #MADescription }
 { #category : #'*Quasar-Magritte' }
 MADescription >> mdqComponentClass [
 
-	^ self propertyAt: #mdqComponentClass ifAbsent: [ self class mdqComponentClassDefault ]
+	^ self propertyAt: #mdqComponentClass ifAbsent: [ self class mdqDefaultComponentClass ]
 ]
 
 { #category : #'*Quasar-Magritte' }
@@ -13,9 +13,17 @@ MADescription >> mdqComponentClass: aClass [
 ]
 
 { #category : #'*Quasar-Magritte' }
-MADescription class >> mdqComponentClassDefault [
+MADescription class >> mdqDefaultComponentClass [
 
-	^ self mcwComponentClassDefault
+	^ self mdqDefaultComponentClasses
+		ifEmpty: [ MAUndefinedComponent ]
+		ifNotEmpty: [ :list | list first ]
+]
+
+{ #category : #'*Quasar-Magritte' }
+MADescription class >> mdqDefaultComponentClasses [
+
+	^ Array with: MAUndefinedComponent
 ]
 
 { #category : #'*Quasar-Magritte' }

@@ -1,7 +1,7 @@
 Extension { #name : #MAMagnitudeDescription }
 
 { #category : #'*Quasar-Magritte' }
-MAMagnitudeDescription class >> mdqComponentClassDefault [
+MAMagnitudeDescription class >> mdqDefaultComponentClasses [
 
-	^ MDQTextInputComponent
+	^ Array with: MDQTextInputComponent
 ]

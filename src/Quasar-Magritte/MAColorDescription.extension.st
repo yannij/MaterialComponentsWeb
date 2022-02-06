@@ -1,7 +1,7 @@
 Extension { #name : #MAColorDescription }
 
 { #category : #'*Quasar-Magritte' }
-MAColorDescription class >> mdqComponentClassDefault [
+MAColorDescription class >> mdqDefaultComponentClasses [
 
-	^ MDQColorComponent
+	^ Array with: MDQColorComponent
 ]

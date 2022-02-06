@@ -1,7 +1,7 @@
 Extension { #name : #MAStringDescription }
 
 { #category : #'*Quasar-Magritte' }
-MAStringDescription class >> mdqComponentClassDefault [
+MAStringDescription class >> mdqDefaultComponentClasses [
 
-	^ MDQTextInputComponent
+	^ Array with: MDQTextInputComponent
 ]

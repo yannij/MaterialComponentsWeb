@@ -50,6 +50,7 @@ QuasarDemoComponentApp >> demoNames [
 	^ #(
 	Misc
 	Select
+	DateTime
 	)
 ]
 
@@ -178,6 +179,25 @@ const rows = [
     iron: ''6%''
   }
 ]'
+]
+
+{ #category : #'demo - date time' }
+QuasarDemoComponentApp >> renderDemoDateTimeOn: html [
+
+	html div style: 'max-width: 300px'; with: [
+		html qInput filled; vModel: 'date'; with: [
+			html qTemplate vSlot: 'prepend'; with: [
+				html qIcon name: 'event'; class: 'cursor-pointer'; with: [
+					html qPopupProxy cover; transitionShow: 'scale'; transitionHide: 'scale'; with: [
+						html qDate vModel: 'date'; mask: 'YYYY-MM-DD HH:mm'; with: [
+							html div class: 'row items-center justify-end'; with: [
+								html qBtn vClosePopUp; label: 'Close'; color: 'primary'; flat ] ] ] ] ].
+			html qTemplate vSlot: 'append'; with: [
+				html qIcon name: 'access_time'; class: 'cursor-pointer'; with: [
+					html qPopupProxy cover; transitionShow: 'scale'; transitionHide: 'scale'; with: [
+						html qTime vModel: 'date'; mask: 'YYYY-MM-DD HH:mm'; format24h; with: [
+							html div class: 'row items-center justify-end'; with: [
+								html qBtn vClosePopUp; label: 'Close'; color: 'primary'; flat ] ] ] ] ] ] ]
 ]
 
 { #category : #'demo - select' }
@@ -440,10 +460,12 @@ QuasarDemoComponentApp >> renderLayoutPageOn: html [
 	html qPageContainer with: [
 		html qPage with: [
 			html div class: 'q-pa-md'; with: [
-				self demoName = 'Misc' ifTrue: [
-					self renderExampleOn: html ].
 				self demoName = 'Select' ifTrue: [
-					self renderDemoSelectOn: html ] ] ] ]
+					self renderDemoSelectOn: html ].
+				self demoName = 'DateTime' ifTrue: [
+					self renderDemoDateTimeOn: html ].
+				self demoName = 'Misc' ifTrue: [
+					self renderExampleOn: html ] ] ] ]
 ]
 
 { #category : #rendering }
@@ -516,6 +538,7 @@ const app = Vue.createApp({
         submitResult.value = data;
         submitEmpty.value = data.length === 0;
       },
+date: ref("2019-02-01 12:44"),
 color: ref("#FF00FF"),
 tab: ref(''mails''),
 columns,

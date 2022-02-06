@@ -1,9 +1,9 @@
 Extension { #name : #MAPasswordDescription }
 
 { #category : #'*Quasar-Magritte' }
-MAPasswordDescription class >> mdqComponentClassDefault [
+MAPasswordDescription class >> mdqDefaultComponentClasses [
 
-	^ MDQTextPasswordComponent
+	^ Array with: MDQTextPasswordComponent
 ]
 
 { #category : #'*Quasar-Magritte' }
