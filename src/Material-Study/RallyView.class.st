@@ -7,7 +7,7 @@ Class {
 { #category : #rendering }
 RallyView >> goto: aModel [
 
-	self mcwApplicationGet bodyRegion component: (aModel asComponent addValidatedForm; yourself)
+	self mdqApplicationGet bodyRegion component: (aModel asComponent addValidatedForm; yourself)
 ]
 
 { #category : #rendering }

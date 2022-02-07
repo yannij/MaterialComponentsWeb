@@ -1,10 +1,10 @@
 Class {
 	#name : #MDQTheme,
-	#superclass : #Object,
+	#superclass : #MDQModel,
 	#instVars : [
 		'data'
 	],
-	#category : #'Quasar-Components'
+	#category : #'Quasar-Magritte'
 }
 
 { #category : #accessing }

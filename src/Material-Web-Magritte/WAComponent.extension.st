@@ -85,3 +85,11 @@ WAComponent class >> mcwPublicServerUrlInstallDockerConfig [
 
 	self mcwPublicServerUrl: publicServerUrl
 ]
+
+{ #category : #'*Material-Web-Magritte' }
+WAComponent >> mdqApplicationGet [
+
+	^ self session
+		ifNil: [ nil ]
+		ifNotNil: [ :value | value presenter ]
+]

@@ -36,7 +36,7 @@ MDQMultiselectListComponent >> renderMultiselectOn: html readonly: aReadonlyFlag
 		ifFalse: [ | modelName modelOptionsName listValues |
 			modelName := inputLabel asCamelCase uncapitalized.
 			modelOptionsName := modelName, 'Options'.
-			self mcwApplicationGet quasarDataAdd: modelOptionsName.
+			self mdqApplicationGet quasarDataAdd: modelOptionsName.
 			html document addLoadScript: (JSStream on: (self vueOptionDataNamed: modelOptionsName)).
 
 			inputTag "name: modelName;" vModel: modelName.
@@ -45,7 +45,7 @@ MDQMultiselectListComponent >> renderMultiselectOn: html readonly: aReadonlyFlag
 			inputTag multipleCallbackValue: self availableList.
 			listValues := inputTag values. "set by #multipleCallbackValue: above"
 			inputValue := self selectedList collect: [ :each | listValues keyAtValue: each ].
-			self mcwApplicationGet vueRefsAdd: modelName -> inputValue.
+			self mdqApplicationGet vueRefsAdd: modelName -> inputValue.
 		]
 ]
 

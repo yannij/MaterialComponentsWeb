@@ -3,7 +3,9 @@ Class {
 	#superclass : #WAComponent,
 	#instVars : [
 		'quasarVersion',
-		'colorTheme'
+		'colorTheme',
+		'quasarData',
+		'vueRefs'
 	],
 	#category : #'Quasar-Components'
 }
@@ -14,7 +16,7 @@ QuasarApplication class >> canBeRoot [
 ]
 
 { #category : #'instance creation' }
-QuasarApplication class >> mdsRegisterDeployment: aName [
+QuasarApplication class >> mdqRegisterDeployment: aName [
 	| app |
 
 	self environment at: #WADevelopmentConfiguration ifPresent: [ :class |
@@ -50,6 +52,15 @@ QuasarApplication >> faviconUrl [
 	"Subclasses should override"
 
 	^ '/files/WAToolFiles/help.png'
+]
+
+{ #category : #initialization }
+QuasarApplication >> initialize [
+
+	super initialize.
+
+	self vueRefsClear.
+	self quasarDataClear
 ]
 
 { #category : #login }
@@ -115,6 +126,36 @@ QuasarApplication >> logout [
 QuasarApplication >> quasarCssUrl [
 
 	^ self jsdelivrUrlFragment, 'quasar.rtl.prod.css'
+]
+
+{ #category : #accessing }
+QuasarApplication >> quasarData [
+
+	^ quasarData
+]
+
+{ #category : #accessing }
+QuasarApplication >> quasarData: anObject [
+
+	quasarData := anObject
+]
+
+{ #category : #accessing }
+QuasarApplication >> quasarDataAdd: anObject [
+
+	self quasarData addIfNotPresent: anObject
+]
+
+{ #category : #accessing }
+QuasarApplication >> quasarDataClear [
+
+	self quasarData: OrderedCollection new
+]
+
+{ #category : #accessing }
+QuasarApplication >> quasarDataRemove: anObject [
+
+	self quasarData remove: anObject ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
@@ -239,4 +280,34 @@ QuasarApplication >> updateRootQuasarCss: anHtmlRoot [
 QuasarApplication >> vueJsUrl [
 
 	^ 'https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js'
+]
+
+{ #category : #accessing }
+QuasarApplication >> vueRefs [
+
+	^ vueRefs
+]
+
+{ #category : #accessing }
+QuasarApplication >> vueRefs: anObject [
+
+	vueRefs := anObject
+]
+
+{ #category : #accessing }
+QuasarApplication >> vueRefsAdd: anObject [
+
+	self vueRefs at: anObject key put: anObject value
+]
+
+{ #category : #accessing }
+QuasarApplication >> vueRefsClear [
+
+	self vueRefs: Dictionary new
+]
+
+{ #category : #accessing }
+QuasarApplication >> vueRefsRemove: anObject [
+
+	self vueRefs remove: anObject ifAbsent: [ nil ]
 ]

@@ -7,7 +7,7 @@ Class {
 		'amount',
 		'amountSpent'
 	],
-	#category : #'Material-Study-Rally'
+	#category : #'Quasar-Demo'
 }
 
 { #category : #accessing }

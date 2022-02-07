@@ -41,7 +41,7 @@ MDQTextInputComponent >> renderFieldOn: html readonly: aReadonlyFlag [
 			inputTag readonly: true; modelValue: inputValue ]
 		ifFalse: [ | modelName |
 			modelName := inputLabel asCamelCase uncapitalized.
-			self mcwApplicationGet vueRefsAdd: modelName -> inputValue.
+			self mdqApplicationGet vueRefsAdd: modelName -> inputValue.
 			inputTag "name: modelName;" vModel: modelName.
 			inputTag on: self inputAspect of: self
 		].

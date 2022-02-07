@@ -7,7 +7,7 @@ Class {
 		'amount',
 		'dueDate'
 	],
-	#category : #'Material-Study-Rally'
+	#category : #'Quasar-Demo'
 }
 
 { #category : #accessing }

@@ -36,7 +36,7 @@ MDQOneToOneComponent >> renderViewerOn: html [
 	html qCard "class: 'bg-secondary text-white';" with: [
 		html qCardSection
 			onClick: ((html jQuery ajax)
-				callback: [ self mcwApplicationGet navTo: self value aspect: nil ];
+				callback: [ self mdqApplicationGet navTo: self value aspect: nil ];
 				onComplete: html javascript refresh);
 			with: [
 				html div class: 'text-h6'; with: self value mdPrimaryString.

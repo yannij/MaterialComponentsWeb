@@ -20,7 +20,7 @@ QuasarDemoLayoutApp class >> initialize [
 	WAAdmin unregister: self applicationPath.
 	"
 
-	^ self mdsRegisterDeployment: self applicationPath
+	^ self mdqRegisterDeployment: self applicationPath
 ]
 
 { #category : #accessing }

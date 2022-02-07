@@ -43,9 +43,9 @@ MDQSelectListComponent >> renderSelectOn: html readonly: aReadonlyFlag [
 			inputTag readonly: true ]
 		ifFalse: [ | modelName modelOptionsName |
 			modelName := inputLabel asCamelCase uncapitalized.
-			self mcwApplicationGet vueRefsAdd: modelName -> inputValue.
+			self mdqApplicationGet vueRefsAdd: modelName -> inputValue.
 			modelOptionsName := modelName, 'Options'.
-			self mcwApplicationGet quasarDataAdd: modelOptionsName.
+			self mdqApplicationGet quasarDataAdd: modelOptionsName.
 			html document addLoadScript: (JSStream on: (self vueOptionDataNamed: modelOptionsName)).
 
 			inputTag "name: modelName;" vModel: modelName.

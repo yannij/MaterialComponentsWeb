@@ -3,7 +3,7 @@ I am a shopping cart that uses Stripe to process the transaction
 "
 Class {
 	#name : #StripeShoppingCart,
-	#superclass : #MDSComponent,
+	#superclass : #QuasarComponent,
 	#instVars : [
 		'cartVisible',
 		'cartState',
@@ -21,13 +21,13 @@ StripeShoppingCart class >> isVoyageRoot [
 { #category : #stripe }
 StripeShoppingCart >> actionCancel [
 
-	self mcwApplicationGet logString: 'Cancel'
+	self mdqApplicationGet logString: 'Cancel'
 ]
 
 { #category : #stripe }
 StripeShoppingCart >> actionSuccess [
 
-	self mcwApplicationGet logString: 'Success'.
+	self mdqApplicationGet logString: 'Success'.
 
 	self cartState: self cartStatePaid
 ]
@@ -155,10 +155,10 @@ StripeShoppingCart >> deprecatedCreateCheckoutSessionRequest: arg1 json: arg2 [
 			at: 'line_items[' , tmp8 , '][quantity]' put: '1';
 			yourself ].
 	tmp5 := StripeAPI current path: tmp2 request: tmp4 postAs: nil.
-	self mcwApplicationGet logString: tmp5.
+	self mdqApplicationGet logString: tmp5.
 	tmp6 := WAJsonParser parse: tmp5.
 	(tmp6 includesKey: 'id') ifFalse: [ 
-		self mcwApplicationGet logString: 'Stripe error response: ' , tmp5 ].
+		self mdqApplicationGet logString: 'Stripe error response: ' , tmp5 ].
 	^ arg2 string: tmp5
 ]
 
@@ -184,8 +184,8 @@ StripeShoppingCart >> getRedirectUrls: html [
 		successUrl addField: WATokenFallbackProtectionFilter tokenQueryFieldName value: newToken.
 		cancelUrl addField: WATokenFallbackProtectionFilter tokenQueryFieldName value: newToken ].
 
-self mcwApplicationGet logString: successUrl printString.
-self mcwApplicationGet logString: cancelUrl printString.
+self mdqApplicationGet logString: successUrl printString.
+self mdqApplicationGet logString: cancelUrl printString.
 
 	^ Array with: successUrl with: cancelUrl
 ]
@@ -360,7 +360,7 @@ StripeShoppingCart >> renderShowCartButtonOn: html [
 { #category : #stripe }
 StripeShoppingCart >> serverUrl [
 
-	^ self mcwPublicServerUrl
+	^ self mdqPublicServerUrl
 		ifNotNil: [ :value | value ]
 		ifNil: [ self error: 'Public server URL not set' ]
 ]

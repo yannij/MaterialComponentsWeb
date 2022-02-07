@@ -7,7 +7,7 @@ Class {
 { #category : #rendering }
 QRallyView >> goto: aModel [
 
-	self mcwApplicationGet pageComponent: (aModel asComponent addValidatedForm; yourself)
+	self mdqApplicationGet pageComponent: (aModel asComponent addValidatedForm; yourself)
 ]
 
 { #category : #rendering }

@@ -59,6 +59,6 @@ MDQContainerComponent >> save [
 	self validate ifFalse: [ ^ self ].
 	self commit.
 	self model class isVoyageRoot
-		ifTrue: [ self mcwApplicationGet saveObject: self model ].
+		ifTrue: [ self mdqApplicationGet saveObject: self model ].
 	self answer: self model
 ]

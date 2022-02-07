@@ -135,7 +135,7 @@ MDQOneToManyComponent >> renderLabelOn: html [
 	html div mdcChip; mdcRippleUpgraded; tabIndex: 0;
 		"style: 'background: #', nil mdColorCode asHexString;"
 		onClick: ((html jQuery ajax)
-			callback: [ self mcwApplicationGet navTo: self memento model aspect: self magritteDescription label ];
+			callback: [ self mdqApplicationGet navTo: self memento model aspect: self magritteDescription label ];
 			onComplete: html javascript refresh);
 		with: self magritteDescription label
 ]
@@ -152,7 +152,7 @@ MDQOneToManyComponent >> renderListAjaxOn: html [
 		ifNotEmpty: [ : anItemList |
 			anItemList do: [ :eachItem |
 				html qItem
-					qTag: 'a'; href: (html urlForAction: [ :value | self mcwApplicationGet navTo: eachItem aspect: nil ]);
+					qTag: 'a'; href: (html urlForAction: [ :value | self mdqApplicationGet navTo: eachItem aspect: nil ]);
 					with: [
 						html qItemSection with: [
 							html qItemLabel with: eachItem mdPrimaryString.

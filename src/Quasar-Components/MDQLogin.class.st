@@ -94,7 +94,7 @@ MDQLogin >> confirmRegistration [
 
 	self tokenTyped = self tokenSent
 		ifFalse: [
-			self mcwApplicationGet logFormat: 'Token mismatch: tokenTyped={1}, tokenSent={2}' with: self tokenTyped with: self tokenSent. 
+			self mdqApplicationGet logFormat: 'Token mismatch: tokenTyped={1}, tokenSent={2}' with: self tokenTyped with: self tokenSent. 
 			self transitionOnEvent: self eventTokenMismatch ]
 		ifTrue: [
 			self registerBlock
@@ -197,7 +197,7 @@ MDQLogin >> loggedOut [
 	self transitionOnEvent: self eventLogout.
 
 	self session ifNotNil: [ :value | value unregister ].
-	self mcwApplicationGet redirect
+	self mdqApplicationGet redirect
 ]
 
 { #category : #accessing }
@@ -696,6 +696,6 @@ MDQLogin >> transitionOnEvent: anEvent [
 	nextState = #none
 		ifTrue: [ self error: self printString, ' has no transition from: ', currentState printString, ' on: ', anEvent printString ]
 		ifFalse: [
-			self mcwApplicationGet logFormat: '{1}: {2} -> {3} on {4}' with: self printString with: currentState printString with: nextState printString with: anEvent printString.
+			self mdqApplicationGet logFormat: '{1}: {2} -> {3} on {4}' with: self printString with: currentState printString with: nextState printString with: anEvent printString.
 			self loginState: nextState ]
 ]

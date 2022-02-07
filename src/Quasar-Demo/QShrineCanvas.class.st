@@ -10,7 +10,7 @@ Class {
 { #category : #actions }
 QShrineCanvas >> addToShoppingCart: aProduct [
 
-	self mcwApplicationGet ifNotNil: [ :app |
+	self mdqApplicationGet ifNotNil: [ :app |
 		app stripeInterface shoppingCart: app shoppingCart addProduct: aProduct ]
 ]
 
@@ -45,7 +45,7 @@ QShrineCanvas >> productsBuild [
 QShrineCanvas >> productsFiltered [
 	| categoryValue |
 
-	categoryValue := self mcwApplicationGet category.
+	categoryValue := self mdqApplicationGet category.
 
 	^ self products select: [ :eachProduct |
 		(eachProduct at: 'tags') includes: categoryValue ]
