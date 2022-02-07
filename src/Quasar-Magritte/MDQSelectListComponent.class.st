@@ -32,9 +32,9 @@ MDQSelectListComponent >> renderSelectOn: html readonly: aReadonlyFlag [
 
 	inputTag := html qSelect.
 	inputTag color: 'primary'.
-	self mdsTextFieldStyleIsFilled
+	"self mdsTextFieldStyleIsFilled
 		ifTrue: [ inputTag filled ]
-		ifFalse: [ inputTag outlined ].
+		ifFalse: [ inputTag outlined ]."
 
 	inputTag label: inputLabel.
 

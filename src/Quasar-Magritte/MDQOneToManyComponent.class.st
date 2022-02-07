@@ -120,15 +120,15 @@ MDQOneToManyComponent >> renderExpandIconOnListId: listId on: html [
 { #category : #rendering }
 MDQOneToManyComponent >> renderLabelOn: html [
 
-	self magritteDescription mcwNavPriority ifNil: [
+	html text: self magritteDescription label
+	"self magritteDescription mcwNavPriority ifNil: [
 		^ html text: self magritteDescription label ].
 
 	html div mdcChip; mdcRippleUpgraded; tabIndex: 0;
-		"style: 'background: #', nil mdColorCode asHexString;"
 		onClick: ((html jQuery ajax)
 			callback: [ self mdqApplicationGet navTo: self memento model aspect: self magritteDescription label ];
 			onComplete: html javascript refresh);
-		with: self magritteDescription label
+		with: self magritteDescription label"
 ]
 
 { #category : #rendering }

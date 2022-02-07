@@ -60,12 +60,12 @@ MDQTextAreaComponent >> renderFieldOn: html readonly: aReadonlyFlag [
 	inputValue := self perform: self inputAspect.
 
 	inputTag := html qInput.
-	self mdsTextFieldStyleIsFilled
+	"self mdsTextFieldStyleIsFilled
 		ifTrue: [ inputTag filled ]
-		ifFalse: [ inputTag outlined ].
+		ifFalse: [ inputTag outlined ]."
 
 	inputTag type: self inputType; label: inputLabel.
-	inputTag inputStyle: 'height: ', (self mdsTextFieldHeightOf: self mdsFieldHeightGet) printString, 'px'.
+	"inputTag inputStyle: 'height: ', (self mdsTextFieldHeightOf: self mdsFieldHeightGet) printString, 'px'."
 	inputTag inputStyle: 'resize: none'.
 	"inputTag attributeAt: 'rows' put: self mdsFieldHeightGet."
 	"inputTag attributeAt: 'autogrow' put: true."
