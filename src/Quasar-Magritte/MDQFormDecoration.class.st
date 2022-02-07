@@ -8,7 +8,7 @@ Class {
 MDQFormDecoration >> renderButtonsOn: html [
 	| showDisabled |
 
-	showDisabled := self decoratedComponent hasPendingChanges.
+	showDisabled := "self decoratedComponent hasPendingChanges" false.
 
 	html div class: 'row'; class: 'justify-between'; with: [
 		html span class: 'text-h6'; class: 'col-8'; with: self decoratedComponent model mdPrimaryString.

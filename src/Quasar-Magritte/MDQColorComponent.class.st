@@ -33,5 +33,5 @@ MDQColorComponent >> renderFieldOn: html readonly: aReadonlyFlag [
 							html qColor vModel: modelName ] ] ] ]
 		].
 
-	self renderTextFieldHelpTextOn: html
+	"self renderTextFieldHelpTextOn: html"
 ]

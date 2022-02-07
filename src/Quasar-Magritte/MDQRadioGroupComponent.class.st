@@ -40,7 +40,7 @@ MDQRadioGroupComponent >> renderFieldOn: html readonly: aReadonlyFlag [
 			label: (self labelForOption: each) ]
 		separatedBy: [  ].
 
-	self renderTextFieldHelpTextOn: html
+	"self renderTextFieldHelpTextOn: html"
 ]
 
 { #category : #rendering }

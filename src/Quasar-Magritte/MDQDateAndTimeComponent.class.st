@@ -107,5 +107,5 @@ MDQDateAndTimeComponent >> renderFieldOn: html readonly: aReadonlyFlag [
 				with: [ self renderDateTimeOn: html vModel: modelName ]
 		].
 
-	self renderTextFieldHelpTextOn: html
+	"self renderTextFieldHelpTextOn: html"
 ]

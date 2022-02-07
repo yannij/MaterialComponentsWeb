@@ -359,9 +359,8 @@ MDQLogin >> renderField: aLabel type: anInputType for: anAspect on: html [
 		html div class: 'q-gutter-y-sm column'; with: [
 			"html html: '<q-input filled v-model=""text"" label=""Label""></q-input>'"
 			fieldId := html nextId.
-			html textInput mdcTextField__input;
+			html textInput
 				type: anInputType;
-				ariaDescribedBy: fieldId;
 				attributeAt: 'step' put: '1';
 				on: anAspect of: self.
 			"html qInput filled; label: aLabel; type: anInputType; modelValue: (self perform: anAspect)" ]]
@@ -527,7 +526,7 @@ MDQLogin >> renderRegistrationStartedOn: html [
 MDQLogin >> renderSingleSignOnOn: html [
 
 	html div style: 'margin: 0px auto; width: 300px; text-align: left'; with: [
-		html span mdcTypography_caption; with: 'Login with' ].
+		html span class: 'text-caption'; with: 'Login with' ].
 	html div style: 'margin: 0px auto; width: 300px; text-align: center'; with: [
 		html qBtn outline;
 			onClick: (self onClickNotYetImplementedScript: html);

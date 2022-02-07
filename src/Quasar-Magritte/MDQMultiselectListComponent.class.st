@@ -14,7 +14,7 @@ MDQMultiselectListComponent >> renderEditorOn: html [
 MDQMultiselectListComponent >> renderFieldOn: html readonly: readonlyFlag [
 
 	self renderMultiselectOn: html readonly: readonlyFlag.
-	self renderTextFieldHelpTextOn: html
+	"self renderTextFieldHelpTextOn: html"
 ]
 
 { #category : #rendering }

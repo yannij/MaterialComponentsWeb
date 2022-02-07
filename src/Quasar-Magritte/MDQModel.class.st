@@ -14,7 +14,7 @@ MDQModel class >> descriptionContainerClass [
 	self descriptionContainerClass: MDQPriorityContainer.
 	"
 
-	^ DescriptionContainerClass ifNil: [ DescriptionContainerClass := MCWPriorityContainer ]
+	^ DescriptionContainerClass ifNil: [ DescriptionContainerClass := MDQPriorityContainer ]
 ]
 
 { #category : #accessing }

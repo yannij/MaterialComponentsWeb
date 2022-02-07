@@ -29,7 +29,6 @@ MDQContainerComponent >> buildChildren [
 			each isVisible ifTrue: [
 				| newComponent |
 				newComponent := each componentClass memento: self memento description: each parent: self.
-				newComponent mcwPostBuild.
 				result at: each put: newComponent ].
 			result ].
 

@@ -18,7 +18,7 @@ RallyObject class >> descriptionContainerClass [
 	self descriptionContainerClass: MAPriorityContainer.
 	"
 
-	^ DescriptionContainerClass ifNil: [ DescriptionContainerClass := MCWPriorityContainer ]
+	^ DescriptionContainerClass ifNil: [ DescriptionContainerClass := MDQPriorityContainer ]
 ]
 
 { #category : #accessing }

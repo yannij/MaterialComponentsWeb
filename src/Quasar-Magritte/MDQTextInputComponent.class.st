@@ -46,7 +46,7 @@ MDQTextInputComponent >> renderFieldOn: html readonly: aReadonlyFlag [
 			inputTag on: self inputAspect of: self
 		].
 
-	self renderTextFieldHelpTextOn: html
+	"self renderTextFieldHelpTextOn: html"
 ]
 
 { #category : #rendering }

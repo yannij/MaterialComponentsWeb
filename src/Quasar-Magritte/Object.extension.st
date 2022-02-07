@@ -1,42 +1,42 @@
 Extension { #name : #Object }
 
-{ #category : #'*Material-Web-Responsive' }
+{ #category : #'*Quasar-Magritte' }
 Object >> mdBackgroundColor [
 
 	^ '#', self mdColorCode asHexString
 ]
 
-{ #category : #'*Material-Web-Responsive' }
+{ #category : #'*Quasar-Magritte' }
 Object >> mdColorCode [
 
 	^ Color lightGray
 ]
 
-{ #category : #'*Material-Web-Responsive' }
+{ #category : #'*Quasar-Magritte' }
 Object >> mdIcon [
 
 	^ 'star'
 ]
 
-{ #category : #'*Material-Web-Responsive' }
+{ #category : #'*Quasar-Magritte' }
 Object >> mdImageUrl [
 
 	^ nil
 ]
 
-{ #category : #'*Material-Web-Responsive' }
+{ #category : #'*Quasar-Magritte' }
 Object >> mdPrimaryString [
 
 	^ self printString
 ]
 
-{ #category : #'*Material-Web-Responsive' }
+{ #category : #'*Quasar-Magritte' }
 Object >> mdSecondaryString [
 
 	^ '<', self hash printString, '>'
 ]
 
-{ #category : #'*Material-Web-Responsive' }
+{ #category : #'*Quasar-Magritte' }
 Object >> mdTertiaryString [
 
 	^ ''
