@@ -135,6 +135,8 @@ MDQReport >> javascriptRowsWith: aVariableName [
 					do: [ :col | | cellValue cellContent |
 						cellValue := col valueFor: eachRow.
 						cellContent := col formatter value: cellValue.
+						cellContent := cellContent copyReplaceAll: '''' with: '\'''.
+						"cellContent := cellContent copyWithout: $'."
 						cellValue isNumber ifFalse: [
 							cellContent := cellContent surroundedBySingleQuotes ].
 						stream

@@ -19,6 +19,12 @@ WAHtmlCanvas >> qBtn [
 ]
 
 { #category : #'*Quasar-Components' }
+WAHtmlCanvas >> qBtnGroup [
+
+	^ self brush: QuasarBtnGroup new
+]
+
+{ #category : #'*Quasar-Components' }
 WAHtmlCanvas >> qCard [
 
 	^ self brush: QuasarCard new

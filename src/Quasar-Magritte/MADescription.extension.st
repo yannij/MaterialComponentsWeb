@@ -33,6 +33,13 @@ MADescription class >> mdqDefaultReportColumnClass [
 ]
 
 { #category : #'*Quasar-Magritte' }
+MADescription >> mdqIsReference [
+	"Answer ==true== if the receiver is a reference description."
+
+	^ false
+]
+
+{ #category : #'*Quasar-Magritte' }
 MADescription >> mdqReportColumnClass [
 
 	^ self propertyAt: #mdqReportColumnClass ifAbsent: [ self class mdqDefaultReportColumnClass ]

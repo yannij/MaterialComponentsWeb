@@ -56,7 +56,7 @@ MDQList >> renderContentOn: html [
 MDQList >> renderListOn: html [
 
 	self subheader notNil ifTrue: [
-		html heading level3; mdcDeprecatedListGroup__subheader; with: self subheader ].
+		html div class: 'text-subtitle1'; with: self subheader ].
 
 	html qList with: [
 		self items do: [ :eachItem | html render: eachItem ] ]
