@@ -6,3 +6,10 @@ MAReferenceDescription >> mdqIsReference [
 
 	^ true
 ]
+
+{ #category : #'*Quasar-Magritte' }
+MAReferenceDescription >> mdqIsToMany [
+	"Answer ==true== if the receiver is a description for a one to one relationship."
+
+	^ false
+]

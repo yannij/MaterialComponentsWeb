@@ -1,6 +1,6 @@
 Extension { #name : #Time }
 
-{ #category : #'*Material-Web-Magritte' }
+{ #category : #'*Quasar-Magritte' }
 Time >> printHtml5 [
  	"Return as string 'hh:mm'  "
  

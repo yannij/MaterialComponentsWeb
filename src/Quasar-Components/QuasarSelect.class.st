@@ -64,6 +64,12 @@ QuasarSelect >> disable [
 ]
 
 { #category : #attributes }
+QuasarSelect >> disable: aBoolean [
+	
+	self attributes at: 'disable' put: aBoolean
+]
+
+{ #category : #attributes }
 QuasarSelect >> filled [
 	
 	self attributes at: 'filled' put: true
@@ -121,6 +127,12 @@ QuasarSelect >> outlined [
 QuasarSelect >> readonly [
 	
 	self attributes at: 'readonly' put: true
+]
+
+{ #category : #attributes }
+QuasarSelect >> readonly: aBoolean [
+	
+	self attributes at: 'readonly' put: aBoolean
 ]
 
 { #category : #attributes }

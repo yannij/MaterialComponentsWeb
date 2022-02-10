@@ -40,6 +40,18 @@ MADescription >> mdqIsReference [
 ]
 
 { #category : #'*Quasar-Magritte' }
+MADescription >> mdqOptionsClass [
+
+	^ self propertyAt: #mdqOptionsClass ifAbsent: [ nil ]
+]
+
+{ #category : #'*Quasar-Magritte' }
+MADescription >> mdqOptionsClass: aClass [
+
+	self propertyAt: #mdqOptionsClass put: aClass
+]
+
+{ #category : #'*Quasar-Magritte' }
 MADescription >> mdqReportColumnClass [
 
 	^ self propertyAt: #mdqReportColumnClass ifAbsent: [ self class mdqDefaultReportColumnClass ]

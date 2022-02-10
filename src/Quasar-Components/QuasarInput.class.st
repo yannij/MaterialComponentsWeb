@@ -41,6 +41,12 @@ QuasarInput >> outlined [
 ]
 
 { #category : #attributes }
+QuasarInput >> readonly [
+	
+	self attributes at: 'readonly' put: true
+]
+
+{ #category : #attributes }
 QuasarInput >> readonly: aBoolean [
 	
 	self attributes at: 'readonly' put: aBoolean

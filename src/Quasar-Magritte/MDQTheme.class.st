@@ -119,3 +119,7 @@ MDQTheme >> name [
 
 	^ self data at: 'name' ifAbsent: [ nil ]
 ]
+
+{ #category : #accessing }
+MDQTheme >> themeItemsSet: ignore [
+]
