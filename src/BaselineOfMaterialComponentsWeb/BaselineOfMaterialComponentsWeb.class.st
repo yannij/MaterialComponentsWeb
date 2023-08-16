@@ -10,45 +10,19 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 	spec
 		for: #common
 		do: [
-			self neoJSON: spec.
 			self seaside: spec.
-			self magritte: spec.
 
 			spec
 				package: 'DockerUtility' with: [ spec requires: #('Seaside3') ];
-				package: 'Quasar-Components' with: [ spec requires: #('Seaside3' 'NeoJSON') ];
-				package: 'Stripe' with: [ spec requires: #('Quasar-Components') ];
-				package: 'Quasar-Magritte' with: [ spec requires: #('Quasar-Components' 'DockerUtility' 'Magritte') ];
-				package: 'Quasar-Demo' with: [ spec requires: #('Quasar-Magritte' 'Stripe') ];
 				package: 'Material-Web-Core' with: [ spec requires: #('Seaside3') ];
 				package: 'Material-Web-Components' with: [ spec requires: #('Material-Web-Core') ];
-				package: 'Material-Web-Magritte' with: [ spec requires: #('Material-Web-Components' 'Magritte') ];
 				package: 'Material-Web-Responsive' with: [ spec requires: #('DockerUtility') ];
-				package: 'Material-Study' with: [ spec requires: #('Material-Web-Responsive' 'Material-Web-Magritte' 'Stripe') ];
-				package: 'Material-Demo' with: [ spec requires: #('Material-Web-Responsive' 'Material-Web-Magritte') ].
+				package: 'Material-Demo' with: [ spec requires: #('Material-Web-Responsive') ].
 
 			spec
-				group: 'default' with: #('Quasar-Demo' 'Material-Web-Responsive' 'Material-Web-Magritte' 'Material-Demo' 'Material-Study');
-				group: 'quasar' with: #('Quasar-Demo');
+				group: 'default' with: #('Material-Demo');
 				group: 'Responsive' with: #('Material-Web-Responsive');
 				group: 'Components' with: #('Material-Web-Components') ]
-]
-
-{ #category : #dependencies }
-BaselineOfMaterialComponentsWeb >> magritte: spec [
-
-	spec
-		baseline: 'Magritte'
-		with: [ spec repository: 'github://magritte-metamodel/magritte:v3.7/source';
-			loads: #( 'Magritte-Pharo-Seaside') ]
-]
-
-{ #category : #dependencies }
-BaselineOfMaterialComponentsWeb >> neoJSON: spec [
-
-	spec
-		baseline: 'NeoJSON'
-		with: [ spec repository: 'github://svenvc/NeoJSON:v17/repository' ]
 ]
 
 { #category : #dependencies }
