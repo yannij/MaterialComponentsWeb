@@ -16,7 +16,7 @@ BaselineOfMaterialComponentsWeb >> baseline: spec [
 				package: 'DockerUtility' with: [ spec requires: #('Seaside3') ];
 				package: 'Material-Web-Core' with: [ spec requires: #('Seaside3') ];
 				package: 'Material-Web-Components' with: [ spec requires: #('Material-Web-Core') ];
-				package: 'Material-Web-Responsive' with: [ spec requires: #('DockerUtility') ];
+				package: 'Material-Web-Responsive' with: [ spec requires: #('Material-Web-Components' 'DockerUtility') ];
 				package: 'Material-Demo' with: [ spec requires: #('Material-Web-Responsive') ].
 
 			spec
