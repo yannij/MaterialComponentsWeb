@@ -40,7 +40,7 @@ MDSLayoutDrawerModal >> renderLayoutDrawerModalOn: html [
 	html render: self topAppBar.
 
 	div := html div.
-	self mcwDenseView
+	self denseView
 		ifTrue: [ div mdcTopAppBar_denseFixedAdjust_if: self topAppBar shortCollapsed not ]
 		ifFalse:  [ div mdcTopAppBar_fixedAdjust_if: self topAppBar shortCollapsed not ].
 	div with: [

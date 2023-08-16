@@ -82,7 +82,7 @@ MDSMenuList >> renderMenuItemsOn: html [
 
 	html unorderedList
 		mdcDeprecatedList;
-		mdcList_dense_if: self mcwDenseView;
+		mdcList_dense_if: self denseView;
 		mdcRole: 'menu';
 		attributeAt: 'aria-hidden' put: 'true';
 		with: [

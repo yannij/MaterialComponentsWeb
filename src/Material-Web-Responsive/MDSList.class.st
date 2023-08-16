@@ -60,7 +60,7 @@ MDSList >> renderListOn: html [
 
 	html navigation
 		mdcDeprecatedList;
-		mdcList_dense_if: self mcwDenseView;
+		mdcList_dense_if: self denseView;
 		mdcRole: 'list';
 		with: [
 			self items do: [ :eachItem | html render: eachItem ] ]
