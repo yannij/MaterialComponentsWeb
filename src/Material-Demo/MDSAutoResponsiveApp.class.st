@@ -81,8 +81,6 @@ MDSAutoResponsiveApp >> initialize [
 
 	super initialize.
 
-	self materialVersionDefault.
-
 	self layout: (MDSLayoutAutoResponsive on: self).
 	self setupLayout
 ]

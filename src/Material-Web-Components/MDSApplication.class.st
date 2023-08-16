@@ -42,6 +42,14 @@ MDSApplication class >> mcwRegisterDevelopment: aName [
 	^ app
 ]
 
+{ #category : #initialization }
+MDSApplication >> initialize [
+
+	super initialize.
+
+	self materialVersionDefault
+]
+
 { #category : #logging }
 MDSApplication >> logFormat: aFormatString with: aValue [
 

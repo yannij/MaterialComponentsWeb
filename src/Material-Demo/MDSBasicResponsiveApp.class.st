@@ -85,8 +85,6 @@ MDSBasicResponsiveApp >> initialize [
 
 	super initialize.
 
-	self materialVersionDefault.
-
 	self layout: (MDSLayoutDrawerPermanent on: self).
 	self setupLayout
 ]
