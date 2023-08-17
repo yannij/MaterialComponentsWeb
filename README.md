@@ -1,5 +1,6 @@
 # MaterialComponentsWeb
 Pharo/Smalltalk code to use material-components-web in Seaside.
+
 UPDATE: Aug 16, 2023 - at a user request, updated from v13.0.0, to use the v14.0.0 of the material components library (the last release to this point). Also, dependency and usage of Magritte removed.
 
 NOTE:
