@@ -91,6 +91,12 @@ WATagBrush >> mdcButton [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcButton__focusRing [
+
+	self class: 'mdc-button__focus-ring'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcButton__icon [
 
 	self class: 'mdc-button__icon'
@@ -268,6 +274,12 @@ WATagBrush >> mdcCheckbox__checkmark [
 WATagBrush >> mdcCheckbox__checkmarkPath [
 
 	self class: 'mdc-checkbox__checkmark-path'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcCheckbox__focusRing [
+
+	self class: 'mdc-checkbox__focus-ring'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -775,6 +787,36 @@ WATagBrush >> mdcDataTable_stickyHeader [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDataTable_withoutFooter [
+
+	self class: 'mdc-data-table--without-footer'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedChipTrailingAction [
+
+	self class: 'mdc-deprecated-chip-trailing-action'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedChipTrailingAction__icon [
+
+	self class: 'mdc-deprecated-chip-trailing-action__icon'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedChipTrailingAction__ripple [
+
+	self class: 'mdc-deprecated-chip-trailing-action__ripple'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedChipTrailingAction__touch [
+
+	self class: 'mdc-deprecated-chip-trailing-action__touch'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDeprecatedList [
 
 	self class: 'mdc-deprecated-list'
@@ -784,6 +826,42 @@ WATagBrush >> mdcDeprecatedList [
 WATagBrush >> mdcDeprecatedListDivider [
 
 	self class: 'mdc-deprecated-list-divider'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListDivider_inset [
+
+	self class: 'mdc-deprecated-list-divider--inset'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListDivider_insetLeading [
+
+	self class: 'mdc-deprecated-list-divider--inset-leading'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListDivider_insetPadding [
+
+	self class: 'mdc-deprecated-list-divider--inset-padding'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListDivider_insetTrailing [
+
+	self class: 'mdc-deprecated-list-divider--inset-trailing'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListDivider_padded [
+
+	self class: 'mdc-deprecated-list-divider--padded'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListDivider_padding [
+
+	self class: 'mdc-deprecated-list-divider--padding'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -817,15 +895,51 @@ WATagBrush >> mdcDeprecatedListItem__meta [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListItem__primaryText [
+
+	self class: 'mdc-deprecated-list-item__primary-text'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDeprecatedListItem__ripple [
 
 	self class: 'mdc-deprecated-list-item__ripple'
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListItem__secondaryText [
+
+	self class: 'mdc-deprecated-list-item__secondary-text'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDeprecatedListItem__text [
 
 	self class: 'mdc-deprecated-list-item__text'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListItem__wrapper [
+
+	self class: 'mdc-deprecated-list-item__wrapper'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListItem_activated [
+
+	self class: 'mdc-deprecated-list-item--activated'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListItem_disabled [
+
+	self class: 'mdc-deprecated-list-item--disabled'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDeprecatedListItem_selected [
+
+	self class: 'mdc-deprecated-list-item--selected'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -850,12 +964,6 @@ WATagBrush >> mdcDeprecatedList_iconList [
 WATagBrush >> mdcDeprecatedList_imageList [
 
 	self class: 'mdc-deprecated-list--image-list'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcDeprecatedList_textualList [
-
-	self class: 'mdc-deprecated-list--textual-list'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -1003,6 +1111,12 @@ WATagBrush >> mdcDialog_fullscreen [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDialog_noContentPadding [
+
+	self class: 'mdc-dialog--no-content-padding'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcDialog_open [
 
 	self class: 'mdc-dialog--open'
@@ -1018,6 +1132,12 @@ WATagBrush >> mdcDialog_opening [
 WATagBrush >> mdcDialog_scrollable [
 
 	self class: 'mdc-dialog--scrollable'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcDialog_sheet [
+
+	self class: 'mdc-dialog--sheet'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -1273,6 +1393,12 @@ WATagBrush >> mdcFab [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcFab__focusRing [
+
+	self class: 'mdc-fab__focus-ring'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcFab__icon [
 
 	self class: 'mdc-fab__icon'
@@ -1490,6 +1616,12 @@ WATagBrush >> mdcIconButton [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcIconButton__focusRing [
+
+	self class: 'mdc-icon-button__focus-ring'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcIconButton__icon [
 
 	self class: 'mdc-icon-button__icon'
@@ -1499,6 +1631,12 @@ WATagBrush >> mdcIconButton__icon [
 WATagBrush >> mdcIconButton__icon_on [
 
 	self class: 'mdc-icon-button__icon--on'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcIconButton__link [
+
+	self class: 'mdc-icon-button__link'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -1529,12 +1667,6 @@ WATagBrush >> mdcIconButton_on [
 WATagBrush >> mdcIconButton_reducedSize [
 
 	self class: 'mdc-icon-button--reduced-size'
-]
-
-{ #category : #'*Material-Web-Core' }
-WATagBrush >> mdcIconButton_touch [
-
-	self class: 'mdc-icon-button--touch'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2228,6 +2360,12 @@ WATagBrush >> mdcListItem__start [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcListItem__wrapper [
+
+	self class: 'mdc-list-item__wrapper'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcListItem_activated [
 
 	self class: 'mdc-list-item--activated'
@@ -2366,6 +2504,12 @@ WATagBrush >> mdcMenuItem_selected [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcMenuItem_submenuOpen [
+
+	self class: 'mdc-menu-item--submenu-open'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcMenuSurface [
 
 	self class: 'mdc-menu-surface'
@@ -2477,6 +2621,12 @@ WATagBrush >> mdcRadio [
 WATagBrush >> mdcRadio__background [
 
 	self class: 'mdc-radio__background'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcRadio__focusRing [
+
+	self class: 'mdc-radio__focus-ring'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2669,12 +2819,6 @@ WATagBrush >> mdcSelect__icon [
 WATagBrush >> mdcSelect__menu [
 
 	self class: 'mdc-select__menu'
-]
-
-{ #category : #'*Material-Web-Core-generated' }
-WATagBrush >> mdcSelect__nativeControl [
-
-	self class: 'mdc-select__native-control'
 ]
 
 { #category : #'*Material-Web-Core' }
@@ -2960,6 +3104,18 @@ WATagBrush >> mdcSwitch [
 ]
 
 { #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSwitch__focusRing [
+
+	self class: 'mdc-switch__focus-ring'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcSwitch__focusRingWrapper [
+
+	self class: 'mdc-switch__focus-ring-wrapper'
+]
+
+{ #category : #'*Material-Web-Core' }
 WATagBrush >> mdcSwitch__handle [
 
 	self class: 'mdc-switch__handle'
@@ -3137,6 +3293,12 @@ WATagBrush >> mdcTabScroller_animating [
 WATagBrush >> mdcTab__content [
 
 	self class: 'mdc-tab__content'
+]
+
+{ #category : #'*Material-Web-Core' }
+WATagBrush >> mdcTab__focusRing [
+
+	self class: 'mdc-tab__focus-ring'
 ]
 
 { #category : #'*Material-Web-Core' }
